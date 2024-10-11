@@ -9,7 +9,6 @@ BackGround::BackGround(POINT pos)
 
 BackGround::~BackGround()
 {
-	Actor::~Actor();
 }
 
 void BackGround::Initialize(Game* gameInstance_,Scene* scene)

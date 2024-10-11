@@ -9,7 +9,6 @@ Actor::Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort
 
 Actor::~Actor()
 {
-	Picture::~Picture();
 }
 
 void Actor::Initialize(Game* gameInstance_,Scene* scene)

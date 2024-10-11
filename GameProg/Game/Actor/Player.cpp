@@ -11,7 +11,6 @@ Player::Player(POINT pos)
 
 Player::~Player()
 {
-	Actor::~Actor();
 }
 
 void Player::Initialize(Game* gameInstance_,Scene* scene)

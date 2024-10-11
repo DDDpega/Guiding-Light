@@ -27,7 +27,6 @@ GameScene::GameScene(Game* gameInstance)
 
 GameScene::~GameScene()
 {
-	Scene::~Scene();
 }
 
 void GameScene::Initialize()

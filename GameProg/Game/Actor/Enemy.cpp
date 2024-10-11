@@ -9,7 +9,6 @@ Enemy::Enemy(POINT pos)
 
 Enemy::~Enemy()
 {
-	Actor::~Actor();
 }
 
 void Enemy::Initialize(Game* gameInstance_,Scene* scene)

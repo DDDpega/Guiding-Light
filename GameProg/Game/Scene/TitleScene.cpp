@@ -10,7 +10,6 @@ TitleScene::TitleScene(Game* gameInstance)
 
 TitleScene::~TitleScene()
 {
-	Scene::~Scene();
 }
 
 void TitleScene::Initialize()
