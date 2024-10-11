@@ -3,7 +3,7 @@
 
 Game::Game()
 {
-
+	//コンストラクタ
 }
 
 Game::~Game()
