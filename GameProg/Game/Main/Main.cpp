@@ -1,5 +1,5 @@
-#include "Game.h"
-#include "include.h"
+#include "Framework.h"
+
 
 
 #define GameWidth   1280    //‰æ–Ê‚Ì•

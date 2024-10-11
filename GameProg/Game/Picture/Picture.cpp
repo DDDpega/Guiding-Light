@@ -1,4 +1,5 @@
-#include "Picture.h"
+#include "Framework.h"
+
 
 Picture::Picture(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort, bool isVisible)
 	:m_pos(pos)

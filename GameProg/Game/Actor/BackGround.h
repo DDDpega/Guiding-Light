@@ -1,9 +1,5 @@
 #pragma once
-#include "Actor.h"
-#include "Scene.h"
 
-#include "list"
-#include "memory"
 
 class BackGround : public Actor
 {

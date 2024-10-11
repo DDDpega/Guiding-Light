@@ -1,6 +1,5 @@
-#include "BackGround.h"
-#include "PictureManeger.h"
-#include "Game.h"
+#include "Framework.h"
+
 
 BackGround::BackGround(POINT pos)
 	:Actor(pos, 12, "Picture/background.png",PIVOT::LEFTUP,SORT::SORT_BACKGROUND)

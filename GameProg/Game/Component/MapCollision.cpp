@@ -1,6 +1,5 @@
-#include "MapCollision.h"
-#include "CollisionManeger.h"
-#include "Game.h"
+#include "Framework.h"
+
 
 MapCollision::MapCollision(Game* gameInstance ,Scene* const scene , Actor* actor,TAG tag)
 	:Component(actor)

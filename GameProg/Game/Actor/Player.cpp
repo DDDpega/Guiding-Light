@@ -1,10 +1,5 @@
-#include "Player.h"
-#include "include.h"
-#include "SceneManeger.h"
-#include "BoxCollisionCmp.h"
-#include "MapCollision.h"
-#include "Game.h"
-#include "RigidbodyCmp.h"
+#include "Framework.h"
+
 
 Player::Player(POINT pos)
 	:Actor(pos, 1, "Picture/jiki.png")

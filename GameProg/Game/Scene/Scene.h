@@ -1,10 +1,7 @@
 #pragma once
-#include "DxLib.h"
-#include "list"
-#include "memory"
+
 
 class Game;
-class Player;
 
 class Scene
 {

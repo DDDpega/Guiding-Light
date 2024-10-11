@@ -1,6 +1,5 @@
-#include "BoxCollisionCmp.h"
-#include "Actor.h"
-#include "Scene.h"
+#include "Framework.h"
+
 
 BoxCollisionCmp::BoxCollisionCmp(Actor* actor, POINT offset, POINT size,TAG name)
 	:Component(actor)

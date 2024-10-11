@@ -1,16 +1,5 @@
 #pragma once
-#include"DxLib.h"
-#include<memory>
-#include <vector>
-#include <string>
-#include <list>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-using namespace std;
 
-#include "Picture.h"
 
 #define GameWidth		1280		//‰æ–Ê‚Ì•
 #define GameHeight		 720		//‰æ–Ê‚Ì‚‚³
@@ -28,8 +17,6 @@ using namespace std;
 #define GameSceneNamemMax	20		//ƒQ[ƒ€ƒV[ƒ“–¼‚Ì•¶šMAX
 
 #define MAPCHIPCOLNUM 18
-
-class Game;
 
 class Map : public Picture
 {

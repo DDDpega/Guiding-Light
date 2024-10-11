@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+
 
 enum STATE {
 	FLY, WALK, JUMP, STAND,FALL,JUMPSTT

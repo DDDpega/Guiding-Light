@@ -1,5 +1,5 @@
-#include "Component.h"
-#include "Actor.h"
+#include "Framework.h"
+
 
 Component::Component(Actor* actor)
 	:m_actor(actor)

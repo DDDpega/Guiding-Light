@@ -1,12 +1,9 @@
 #pragma once
-#include "DxLib.h"
-#include "Scene.h"
-#include "Picture.h"
-#include "ActorManager.h"
-#include "BoxCollisionCmp.h"
 
 class RigidbodyCmp;
 class MapCollision;
+class Scene;
+class Game;
 
 class Actor : public Picture
 {

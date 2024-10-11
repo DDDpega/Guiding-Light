@@ -1,8 +1,5 @@
 #pragma once
-#include "Actor.h"
-#include "Component.h"
-#include "Scene.h"
-#include "CollisionManeger.h"
+
 
 class Actor;
 class CollisionManeger;

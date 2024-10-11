@@ -1,4 +1,5 @@
-#include"Map.h"
+#include "Framework.h"
+
 
 Map::Map(const Info& info, const TCHAR* graph)
 	:Picture(SORT::SORT_MAP)

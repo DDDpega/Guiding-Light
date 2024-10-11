@@ -1,8 +1,5 @@
-#include "TitleScene.h"
-#include "SceneManeger.h"
-#include "PictureManeger.h"
-#include "Key.h"
-#include "Game.h"
+#include "Framework.h"
+
 
 TitleScene::TitleScene(Game* gameInstance)
 	:Scene(gameInstance,"タイトルシーン")

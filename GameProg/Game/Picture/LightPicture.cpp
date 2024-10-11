@@ -1,4 +1,5 @@
-#include "LightPicture.h"
+#include "Framework.h"
+
 
 
 LightPicture::LightPicture(POINT pos)
@@ -24,14 +25,8 @@ void LightPicture::Update()
 
 void LightPicture::Draw()
 {
-
-
-
 	////ìßñæìxÇÃê›íË
 	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
-
-
-	
 	auto handle = LoadGraph("Picture/arrow.png");
 	
 	
@@ -39,12 +34,7 @@ void LightPicture::Draw()
 
 	//SetTransColor(255, 255, 255);
 
-
 	//DrawRotaGraph2(m_pos.x, m_pos.y, (m_pictureSizeX / 2), (m_pictureSizeY / 2),m_size, 0, Phandle, true);
-
-	
-
-
 
 	//ê›íËÇå≥Ç…ñﬂÇ∑ÅB
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

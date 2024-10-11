@@ -1,6 +1,4 @@
 #pragma once
-#include "include.h"
-#include "BoxCollisionCmp.h"
 
 
 class CollisionManeger

@@ -1,11 +1,5 @@
 #pragma once
 
-#include "include.h"
-#include "ActorManager.h"
-#include "CollisionManeger.h"
-#include "SceneManeger.h"
-#include "PictureManeger.h"
-
 //マネージャーのクラス
 class ActorManager;
 class CollisionManeger;

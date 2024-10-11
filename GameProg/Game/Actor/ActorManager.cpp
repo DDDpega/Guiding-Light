@@ -1,5 +1,5 @@
-#include "ActorManager.h"
-#include "Game.h"
+#include "Framework.h"
+
 
 ActorManager::ActorManager(Game* gameInstance)
 	:m_componentList()

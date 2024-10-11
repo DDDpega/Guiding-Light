@@ -1,7 +1,4 @@
 #pragma once
-#include "DxLib.h"
-#include "Component.h"
-#include <Scene.h>
 
 class Actor;
 

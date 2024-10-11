@@ -1,5 +1,5 @@
-#include "DxLib.h"
-#include "Key.h"
+#include "Framework.h"
+
 
 int NowKeyPressFrame[KeyKindMax];
 int OldKeyPressFrame[KeyKindMax];

@@ -1,11 +1,8 @@
 #pragma once
-#include "Scene.h"
-#include "Player.h"
-#include "memory"
-#include "Enemy.h"
-#include "BackGround.h"
-#include"Map.h"
 
+class Map;
+class Player;
+class Picture;
 
 class GameScene : public Scene
 {

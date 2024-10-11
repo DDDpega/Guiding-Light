@@ -1,4 +1,5 @@
-#include "PictureManeger.h"
+#include "Framework.h"
+
 
 
 PictureManeger::PictureManeger(Game* gameInstane)

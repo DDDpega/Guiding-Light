@@ -1,8 +1,5 @@
 #pragma once
-#include "Component.h"
-#include"GameScene.h"
-#include"include.h"
-#include"Actor.h"
+
 class GameScene;
 
 class MapCollision : public Component

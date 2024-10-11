@@ -1,5 +1,5 @@
-#include "CollisionManeger.h"
-#include "Actor.h"
+#include "Framework.h"
+
 
 CollisionManeger::CollisionManeger()
 	:m_collisionList()

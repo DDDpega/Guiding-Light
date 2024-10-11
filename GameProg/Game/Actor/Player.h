@@ -1,8 +1,6 @@
 #pragma once
-#include "Actor.h"
-#include <memory>
-#include "ActorManager.h"
 
+class Picture;
 
 class Player : public Actor
 {
@@ -36,19 +34,9 @@ public:
 	/// <param name="other"></param>
 	void HitCollision(Actor* other, TAG tag);
 
-	/// <summary>
-	/// 発射
-	/// </summary>
-	void Shot();
-
-	/// <summary>
-	/// アクターを追加するメソッド
-	/// </summary>
-	/// <param name="actor"></param>
-	void AddChild(Scene* scene);
 
 private:
 	bool m_firstShot;
-	shared_ptr<Picture> lightPicture;
+	std::shared_ptr<Picture> lightPicture;
 	int m_bulletframe;
 };

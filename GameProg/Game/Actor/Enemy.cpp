@@ -1,10 +1,5 @@
-#include "Enemy.h"
-#include "include.h"
-#include "GameScene.h"
-#include "SceneManeger.h"
-#include "Game.h"
-#include "MapCollision.h"
-#include "RigidbodyCmp.h"
+#include "Framework.h"
+
 
 Enemy::Enemy(POINT pos)
 	:Actor(pos, 1 ,"Picture/enemy_0.png")

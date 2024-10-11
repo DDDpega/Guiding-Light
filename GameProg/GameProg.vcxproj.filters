@@ -127,9 +127,6 @@
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Main\include.h">
-      <Filter>Game\Main</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Main\Status.h">
       <Filter>Game\Main</Filter>
     </ClInclude>
@@ -162,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="Game\Picture\LightPicture.h">
       <Filter>Game\Picture</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Main\Framework.h">
+      <Filter>Game\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

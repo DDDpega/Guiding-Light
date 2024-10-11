@@ -1,6 +1,5 @@
-#include "SceneManeger.h"
-#include "Game.h"
-#include "include.h"
+#include "Framework.h"
+
 
 SceneManeger::SceneManeger(Game* gameInstance)
 	:m_gameInstance(gameInstance)

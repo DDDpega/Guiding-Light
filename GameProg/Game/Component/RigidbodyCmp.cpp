@@ -1,6 +1,5 @@
-#include "RigidbodyCmp.h"
-#include "MapCollision.h"
-#include "Actor.h"
+#include "Framework.h"
+
 
 RigidbodyCmp::RigidbodyCmp(Actor* actor,STATE state)
 	:Component(actor)

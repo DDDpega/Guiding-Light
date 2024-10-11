@@ -1,4 +1,4 @@
-#include "Actor.h"
+#include "Framework.h"
 
 
 Actor::Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort)

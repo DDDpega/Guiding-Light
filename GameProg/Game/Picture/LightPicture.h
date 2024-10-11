@@ -1,6 +1,4 @@
 #pragma once
-#include "Picture.h"
-#include "DxLib.h"
 
 class LightPicture : public Picture
 {

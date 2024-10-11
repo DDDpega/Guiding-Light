@@ -1,9 +1,5 @@
-#include "GameScene.h"
-#include "SceneManeger.h"
-#include "PictureManeger.h"
-#include "include.h"
-#include "Game.h"
-#include "LightPicture.h"
+#include "Framework.h"
+
 
 GameScene::GameScene(Game* gameInstance)
 	:Scene(gameInstance,"ƒQ[ƒ€ƒV[ƒ“")

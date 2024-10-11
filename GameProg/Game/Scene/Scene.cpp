@@ -1,8 +1,5 @@
-#include "Scene.h"
-#include"Picture.h"
-#include "SceneManeger.h"
-#include "PictureManeger.h"
-#include "include.h"
+#include "Framework.h"
+
 
 Scene::Scene(Game* gameInstance,const char* name)
 	:m_sceneName(name)

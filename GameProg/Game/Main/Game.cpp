@@ -1,5 +1,4 @@
-#include "Game.h"
-#include "Key.h"
+#include "Framework.h"
 
 Game::Game()
 {

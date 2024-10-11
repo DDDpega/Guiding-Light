@@ -1,6 +1,4 @@
 #pragma once
-#include "Picture.h"
-#include "include.h"
 
 class Picture;
 
