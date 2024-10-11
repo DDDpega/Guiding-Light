@@ -14,6 +14,7 @@ Actor::~Actor()
 
 void Actor::Initialize(Game* gameInstance_,Scene* scene)
  {
+	//ƒeƒXƒg
 	Picture::Initialize(gameInstance_,scene);
 
 	m_gameInstance = gameInstance_;
