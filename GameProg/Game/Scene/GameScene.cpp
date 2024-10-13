@@ -35,8 +35,8 @@ void GameScene::Initialize()
 	
 
 	//背景画像
-	/*auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
-	m_gameInstance->GetPictureMNG()->AddPicture(background,this);*/
+	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
+	m_gameInstance->GetPictureMNG()->AddPicture(background,this);
 
 	auto light = std::shared_ptr<LightPicture>(new LightPicture(POINT{ 0,0 }));
 	m_gameInstance->GetPictureMNG()->AddPicture(light, this);
@@ -53,21 +53,10 @@ void GameScene::Initialize()
 	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData40bit.png"));
 	m_gameInstance->GetPictureMNG()->AddPicture(m_map, this);
 
-	//----------------------------------------------------------------
-	//ロゴ
-	m_pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ (LONG)screenX / 2 ,(LONG)screenY / 2 - 100 }, 0.8, "Picture/logo.png", PIVOT::CENTER,SORT::SORT_UI));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_pauseLogo, this);
+	//UIを表示する
+	m_pauseUI = shared_ptr<GamePauseUI>(new GamePauseUI(false));
+	m_gameInstance->GetPictureMNG()->AddPicture(m_pauseUI, this);
 
-	//タイトルに戻る画像
-	m_backTitle = std::shared_ptr<Picture>(new Picture(POINT{ (LONG)screenX / 2 ,(LONG)screenY / 2 + 300 }, 0.1, "Picture/backTitle.png", PIVOT::CENTER, SORT::SORT_UI,false));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_backTitle, this);
-
-
-	//ゲームに戻る画像
-	m_backGame = std::shared_ptr<Picture>(new Picture(POINT{ (LONG)screenX / 2 ,(LONG)screenY / 2 + 200 }, 0.1, "Picture/backGame.png", PIVOT::CENTER,  SORT::SORT_UI,false));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_backGame, this);
-
-	//----------------------------------------------------------------
 }
 
 void GameScene::Update()
@@ -80,30 +69,17 @@ void GameScene::Update()
 			m_isPause = false;
 
 			//UIの見た目を付ける
-			m_backGame->SetisLook(false);
-			m_backTitle->SetisLook(false);
-			m_pauseLogo->SetisLook(false);
+			m_pauseUI->SetisVisible(false);
+			//UIの操作をする
+
 		}
 		else {
 			m_isPause = true;
 
 			//UIの見た目を付ける
-			m_backGame->SetisLook(true);
-			m_backTitle->SetisLook(true);
-			m_pauseLogo->SetisLook(true);
+			m_pauseUI->SetisVisible(true);
+
 		}
-	}
-
-	if (!m_player->m_isActive) {
-		m_gameInstance->GetSceneMNG()->ChangeScene(E_Scene::TITLE);
-	}
-
-	//ポーズ状態なら動かさない
-	if (m_isPause) {
-
-
-
-		return;
 	}		
 }
 

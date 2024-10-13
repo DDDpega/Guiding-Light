@@ -26,6 +26,9 @@
     <Filter Include="Game\Map">
       <UniqueIdentifier>{f683a5c8-63ad-4c27-8ecb-bf502b6bafca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI">
+      <UniqueIdentifier>{37653401-6455-4e6a-bed9-978cd5059a73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main\Main.cpp">
@@ -93,6 +96,15 @@
     </ClCompile>
     <ClCompile Include="Game\Picture\LightPicture.cpp">
       <Filter>Game\Picture</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UserInterface\GamePauseUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UserInterface\TitleUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UserInterface\UserInterface.cpp">
+      <Filter>Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +174,15 @@
     </ClInclude>
     <ClInclude Include="Game\Main\Framework.h">
       <Filter>Game\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\GamePauseUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\TitleUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\UserInterface.h">
+      <Filter>Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

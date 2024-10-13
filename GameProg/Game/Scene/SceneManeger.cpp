@@ -13,23 +13,33 @@ SceneManeger::~SceneManeger()
 }
 
 void SceneManeger::Initialize()
-{	
+{
 	//変数の初期化
 	gameScene = new GameScene(m_gameInstance);
 	titleScene = new TitleScene(m_gameInstance);
 
 	//初期をゲームシーンに変更
+	e_NextScene = IniScene;
 	ChangeScene(IniScene);
 }
 
 void SceneManeger::Update()
 {
 	nowScene->Update();
+
+	if (e_NextScene != e_NowScene) {
+		ChangeScene(e_NextScene);
+	}
 }
 
 void SceneManeger::Draw()
 {
 	nowScene->Draw();
+}
+
+void SceneManeger::ChangeSceneFlag(E_Scene scene)
+{
+	e_NextScene = scene;
 }
 
 void SceneManeger::ChangeScene(E_Scene nextScene)
@@ -46,10 +56,14 @@ void SceneManeger::ChangeScene(E_Scene nextScene)
 		break;
 	}
 
+	//現在のシーンの状態を変更する
+	e_NowScene = e_NextScene;
+
+
 	//リストの削除
 	m_gameInstance->GetCollisionMNG()->CleanList();
 	m_gameInstance->GetPictureMNG()->CleanList();
-	m_gameInstance->GetActorMNG()->CleanList();
 
 	nowScene->Initialize();
+
 }

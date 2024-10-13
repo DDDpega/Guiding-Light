@@ -29,7 +29,7 @@ public:
 	/// <summary>
 	/// 描画しないPicture
 	/// </summary>
-	Picture(SORT sort);
+	Picture(SORT sort , bool isVisible);
 
 	/// <summary>
 	/// デストラクタ
@@ -77,8 +77,16 @@ public:
 	/// 見た目の変更
 	/// </summary>
 	/// <param name="islook"></param>
-	void SetisLook(bool islook) {
+	void SetisVisible(bool islook) {
 		m_isVisible = islook;
+	}
+
+	/// <summary>
+	/// 見た目の取得
+	/// </summary>
+	/// <returns></returns>
+	bool GetisVisible() {
+		return m_isVisible;
 	}
 
 	SORT GetSort() {

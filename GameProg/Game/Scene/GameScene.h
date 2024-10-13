@@ -57,10 +57,8 @@ public:
 	std::shared_ptr<Map>	m_map;
 
 private:
-	std::shared_ptr<Player> m_player;
-	std::shared_ptr<Picture> m_backTitle;
-	std::shared_ptr<Picture> m_backGame;
-	std::shared_ptr<Picture> m_pauseLogo;
-	
+	std::shared_ptr<Player> m_player;	
+	shared_ptr<GamePauseUI> m_pauseUI;
+
 };
 

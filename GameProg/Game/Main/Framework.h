@@ -23,6 +23,11 @@ using namespace std;
 #include "LightPicture.h"
 #include "PictureManeger.h"
 
+//ユーザーインターフェース
+#include "UserInterface.h"
+#include "GamePauseUI.h"
+#include "TitleUI.h"
+
 //マップ
 #include "Map.h"
 

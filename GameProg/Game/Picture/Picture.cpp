@@ -15,10 +15,10 @@ Picture::Picture(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT 
 
 }
 
-Picture::Picture(SORT sort)
+Picture::Picture(SORT sort , bool isVisible)
 	:m_sort(sort)
 	,m_framecnt(0)
-	,m_isVisible(true)
+	,m_isVisible(isVisible)
 	,m_isActive(true)
 	,m_pictureNull(true)
 {
@@ -44,11 +44,6 @@ void Picture::Update()
 
 void Picture::Draw()
 {
-	if (!m_isVisible) {
-		return;
-	}
-
-
 	//‰æ‘œ‚Ì•`‰æ
 	if (m_pivot == PIVOT::CENTER) {
 		DrawRotaGraph2(m_pos.x, m_pos.y, (m_pictureSizeX/2), (m_pictureSizeY / 2), m_size, 0,  m_handle, true);

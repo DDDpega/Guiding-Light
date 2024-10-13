@@ -46,6 +46,14 @@ public:
 	void ChangeScene(E_Scene nextScene);
 
 	/// <summary>
+	/// シーン変更のフラグ
+	/// </summary>
+	/// <param name="scene"></param>
+	void ChangeSceneFlag(E_Scene scene);
+
+
+
+	/// <summary>
 	/// 今のシーンを入手する
 	/// </summary>
 	/// <returns></returns>
@@ -60,6 +68,9 @@ private:
 	Scene* nowScene;
 	GameScene* gameScene;
 	TitleScene* titleScene;
+
+	E_Scene e_NowScene;
+	E_Scene e_NextScene;
 
 	//ゲームインスタンス
 	Game* m_gameInstance;

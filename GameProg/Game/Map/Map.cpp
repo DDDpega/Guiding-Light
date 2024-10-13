@@ -2,7 +2,7 @@
 
 
 Map::Map(const Info& info, const TCHAR* graph)
-	:Picture(SORT::SORT_MAP)
+	:Picture(SORT::SORT_MAP,true)
 	, m_bitmap()
 	, m_chipSize()
 	, m_chipCol()

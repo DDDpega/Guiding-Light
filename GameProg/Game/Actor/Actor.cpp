@@ -37,6 +37,9 @@ void Actor::Draw()
 
 void Actor::Move()
 {
+	if (m_sceneptr->m_isPause)
+		return;
+
 	printfDx("ポジションChange\n");
 	m_pos.x += m_vx;	//右移動
 	m_pos.y += m_vy;	//下移動

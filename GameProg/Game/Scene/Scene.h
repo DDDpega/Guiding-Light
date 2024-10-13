@@ -33,10 +33,10 @@ public:
 
 
 	int screenX, screenY;	//画面サイズ
+	bool m_isPause;			//ポーズ状態かどうか
 
 
 protected:
 	const char* m_sceneName;	//現在のシーンの名前
-	bool m_isPause;			//ポーズ状態かどうか
 	Game* m_gameInstance;		//ゲームインスタンス
 };

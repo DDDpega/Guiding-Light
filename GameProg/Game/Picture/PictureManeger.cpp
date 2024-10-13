@@ -44,7 +44,10 @@ void PictureManeger::Draw()
 {
 	//ピクチャーのリストの描画
 	for (auto& c : m_pictureList) {
-		c->Draw();
+
+		if (c->GetisVisible()) {
+			c->Draw();
+		}
 	}
 }
 
