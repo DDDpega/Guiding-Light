@@ -21,15 +21,15 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	gameInstance_->GetPictureMNG()->AddPicture(lightPicture,scene);*/
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 80,80 },TAG::PLAYER));
-	gameInstance_->GetActorMNG()->AddComponent(collision,scene);
+	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->addCollisionList(collision);
 
 
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::PLAYER));
-	gameInstance_->GetActorMNG()->AddComponent(m_mapCollision, scene);
+	Actor::AddComponent(m_mapCollision, scene);
 
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP));
-	gameInstance_->GetActorMNG()->AddComponent(m_rigidBody, scene);
+	Actor::AddComponent(m_rigidBody, scene);
 }
 
 void Player::Update()
@@ -66,7 +66,8 @@ void Player::HitCollision(Actor* other, TAG tag)
 {
 	Actor::HitCollision(other, tag);
 
-	if (tag == TAG::ENEMY) {
+	if (tag == TAG::ENEMY && m_isActive) {
+		m_gameInstance->GetSceneMNG()->ChangeSceneFlag(E_Scene::TITLE);
 		m_isActive = false;
 	}
 }

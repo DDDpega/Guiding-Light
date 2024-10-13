@@ -16,14 +16,14 @@ void Enemy::Initialize(Game* gameInstance_,Scene* scene)
 	Actor::Initialize(gameInstance_, scene);
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 80,50 }, TAG::ENEMY));
-	gameInstance_->GetActorMNG()->AddComponent(collision, scene);
+	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->addCollisionList(collision);
 
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::PLAYER));
-	gameInstance_->GetActorMNG()->AddComponent(m_mapCollision, scene);
+	Actor::AddComponent(m_mapCollision, scene);
 
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this, STATE::FALL));
-	gameInstance_->GetActorMNG()->AddComponent(m_rigidBody, scene);
+	Actor::AddComponent(m_rigidBody, scene);
 
 }
 

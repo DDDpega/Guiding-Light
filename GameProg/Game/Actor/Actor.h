@@ -47,11 +47,22 @@ public:
 	virtual void HitCollision(Actor* other, TAG tag);
 
 	/// <summary>
+	/// コンポーネントリストに追加するメソッド
+	/// </summary>
+	/// <param name="actor"></param>
+	void AddComponent(std::shared_ptr<Component> component, Scene* scene);
+
+
+
+	/// <summary>
 	/// m_isMove_x,yのセッター
 	/// </summary>
 	/// <param name="isMove_x">x軸が動いているか</param>
 	/// <param name="isMove_y">y軸が動いているか</param>
-	void SetMoveCheck(bool isMove_x, bool isMove_y) { m_isMove_x = isMove_x; m_isMove_y = isMove_y; }
+	void SetMoveCheck(bool isMove_x, bool isMove_y) {
+		m_isMove_x = isMove_x;
+		m_isMove_y = isMove_y;
+	}
 
 	/// <summary>
 	/// m_isMove_x,yのゲッター
@@ -69,5 +80,7 @@ protected:
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 	bool m_isMove_x;	//x軸に動いているかどうか
 	bool m_isMove_y;	//y軸に動いているかどうか
+	std::list<std::shared_ptr<Component>> m_componentList;
+
 };
 

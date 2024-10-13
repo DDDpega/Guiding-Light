@@ -4,7 +4,6 @@
 Component::Component(Actor* actor)
 	:m_actor(actor)
 	,m_pos(actor->GetPos())
-	,m_destroy(false)
 {
 
 }
@@ -30,12 +29,5 @@ void Component::Update()
 
 void Component::Draw()
 {
-
-}
-
-Actor* Component::GetActor()
-{
-
-	return m_actor;
 
 }

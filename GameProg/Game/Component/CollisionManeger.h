@@ -48,12 +48,6 @@ public:
 	}
 
 	/// <summary>
-	/// リストの一部を削除する
-	/// </summary>
-	void ListDestroy();
-
-
-	/// <summary>
 	/// リストの中身の1つを入手する
 	/// </summary>
 	/// <param name="tag"></param>

@@ -37,9 +37,7 @@ public:
 		m_state = state;
 	}
 
-	void JumpByFall();
 
-	
 	
 private:
 	STATE m_state;			//Œ»İ‚Ìó‘Ô

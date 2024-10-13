@@ -59,9 +59,7 @@ void RigidbodyCmp::Update()
 		break;
 	case JUMP:
 	case FALL:
-
 		m_actor->m_vy += 1;
-		JumpByFall();
 		break;
 	case JUMPSTT:
 		m_actor->m_vy -= 20.0;
@@ -77,24 +75,10 @@ void RigidbodyCmp::Update()
 		m_state = FALL;
 		printfDx("—Ž‰º”»’è%d\n", pos.y);
 	}
-	
-	
-	
-
-	
 }
 
 
 void RigidbodyCmp::Draw()
 {
 
-}
-
-void RigidbodyCmp::JumpByFall()
-{
-
-	// —Ž‰ºŠJŽn
-	if (m_state == JUMP && m_actor->m_vy > 0) {
-		m_state = FALL;
-	}
 }

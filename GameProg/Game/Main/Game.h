@@ -1,7 +1,7 @@
 #pragma once
 
 //マネージャーのクラス
-class ActorManager;
+
 class CollisionManeger;
 class PictureManeger;
 class SceneManeger;
@@ -45,13 +45,6 @@ public:
 	}
 
 	/// <summary>
-	/// actorManagerのゲッター
-	/// </summary>
-	ActorManager* GetActorMNG() const {
-		return m_actorMNG;
-	}
-
-	/// <summary>
 	/// シーンマネージャーのゲッター
 	/// </summary>
 	/// <returns></returns>
@@ -77,7 +70,6 @@ public:
 
 private:
 	//マネージャーの宣言
-	ActorManager* m_actorMNG;
 	CollisionManeger* m_collisionMNG;
 	PictureManeger* m_pictureMNG;
 	SceneManeger* m_sceneMNG;

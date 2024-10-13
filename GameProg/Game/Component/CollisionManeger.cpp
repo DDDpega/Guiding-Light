@@ -34,14 +34,24 @@ void CollisionManeger::CheckCollide()
 	//コリジョンを回して衝突しているか検索する
 	for (auto i = m_collisionList.cbegin(); i != m_collisionList.cend(); i++) {
 		for (auto j = m_collisionList.cbegin(); j != m_collisionList.cend(); j++) {
-			//同じObjectかどうか
-			if (i->get()->GetActor() != j->get()->GetActor()&&
-				!i->get()->m_destroy && !j->get() ->m_destroy) {
+			//同じObjectかどうか・そのObjectが生きているかどうか
+			if (i->get()->GetActor() != j->get()->GetActor() &&
+				i->get()->GetActor()->m_isActive && j->get()->GetActor()->m_isActive) {
 
-				//当たっている
+				//当たっているかどうか
 				CheckObjectHit(i->get(), j->get());
-				
+
 			}
+		}
+	}
+
+	//アクターリストの中身削除
+	for (auto i = m_collisionList.cbegin(); i != m_collisionList.cend();) {
+		if (i->get()->GetActor()->m_isActive) {
+			i++;
+		}
+		else {
+			i = m_collisionList.erase(i);
 		}
 	}
 }
@@ -58,28 +68,13 @@ bool CollisionManeger::CheckObjectHit(BoxCollisionCmp* obj_i, BoxCollisionCmp* o
 		if ((collObj_i.bottom > collObj_j.top) &&
 			(collObj_i.top < collObj_j.bottom))
 		{
-			if (!obj_i->m_destroy && !obj_j->m_destroy) {
-				//オブジェクトに衝突通知を送る
-				obj_i->GetActor()->HitCollision((obj_j->GetActor()), (obj_j->m_tag));
-				obj_j->GetActor()->HitCollision((obj_i->GetActor()), (obj_i->m_tag));
-			}
-				return true;
-			
+			//オブジェクトに衝突通知を送る
+			obj_i->GetActor()->HitCollision((obj_j->GetActor()), (obj_j->m_tag));
+			obj_j->GetActor()->HitCollision((obj_i->GetActor()), (obj_i->m_tag));
+
+			return true;
 		}
 	}
 	return false;
 }
 
-
-void CollisionManeger::ListDestroy() {
-
-	//アクターリストの中身削除
-	for (auto i = m_collisionList.cbegin(); i != m_collisionList.cend();) {
-		if (i->get()->m_destroy) {
-			i = m_collisionList.erase(i);
-		}
-		else {
-			i++;
-		}
-	}
-}

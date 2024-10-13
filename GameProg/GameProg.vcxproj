@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Actor\Actor.cpp" />
-    <ClCompile Include="Game\Actor\ActorManager.cpp" />
     <ClCompile Include="Game\Actor\BackGround.cpp" />
     <ClCompile Include="Game\Actor\Enemy.cpp" />
     <ClCompile Include="Game\Actor\Player.cpp" />
@@ -57,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Actor.h" />
-    <ClInclude Include="Game\Actor\ActorManager.h" />
     <ClInclude Include="Game\Actor\BackGround.h" />
     <ClInclude Include="Game\Actor\Enemy.h" />
     <ClInclude Include="Game\Actor\Player.h" />

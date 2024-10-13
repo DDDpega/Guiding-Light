@@ -36,15 +36,11 @@ public:
 	/// アクターを取得する
 	/// </summary>
 	/// <returns></returns>
-	Actor* GetActor();
-
-	void Destroy(bool isSet) {
-		m_destroy = isSet;
+	Actor* GetActor() {
+		return m_actor;
 	}
 
 
-
-	bool m_destroy;
 	POINT m_pos;	//中心位置
 
 protected:

@@ -9,6 +9,7 @@ Actor::Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort
 
 Actor::~Actor()
 {
+	m_componentList.clear();
 }
 
 void Actor::Initialize(Game* gameInstance_,Scene* scene)
@@ -25,6 +26,11 @@ void Actor::Update()
 {
 	Picture::Update();
 
+	//コンポーネントリストの更新処理
+	for (auto& c : m_componentList) {
+		c->Update();
+	}
+
 	//フレーム数のカウント
 	m_framecnt++;
 }
@@ -33,12 +39,18 @@ void Actor::Update()
 void Actor::Draw()
 {
 	Picture::Draw();
+
+	//コンポーネントリストの描画
+	for (auto& c : m_componentList) {
+		c->Draw();
+	}
 }
 
 void Actor::Move()
 {
-	if (m_sceneptr->m_isPause)
+	if (m_sceneptr->m_isPause) {
 		return;
+	}
 
 	printfDx("ポジションChange\n");
 	m_pos.x += m_vx;	//右移動
@@ -54,4 +66,11 @@ bool Actor::GetIsMove(string shaft)
 {
 	if (shaft == "x")return m_isMove_x;
 	if (shaft == "y")return m_isMove_y;
+}
+
+void Actor::AddComponent(std::shared_ptr<Component> component, Scene* scene)
+{
+	//コンポーネントのList追加と初期化
+	component->Initialize(scene);
+	m_componentList.push_back(component);
 }
