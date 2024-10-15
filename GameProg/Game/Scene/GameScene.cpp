@@ -50,7 +50,7 @@ void GameScene::Initialize()
 	m_gameInstance->GetPictureMNG()->AddPicture(enemy, this);
 
 	//マップの生成
-	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData40bit.png"));
+	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData16bit.png"));
 	m_gameInstance->GetPictureMNG()->AddPicture(m_map, this);
 
 	//UIを表示する

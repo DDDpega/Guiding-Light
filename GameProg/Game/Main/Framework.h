@@ -14,6 +14,7 @@ using namespace std;
 #include <iostream>
 
 //システム
+#include"Fps.h"
 #include "Key.h"
 #include "Status.h"
 #include "Game.h"
@@ -27,6 +28,8 @@ using namespace std;
 #include "UserInterface.h"
 #include "GamePauseUI.h"
 #include "TitleUI.h"
+#include"StageSelectUI.h"
+
 
 //マップ
 #include "Map.h"
@@ -34,8 +37,10 @@ using namespace std;
 //シーン
 #include "Scene.h"
 #include "GameScene.h"
+#include"StageSelectScene.h"
 #include "TitleScene.h"
 #include "SceneManeger.h"
+
 
 //コンポーネント
 #include "Component.h"
