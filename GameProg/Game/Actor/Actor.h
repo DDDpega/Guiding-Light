@@ -2,8 +2,7 @@
 
 class RigidbodyCmp;
 class MapCollision;
-class Scene;
-class Game;
+
 
 class Actor : public Picture
 {
@@ -75,8 +74,6 @@ public:
 	std::shared_ptr<MapCollision> m_mapCollision;
 
 protected:
-	Scene* m_sceneptr;		//現在のシーン
-	Game* m_gameInstance;		//ゲームインスタンス
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 	bool m_isMove_x;	//x軸に動いているかどうか
 	bool m_isMove_y;	//y軸に動いているかどうか

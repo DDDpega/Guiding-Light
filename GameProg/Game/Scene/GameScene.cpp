@@ -38,15 +38,15 @@ void GameScene::Initialize()
 	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
 	m_gameInstance->GetPictureMNG()->AddPicture(background,this);
 
-	auto light = std::shared_ptr<LightPicture>(new LightPicture(POINT{ 0,0 }));
-	m_gameInstance->GetPictureMNG()->AddPicture(light, this);
+	m_lightPicture = std::shared_ptr<LightPicture>(new LightPicture());
+	m_gameInstance->GetPictureMNG()->AddPicture(m_lightPicture, this);
 
 	//プレイヤーの生成
-	m_player = std::shared_ptr<Player>(new Player(POINT{300,300}));
+	m_player = std::shared_ptr<Player>(new Player(POINT{200,500}));
 	m_gameInstance->GetPictureMNG()->AddPicture(m_player, this);
 
 	//敵の生成
-	auto enemy = std::shared_ptr<Enemy>(new Enemy(POINT{1000,0}));
+	auto enemy = std::shared_ptr<Enemy>(new Enemy(POINT{1000,200}));
 	m_gameInstance->GetPictureMNG()->AddPicture(enemy, this);
 
 	//マップの生成

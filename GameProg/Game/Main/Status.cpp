@@ -53,6 +53,9 @@ bool Status::ReadStatus()
 		case 5:
 			BULLET_SPEED = std::stof(line.substr(postion));
 			break;
+		case 6:
+			PLAYER_JUMP = std::stof(line.substr(postion));
+			break;
 		}
 
 		rowNum++;

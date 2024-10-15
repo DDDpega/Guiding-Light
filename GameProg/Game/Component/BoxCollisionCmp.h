@@ -30,7 +30,7 @@ public:
 	/// <summary>
 	/// ‰Šú‰»ˆ—
 	/// </summary>
-	void Initialize(Scene* scene);
+	void Initialize(Game* gameInstance,Scene* scene);
 
 	/// <summary>
 	/// XVˆ—

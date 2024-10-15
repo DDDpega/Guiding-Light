@@ -11,6 +11,7 @@ Player::Player(POINT pos)
 
 Player::~Player()
 {
+
 }
 
 void Player::Initialize(Game* gameInstance_,Scene* scene)
@@ -20,7 +21,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	/*lightPicture = std::shared_ptr<Picture>(new Picture(m_pos, 1, "Picture/light.png", PIVOT::CENTER, SORT::SORT_LIGHT));
 	gameInstance_->GetPictureMNG()->AddPicture(lightPicture,scene);*/
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 80,80 },TAG::PLAYER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,50 },TAG::PLAYER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->addCollisionList(collision);
 
@@ -30,6 +31,10 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP));
 	Actor::AddComponent(m_rigidBody, scene);
+
+	auto light = std::shared_ptr<LightCmp>(new LightCmp(this));
+	Actor::AddComponent(light, scene);
+
 }
 
 void Player::Update()
@@ -47,16 +52,15 @@ void Player::Update()
 	}
 	if (KeyDown(KEY_INPUT_LEFT) >= 1) {
 		m_vx = -m_gameInstance->GetStatus()->PLAYER_SPEED;
-		printfDx("Player\n");
+		//printfDx("Player\n");
 		isClick_x = true;
 	}
 
 	//ƒWƒƒƒ“ƒv
-	if (KeyClick(KEY_INPUT_UP) >= 1) {
+	if (KeyClick(KEY_INPUT_UP) >= 1 && m_rigidBody->m_state==STATE::STAND) {
 		m_rigidBody->ChangeState(STATE::JUMPSTT);
 		isClick_y = true;
 	}
-
 
 	SetMoveCheck(isClick_x, isClick_y);
 	Actor::Move();

@@ -3,6 +3,7 @@
 
 class Actor;
 class Scene;
+class Game;
 
 class Component
 {
@@ -20,7 +21,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	virtual void Initialize(Scene* scene);
+	virtual void Initialize(Game* gameInstance,Scene* scene);
 
 	/// <summary>
 	/// 更新処理
@@ -44,8 +45,8 @@ public:
 	POINT m_pos;	//中心位置
 
 protected:
+	Game* m_gameInstance;
 	Scene* m_sceneptr;
 	Actor* m_actor;	//どの親にくっつくか
-
 };
 

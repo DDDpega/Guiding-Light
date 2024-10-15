@@ -112,7 +112,7 @@ bool MapCollision::CheckMapCollide(POINT pos, float dx, float dy, const bool isC
 	if (dy < 0 && (rightTop || middleTop || leftTop)) {
 		result = true;
 		if (isCollect) {
-			pos2.y += (top + 2) * mapChipSize - rect.top;
+			pos2.y += (top + 1) * mapChipSize - rect.top;
 			
 		}
 	}

@@ -15,9 +15,9 @@ BoxCollisionCmp::~BoxCollisionCmp()
 {
 }
 
-void BoxCollisionCmp::Initialize(Scene* scene)
+void BoxCollisionCmp::Initialize(Game* gameInstance,Scene* scene)
 {
-	Component::Initialize(scene);
+	Component::Initialize(gameInstance,scene);
 
 	ChangeCollision();
 }

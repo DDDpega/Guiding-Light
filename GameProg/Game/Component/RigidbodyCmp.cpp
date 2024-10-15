@@ -15,14 +15,16 @@ RigidbodyCmp::~RigidbodyCmp()
 }
 
 
-void RigidbodyCmp::Initialize(Scene* scene)
+void RigidbodyCmp::Initialize(Game* gameInstance ,Scene* scene)
 {
-
+	Component::Initialize(gameInstance,scene);
 }
 
 
 void RigidbodyCmp::Update()
 {
+	Component::Update();
+
 	if (!m_actor->GetIsMove("x"))
 	{
 		m_actor->m_vx = 0;
@@ -32,7 +34,7 @@ void RigidbodyCmp::Update()
 	auto pos3 = m_actor->GetPos();
 	if (m_actor->m_mapCollision->CheckMapCollide(m_actor->GetPos(), m_actor->m_vx, 0.0f, true, isTopBottom)) {
 		m_actor->m_vx = 0;
-		printfDx("‰¡”»’è%d\n", pos3);
+		//printfDx("‰¡”»’è%d\n", pos3);
 	}
 
 	
@@ -43,7 +45,7 @@ void RigidbodyCmp::Update()
 		m_actor->m_vy = 0.0f;
 		m_actor->m_vx = 0.0f;
 		m_state = STAND;
-		printfDx("‚¶‚ß‚ñ”»’è%d\n",m_actor->GetPos().y);
+		//printfDx("‚¶‚ß‚ñ”»’è%d\n",m_actor->GetPos().y);
 	}
 	
 
@@ -62,7 +64,7 @@ void RigidbodyCmp::Update()
 		m_actor->m_vy += 1;
 		break;
 	case JUMPSTT:
-		m_actor->m_vy -= 20.0;
+		m_actor->m_vy -= m_gameInstance->GetStatus()->PLAYER_JUMP;
 		m_state = STATE::JUMP;
 		break;
 	}
@@ -73,12 +75,12 @@ void RigidbodyCmp::Update()
 	pos.y += 1.0f;
 	if (m_state != FALL && !m_actor->m_mapCollision->CheckMapCollide(pos, 0.0f, 1.0f, false, true)) {
 		m_state = FALL;
-		printfDx("—Ž‰º”»’è%d\n", pos.y);
+		//printfDx("—Ž‰º”»’è%d\n", pos.y);
 	}
 }
 
 
 void RigidbodyCmp::Draw()
 {
-
+	Component::Draw();
 }

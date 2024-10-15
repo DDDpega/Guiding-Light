@@ -21,7 +21,7 @@ public:
 	/// <summary>
 	/// ‰Šú‰»ˆ—
 	/// </summary>
-	void Initialize(Scene* scene);
+	void Initialize(Game* gameInstance,Scene* scene);
 
 	/// <summary>
 	/// XVˆ—
@@ -38,9 +38,9 @@ public:
 	}
 
 
-	
-private:
 	STATE m_state;			//Œ»İ‚Ìó‘Ô
+
+private:
 
 };
 

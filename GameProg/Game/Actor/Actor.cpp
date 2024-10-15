@@ -17,8 +17,6 @@ void Actor::Initialize(Game* gameInstance_,Scene* scene)
 	//テスト
 	Picture::Initialize(gameInstance_,scene);
 
-	m_gameInstance = gameInstance_;
-	m_sceneptr = scene;
 	m_isActive = true;
 }
 
@@ -52,7 +50,7 @@ void Actor::Move()
 		return;
 	}
 
-	printfDx("ポジションChange\n");
+	//printfDx("ポジションChange\n");
 	m_pos.x += m_vx;	//右移動
 	m_pos.y += m_vy;	//下移動
 }
@@ -71,6 +69,6 @@ bool Actor::GetIsMove(string shaft)
 void Actor::AddComponent(std::shared_ptr<Component> component, Scene* scene)
 {
 	//コンポーネントのList追加と初期化
-	component->Initialize(scene);
+	component->Initialize(m_gameInstance,scene);
 	m_componentList.push_back(component);
 }

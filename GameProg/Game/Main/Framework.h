@@ -43,6 +43,8 @@ using namespace std;
 #include "CollisionManeger.h"
 #include "MapCollision.h"
 #include "RigidbodyCmp.h"
+#include "LightCmp.h"
+
 
 //アクター
 #include "Actor.h"

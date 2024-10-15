@@ -55,6 +55,7 @@ public:
 	}
 
 	std::shared_ptr<Map>	m_map;
+	shared_ptr<LightPicture> m_lightPicture;
 
 private:
 	std::shared_ptr<Player> m_player;	
