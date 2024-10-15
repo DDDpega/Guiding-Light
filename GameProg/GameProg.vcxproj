@@ -29,6 +29,7 @@
     <ClCompile Include="Game\Component\LightCmp.cpp" />
     <ClCompile Include="Game\Component\MapCollision.cpp" />
     <ClCompile Include="Game\Component\RigidbodyCmp.cpp" />
+    <ClCompile Include="Game\Main\Fps.cpp" />
     <ClCompile Include="Game\Main\Game.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -50,8 +51,10 @@
     <ClCompile Include="Game\Scene\GameScene.cpp" />
     <ClCompile Include="Game\Scene\Scene.cpp" />
     <ClCompile Include="Game\Scene\SceneManeger.cpp" />
+    <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
     <ClCompile Include="Game\UserInterface\GamePauseUI.cpp" />
+    <ClCompile Include="Game\UserInterface\StageSelectUI.cpp" />
     <ClCompile Include="Game\UserInterface\TitleUI.cpp" />
     <ClCompile Include="Game\UserInterface\UserInterface.cpp" />
   </ItemGroup>
@@ -66,6 +69,7 @@
     <ClInclude Include="Game\Component\LightCmp.h" />
     <ClInclude Include="Game\Component\MapCollision.h" />
     <ClInclude Include="Game\Component\RigidbodyCmp.h" />
+    <ClInclude Include="Game\Main\Fps.h" />
     <ClInclude Include="Game\Main\Framework.h" />
     <ClInclude Include="Game\Main\Game.h" />
     <ClInclude Include="Game\Main\Key.h">
@@ -82,8 +86,10 @@
     <ClInclude Include="Game\Scene\GameScene.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
     <ClInclude Include="Game\Scene\SceneManeger.h" />
+    <ClInclude Include="Game\Scene\StageSelectScene.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\UserInterface\GamePauseUI.h" />
+    <ClInclude Include="Game\UserInterface\StageSelectUI.h" />
     <ClInclude Include="Game\UserInterface\TitleUI.h" />
     <ClInclude Include="Game\UserInterface\UserInterface.h" />
     <ClInclude Include="resource.h" />
