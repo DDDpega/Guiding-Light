@@ -34,6 +34,9 @@ Picture::~Picture()
 
 void Picture::Initialize(Game* gameInstance_, Scene* scene)
 {
+	m_gameInstance = gameInstance_;
+	m_sceneptr = scene;
+
 	if (!m_pictureNull) {
 		ChangePicture(m_picture);
 	}

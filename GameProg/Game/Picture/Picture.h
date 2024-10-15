@@ -29,7 +29,7 @@ public:
 	/// <summary>
 	/// 描画しないPicture
 	/// </summary>
-	Picture(SORT sort , bool isVisible);
+	Picture(SORT sort, bool isVisible);
 
 	/// <summary>
 	/// デストラクタ
@@ -108,16 +108,19 @@ public:
 	}
 
 	bool m_isActive;			//生存するかどうか
+	int m_pictureSizeX;		//画像サイズ
+	int m_pictureSizeY;		//画像サイズ
+	float m_size;		//画像の倍率
+	int m_handle;				// データハンドル格納用変数
+
+	Scene* m_sceneptr;
+	Game* m_gameInstance;
 
 protected:
 	SORT m_sort;			//描画順番
 	POINT m_pos;			//位置
-	float m_size;		//画像の倍率
-	int m_handle;				// データハンドル格納用変数
 	const TCHAR* m_picture;	//画像のファイル名
 	int m_framecnt;			//フレームカウント
-	int m_pictureSizeX;		//画像サイズ
-	int m_pictureSizeY;		//画像サイズ
 	PIVOT m_pivot;			//画像の中心位置
 	bool m_isVisible;			//見た目を消す
 	bool m_pictureNull;			//描画しないPicture
