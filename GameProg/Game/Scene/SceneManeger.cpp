@@ -17,6 +17,7 @@ void SceneManeger::Initialize()
 	//変数の初期化
 	gameScene = new GameScene(m_gameInstance);
 	titleScene = new TitleScene(m_gameInstance);
+	ssScene = new StageSelectScene(m_gameInstance);
 
 	//初期をゲームシーンに変更
 	e_NextScene = IniScene;
@@ -52,8 +53,12 @@ void SceneManeger::ChangeScene(E_Scene nextScene)
 	case TITLE:
 		nowScene = titleScene;
 		break;
+	case STAGESELECT:
+		nowScene = ssScene;
+		break;
 	case RESULT:
 		break;
+	
 	}
 
 	//現在のシーンの状態を変更する

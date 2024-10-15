@@ -24,7 +24,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Picture(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort, bool isVisible=true);
+	Picture(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort, bool isVisible = true, bool isAlpha = false);
 
 	/// <summary>
 	/// 描画しないPicture
@@ -93,6 +93,20 @@ public:
 		return m_sort;
 	}
 
+	/// <summary>
+	/// アルファ値に応じて不透明度を変更する
+	/// </summary>
+	/// <param name="alpha">アルファ値</param>
+	void SetAlpha(int alpha);
+
+	/// <summary>
+	/// アルファ値を変更を可能にするセッター
+	/// </summary>
+	/// <param name="isAlpha">アルファ値を変更を可能かどうか</param>
+	void SetIsAlpha(bool isAlpha) {
+		m_isAlpha = isAlpha;
+	}
+
 	bool m_isActive;			//生存するかどうか
 
 protected:
@@ -107,5 +121,7 @@ protected:
 	PIVOT m_pivot;			//画像の中心位置
 	bool m_isVisible;			//見た目を消す
 	bool m_pictureNull;			//描画しないPicture
+	bool m_isAlpha;			//アルファ値を変更
+	int m_alpha;			//アルファ値
 };
 

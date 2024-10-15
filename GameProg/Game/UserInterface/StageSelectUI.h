@@ -1,17 +1,17 @@
 #pragma once
 
-class TitleUI : public UserInterface
+class StageSelectUI : public UserInterface
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleUI();
+	StageSelectUI();
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~TitleUI();
+	virtual ~StageSelectUI();
 
 	/// <summary>
 	/// 初期化処理
@@ -27,7 +27,9 @@ public:
 	/// 描画処理
 	/// </summary>
 	void Draw();
+
+	void LordFile();
 private:
-	
+
 };
 

@@ -1,22 +1,22 @@
 #pragma once
-
-class TitleUI : public UserInterface
+#include "Scene.h"
+class StageSelectScene :public Scene
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleUI();
+	StageSelectScene(Game* gameInstance);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~TitleUI();
+	virtual ~StageSelectScene();
 
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	void Initialize(Game* gameInstance_, Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -24,10 +24,10 @@ public:
 	void Update();
 
 	/// <summary>
-	/// 描画処理
+	/// 描画
 	/// </summary>
 	void Draw();
-private:
-	
+protected:
+	int m_stageNum;
 };
 

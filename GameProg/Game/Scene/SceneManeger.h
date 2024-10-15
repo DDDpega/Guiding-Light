@@ -4,10 +4,11 @@
 class Game;
 class GameScene;
 class TitleScene;
+class StageSelectScene;
 
 enum E_Scene
 {
-	GAME, TITLE, RESULT
+	GAME, TITLE, STAGESELECT ,RESULT
 };
 
 #define IniScene E_Scene::TITLE	//èâÇﬂÇÃÉVÅ[Éìê›íË
@@ -68,6 +69,7 @@ private:
 	Scene* nowScene;
 	GameScene* gameScene;
 	TitleScene* titleScene;
+	StageSelectScene* ssScene;
 
 	E_Scene e_NowScene;
 	E_Scene e_NextScene;

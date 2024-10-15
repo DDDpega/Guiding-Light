@@ -13,7 +13,7 @@ Map::Map(const Info& info, const TCHAR* graph)
 	, m_scroll()
 
 {
-	LoadDivGraph(graph, 2, 2, 1, MAPCHIP_WIDTH, MAPCHIP_HEIGHT, m_bitmap);
+	LoadDivGraph(graph, 2, 2, 1, 16, 16, m_bitmap);
 
 	//要素数
 	size_t size = m_row;
@@ -78,7 +78,8 @@ void Map::createMap()
 			float position_x = (MAPCHIP_WIDTH * j) - m_scroll.x;
 			float position_y = MAPCHIP_HEIGHT * i;
 
-			DrawGraph(position_x, position_y, m_bitmap[chipNo], TRUE);
+			DrawExtendGraph(position_x, position_y, position_x+40, position_y+40, m_bitmap[chipNo], TRUE);
+			//DrawGraph(position_x, position_y, m_bitmap[chipNo], TRUE);
 		}
 
 	}
@@ -118,7 +119,7 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 				chipNo = -1;
 			}
 			else {
-				//チップセットの文字列からrowのc番目の文字で検索して何番目かを取得する
+				//チップセットの文字列からcolのr番目の文字で検索して何番目かを取得する
 				chipNo = chipSet.find(col[r]);
 				if (chipNo == string::npos) {
 					chipNo = -1;

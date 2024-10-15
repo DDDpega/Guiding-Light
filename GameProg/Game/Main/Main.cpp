@@ -8,6 +8,7 @@
 
 //ゲーム
 Game* gameInstance;
+Fps* fps;
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -30,15 +31,22 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	//ゲームの初期化
 	(gameInstance = new Game())->Initialize();
-
+	
+	//FPSの初期化
+	(fps = new Fps())-> FPSInit();
 
 	//画面の描画、初期化
 	while (ScreenFlip() == 0 && ProcessMessage() == 0
 		&& ClearDrawScreen() == 0)
 	{
+		fps->FPSCheck();		//fps計測
+
 		//ゲームの更新と描画
 		gameInstance->Update();
 		gameInstance->Draw();
+
+		fps->FPSDraw();	//fps描画
+		fps->FPSWait();	//fps待機
 	}
 
 	// DXライブラリ終了処理

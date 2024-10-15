@@ -5,8 +5,14 @@ UserInterface::UserInterface(bool isVisible,bool isInput)
 	,m_isInput(isInput)
 	,m_pictureList_UI()
 	,m_nowcursor(0)
+	, m_alpha(0)
+	, m_add(3)
+	, m_isMenuActive(false)
+	, m_backGround()
+	, m_stage()
+	, m_stageArray()
+	,m_stageMarkers()
 {
-
 }
 
 UserInterface::~UserInterface()
