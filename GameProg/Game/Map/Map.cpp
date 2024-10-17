@@ -9,8 +9,8 @@ Map::Map(const Info& info, const TCHAR* graph)
 	, m_col(MAP_SIZE_HEIGHT)
 	, m_row(info.m_row)
 	, m_info(info)
-	, m_pos()
 	, m_scroll()
+	, m_isInitialize(false)
 
 {
 	LoadDivGraph(graph, 2, 2, 1, 16, 16, m_bitmap);
@@ -27,16 +27,21 @@ Map::Map(const Info& info, const TCHAR* graph)
 		loadFromFile(info.m_filePath, info.m_chipSet);
 	}
 
+	createMap();
+	m_isInitialize = true;
+
 }
 
-void Map::initialize()throw()
+void Map::Initialize()throw()
 {
+	
 	m_chipSize.x=MAPCHIP_HEIGHT;
 	m_chipSize.y = MAPCHIP_WIDTH;
 	int i = 0;
+	
 
 }
-void Map::move() throw()
+void Map::Update() throw()
 {
 
 }
@@ -75,8 +80,16 @@ void Map::createMap()
 
 
 			// •`‰æÀ•W‚ðŠ„‚èo‚·
-			float position_x = (MAPCHIP_WIDTH * j) - m_scroll.x;
-			float position_y = MAPCHIP_HEIGHT * i;
+			int position_x = (MAPCHIP_WIDTH * j) - m_scroll.x;
+			int position_y = MAPCHIP_HEIGHT * i;
+
+
+
+			if (chipNo >= 5&&!m_isInitialize) {
+				auto apos = ActorPos{ chipNo, POINT{position_x ,position_y},false };
+				m_actorPos.push_back(apos);
+				continue;
+			}
 
 			DrawExtendGraph(position_x, position_y, position_x+40, position_y+40, m_bitmap[chipNo], TRUE);
 			//DrawGraph(position_x, position_y, m_bitmap[chipNo], TRUE);
@@ -125,7 +138,30 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 					chipNo = -1;
 				}
 			}
-			m_MapChipList[c][r] = chipNo;
+			if (chipNo >= 2) {
+				switch (chipSet[chipNo])
+				{
+				case 'a':
+					m_MapChipList[c][r] = 10;
+					break;
+				case 'b':
+					m_MapChipList[c][r] = 11;
+					break;
+				case 'c':
+					m_MapChipList[c][r] = 12;
+					break;
+				default:
+					auto a = (int)(chipSet[chipNo]-'0');
+					m_MapChipList[c][r] = (int)(chipSet[chipNo] - '0');
+					
+					break;
+
+				}
+				
+			}
+			else {
+				m_MapChipList[c][r] = chipNo;
+			}
 		}
 
 	}

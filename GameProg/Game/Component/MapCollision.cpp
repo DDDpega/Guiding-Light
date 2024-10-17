@@ -13,11 +13,11 @@ MapCollision::MapCollision(Game* gameInstance ,Scene* const scene , Actor* actor
 bool MapCollision::CheckMapChip(int col, int row)
 {
 
-	if (dynamic_cast<GameScene*>(m_scene)->m_map->getChipNo(col, row) != 0) {
-		return true;
+	if (dynamic_cast<GameScene*>(m_scene)->m_map->getChipNo(col, row) != 1) {
+		return false;
 	}
 	else {
-		return false;
+		return true;
 	}
 }
 

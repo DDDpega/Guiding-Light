@@ -46,6 +46,12 @@ public:
 		//RECT			m_goal;		//ゴールエリア
 	};
 
+	struct ActorPos
+	{
+		int			m_actorNum;
+		POINT		m_actorPos;
+		bool		m_isGet;
+	};
 
 	//コンストラクタ
 	Map(const Info& info , const TCHAR* graph);
@@ -53,8 +59,8 @@ public:
 	//デストラクタ
 	virtual inline ~Map() {};
 
-	void initialize()throw();
-	void move() throw();
+	void Initialize()throw();
+	void Update() throw();
 	void Draw();
 
 	//マップチップを使ってマップを生成するメソッド
@@ -77,6 +83,10 @@ public:
 		return m_pos;
 	}
 
+	list<ActorPos> GetActorPosList() {
+		return m_actorPos;
+	}
+
 protected:
 	
 	int m_bitmap[2];
@@ -92,6 +102,10 @@ protected:
 
 	POINT m_scroll;					//スクロールする位置
 	POINT m_pos;
+
+	list<ActorPos> m_actorPos;			//アクターポジションのリスト
+
+	bool m_isInitialize;
 
 };
 

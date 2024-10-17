@@ -73,7 +73,7 @@ void RigidbodyCmp::Update()
 	
 	auto pos = m_actor->GetPos();
 	pos.y += 1.0f;
-	if (m_state != FALL && !m_actor->m_mapCollision->CheckMapCollide(pos, 0.0f, 1.0f, false, true)) {
+	if ((m_state != FALL && m_state != FLY) && !m_actor->m_mapCollision->CheckMapCollide(pos, 0.0f, 1.0f, false, true)) {
 		m_state = FALL;
 		//printfDx("—Ž‰º”»’è%d\n", pos.y);
 	}

@@ -19,7 +19,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,60 },TAG::PLAYER));
 	Actor::AddComponent(collision, scene);
-	gameInstance_->GetCollisionMNG()->addCollisionList(collision);
+	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::PLAYER));
@@ -51,11 +51,28 @@ void Player::Update()
 		isClick_x = true;
 	}
 
-	//ジャンプ
-	if (KeyClick(KEY_INPUT_SPACE) >= 1 && m_rigidBody->m_state==STATE::STAND) {
-		m_rigidBody->ChangeState(STATE::JUMPSTT);
-		isClick_y = true;
+	if (m_rigidBody->m_state == STATE::FLY) {
+		if (KeyDown(KEY_INPUT_W) >= 1) {
+			m_vy = -m_gameInstance->GetStatus()->PLAYER_SPEED;
+			isClick_y = true;
+		}
+		if (KeyDown(KEY_INPUT_S) >= 1) {
+			m_vy = m_gameInstance->GetStatus()->PLAYER_SPEED;
+			isClick_y = true;
+		}
 	}
+	//ジャンプ
+	else if (m_rigidBody->m_state == STATE::STAND) {
+		if (KeyClick(KEY_INPUT_SPACE) >= 1) {
+			m_rigidBody->ChangeState(STATE::JUMPSTT);
+			isClick_y = true;
+		}
+	} 
+	
+	//if (KeyClick(KEY_INPUT_SPACE) >= 1 && m_rigidBody->m_state == STATE::STAND) {
+	//	m_rigidBody->ChangeState(STATE::JUMPSTT);
+	//	isClick_y = true;
+	//}
 
 	//ライトのON、OFF
 	if (KeyClick(KEY_INPUT_E) >= 1) {
@@ -76,4 +93,10 @@ void Player::HitCollision(Actor* other, TAG tag)
 		m_gameInstance->GetSceneMNG()->ChangeSceneFlag(E_Scene::TITLE);
 		m_isActive = false;
 	}
+
+	if (tag == TAG::LADDER && m_isActive) {
+		m_isLadder = true;
+		m_rigidBody->ChangeState(STATE::FLY);
+	}
+	
 }

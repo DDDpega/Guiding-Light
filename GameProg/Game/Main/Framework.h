@@ -58,3 +58,4 @@ using namespace std;
 #include "Enemy.h"
 #include "Player.h"
 #include "GoalLight.h"
+#include "Ladder.h"

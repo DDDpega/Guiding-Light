@@ -11,7 +11,7 @@ struct BOX
 //コリジョンタグ
 enum TAG
 {
-	PLAYER, BULLET, ENEMY, CHILD, BACKGROUND
+	PLAYER, BULLET, ENEMY, CHILD, BACKGROUND, LADDER
 };
 
 class BoxCollisionCmp :public Component
