@@ -16,7 +16,7 @@ Status::~Status()
 bool Status::ReadStatus()
 {
 	//ファイルのパス設定
-	std::string filename = "status.txt";
+	std::string filename = "Data/status.txt";
 
 	//ファイルを開く
 	std::ifstream inFile(filename);
@@ -55,6 +55,9 @@ bool Status::ReadStatus()
 			break;
 		case 6:
 			PLAYER_JUMP = std::stof(line.substr(postion));
+			break;
+		case 7:
+			PLAYER_LIGHT= std::stof(line.substr(postion));
 			break;
 		}
 

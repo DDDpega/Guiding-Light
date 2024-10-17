@@ -45,6 +45,7 @@ using namespace std;
 //コンポーネント
 #include "Component.h"
 #include "BoxCollisionCmp.h"
+#include "CircleCollisionCmp.h"
 #include "CollisionManeger.h"
 #include "MapCollision.h"
 #include "RigidbodyCmp.h"

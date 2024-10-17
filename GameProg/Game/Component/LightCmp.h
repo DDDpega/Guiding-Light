@@ -1,8 +1,9 @@
 #pragma once
+
 class LightCmp : public Component
 {
 public:
-	LightCmp(Actor* actor);
+	LightCmp(Actor* actor, bool lightOn,float lightSize);
 
 	virtual ~LightCmp();
 
@@ -20,7 +21,18 @@ public:
 	/// •`‰æ
 	/// </summary>
 	void Draw();
+
+	/// <summary>
+	///ƒ‰ƒCƒg‚ÌON,OFF‚ğØ‚è‘Ö‚¦‚é 
+	/// </summary>
+	void ChangeLightONOFF();
+
+	bool m_changeNow = false;
+
+
 protected:
 	shared_ptr<Picture> m_light;
+	bool m_lightOn;
+	float m_lightSize;
 };
 

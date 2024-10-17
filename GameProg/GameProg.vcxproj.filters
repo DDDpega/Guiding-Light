@@ -115,6 +115,9 @@
     <ClCompile Include="Game\UserInterface\StageSelectUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Component\CircleCollisionCmp.cpp">
+      <Filter>Game\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -201,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="Game\UserInterface\StageSelectUI.h">
       <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\CircleCollisionCmp.h">
+      <Filter>Game\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,16 @@ void LightPicture::Initialize(Game* gameInstance, Scene* scene)
 void LightPicture::Update()
 {
 	Picture::Update();
+
+	//ピクチャーリストの一部削除
+	for (auto i = pictureList.cbegin(); i != pictureList.cend();) {
+		if (i->get()->m_isActive) {
+			i++;
+		}
+		else {
+			i = pictureList.erase(i);
+		}
+	}
 }
 
 void LightPicture::Draw()
@@ -41,14 +51,21 @@ void LightPicture::Draw()
 	//スクリーンを設定する
 	SetDrawScreen(screenB);
 
-	//-----
+	//----------------------------------------------------------------------
 	//ライトを描画する
 	for (auto& c : pictureList) {
+
+		//画像が見えるかどうか
+		if (!c->GetisVisible()) {
+			continue;
+		}
+
+		//画像の表示
 		DrawRotaGraph2(c->GetPos().x, c->GetPos().y,
 			(c->m_pictureSizeX / 2), (c->m_pictureSizeY / 2),
 			c->m_size, 0, c->m_handle, true);
 	}
-	//------
+	//-----------------------------------------------------------------------
 	
 	//赤色成分を透明成分に移し替える
 	GraphBlendBlt(screenB, screenB, screenB, 255,

@@ -53,6 +53,8 @@ void GamePauseUI::Update()
 {
 	UserInterface::Update();
 
+	return;
+
 	//Œˆ’è
 	if (KeyClick(KEY_INPUT_SPACE) >= 1) {
 

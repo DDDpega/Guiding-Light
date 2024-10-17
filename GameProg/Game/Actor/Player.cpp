@@ -1,6 +1,5 @@
 #include "Framework.h"
 
-
 Player::Player(POINT pos)
 	:Actor(pos, 1, "Picture/jiki.png")
 	,m_firstShot(false)
@@ -18,10 +17,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 {
 	Actor::Initialize(gameInstance_, scene);
 
-	/*lightPicture = std::shared_ptr<Picture>(new Picture(m_pos, 1, "Picture/light.png", PIVOT::CENTER, SORT::SORT_LIGHT));
-	gameInstance_->GetPictureMNG()->AddPicture(lightPicture,scene);*/
-
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,50 },TAG::PLAYER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,60 },TAG::PLAYER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->addCollisionList(collision);
 
@@ -32,9 +28,8 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP));
 	Actor::AddComponent(m_rigidBody, scene);
 
-	auto light = std::shared_ptr<LightCmp>(new LightCmp(this));
-	Actor::AddComponent(light, scene);
-
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false,gameInstance_->GetStatus()->PLAYER_LIGHT));
+	Actor::AddComponent(m_lightCmp, scene);
 }
 
 void Player::Update()
@@ -46,20 +41,27 @@ void Player::Update()
 	bool isClick_y = false;
 
 	//移動
-	if (KeyDown(KEY_INPUT_RIGHT) >= 1) {
+	if (KeyDown(KEY_INPUT_D) >= 1) {
 		m_vx = m_gameInstance->GetStatus()->PLAYER_SPEED;
 		isClick_x = true;
 	}
-	if (KeyDown(KEY_INPUT_LEFT) >= 1) {
+	if (KeyDown(KEY_INPUT_A) >= 1) {
 		m_vx = -m_gameInstance->GetStatus()->PLAYER_SPEED;
 		//printfDx("Player\n");
 		isClick_x = true;
 	}
 
 	//ジャンプ
-	if (KeyClick(KEY_INPUT_UP) >= 1 && m_rigidBody->m_state==STATE::STAND) {
+	if (KeyClick(KEY_INPUT_SPACE) >= 1 && m_rigidBody->m_state==STATE::STAND) {
 		m_rigidBody->ChangeState(STATE::JUMPSTT);
 		isClick_y = true;
+	}
+
+	//ライトのON、OFF
+	if (KeyClick(KEY_INPUT_E) >= 1) {
+		if (!m_lightCmp->m_changeNow) {
+			m_lightCmp->m_changeNow = true;
+		}
 	}
 
 	SetMoveCheck(isClick_x, isClick_y);

@@ -37,6 +37,6 @@ public:
 
 private:
 	bool m_firstShot;
-	std::shared_ptr<Picture> lightPicture;
+	std::shared_ptr<LightCmp> m_lightCmp;
 	int m_bulletframe;
 };

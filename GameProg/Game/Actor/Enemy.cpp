@@ -25,6 +25,9 @@ void Enemy::Initialize(Game* gameInstance_,Scene* scene)
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this, STATE::FALL));
 	Actor::AddComponent(m_rigidBody, scene);
 
+	auto m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, 0.4));
+	Actor::AddComponent(m_lightCmp, scene);
+
 }
 
 void Enemy::Update()
@@ -42,7 +45,7 @@ void Enemy::Update()
 		m_isActive = false;
 
 		//ìGÇÃê∂ê¨
-		auto enemy = std::shared_ptr<Enemy>(new Enemy(POINT{ 1000,0 }));
+		auto enemy = std::shared_ptr<Enemy>(new Enemy(POINT{ 1000,200 }));
 		m_gameInstance->GetPictureMNG()->AddPicture(enemy, m_sceneptr);
 	}
 }

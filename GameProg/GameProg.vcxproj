@@ -24,6 +24,7 @@
     <ClCompile Include="Game\Actor\Enemy.cpp" />
     <ClCompile Include="Game\Actor\Player.cpp" />
     <ClCompile Include="Game\Component\BoxCollisionCmp.cpp" />
+    <ClCompile Include="Game\Component\CircleCollisionCmp.cpp" />
     <ClCompile Include="Game\Component\CollisionManeger.cpp" />
     <ClCompile Include="Game\Component\Component.cpp" />
     <ClCompile Include="Game\Component\LightCmp.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="Game\Actor\Enemy.h" />
     <ClInclude Include="Game\Actor\Player.h" />
     <ClInclude Include="Game\Component\BoxCollisionCmp.h" />
+    <ClInclude Include="Game\Component\CircleCollisionCmp.h" />
     <ClInclude Include="Game\Component\CollisionManeger.h" />
     <ClInclude Include="Game\Component\Component.h" />
     <ClInclude Include="Game\Component\LightCmp.h" />
