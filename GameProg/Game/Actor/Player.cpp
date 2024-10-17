@@ -3,7 +3,6 @@
 Player::Player(POINT pos)
 	:Actor(pos, 1, "Picture/jiki.png")
 	,m_firstShot(false)
-	,m_bulletframe(0)
 {
 
 }
@@ -21,6 +20,9 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
+	auto circle = shared_ptr<CircleCollisionCmp>(new CircleCollisionCmp(this, { 0,0 }, gameInstance_->GetStatus()->PLAYER_LIGHT * 295, TAG::PLAYER));
+	Actor::AddComponent(circle, scene);
+	gameInstance_->GetCollisionMNG()->AddCIRCLECollisionList(circle);
 
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::PLAYER));
 	Actor::AddComponent(m_mapCollision, scene);
@@ -67,17 +69,12 @@ void Player::Update()
 			m_rigidBody->ChangeState(STATE::JUMPSTT);
 			isClick_y = true;
 		}
-	} 
-	
-	//if (KeyClick(KEY_INPUT_SPACE) >= 1 && m_rigidBody->m_state == STATE::STAND) {
-	//	m_rigidBody->ChangeState(STATE::JUMPSTT);
-	//	isClick_y = true;
-	//}
+	}
 
 	//ƒ‰ƒCƒg‚ÌONAOFF
 	if (KeyClick(KEY_INPUT_E) >= 1) {
 		if (!m_lightCmp->m_changeNow) {
-			m_lightCmp->m_changeNow = true;
+			m_lightCmp->ChangeLightONOFF();
 		}
 	}
 
