@@ -4,6 +4,7 @@ LightCmp::LightCmp(Actor* actor,bool lightOn,float lightSize)
 	:Component(actor)
 	,m_lightOn(lightOn)
 	,m_lightSize(lightSize)
+	,m_changeNow(false)
 {
 
 }
@@ -19,17 +20,17 @@ void LightCmp::Initialize(Game* gameInstance, Scene* scene)
 
 	m_light = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize, "Picture/light.png", PIVOT::CENTER, SORT::SORT_LIGHT, true));
 	dynamic_cast<GameScene*>(scene)->m_lightPicture->AddLightList(m_light);
+
+
 	
 	//ライトを切り替える
 	if (m_lightOn) {
-		//ライトを消す
-		m_light->SetisVisible(false);
-		m_lightOn = false;
+		//ライトをつける
+		m_light->m_size = m_lightSize;
 	}
 	else {
-		//ライトをつける
-		m_light->SetisVisible(true);
-		m_lightOn = true;
+		//ライトを消す
+		m_light->m_size = 0;
 	}
 }
 
@@ -53,6 +54,8 @@ void LightCmp::Draw()
 
 void LightCmp::ChangeLightONOFF()
 {
+	m_changeNow = true;
+
 	if (m_lightOn) {
 
 		m_light->m_size -= 0.1;

@@ -33,9 +33,9 @@ public:
 	void Draw();
 
 	/// <summary>
-	/// actorManagerのゲッター
+	/// Playerのゲッター
 	/// </summary>
-	std::shared_ptr<Player> GetPlayer() const {
+	std::shared_ptr<Player> GetPlayer() {
 		return m_player;
 	}
 

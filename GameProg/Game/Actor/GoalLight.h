@@ -1,32 +1,27 @@
 #pragma once
 
-class Picture;
-
-class Player : public Actor
+class GoalLight : public Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	/// <param name="x">x座標</param>
-	/// <param name="y">y座標</param>
-	Player(POINT pos);
+	GoalLight(POINT pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~Player();
+	virtual ~GoalLight();
 
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	void Initialize(Game* gameInstance_,Scene* scene);
+	void Initialize(Game* gameInstance_, Scene* scene);
 
 	/// <summary>
 	/// 更新処理
 	/// </summary>
 	void Update();
-
 
 	/// <summary>
 	/// 衝突処理
@@ -34,12 +29,9 @@ public:
 	/// <param name="other"></param>
 	void HitCollision(Actor* other, TAG tag);
 
-	bool GetLightOn() {
-		return m_lightCmp->m_lightOn;
-	}
 
-private:
-	bool m_firstShot;
-	std::shared_ptr<LightCmp> m_lightCmp;
-	int m_bulletframe;
+protected:
+	shared_ptr<LightCmp> m_lightCmp;
+	bool m_isLightOn;
 };
+

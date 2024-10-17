@@ -2,7 +2,8 @@
 
 struct CIRCLE
 {
-	POINT CENTER;
+	float posX;
+	float posY;
 	float RADIUS;
 };
 
@@ -43,6 +44,7 @@ public:
 
 
 protected:
+	float m_radius;
 	POINT m_offset;	//‚Ç‚ê‚¾‚¯‚Ã‚ê‚Ä‚¢‚é‚©
 };
 

@@ -17,7 +17,11 @@ void Enemy::Initialize(Game* gameInstance_,Scene* scene)
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 80,50 }, TAG::ENEMY));
 	Actor::AddComponent(collision, scene);
-	gameInstance_->GetCollisionMNG()->addCollisionList(collision);
+	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
+
+	/*auto circleCollision = std::shared_ptr<CircleCollisionCmp>(new CircleCollisionCmp(this, { 0,0 }, 100, TAG::ENEMY));
+	Actor::AddComponent(circleCollision, scene);
+	gameInstance_->GetCollisionMNG()->AddCIRCLECollisionList(circleCollision);*/
 
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::PLAYER));
 	Actor::AddComponent(m_mapCollision, scene);

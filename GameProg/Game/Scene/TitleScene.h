@@ -31,6 +31,13 @@ public:
 	/// </summary>
 	virtual void Draw();
 
+	/// <summary>
+	/// Player‚ÌƒQƒbƒ^[
+	/// </summary>
+	std::shared_ptr<Player> GetPlayer() {
+		return nullptr;
+	}
+
 private:
 	POINT m_nowpostion[3];
 	int m_nowcursor;

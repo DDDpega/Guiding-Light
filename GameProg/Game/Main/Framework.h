@@ -57,3 +57,4 @@ using namespace std;
 #include "BackGround.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "GoalLight.h"

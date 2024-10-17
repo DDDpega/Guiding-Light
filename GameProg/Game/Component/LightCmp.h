@@ -29,10 +29,10 @@ public:
 
 	bool m_changeNow = false;
 
+	bool m_lightOn;
 
 protected:
 	shared_ptr<Picture> m_light;
-	bool m_lightOn;
 	float m_lightSize;
 };
 

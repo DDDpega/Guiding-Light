@@ -52,9 +52,6 @@
     <ClCompile Include="Game\Scene\Scene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Actor\Enemy.cpp">
-      <Filter>Game\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Picture\Picture.cpp">
       <Filter>Game\Picture</Filter>
     </ClCompile>
@@ -118,6 +115,9 @@
     <ClCompile Include="Game\Component\CircleCollisionCmp.cpp">
       <Filter>Game\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Actor\GoalLight.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -137,9 +137,6 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\Scene.h">
       <Filter>Game\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Actor\Enemy.h">
-      <Filter>Game\Actor</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="Game\Picture\Picture.h">
@@ -207,6 +204,9 @@
     </ClInclude>
     <ClInclude Include="Game\Component\CircleCollisionCmp.h">
       <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\GoalLight.h">
+      <Filter>Game\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

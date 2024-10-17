@@ -35,7 +35,9 @@ void Game::Update()
 	m_sceneMNG->Update();
 	m_pictureMNG->Update();
 	m_collisionMNG->Update();
-	m_collisionMNG->CheckCollide();
+	m_collisionMNG->CheckCollide_BOXtoBOX();
+	m_collisionMNG->CheckCollide_CIRCLEtoCIRCLE();
+	m_collisionMNG->CheckCollide_CIRCLEtoBOX();
 
 	//“ü—Í‚ÌXV
 	KeyUpdate();

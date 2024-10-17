@@ -10,7 +10,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot = PIVOT::CENTER, SORT sort = SORT::SORT_ACTOR);
+	Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot = PIVOT::LEFTUP, SORT sort = SORT::SORT_ACTOR);
 
 	/// <summary>
 	/// デストラクタ

@@ -27,6 +27,14 @@ public:
 	/// •`‰æ
 	/// </summary>
 	void Draw();
+
+	/// <summary>
+	/// Player‚ÌƒQƒbƒ^[
+	/// </summary>
+	std::shared_ptr<Player> GetPlayer() {
+		return nullptr;
+	}
+
 protected:
 	int m_stageNum;
 };

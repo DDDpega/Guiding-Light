@@ -42,22 +42,13 @@ bool Status::ReadStatus()
 			PLAYER_SPEED = std::stof(line.substr(postion));
 			break;
 		case 2:
-			ENEMY_SPEED = std::stof(line.substr(postion));
-			break;
-		case 3:
-			CHILD_ROTATO_SPEED = std::stof(line.substr(postion));
-			break;
-		case 4:
-			CHILD_RADIUS = std::stof(line.substr(postion));
-			break;
-		case 5:
-			BULLET_SPEED = std::stof(line.substr(postion));
-			break;
-		case 6:
 			PLAYER_JUMP = std::stof(line.substr(postion));
 			break;
-		case 7:
-			PLAYER_LIGHT= std::stof(line.substr(postion));
+		case 3:
+			PLAYER_LIGHT = std::stof(line.substr(postion));
+			break;
+		case 4:
+			GOAL_LIGHT_RADIUS = std::stof(line.substr(postion));
 			break;
 		}
 

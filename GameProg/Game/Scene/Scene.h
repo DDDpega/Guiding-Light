@@ -2,6 +2,7 @@
 
 
 class Game;
+class Player;
 
 class Scene
 {
@@ -31,6 +32,10 @@ public:
 	/// </summary>
 	virtual void Draw();
 
+	/// <summary>
+	/// Playerのゲッター
+	/// </summary>
+	virtual std::shared_ptr<Player> GetPlayer() = 0;
 
 	int screenX, screenY;	//画面サイズ
 	bool m_isPause;			//ポーズ状態かどうか
