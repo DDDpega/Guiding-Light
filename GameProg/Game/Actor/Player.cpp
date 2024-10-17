@@ -20,7 +20,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
-	auto circle = shared_ptr<CircleCollisionCmp>(new CircleCollisionCmp(this, { 0,0 }, gameInstance_->GetStatus()->PLAYER_LIGHT * 295, TAG::PLAYER));
+	auto circle = shared_ptr<CircleCollisionCmp>(new CircleCollisionCmp(this, { 0,0 }, gameInstance_->GetStatus()->PLAYER_LIGHT * 295, TAG::PLAYER_LIGHT));
 	Actor::AddComponent(circle, scene);
 	gameInstance_->GetCollisionMNG()->AddCIRCLECollisionList(circle);
 
@@ -89,11 +89,9 @@ void Player::HitCollision(Actor* other, TAG tag)
 	if (tag == TAG::ENEMY && m_isActive) {
 		m_gameInstance->GetSceneMNG()->ChangeSceneFlag(E_Scene::TITLE);
 		m_isActive = false;
-	}
+	}	
+}
 
-	if (tag == TAG::LADDER && m_isActive) {
-		m_isLadder = true;
-		m_rigidBody->ChangeState(STATE::FLY);
-	}
-	
+void Player::NoHitCollision(Actor* other, TAG tag)
+{
 }

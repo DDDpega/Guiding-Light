@@ -21,3 +21,8 @@ void BackGround::Update()
 {
 	Actor::Update();
 }
+
+void BackGround::NoHitCollision(Actor* other, TAG tag)
+{
+}
+

@@ -46,6 +46,13 @@ public:
 	virtual void HitCollision(Actor* other, TAG tag);
 
 	/// <summary>
+	/// 衝突していない
+	/// </summary>
+	/// <param name="other"></param>
+	/// <param name="tag"></param>
+	virtual void NoHitCollision(Actor* other, TAG tag) = 0;
+
+	/// <summary>
 	/// コンポーネントリストに追加するメソッド
 	/// </summary>
 	/// <param name="actor"></param>
@@ -72,12 +79,11 @@ public:
 
 	int m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
+	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 
 protected:
-	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 	bool m_isMove_x;	//x軸に動いているかどうか
 	bool m_isMove_y;	//y軸に動いているかどうか
 	std::list<std::shared_ptr<Component>> m_componentList;
 
 };
-

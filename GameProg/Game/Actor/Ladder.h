@@ -33,6 +33,13 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	void HitCollision(Actor* other, TAG tag);
+
+	/// <summary>
+	/// è’ìÀÇµÇƒÇ¢Ç»Ç¢
+	/// </summary>
+	/// <param name="other"></param>
+	/// <param name="tag"></param>
+	void NoHitCollision(Actor* other, TAG tag);
 private:
 };
 

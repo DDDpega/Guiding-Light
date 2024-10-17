@@ -29,4 +29,12 @@ void Ladder::Update()
 void Ladder::HitCollision(Actor* other, TAG tag)
 {
 	Actor::HitCollision(other, tag);
+
+	if (tag == TAG::PLAYER && m_isActive) {
+		m_sceneptr->GetPlayer()->m_rigidBody->ChangeState(STATE::FLY);
+	}
+}
+
+void Ladder::NoHitCollision(Actor* other, TAG tag)
+{
 }

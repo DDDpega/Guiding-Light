@@ -24,6 +24,13 @@ public:
 	/// </summary>
 	void Update();
 
+	/// <summary>
+	/// è’ìÀÇµÇƒÇ¢Ç»Ç¢
+	/// </summary>
+	/// <param name="other"></param>
+	/// <param name="tag"></param>
+	void NoHitCollision(Actor* other, TAG tag);
+
 private:
 };
 

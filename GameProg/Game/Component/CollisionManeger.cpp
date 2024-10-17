@@ -98,6 +98,10 @@ bool CollisionManeger::CheckObjectHit_BOXtoBOX(BoxCollisionCmp* obj_i, BoxCollis
 			return true;
 		}
 	}
+
+	//オブジェクトに衝突通知を送る
+	obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag));
+	obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag));
 	return false;
 }
 
@@ -148,6 +152,9 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoCIRLCE(CircleCollisionCmp* obj_i, 
 		return true;
 	}
 
+	//オブジェクトに衝突通知を送る
+	obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag));
+	obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag));
 	return false;
 }
 
@@ -180,6 +187,9 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 	auto circleObj_i = obj_i->m_collision;
 	auto boxObj_j = obj_j->m_collision;
 
+	bool isHit = true;
+
+
 	// 四角形の四辺に対して円の半径分だけ足したとき円が重なっていたら
 	if ((circleObj_i.posX > boxObj_j.left	- circleObj_i.RADIUS) &&
 		(circleObj_i.posX < boxObj_j.right	+ circleObj_i.RADIUS) &&
@@ -194,14 +204,15 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 			// 左上
 			if ((circleObj_i.posY < boxObj_j.top)){
 				if ((DistanceSqrf(boxObj_j.left, boxObj_j.top, circleObj_i.posX, circleObj_i.posY) >= fl)){
-					return false;
+					isHit= false;
 				}
 			}
 			else{
 				// 左下
 				if ((circleObj_i.posY > boxObj_j.bottom)){
 					if ((DistanceSqrf(boxObj_j.left, boxObj_j.bottom, circleObj_i.posX, circleObj_i.posY) >= fl)){
-						return false;
+						isHit = false;
+
 					}
 				}
 			}
@@ -212,7 +223,8 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 				// 右上
 				if ((circleObj_i.posY < boxObj_j.top)){
 					if ((DistanceSqrf(boxObj_j.right, boxObj_j.top, circleObj_i.posX, circleObj_i.posY) >= fl)){
-						return false;
+						isHit = false;
+
 					}
 				}
 				else
@@ -220,21 +232,29 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 					// 右下
 					if ((circleObj_i.posY > boxObj_j.bottom)){
 						if ((DistanceSqrf(boxObj_j.right, boxObj_j.bottom, circleObj_i.posX, circleObj_i.posY) >= fl)){
-							return false;
+							isHit = false;
+
 						}
 					}
 				}
 			}
 		}
 	}
+
+	if (isHit) {
+
+		//オブジェクトに衝突通知を送る
+		obj_i->GetActor()->HitCollision((obj_j->GetActor()), (obj_j->m_tag));
+		obj_j->GetActor()->HitCollision((obj_i->GetActor()), (obj_i->m_tag));
+		return true;
+	}
 	else {
+
+		//オブジェクトに衝突通知を送る
+		obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag));
+		obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag));
 		return false;
 	}
-
-	//オブジェクトに衝突通知を送る
-	obj_i->GetActor()->HitCollision((obj_j->GetActor()), (obj_j->m_tag));
-	obj_j->GetActor()->HitCollision((obj_i->GetActor()), (obj_i->m_tag));
-	return true;
 }
 
 float CollisionManeger::DistanceSqrf(const float t_x1, const float t_y1, const float t_x2, const float t_y2)

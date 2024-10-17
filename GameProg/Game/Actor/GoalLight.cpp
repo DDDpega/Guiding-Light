@@ -33,8 +33,14 @@ void GoalLight::HitCollision(Actor* other, TAG tag)
 	Actor::HitCollision(other, tag);
 
 	//Player‚©‚çƒ‰ƒCƒg‚ð“–‚Ä‚ç‚ê‚½‚ç
-	if (tag == TAG::PLAYER && m_sceneptr->GetPlayer()->GetLightOn() && !m_isLightOn) {
+	if (tag == TAG::PLAYER_LIGHT && m_sceneptr->GetPlayer()->GetLightOn() && !m_isLightOn) {
 		m_lightCmp->ChangeLightONOFF();
 		m_isLightOn = true;
 	}
+}
+
+void GoalLight::NoHitCollision(Actor* other, TAG tag)
+{
+
+
 }
