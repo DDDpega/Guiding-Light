@@ -39,6 +39,8 @@ public:
 		return m_player;
 	}
 
+	
+
 	struct  Size {
 		float x, y;
 	};
@@ -54,12 +56,19 @@ public:
 		return m_stages[num];
 	}
 
+	//ライトの数を引く
+	void LightNumMinus();
+
+
 	std::shared_ptr<Map>	m_map;
 	shared_ptr<LightPicture> m_lightPicture;
 
 private:
 	std::shared_ptr<Player> m_player;	
-	shared_ptr<GamePauseUI> m_pauseUI;
+	int m_LightNum;	//残りのライトの数
 
+	//各種UI
+	shared_ptr<GamePauseUI> m_pauseUI;
+	shared_ptr<InGameUI> m_gameUI;
 };
 

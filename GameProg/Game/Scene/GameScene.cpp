@@ -32,7 +32,6 @@ GameScene::~GameScene()
 void GameScene::Initialize()
 {
 	Scene::Initialize();
-	
 
 	//背景画像
 	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
@@ -45,6 +44,12 @@ void GameScene::Initialize()
 	//ゴールライトの生成
 	auto light = shared_ptr<GoalLight>(new GoalLight(POINT{1000,500}));
 	m_gameInstance->GetPictureMNG()->AddPicture(light, this);
+	m_LightNum++;
+
+	//ゴールライトの生成
+	light = shared_ptr<GoalLight>(new GoalLight(POINT{ 400,200 }));
+	m_gameInstance->GetPictureMNG()->AddPicture(light, this);
+	m_LightNum++;
 
 	//マップの生成
 	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData16bit.png"));
@@ -66,6 +71,10 @@ void GameScene::Initialize()
 	m_pauseUI = shared_ptr<GamePauseUI>(new GamePauseUI(false));
 	m_gameInstance->GetPictureMNG()->AddPicture(m_pauseUI, this);
 
+	//ゲームUIの表示
+	m_gameUI = shared_ptr<InGameUI>(new InGameUI());
+	m_gameInstance->GetPictureMNG()->AddPicture(m_gameUI, this);
+	m_gameUI->ChangeLight(m_LightNum);
 }
 
 void GameScene::Update()
@@ -97,4 +106,12 @@ void GameScene::Draw()
 	Scene::Draw();
 
 
+}
+
+void GameScene::LightNumMinus()
+{
+	//ライトを1引く
+	m_LightNum--;
+
+	m_gameUI->ChangeLight(m_LightNum);
 }

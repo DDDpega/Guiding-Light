@@ -29,7 +29,7 @@ using namespace std;
 #include "GamePauseUI.h"
 #include "TitleUI.h"
 #include"StageSelectUI.h"
-
+#include "InGameUI.h"
 
 //ƒ}ƒbƒv
 #include "Map.h"

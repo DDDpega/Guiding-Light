@@ -191,38 +191,38 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 
 
 	// éläpå`ÇÃélï”Ç…ëŒÇµÇƒâ~ÇÃîºåaï™ÇæÇØë´ÇµÇΩÇ∆Ç´â~Ç™èdÇ»Ç¡ÇƒÇ¢ÇΩÇÁ
-	if ((circleObj_i.posX > boxObj_j.left	- circleObj_i.RADIUS) &&
-		(circleObj_i.posX < boxObj_j.right	+ circleObj_i.RADIUS) &&
-		(circleObj_i.posY > boxObj_j.top	- circleObj_i.RADIUS) &&
-		(circleObj_i.posY < boxObj_j.bottom	+ circleObj_i.RADIUS))
+	if ((circleObj_i.posX > boxObj_j.left - circleObj_i.RADIUS) &&
+		(circleObj_i.posX < boxObj_j.right + circleObj_i.RADIUS) &&
+		(circleObj_i.posY > boxObj_j.top - circleObj_i.RADIUS) &&
+		(circleObj_i.posY < boxObj_j.bottom + circleObj_i.RADIUS))
 	{
 		float fl = circleObj_i.RADIUS * circleObj_i.RADIUS;
 
 
 		// ç∂
-		if (circleObj_i.posX < boxObj_j.left){
+		if (circleObj_i.posX < boxObj_j.left) {
 			// ç∂è„
-			if ((circleObj_i.posY < boxObj_j.top)){
-				if ((DistanceSqrf(boxObj_j.left, boxObj_j.top, circleObj_i.posX, circleObj_i.posY) >= fl)){
-					isHit= false;
+			if ((circleObj_i.posY < boxObj_j.top)) {
+				if ((DistanceSqrf(boxObj_j.left, boxObj_j.top, circleObj_i.posX, circleObj_i.posY) >= fl)) {
+					isHit = false;
 				}
 			}
-			else{
+			else {
 				// ç∂â∫
-				if ((circleObj_i.posY > boxObj_j.bottom)){
-					if ((DistanceSqrf(boxObj_j.left, boxObj_j.bottom, circleObj_i.posX, circleObj_i.posY) >= fl)){
+				if ((circleObj_i.posY > boxObj_j.bottom)) {
+					if ((DistanceSqrf(boxObj_j.left, boxObj_j.bottom, circleObj_i.posX, circleObj_i.posY) >= fl)) {
 						isHit = false;
 
 					}
 				}
 			}
 		}
-		else{
+		else {
 			// âE
-			if (circleObj_i.posX > boxObj_j.right){
+			if (circleObj_i.posX > boxObj_j.right) {
 				// âEè„
-				if ((circleObj_i.posY < boxObj_j.top)){
-					if ((DistanceSqrf(boxObj_j.right, boxObj_j.top, circleObj_i.posX, circleObj_i.posY) >= fl)){
+				if ((circleObj_i.posY < boxObj_j.top)) {
+					if ((DistanceSqrf(boxObj_j.right, boxObj_j.top, circleObj_i.posX, circleObj_i.posY) >= fl)) {
 						isHit = false;
 
 					}
@@ -230,8 +230,8 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 				else
 				{
 					// âEâ∫
-					if ((circleObj_i.posY > boxObj_j.bottom)){
-						if ((DistanceSqrf(boxObj_j.right, boxObj_j.bottom, circleObj_i.posX, circleObj_i.posY) >= fl)){
+					if ((circleObj_i.posY > boxObj_j.bottom)) {
+						if ((DistanceSqrf(boxObj_j.right, boxObj_j.bottom, circleObj_i.posX, circleObj_i.posY) >= fl)) {
 							isHit = false;
 
 						}
@@ -239,6 +239,10 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 				}
 			}
 		}
+
+	}
+	else {
+		isHit = false;
 	}
 
 	if (isHit) {
