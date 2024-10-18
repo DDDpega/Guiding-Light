@@ -10,7 +10,7 @@ public:
 	/// </summary>
 	/// <param name="x">x座標</param>
 	/// <param name="y">y座標</param>
-	Ladder(POINT pos);
+	Ladder(POINT pos,int num);
 
 	/// <summary>
 	/// デストラクタ
@@ -41,5 +41,6 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, TAG tag);
 private:
+	int m_num;
 };
 

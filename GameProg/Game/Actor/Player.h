@@ -5,6 +5,13 @@ class Picture;
 class Player : public Actor
 {
 public:
+
+	struct LadderCol
+	{
+		int		num;
+		bool	isLadder;
+	};
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
@@ -45,8 +52,12 @@ public:
 		return m_lightCmp->m_lightOn;
 	}
 
+	void AddisLadder(int num,bool isladder);
+
+	void SetisLadder(int num, bool isladder);
+
 private:
 	bool m_firstShot;
 	std::shared_ptr<LightCmp> m_lightCmp;
-	bool m_isLadder;
+	list <LadderCol> m_isLadder;
 };

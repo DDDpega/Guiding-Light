@@ -55,12 +55,14 @@ void GameScene::Initialize()
 	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData16bit.png"));
 	m_gameInstance->GetPictureMNG()->AddPicture(m_map, this);
 
+	auto num = 0;
 	for (auto& ladderPos : m_map->GetActorPosList()) {
 		if (!ladderPos.m_isGet && ladderPos.m_actorNum == 7) {
 			ladderPos.m_isGet = true;
-			auto ladder = shared_ptr<Ladder>(new Ladder(ladderPos.m_actorPos));
+			auto ladder = shared_ptr<Ladder>(new Ladder(ladderPos.m_actorPos,num));
 			m_gameInstance->GetPictureMNG()->AddPicture(ladder, this);
 		}
+		num++;
 	}
 	
 	//ƒvƒŒƒCƒ„[‚Ì¶¬

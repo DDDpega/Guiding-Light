@@ -16,7 +16,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 {
 	Actor::Initialize(gameInstance_, scene);
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,60 },TAG::PLAYER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 1,10 },TAG::PLAYER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
@@ -38,6 +38,15 @@ void Player::Update()
 {
 	Actor::Update();
 	
+	for (auto& ladder : m_isLadder) {
+		if (ladder.isLadder) {
+			m_rigidBody->ChangeState(STATE::FLY);
+			break;
+		}
+		else if(m_rigidBody->m_state!=FALL&& m_rigidBody->m_state != STAND){
+			m_rigidBody->ChangeState(STATE::STAND);
+		}
+	}
 
 	bool isClick_x = false;
 	bool isClick_y = false;
@@ -64,7 +73,7 @@ void Player::Update()
 		}
 	}
 	//ƒWƒƒƒ“ƒv
-	else if (m_rigidBody->m_state == STATE::STAND) {
+ 	else if (m_rigidBody->m_state == STATE::STAND) {
 		if (KeyClick(KEY_INPUT_SPACE) >= 1) {
 			m_rigidBody->ChangeState(STATE::JUMPSTT);
 			isClick_y = true;
@@ -94,4 +103,18 @@ void Player::HitCollision(Actor* other, TAG tag)
 
 void Player::NoHitCollision(Actor* other, TAG tag)
 {
+}
+
+void Player::AddisLadder(int num, bool isladder)
+{
+	m_isLadder.push_back(LadderCol{ num,isladder });
+}
+
+void Player::SetisLadder(int num, bool isladder)
+{
+	for (auto& ladder : m_isLadder) {
+		if (ladder.num == num) {
+			ladder.isLadder = isladder;
+		}
+	}
 }
