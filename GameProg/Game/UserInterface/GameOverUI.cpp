@@ -1,33 +1,32 @@
 #include "Framework.h"
 
-GameClearUI::GameClearUI()
-	:UserInterface(true,true)
+GameOverUI::GameOverUI()
+	:UserInterface(true, true)
 {
 
 }
 
-GameClearUI::~GameClearUI()
+GameOverUI::~GameOverUI()
 {
 
 }
 
-void GameClearUI::Initialize(Game* gameInstance_, Scene* scene)
+void GameOverUI::Initialize(Game* gameInstance_, Scene* scene)
 {
 	UserInterface::Initialize(gameInstance_, scene);
-
 
 	//‰æ–Ê‚Ì•‚ðŽæ“¾
 	LONG scrX = scene->screenX;
 	LONG scrY = scene->screenY;
 
 	//–îˆó
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture({ 0,0 }, 0.5, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
-	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 0.5, "Picture/UI_15.png", PIVOT::CENTER, SORT::SORT_UI));
+	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 0.5, "Picture/UI_16.png", PIVOT::CENTER, SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 
-	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.5, "Picture/UI_59.png", PIVOT::CENTER, SORT::SORT_UI));
+	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.5, "Picture/UI_53.png", PIVOT::CENTER, SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[0] = picture->GetPos();
 
@@ -42,9 +41,10 @@ void GameClearUI::Initialize(Game* gameInstance_, Scene* scene)
 	m_arrow->SetPos(m_nowpostion[0]);
 }
 
-void GameClearUI::Update()
+void GameOverUI::Update()
 {
 	UserInterface::Update();
+
 
 	//Œˆ’è
 	if (KeyClick(KEY_INPUT_SPACE) >= 1) {
@@ -81,7 +81,7 @@ void GameClearUI::Update()
 
 }
 
-void GameClearUI::Draw()
+void GameOverUI::Draw()
 {
 	UserInterface::Draw();
 

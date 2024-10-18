@@ -31,6 +31,8 @@ using namespace std;
 #include"StageSelectUI.h"
 #include "InGameUI.h"
 #include "GameClearUI.h"
+#include "GameOverUI.h"
+
 
 //ƒ}ƒbƒv
 #include "Map.h"
@@ -60,3 +62,6 @@ using namespace std;
 #include "Player.h"
 #include "GoalLight.h"
 #include "Ladder.h"
+#include "Pisher.h"
+#include "LuminousFigure.h"
+

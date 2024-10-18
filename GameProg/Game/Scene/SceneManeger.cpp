@@ -28,8 +28,9 @@ void SceneManeger::Update()
 {
 	nowScene->Update();
 
-	if (e_NextScene != e_NowScene) {
+	if (m_isChange) {
 		ChangeScene(e_NextScene);
+		m_isChange = false;
 	}
 }
 
@@ -41,6 +42,7 @@ void SceneManeger::Draw()
 void SceneManeger::ChangeSceneFlag(E_Scene scene)
 {
 	e_NextScene = scene;
+	m_isChange = true;
 }
 
 void SceneManeger::ChangeScene(E_Scene nextScene)

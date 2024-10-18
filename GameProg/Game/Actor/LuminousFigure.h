@@ -1,18 +1,20 @@
 #pragma once
 
-class GoalLight : public Actor
+class LuminousFigure : public Actor
 {
 public:
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	GoalLight(POINT pos);
+	/// <param name="pos"></param>
+	LuminousFigure(POINT pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~GoalLight();
-
+	~LuminousFigure();
+	
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
@@ -22,6 +24,11 @@ public:
 	/// 更新処理
 	/// </summary>
 	void Update();
+
+	/// <summary>
+	/// 描画処理
+	/// </summary>
+	void Draw();
 
 	/// <summary>
 	/// 衝突処理
@@ -35,9 +42,12 @@ public:
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, TAG tag);
-
 protected:
-	shared_ptr<LightCmp> m_lightCmp;
-	bool m_isLightOn;
+	int m_maxTime;		//光る最大秒数
+	int m_keepTime;		//光る秒数
+	int m_fontHandle;	//フォントの情報
+	shared_ptr<LightCmp> m_lightCmp;	//ライトコンポーネント
+	bool m_lightOn;	//ライトをつけるかどうか
+	bool m_shareNow;	//ライトを与えている最中かどうか
 };
 

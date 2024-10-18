@@ -3,6 +3,7 @@
 class Map;
 class Player;
 class Picture;
+class Pisher;
 
 class GameScene : public Scene
 {
@@ -35,10 +36,12 @@ public:
 	/// <summary>
 	/// Playerのゲッター
 	/// </summary>
-	std::shared_ptr<Player> GetPlayer() {
-		return m_player;
-	}
+	Player* GetPlayer();
 
+	/// <summary>
+	/// ゲームオーバー
+	/// </summary>
+	void GameOver();
 	
 
 	struct  Size {
@@ -62,13 +65,13 @@ public:
 
 	std::shared_ptr<Map>	m_map;
 	shared_ptr<LightPicture> m_lightPicture;
+	list<shared_ptr<Pisher>> m_pisherList;	//蓄光フィギュアのリスト
+	shared_ptr<GamePauseUI> m_pauseUI;
 
 private:
 	std::shared_ptr<Player> m_player;	
 	int m_LightNum;	//残りのライトの数
 
 	//各種UI
-	shared_ptr<GamePauseUI> m_pauseUI;
 	shared_ptr<InGameUI> m_gameUI;
 };
-

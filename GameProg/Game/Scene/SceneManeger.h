@@ -76,4 +76,6 @@ private:
 
 	//ゲームインスタンス
 	Game* m_gameInstance;
+
+	bool m_isChange;
 };

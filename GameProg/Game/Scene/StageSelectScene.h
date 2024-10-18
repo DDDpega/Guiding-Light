@@ -31,7 +31,7 @@ public:
 	/// <summary>
 	/// Player‚ÌƒQƒbƒ^[
 	/// </summary>
-	std::shared_ptr<Player> GetPlayer() {
+	Player* GetPlayer() {
 		return nullptr;
 	}
 

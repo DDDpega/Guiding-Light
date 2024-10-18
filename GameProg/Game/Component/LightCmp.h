@@ -27,6 +27,11 @@ public:
 	/// </summary>
 	void ChangeLightONOFF();
 
+	/// <summary>
+	///ƒ‰ƒCƒg‚ÌON,OFF‚ğØ‚è‘Ö‚¦‚é 
+	/// </summary>
+	void ChangeLightONOFF(bool lightOn);
+
 	bool m_changeNow = false;
 
 	bool m_lightOn;

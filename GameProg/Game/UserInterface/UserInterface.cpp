@@ -25,6 +25,8 @@ void UserInterface::Initialize(Game* gameInstance_, Scene* scene)
 	m_gameInstance = gameInstance_;
 	m_sceneptr = scene;
 
+	m_nowcursor = 0;
+
 	m_pictureList_UI.clear();
 }
 

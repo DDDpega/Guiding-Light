@@ -50,6 +50,15 @@ bool Status::ReadStatus()
 		case 4:
 			GOAL_LIGHT_RADIUS = std::stof(line.substr(postion));
 			break;
+		case 5:
+			PISHER_SPEED = std::stof(line.substr(postion));
+			break;
+		case 6:
+			FIGURE_MAXTIME = std::stof(line.substr(postion));
+			break;
+		case 7:
+			FIGURE_LIGHT= std::stof(line.substr(postion));
+			break;
 		}
 
 		rowNum++;

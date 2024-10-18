@@ -32,7 +32,7 @@ public:
 	/// Õ“Ëˆ—
 	/// </summary>
 	/// <param name="other"></param>
-	void HitCollision(Actor* other, TAG tag);
+	void HitCollision(Actor* other, TAG tag, TAG selftag);
 
 	/// <summary>
 	/// Õ“Ë‚µ‚Ä‚¢‚È‚¢

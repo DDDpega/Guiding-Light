@@ -91,18 +91,23 @@ void Player::Update()
 	Actor::Move();
 }
 
-void Player::HitCollision(Actor* other, TAG tag)
+void Player::HitCollision(Actor* other, TAG tag, TAG selftag)
 {
-	Actor::HitCollision(other, tag);
+	Actor::HitCollision(other, tag,selftag);
 
-	if (tag == TAG::ENEMY && m_isActive) {
-		m_gameInstance->GetSceneMNG()->ChangeSceneFlag(E_Scene::TITLE);
+	if (tag == TAG::PISHER && selftag==TAG::PLAYER && m_isActive) {
+		static_cast<GameScene*>(m_sceneptr)->GameOver();
 		m_isActive = false;
 	}	
 }
 
 void Player::NoHitCollision(Actor* other, TAG tag)
 {
+}
+
+Player* Player::Getthis()
+{
+	return this;
 }
 
 void Player::AddisLadder(int num, bool isladder)

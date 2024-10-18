@@ -28,9 +28,9 @@ void GoalLight::Update()
 	Actor::Update();
 }
 
-void GoalLight::HitCollision(Actor* other, TAG tag)
+void GoalLight::HitCollision(Actor* other, TAG tag, TAG selftag)
 {
-	Actor::HitCollision(other, tag);
+	Actor::HitCollision(other, tag,selftag);
 
 	//Player‚©‚çƒ‰ƒCƒg‚ð“–‚Ä‚ç‚ê‚½‚ç
 	if (tag == TAG::PLAYER_LIGHT && m_sceneptr->GetPlayer()->GetLightOn() && !m_isLightOn) {

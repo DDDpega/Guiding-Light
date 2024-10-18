@@ -30,7 +30,7 @@ public:
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw();
+	virtual void Draw();
 
 	/// <summary>
 	/// キャラクターの動き
@@ -43,7 +43,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	virtual void HitCollision(Actor* other, TAG tag);
+	virtual void HitCollision(Actor* other, TAG tag, TAG selftag);
 
 	/// <summary>
 	/// 衝突していない

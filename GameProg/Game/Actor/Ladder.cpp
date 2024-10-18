@@ -29,9 +29,9 @@ void Ladder::Update()
 	Actor::Update();
 }
 
-void Ladder::HitCollision(Actor* other, TAG tag)
+void Ladder::HitCollision(Actor* other, TAG tag, TAG selftag)
 {
-	Actor::HitCollision(other, tag);
+	Actor::HitCollision(other, tag, selftag);
 
 	if (tag == TAG::PLAYER && m_isActive) {
 		m_sceneptr->GetPlayer()->SetisLadder(m_num, true);

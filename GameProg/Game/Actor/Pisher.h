@@ -1,17 +1,17 @@
 #pragma once
 
-class GoalLight : public Actor
+class Pisher : public Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	GoalLight(POINT pos);
+	Pisher(POINT pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~GoalLight();
+	virtual ~Pisher();
 
 	/// <summary>
 	/// 初期化処理
@@ -36,8 +36,12 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, TAG tag);
 
+	Actor* m_target;
+	bool m_isFigure;			//フィギュアがターゲットかどうか
+
+
 protected:
-	shared_ptr<LightCmp> m_lightCmp;
-	bool m_isLightOn;
+	Player* m_player;	//プレイヤー
+	float m_speed;		//蠅の移動速度
 };
 

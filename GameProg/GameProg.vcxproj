@@ -23,6 +23,8 @@
     <ClCompile Include="Game\Actor\BackGround.cpp" />
     <ClCompile Include="Game\Actor\GoalLight.cpp" />
     <ClCompile Include="Game\Actor\Ladder.cpp" />
+    <ClCompile Include="Game\Actor\LuminousFigure.cpp" />
+    <ClCompile Include="Game\Actor\Pisher.cpp" />
     <ClCompile Include="Game\Actor\Player.cpp" />
     <ClCompile Include="Game\Component\BoxCollisionCmp.cpp" />
     <ClCompile Include="Game\Component\CircleCollisionCmp.cpp" />
@@ -56,6 +58,7 @@
     <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
     <ClCompile Include="Game\UserInterface\GameClearUI.cpp" />
+    <ClCompile Include="Game\UserInterface\GameOverUI.cpp" />
     <ClCompile Include="Game\UserInterface\GamePauseUI.cpp" />
     <ClCompile Include="Game\UserInterface\InGameUI.cpp" />
     <ClCompile Include="Game\UserInterface\StageSelectUI.cpp" />
@@ -67,6 +70,8 @@
     <ClInclude Include="Game\Actor\BackGround.h" />
     <ClInclude Include="Game\Actor\GoalLight.h" />
     <ClInclude Include="Game\Actor\Ladder.h" />
+    <ClInclude Include="Game\Actor\LuminousFigure.h" />
+    <ClInclude Include="Game\Actor\Pisher.h" />
     <ClInclude Include="Game\Actor\Player.h" />
     <ClInclude Include="Game\Component\BoxCollisionCmp.h" />
     <ClInclude Include="Game\Component\CircleCollisionCmp.h" />
@@ -95,6 +100,7 @@
     <ClInclude Include="Game\Scene\StageSelectScene.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\UserInterface\GameClearUI.h" />
+    <ClInclude Include="Game\UserInterface\GameOverUI.h" />
     <ClInclude Include="Game\UserInterface\GamePauseUI.h" />
     <ClInclude Include="Game\UserInterface\InGameUI.h" />
     <ClInclude Include="Game\UserInterface\StageSelectUI.h" />

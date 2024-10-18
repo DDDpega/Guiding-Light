@@ -80,3 +80,32 @@ void LightCmp::ChangeLightONOFF()
 		}
 	}
 }
+
+void LightCmp::ChangeLightONOFF(bool lightOn)
+{
+	m_changeNow = true;
+
+	if (!lightOn) {
+
+		m_light->m_size -= 0.1;
+
+		//サイズが0を下回ったら
+		if (m_light->m_size <= 0) {
+			m_light->m_size = 0;
+			m_lightOn = false;
+			m_changeNow = false;
+		}
+	}
+	else {
+
+		m_light->m_size += 0.1;
+
+		//サイズが初期のサイズを上回ったら
+		if (m_light->m_size >= m_lightSize) {
+			//ライトをつける
+			m_light->m_size = m_lightSize;
+			m_lightOn = true;
+			m_changeNow = false;
+		}
+	}
+}

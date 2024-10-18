@@ -57,7 +57,7 @@ void Actor::Move()
 }
 
 
-void Actor::HitCollision(Actor* other,TAG tag)
+void Actor::HitCollision(Actor* other,TAG tag,TAG selftag)
 {
 }
 

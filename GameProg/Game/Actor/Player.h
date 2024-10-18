@@ -39,7 +39,7 @@ public:
 	/// 衝突処理
 	/// </summary>
 	/// <param name="other"></param>
-	void HitCollision(Actor* other, TAG tag);
+	void HitCollision(Actor* other, TAG tag, TAG selftag);
 
 	/// <summary>
 	/// 衝突していない
@@ -48,9 +48,19 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, TAG tag);
 
+	/// <summary>
+	/// 現在プレイヤーのライトがついているかどうか
+	/// </summary>
+	/// <returns></returns>
 	bool GetLightOn() {
 		return m_lightCmp->m_lightOn;
 	}
+
+	/// <summary>
+	/// プレイヤーを入手する
+	/// </summary>
+	/// <returns></returns>
+	Player* Getthis();
 
 	void AddisLadder(int num,bool isladder);
 
