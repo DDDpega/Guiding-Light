@@ -33,6 +33,9 @@ void GameScene::Initialize()
 {
 	Scene::Initialize();
 
+	m_isPause = false;
+
+
 	//”wŒi‰æ‘œ
 	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
 	m_gameInstance->GetPictureMNG()->AddPicture(background,this);
@@ -158,4 +161,14 @@ void GameScene::LightNumMinus()
 	m_LightNum--;
 
 	m_gameUI->ChangeLight(m_LightNum);
+
+	//UI‚Ì•\Ž¦
+	if (m_LightNum <= 0) {
+
+		m_isPause = true;
+
+
+		auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());
+		m_gameInstance->GetPictureMNG()->AddPicture(gameClear, this);
+	}
 }

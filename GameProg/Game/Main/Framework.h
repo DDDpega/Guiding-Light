@@ -30,6 +30,7 @@ using namespace std;
 #include "TitleUI.h"
 #include"StageSelectUI.h"
 #include "InGameUI.h"
+#include "GameClearUI.h"
 
 //ƒ}ƒbƒv
 #include "Map.h"

@@ -38,7 +38,6 @@ public:
 
 
 protected:
-	int m_fontHandle;	//フォント
 	int m_stageNum;		//ステージ数
 	int m_lightnum;		//残りのライトの数
 };

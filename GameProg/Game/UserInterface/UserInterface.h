@@ -35,12 +35,15 @@ public:
 
 protected:
 	bool m_isInput;	//操作可能かどうか
-	list<shared_ptr<Picture>> m_pictureList_UI;
-	Game* m_gameInstance;
-	Scene* m_sceneptr;
-	int m_nowcursor;
-	POINT m_nowpostion[3];
-	std::shared_ptr<Picture> m_arrow;
+	list<shared_ptr<Picture>> m_pictureList_UI;	//UIの中で表示する画像のリスト
+	Game* m_gameInstance;						//ゲームインスタンス
+	Scene* m_sceneptr;							//シーンのポインタ
+	int m_nowcursor;							//現在のカーソル位置
+	POINT m_nowpostion[3];						//
+	std::shared_ptr<Picture> m_arrow;			//矢印の画像
+	int m_fontHandle;	//フォント
+
+
 
 	shared_ptr<Picture> m_startText[3];
 	int m_alpha;	//画像のアルファ値

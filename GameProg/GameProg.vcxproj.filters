@@ -124,6 +124,9 @@
     <ClCompile Include="Game\UserInterface\InGameUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\UserInterface\GameClearUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -218,6 +221,9 @@
       <Filter>Game\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Game\UserInterface\InGameUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\GameClearUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
