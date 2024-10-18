@@ -12,12 +12,13 @@ MapCollision::MapCollision(Game* gameInstance ,Scene* const scene , Actor* actor
 // ture = ˆÚ“®•s‰Â”\
 bool MapCollision::CheckMapChip(int col, int row)
 {
-
-	if (dynamic_cast<GameScene*>(m_scene)->m_map->getChipNo(col, row) != 1) {
-		return false;
+	auto chipNo = static_cast<GameScene*>(m_scene)->m_map->getChipNo(col, row);
+	auto solarpanel = static_cast<GameScene*>(m_scene)->m_solarpanel;
+	if (chipNo ==1||(chipNo==11)&& solarpanel->GetIsTrigger()) {
+		return true;
 	}
 	else {
-		return true;
+		return false;
 	}
 }
 

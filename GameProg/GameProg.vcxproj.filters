@@ -136,6 +136,12 @@
     <ClCompile Include="Game\UserInterface\GameOverUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Actor\SolarPanel.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor\SolarPanelBlock.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -243,6 +249,12 @@
     </ClInclude>
     <ClInclude Include="Game\UserInterface\GameOverUI.h">
       <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\SolarPanel.h">
+      <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\SolarPanelBlock.h">
+      <Filter>Game\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -64,4 +64,5 @@ using namespace std;
 #include "Ladder.h"
 #include "Pisher.h"
 #include "LuminousFigure.h"
-
+#include"SolarPanel.h"
+#include"SolarPanelBlock.h"

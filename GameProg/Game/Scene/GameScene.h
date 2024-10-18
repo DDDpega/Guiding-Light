@@ -4,6 +4,7 @@ class Map;
 class Player;
 class Picture;
 class Pisher;
+class SolarPanel;
 
 class GameScene : public Scene
 {
@@ -67,6 +68,7 @@ public:
 	shared_ptr<LightPicture> m_lightPicture;
 	list<shared_ptr<Pisher>> m_pisherList;	//蓄光フィギュアのリスト
 	shared_ptr<GamePauseUI> m_pauseUI;
+	shared_ptr<SolarPanel> m_solarpanel;
 
 private:
 	std::shared_ptr<Player> m_player;	

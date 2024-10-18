@@ -107,18 +107,17 @@ void GameScene::Initialize()
 		//ソーラーパネル
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 10) {
 			actorPos.m_isGet = true;
+			m_solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_actorPos));
+			m_gameInstance->GetPictureMNG()->AddPicture(m_solarpanel, this);
 		}
-		
+
 		//起動出現床
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 11) {
 			actorPos.m_isGet = true;
+			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_actorPos, false, this));
+			m_gameInstance->GetPictureMNG()->AddPicture(solarpanelblock, this);
 		}
 
-		//起動消滅床
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 12) {
-			actorPos.m_isGet = true;
-		}
-		
 	}
 
 	//UIを表示する

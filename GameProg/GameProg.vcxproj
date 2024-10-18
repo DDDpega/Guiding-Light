@@ -26,6 +26,8 @@
     <ClCompile Include="Game\Actor\LuminousFigure.cpp" />
     <ClCompile Include="Game\Actor\Pisher.cpp" />
     <ClCompile Include="Game\Actor\Player.cpp" />
+    <ClCompile Include="Game\Actor\SolarPanel.cpp" />
+    <ClCompile Include="Game\Actor\SolarPanelBlock.cpp" />
     <ClCompile Include="Game\Component\BoxCollisionCmp.cpp" />
     <ClCompile Include="Game\Component\CircleCollisionCmp.cpp" />
     <ClCompile Include="Game\Component\CollisionManeger.cpp" />
@@ -73,6 +75,8 @@
     <ClInclude Include="Game\Actor\LuminousFigure.h" />
     <ClInclude Include="Game\Actor\Pisher.h" />
     <ClInclude Include="Game\Actor\Player.h" />
+    <ClInclude Include="Game\Actor\SolarPanel.h" />
+    <ClInclude Include="Game\Actor\SolarPanelBlock.h" />
     <ClInclude Include="Game\Component\BoxCollisionCmp.h" />
     <ClInclude Include="Game\Component\CircleCollisionCmp.h" />
     <ClInclude Include="Game\Component\CollisionManeger.h" />
