@@ -12,7 +12,7 @@ struct BOX
 enum TAG
 {
 	PLAYER, BULLET, ENEMY, CHILD, BACKGROUND, LADDER,
-	PLAYER_LIGHT
+	PLAYER_LIGHT,MAP
 };
 
 class BoxCollisionCmp :public Component

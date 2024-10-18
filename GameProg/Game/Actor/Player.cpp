@@ -16,7 +16,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 {
 	Actor::Initialize(gameInstance_, scene);
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 1,10 },TAG::PLAYER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 40,80 },TAG::PLAYER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
@@ -24,10 +24,10 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	Actor::AddComponent(circle, scene);
 	gameInstance_->GetCollisionMNG()->AddCIRCLECollisionList(circle);
 
-	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::PLAYER));
+	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(m_gameInstance, scene, this, TAG::MAP));
 	Actor::AddComponent(m_mapCollision, scene);
 
-	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP));
+	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP,TAG::PLAYER));
 	Actor::AddComponent(m_rigidBody, scene);
 
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false,gameInstance_->GetStatus()->PLAYER_LIGHT));

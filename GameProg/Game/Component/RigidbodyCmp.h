@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	RigidbodyCmp(Actor* actor,STATE state);
+	RigidbodyCmp(Actor* actor,STATE state,TAG tag);
 
 	/// <summary>
 	/// デストラクタ
@@ -39,7 +39,7 @@ public:
 
 
 	STATE m_state;			//現在の状態
-
+	TAG m_tag;
 private:
 
 };

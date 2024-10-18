@@ -31,7 +31,7 @@ bool MapCollision::CheckMapChip(int col, int row)
 /// <param name="isCollect">位置を強制的に戻すかどうか</param>
 /// <param name="isTopBottomChk">上下の判定を取るかどうか</param>
 /// <returns></returns>
-bool MapCollision::CheckMapCollide(POINT pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
+bool MapCollision::CheckMapCollide(TAG tag,POINT pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
 {
 	bool result = false;
 	const auto mapChipSize = 40;
@@ -41,7 +41,7 @@ bool MapCollision::CheckMapCollide(POINT pos, float dx, float dy, const bool isC
 
 	//TODO rectを作るときに持ってきたposを使ってないからおかしくなっている可能性
 	//auto rect = getColRect(pos.x + m_collition.left, pos.y + m_collition.top + 32, pos.x + m_collition.right, pos.y + m_collition.bottom + 32);
-	auto rect = m_gameInstance->GetCollisionMNG()->GetCollisionActor(m_tag)->GetChangeCollision(pos);
+	auto rect = m_gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->GetChangeCollision(pos);
 
 	unsigned int color;
 
@@ -86,6 +86,7 @@ bool MapCollision::CheckMapCollide(POINT pos, float dx, float dy, const bool isC
 		leftTop = leftBottom = rightTop = rightBottom = false;
 	}
 
+
 	
 
 	//左方向をチェック
@@ -129,7 +130,7 @@ bool MapCollision::CheckMapCollide(POINT pos, float dx, float dy, const bool isC
 
 	if (result) {
 		m_actor->SetPos(pos2);
-		m_gameInstance->GetCollisionMNG()->GetCollisionActor(m_tag)->ChangeCollision();
+		m_gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->ChangeCollision();
 	}
 
 	return result;

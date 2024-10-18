@@ -12,7 +12,7 @@ public:
 
     bool CheckMapChip(int col, int row);
 
-    bool CheckMapCollide(POINT pos, float dx, float dy, const bool isCollect = true, const bool isTopBottomChk = true);
+    bool CheckMapCollide(TAG tag,POINT pos, float dx, float dy, const bool isCollect = true, const bool isTopBottomChk = true);
 
 protected:
     Game* m_gameInstance;

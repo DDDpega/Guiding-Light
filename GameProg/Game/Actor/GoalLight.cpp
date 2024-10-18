@@ -17,7 +17,7 @@ void GoalLight::Initialize(Game* gameInstance_, Scene* scene)
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, gameInstance_->GetStatus()->GOAL_LIGHT_RADIUS));
 	Actor::AddComponent(m_lightCmp, scene);
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,60 }, TAG::PLAYER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 50,60 }, TAG::PLAYER_LIGHT));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 

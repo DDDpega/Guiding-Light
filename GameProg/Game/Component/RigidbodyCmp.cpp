@@ -1,9 +1,10 @@
 #include "Framework.h"
 
 
-RigidbodyCmp::RigidbodyCmp(Actor* actor,STATE state)
+RigidbodyCmp::RigidbodyCmp(Actor* actor,STATE state,TAG tag)
 	:Component(actor)
 	,m_state(state)
+	,m_tag(tag)
 {
 
 }
@@ -38,7 +39,7 @@ void RigidbodyCmp::Update()
 
 	auto isTopBottom = (m_state != JUMP && m_state != FALL);
 	auto pos3 = m_actor->GetPos();
-	if (m_actor->m_mapCollision->CheckMapCollide(m_actor->GetPos(), m_actor->m_vx, 0.0f, true, isTopBottom)) {
+	if (m_actor->m_mapCollision->CheckMapCollide(m_tag,m_actor->GetPos(), m_actor->m_vx, 0.0f, true, isTopBottom)) {
 		m_actor->m_vx = 0;
 		//printfDx("横判定%d\n", pos3);
 	}
@@ -46,7 +47,7 @@ void RigidbodyCmp::Update()
 	
 
 	//落下中のじめん判定チェック
-	if ((m_state == FALL||m_state==FLY )&& m_actor->m_mapCollision->CheckMapCollide(m_actor->GetPos(), 0.0f, m_actor->m_vy, true, true)) {
+	if ((m_state == FALL||m_state==FLY )&& m_actor->m_mapCollision->CheckMapCollide(m_tag, m_actor->GetPos(), 0.0f, m_actor->m_vy, true, true)) {
 		//m_ay = 0.0f;    //重力
 		m_actor->m_vy = 0.0f;
 		m_actor->m_vx = 0.0f;
@@ -80,7 +81,7 @@ void RigidbodyCmp::Update()
 	
 	auto pos = m_actor->GetPos();
 	pos.y += 1.0f;
-	if ((m_state != FALL && m_state != FLY) && !m_actor->m_mapCollision->CheckMapCollide(pos, 0.0f, 1.0f, false, true)) {
+	if ((m_state != FALL && m_state != FLY) && !m_actor->m_mapCollision->CheckMapCollide(m_tag, pos, 0.0f, 1.0f, false, true)) {
 		m_state = FALL;
 		//printfDx("落下判定%d\n", pos.y);
 	}
