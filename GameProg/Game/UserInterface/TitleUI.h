@@ -28,6 +28,10 @@ public:
 	/// </summary>
 	void Draw();
 private:
-	
+	//shared_ptr<Picture> m_startText[3];
+	//int m_alpha;	//画像のアルファ値
+	//int m_add;		//アルファ値の変更する値の量
+	//bool m_isMenuActive;	//メニュー画面
+	//shared_ptr<Picture> m_backGround;
 };
 

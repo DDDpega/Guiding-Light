@@ -41,34 +41,74 @@ void GameScene::Initialize()
 	m_lightPicture = std::shared_ptr<LightPicture>(new LightPicture());
 	m_gameInstance->GetPictureMNG()->AddPicture(m_lightPicture, this);
 
-	//ゴールライトの生成
-	auto light = shared_ptr<GoalLight>(new GoalLight(POINT{1000,500}));
-	m_gameInstance->GetPictureMNG()->AddPicture(light, this);
-	m_LightNum++;
+	m_player = std::shared_ptr<Player>(new Player(POINT{200,200}));
+	m_gameInstance->GetPictureMNG()->AddPicture(m_player, this);
+	
 
-	//ゴールライトの生成
-	light = shared_ptr<GoalLight>(new GoalLight(POINT{ 400,200 }));
-	m_gameInstance->GetPictureMNG()->AddPicture(light, this);
-	m_LightNum++;
+	////ゴールライトの生成
+	//light = shared_ptr<GoalLight>(new GoalLight(POINT{ 400,200 }));
+	//m_gameInstance->GetPictureMNG()->AddPicture(light, this);
+	//m_LightNum++;
 
 	//マップの生成
 	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData16bit.png"));
 	m_gameInstance->GetPictureMNG()->AddPicture(m_map, this);
 
 	
-	//プレイヤーの生成
-	m_player = std::shared_ptr<Player>(new Player(POINT{200,500}));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_player, this);
 
-	//はしごの生成
 	auto num = 0;
-	for (auto& ladderPos : m_map->GetActorPosList()) {
-		if (!ladderPos.m_isGet && ladderPos.m_actorNum == 7) {
-			ladderPos.m_isGet = true;
-			auto ladder = shared_ptr<Ladder>(new Ladder(ladderPos.m_actorPos, num));
+	for (auto& actorPos : m_map->GetActorPosList()) {
+		//プレイヤーの生成
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 5) {
+			actorPos.m_isGet = true;
+			m_player->SetPos(actorPos.m_actorPos);
+			m_player->SpawnMove();
+		}
+
+		//ランプ
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 6) {
+			actorPos.m_isGet = true;
+			//ゴールライトの生成
+			auto light = shared_ptr<GoalLight>(new GoalLight(actorPos.m_actorPos));
+			m_gameInstance->GetPictureMNG()->AddPicture(light, this);
+			light->SpawnMove();
+			m_LightNum++;
+		}
+
+		//はしごの生成
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 7) {
+			actorPos.m_isGet = true;
+			auto ladder = shared_ptr<Ladder>(new Ladder(actorPos.m_actorPos, num));
 			m_gameInstance->GetPictureMNG()->AddPicture(ladder, this);
 		}
-		num++;
+		if (actorPos.m_actorNum == 7) {
+			num++;
+		}
+
+		//蓄光
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 8) {
+			actorPos.m_isGet = true;
+		}
+		//ハエ
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 9) {
+			actorPos.m_isGet = true;
+		}
+
+		//ソーラーパネル
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 10) {
+			actorPos.m_isGet = true;
+		}
+		
+		//起動出現床
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 11) {
+			actorPos.m_isGet = true;
+		}
+
+		//起動消滅床
+		if (!actorPos.m_isGet && actorPos.m_actorNum == 12) {
+			actorPos.m_isGet = true;
+		}
+		
 	}
 
 	//UIを表示する

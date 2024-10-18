@@ -30,6 +30,9 @@ public:
 
 	void LordFile();
 private:
+	bool m_stage[20];	//ステージクリア状態
 
+	shared_ptr<Picture> m_stageArray[3];	//ステージ選択の画像
+	POINT m_stageMarkers[3];	//ステージ選択の位置
 };
 

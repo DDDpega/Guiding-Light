@@ -77,6 +77,11 @@ public:
 	/// <returns></returns>
 	bool GetIsMove(string shaft);
 
+	/// <summary>
+	/// スポーン時に右下にずらす
+	/// </summary>
+	void SpawnMove();
+
 	int m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
