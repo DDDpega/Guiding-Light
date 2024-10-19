@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 Player::Player(POINT pos)
-	:Actor(pos, 1, "Picture/jiki2.png")
+	:Actor(pos, 1, "Picture/jiki2.png",PIVOT::CENTER, SORT::SORT_PLAYER)
 	,m_firstShot(false)
 {
 

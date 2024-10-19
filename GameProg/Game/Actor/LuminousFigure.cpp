@@ -85,7 +85,7 @@ void LuminousFigure::HitCollision(Actor* other, TAG tag, TAG selftag)
 
 	if (tag == TAG::PLAYER_LIGHT && m_sceneptr->GetPlayer()->GetLightOn() &&
 		m_keepTime<m_maxTime) {
-		m_keepTime++;
+		m_keepTime = m_maxTime;
 		m_shareNow = true;
 	}
 }

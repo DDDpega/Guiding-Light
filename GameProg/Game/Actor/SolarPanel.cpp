@@ -22,21 +22,18 @@ void SolarPanel::Initialize(Game* gameInstance_, Scene* scene)
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//‰½•bŒø‰ÊŽžŠÔ‚ª‚ ‚é‚©
-	m_maxTime = gameInstance_->GetStatus()->FIGURE_MAXTIME;
+	m_maxTime = gameInstance_->GetStatus()->SOLARPANELBLOCK_MAXTIME;
 }
 
 void SolarPanel::Update()
 {
 	Actor::Update();
-	if (m_keepTime > 0) {
-		//‹Ÿ‹‹’†‚È‚çŒ¸‚ç‚³‚È‚¢
-		if (!m_shareNow) {
-			m_keepTime--;
-		}
+
+	//‹Ÿ‹‹ŽžŠÔ‚ªŒo‰ß‚µ‚½‚ç
+	if (m_keepTime >= m_maxTime) {
+		m_isTrigger = true;
 	}
-	else {
-		m_isTrigger = false;
-	}
+
 }
 
 void SolarPanel::HitCollision(Actor* other, TAG tag, TAG selftag)
@@ -46,16 +43,13 @@ void SolarPanel::HitCollision(Actor* other, TAG tag, TAG selftag)
 	if (tag == TAG::PLAYER_LIGHT && m_sceneptr->GetPlayer()->GetLightOn() &&
 		m_keepTime < m_maxTime) {
 		m_keepTime++;
-		m_shareNow = true;
-		m_isTrigger = true;
 	}
 }
 
 void SolarPanel::NoHitCollision(Actor* other, TAG tag)
 {
-	if (tag == TAG::PLAYER_LIGHT && !m_sceneptr->GetPlayer()->GetLightOn() ) {
-		m_shareNow = false;
-	}
+
+
 }
 
 bool SolarPanel::GetIsTrigger()

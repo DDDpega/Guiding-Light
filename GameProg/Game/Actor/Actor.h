@@ -82,7 +82,7 @@ public:
 	/// </summary>
 	void SpawnMove(int x, int y);
 
-	int m_vx, m_vy;
+	float m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 
