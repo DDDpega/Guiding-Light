@@ -19,7 +19,7 @@ void Ladder::Initialize(Game* gameInstance_, Scene* scene)
 	LONG x = (m_pictureSizeX * m_size) / 2;
 	LONG y = (m_pictureSizeY * m_size) / 2;
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, { 40,40 }, TAG::LADDER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, { 40,80 }, TAG::LADDER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 }
