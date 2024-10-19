@@ -30,7 +30,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP,TAG::PLAYER));
 	Actor::AddComponent(m_rigidBody, scene);
 
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false,gameInstance_->GetStatus()->PLAYER_LIGHT*100));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false,gameInstance_->GetStatus()->PLAYER_LIGHT));
 	Actor::AddComponent(m_lightCmp, scene);
 
 	//à√à≈íÜÇ…å©Ç¶ÇÈâÊëúÇÃê∂ê¨

@@ -42,7 +42,7 @@ void Pisher::Update()
 
 		//プレイヤーのライトが着いたらターゲットをプレイヤーに変更する
 		if (m_player->GetLightOn()) {
-			//m_target = m_player;
+			m_target = m_player;
 		}
 		else {
 			m_target = nullptr;

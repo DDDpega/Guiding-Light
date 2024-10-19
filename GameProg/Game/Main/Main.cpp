@@ -17,7 +17,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	SetWindowIconID(101);
 
 	//背景の設定
-	SetBackgroundColor(0, 100, 100);
+	SetBackgroundColor(25, 25, 25);
 
 	// ウィンドウモードに設定と画面サイズ
 	ChangeWindowMode(true);

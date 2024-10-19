@@ -75,7 +75,7 @@ void StageSelectUI::Initialize(Game* gameInstance_, Scene* scene)
 
 	//フォントの描画
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 80, 1);
-	m_stageTitlePos = POINT{ 100,100 };
+	m_stageTitlePos = POINT{ 50,100 };
 	LordFileText();
 
 }
@@ -85,7 +85,7 @@ void StageSelectUI::Update()
 	UserInterface::Update();
 
 	//メニューセレクト画面でキャンセルを押したとき
-	if (KeyClick(KEY_INPUT_BACK) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		if (m_isMenu) {
 			m_isMenu = false;
 			m_backGround->SetisVisible(false);
@@ -103,7 +103,7 @@ void StageSelectUI::Update()
 	}
 
 	//決定
-	if (KeyClick(KEY_INPUT_SPACE) >= 1 ) {
+	if (m_gameInstance->GetInputMNG()->Click(L"OK")) {
 		if (!m_isMenu) {
 			switch (m_colSelectNum)
 			{
@@ -140,13 +140,13 @@ void StageSelectUI::Update()
 	if (!m_isMenu) {
 		//横カーソルの変更
 		if (m_colSelectNum == 0) {
-			if (KeyClick(KEY_INPUT_D) >= 1) {
+			if (m_gameInstance->GetInputMNG()->Click(L"RIGHT")) {
 				if (m_nowcursor != 20) {
 					//カーソルを下にずらす
 					m_nowcursor++;
 				}
 			}
-			if (KeyClick(KEY_INPUT_A) >= 1) {
+			if (m_gameInstance->GetInputMNG()->Click(L"LEFT")) {
 				if (m_nowcursor != 0) {
 					//カーソルを上にずらす
 					m_nowcursor--;
@@ -154,14 +154,14 @@ void StageSelectUI::Update()
 			}
 		}
 		//縦カーソルの変更
-		if (KeyClick(KEY_INPUT_W) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Click(L"UP")) {
 			if (m_colSelectNum != 1) {
 				//カーソルを下にずらす
 				m_colSelectNum++;
 				m_menuIcon->ChangePicture("Picture/MenuIcon_On.png");
 			}
 		}
-		if (KeyClick(KEY_INPUT_S) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Click(L"DOWN")) {
 			if (m_colSelectNum != 0) {
 				//カーソルを上にずらす
 				m_colSelectNum--;
@@ -171,7 +171,7 @@ void StageSelectUI::Update()
 	}
 	else {
 		//横カーソルの変更
-		if (KeyClick(KEY_INPUT_D) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Click(L"RIGHT")) {
 			if (m_isNowMenuCursor != 1) {
 				//カーソルを下にずらす
 				m_isNowMenuCursor++;
@@ -179,7 +179,7 @@ void StageSelectUI::Update()
 				m_menu[1]->ChangePicture("Picture/MS_Option_on.png");
 			}
 		}
-		if (KeyClick(KEY_INPUT_A) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Click(L"LEFT")) {
 			if (m_isNowMenuCursor != 0) {
 				//カーソルを上にずらす
 				m_isNowMenuCursor--;

@@ -73,7 +73,7 @@ void TitleUI::Update()
 {
 	UserInterface::Update();
 
-	if (KeyClick(KEY_INPUT_BACK) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isMenuActive = true;
 		m_nowcursor = 2;
 		for (int i = 1; i < 3; i++) {
@@ -87,7 +87,7 @@ void TitleUI::Update()
 	}
 
 	//決定
-	if (KeyClick(KEY_INPUT_SPACE) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"OK")) {
 
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
@@ -115,7 +115,7 @@ void TitleUI::Update()
 	}
 
 	//カーソルの変更
-	if (KeyClick(KEY_INPUT_RIGHT) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"RIGHT")) {
 		if (m_nowcursor != 2) {
 			//カーソルを下にずらす
 			m_nowcursor++;
@@ -124,7 +124,7 @@ void TitleUI::Update()
 			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
-	if (KeyClick(KEY_INPUT_LEFT) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"LEFT")) {
 		if (m_nowcursor != 1) {
 			//カーソルを上にずらす
 			m_nowcursor--;
