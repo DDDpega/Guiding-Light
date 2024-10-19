@@ -43,16 +43,9 @@ protected:
 	std::shared_ptr<Picture> m_arrow;			//矢印の画像
 	int m_fontHandle;	//フォント
 
-
-
-	shared_ptr<Picture> m_startText[3];
 	int m_alpha;	//画像のアルファ値
 	int m_add;		//アルファ値の変更する値の量
-	bool m_isMenuActive;	//メニュー画面
 	shared_ptr<Picture> m_backGround;
 
-	bool m_stage[20];	//ステージクリア状態
-
-	shared_ptr<Picture> m_stageArray[3];	//ステージ選択の画像
-	POINT m_stageMarkers[3];	//ステージ選択の位置
+	
 };

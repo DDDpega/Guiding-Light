@@ -7,11 +7,8 @@ UserInterface::UserInterface(bool isVisible,bool isInput)
 	,m_nowcursor(0)
 	, m_alpha(0)
 	, m_add(3)
-	, m_isMenuActive(false)
 	, m_backGround()
-	, m_stage()
-	, m_stageArray()
-	,m_stageMarkers()
+
 {
 }
 
@@ -42,7 +39,9 @@ void UserInterface::Draw()
 {
 	//ピクチャーリストの描画
 	for (auto& list : m_pictureList_UI) {
-		list->Draw();
+		if (list->GetisVisible()) {
+			list->Draw();
+		}
 	}
 }
 

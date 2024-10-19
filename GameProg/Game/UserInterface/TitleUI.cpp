@@ -2,6 +2,7 @@
 
 TitleUI::TitleUI()
 	:UserInterface(true,true)
+	, m_isMenuActive(false)
 {
 
 }
@@ -19,33 +20,44 @@ void TitleUI::Initialize(Game* gameInstance_, Scene* scene)
 	LONG scrX = scene->screenX;
 	LONG scrY = scene->screenY;
 
+	//黒背景
+	auto background = std::shared_ptr<Picture>(new Picture(POINT{ 0,0},0.37 , "Picture/Tbackground.png", PIVOT::LEFTUP, SORT::SORT_UI));
+	UserInterface::AddPictureInUI(background);
+
 	//ロゴ
-	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 100 }, 0.8, "Picture/logo.png", PIVOT::CENTER, SORT::SORT_UI));
+	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 100 }, 0.3, "Picture/logo.png", PIVOT::CENTER, SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 
 	//----------------------------------------------------------------------------------
 	//ゲームスタート画像
-	m_startText[0] = std::shared_ptr<Picture>(new Picture(POINT{scrX / 2 ,scrY / 2 + 100}, 0.1, "Picture/gamestart.png", PIVOT::CENTER, SORT::SORT_UI, true, true));
+	m_startText[0] = std::shared_ptr<Picture>(new Picture(POINT{scrX / 2 ,scrY / 2 + 150}, 0.5, "Picture/PressAnyButton.png", PIVOT::CENTER, SORT::SORT_UI, true, true));
 	m_nowpostion[0] = m_startText[0]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[0]);
+	
 
 	//黒背景
-	m_backGround = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2  }, 5, "Picture/stageSelectPoint2.png", PIVOT::CENTER, SORT::SORT_UI, true, true));
+	m_backGround = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2  }, 5, "Picture/stageSelectPoint2.png", PIVOT::CENTER, SORT::SORT_UI, false, true));
 	UserInterface::AddPictureInUI(m_backGround);
+	m_backGround->SetAlpha(180);
 
 	//選択状態が光る画像
-	m_arrow = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 + 200 ,scrY / 2 + 250 }, 0.5, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI, true, true));
+	m_arrow = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 + 200 ,scrY / 2 + 250 }, 0.5, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI,false,true));
 	UserInterface::AddPictureInUI(m_arrow);
+	m_arrow->SetAlpha(180);
 
 	//はい画像
-	m_startText[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 -200, scrY / 2 + 200 }, 0.1, "Picture/gameend.png", PIVOT::CENTER, SORT::SORT_UI, true, true));
+	m_startText[1] = std::shared_ptr<Picture>(new Picture(POINT{ 300, scrY / 2 + 200 }, 0.5, "Picture/Yes.png", PIVOT::CENTER, SORT::SORT_UI, false));
 	m_nowpostion[1] = m_startText[1]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[1]);
 
 	//いいえ画像
-	m_startText[2] = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2+200 ,scrY / 2 + 200 }, 0.1, "Picture/option.png", PIVOT::CENTER, SORT::SORT_UI, true, true));
+	m_startText[2] = std::shared_ptr<Picture>(new Picture(POINT{ scrX -300 ,scrY / 2 + 200 }, 0.5, "Picture/No.png", PIVOT::CENTER, SORT::SORT_UI, false));
 	m_nowpostion[2] = m_startText[2]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[2]);
+
+	//ゲーム終了画像
+	m_gameExitText = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 100 }, 0.7, "Picture/GameExit.png", PIVOT::CENTER, SORT::SORT_UI, false));
+	UserInterface::AddPictureInUI(m_gameExitText);
 	//----------------------------------------------------------------------------------
 
 	//位置の調整
@@ -65,10 +77,13 @@ void TitleUI::Update()
 		m_isMenuActive = true;
 		m_nowcursor = 2;
 		for (int i = 1; i < 3; i++) {
-			m_startText[i]->SetAlpha(255);
+			m_startText[i]->SetisVisible(true);
 		}
-		m_arrow->SetAlpha(255);
-		m_backGround->SetAlpha(180);
+		//カーソル位置の変更
+		m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+		m_gameExitText->SetisVisible(true);
+		m_arrow->SetisVisible(true);
+		m_backGround->SetisVisible(true);
 	}
 
 	//決定
@@ -91,10 +106,11 @@ void TitleUI::Update()
 			m_isMenuActive = false;
 			m_nowcursor = 0;
 			for (int i = 1; i < 3; i++) {
-				m_startText[i]->SetAlpha(0);
+				m_startText[i]->SetisVisible(false);
 			}
-			m_arrow->SetAlpha(0);
-			m_backGround->SetAlpha(0);
+			m_gameExitText->SetisVisible(false);
+			m_arrow->SetisVisible(false);
+			m_backGround->SetisVisible(false);
 		}
 	}
 
