@@ -32,6 +32,7 @@
     <ClCompile Include="Game\Component\CircleCollisionCmp.cpp" />
     <ClCompile Include="Game\Component\CollisionManeger.cpp" />
     <ClCompile Include="Game\Component\Component.cpp" />
+    <ClCompile Include="Game\Component\DarkPictureCmp.cpp" />
     <ClCompile Include="Game\Component\LightCmp.cpp" />
     <ClCompile Include="Game\Component\MapCollision.cpp" />
     <ClCompile Include="Game\Component\RigidbodyCmp.cpp" />
@@ -42,6 +43,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Game\Main\InputManager.cpp" />
     <ClCompile Include="Game\Main\Key.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -81,12 +83,14 @@
     <ClInclude Include="Game\Component\CircleCollisionCmp.h" />
     <ClInclude Include="Game\Component\CollisionManeger.h" />
     <ClInclude Include="Game\Component\Component.h" />
+    <ClInclude Include="Game\Component\DarkPictureCmp.h" />
     <ClInclude Include="Game\Component\LightCmp.h" />
     <ClInclude Include="Game\Component\MapCollision.h" />
     <ClInclude Include="Game\Component\RigidbodyCmp.h" />
     <ClInclude Include="Game\Main\Fps.h" />
     <ClInclude Include="Game\Main\Framework.h" />
     <ClInclude Include="Game\Main\Game.h" />
+    <ClInclude Include="Game\Main\InputManager.h" />
     <ClInclude Include="Game\Main\Key.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

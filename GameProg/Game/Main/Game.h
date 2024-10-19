@@ -68,11 +68,16 @@ public:
 		return m_pictureMNG;
 	}
 
+	InputManager* GetInputMNG() {
+		return m_inputMNG;
+	}
+
 private:
 	//マネージャーの宣言
 	CollisionManeger* m_collisionMNG;
 	PictureManeger* m_pictureMNG;
 	SceneManeger* m_sceneMNG;
+	InputManager* m_inputMNG;
 
 	//ステータス
 	Status* m_status;

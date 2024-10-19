@@ -36,7 +36,10 @@ void PictureManeger::Update()
 
 	//ピクチャーのリストの処理
 	for (auto& c : m_pictureList) {
-		c->Update();
+
+		if (!(c->m_isPauseStop && c->m_sceneptr->m_isPause)) {
+			c->Update();
+		}
 	}
 }
 

@@ -24,6 +24,7 @@ void Game::Initialize()
 	(m_collisionMNG = new CollisionManeger())->Initialize();
 	(m_pictureMNG = new PictureManeger(this))->Initialize();
 	(m_sceneMNG = new SceneManeger(this))->Initialize();
+	m_inputMNG = new InputManager();
 
 	//“ü—Í‚Ì‰Šú‰»
 	KeyInit();
@@ -40,6 +41,7 @@ void Game::Update()
 	m_collisionMNG->CheckCollide_CIRCLEtoBOX();
 
 	//“ü—Í‚ÌXV
+	m_inputMNG->Update();
 	KeyUpdate();
 }
 

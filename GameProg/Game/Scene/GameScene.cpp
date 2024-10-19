@@ -38,6 +38,8 @@ void GameScene::Initialize()
 	m_pisherList.clear();
 	m_isPause = false;
 	m_LightNum = 0;
+	isGameOver = false;
+	isGameClear = false;
 
 	//背景画像
 	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
@@ -62,7 +64,7 @@ void GameScene::Initialize()
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 5) {
 			actorPos.m_isGet = true;
 			m_player->SetPos(actorPos.m_actorPos);
-			m_player->SpawnMove();
+			m_player->SpawnMove(1,1);
 		}
 
 		//ランプ
@@ -71,7 +73,7 @@ void GameScene::Initialize()
 			//ゴールライトの生成
 			auto light = shared_ptr<GoalLight>(new GoalLight(actorPos.m_actorPos));
 			m_gameInstance->GetPictureMNG()->AddPicture(light, this);
-			light->SpawnMove();
+			light->SpawnMove(2,2);
 			m_LightNum++;
 		}
 
@@ -90,14 +92,14 @@ void GameScene::Initialize()
 			actorPos.m_isGet = true;
 			auto figure = shared_ptr<LuminousFigure>(new LuminousFigure(actorPos.m_actorPos));
 			m_gameInstance->GetPictureMNG()->AddPicture(figure, this);
-			figure->SpawnMove();
+			figure->SpawnMove(1,2);
 		}
 		//ハエ
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 9) {
 			actorPos.m_isGet = true;
 			auto pisher = shared_ptr<Pisher>(new Pisher(actorPos.m_actorPos));
 			m_gameInstance->GetPictureMNG()->AddPicture(pisher, this);
-			pisher->SpawnMove();
+			pisher->SpawnMove(1,1);
 
 			//リストに含む
 			m_pisherList.push_back(pisher);
@@ -135,21 +137,18 @@ void GameScene::Update()
 	Scene::Update();
 
 	//ポーズにする
-	if (KeyClick(KEY_INPUT_ESCAPE) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"PAUSE") && !isGameClear && !isGameOver) {
 		if (m_isPause) {
 			m_isPause = false;
 
 			//UIの見た目を付ける
 			m_pauseUI->SetisVisible(false);
-			//UIの操作をする
-
 		}
 		else {
 			m_isPause = true;
 
 			//UIの見た目を付ける
 			m_pauseUI->SetisVisible(true);
-
 		}
 	}		
 }
@@ -169,6 +168,7 @@ Player* GameScene::GetPlayer()
 void GameScene::GameOver()
 {
 	m_isPause = true;
+	isGameOver = true;
 
 	//ゲームオーバーのUI
 	auto gameOver = shared_ptr<GameOverUI>(new GameOverUI());
@@ -187,6 +187,7 @@ void GameScene::LightNumMinus()
 	if (m_LightNum <= 0) {
 
 		m_isPause = true;
+		isGameClear = true;
 
 		//ゲームクリアのUI
 		auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());

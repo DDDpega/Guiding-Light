@@ -13,6 +13,7 @@ Picture::Picture(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT 
 	, m_pictureNull(false)
 	, m_isAlpha(isAlpha)
 	, m_alpha(0)
+	, m_isPauseStop(false)
 {
 
 }

@@ -22,9 +22,14 @@ void Pisher::Initialize(Game* gameInstance_, Scene* scene)
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
+	//暗闇中に見える画像の生成
+	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this,"Picture/pisherEye.png"));
+	Actor::AddComponent(dark, scene);
+
 	//プレイヤーを入手する
 	m_player = scene->GetPlayer();
 
+	//速度を入手する
 	m_speed = m_gameInstance->GetStatus()->PISHER_SPEED;
 }
 
@@ -37,7 +42,7 @@ void Pisher::Update()
 
 		//プレイヤーのライトが着いたらターゲットをプレイヤーに変更する
 		if (m_player->GetLightOn()) {
-			m_target = m_player;
+			//m_target = m_player;
 		}
 		else {
 			m_target = nullptr;

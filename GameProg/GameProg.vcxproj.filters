@@ -142,6 +142,12 @@
     <ClCompile Include="Game\Actor\SolarPanelBlock.cpp">
       <Filter>Game\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Component\DarkPictureCmp.cpp">
+      <Filter>Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Main\InputManager.cpp">
+      <Filter>Game\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -255,6 +261,12 @@
     </ClInclude>
     <ClInclude Include="Game\Actor\SolarPanelBlock.h">
       <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\DarkPictureCmp.h">
+      <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Main\InputManager.h">
+      <Filter>Game\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

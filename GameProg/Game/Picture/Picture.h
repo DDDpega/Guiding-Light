@@ -12,8 +12,9 @@ enum PIVOT
 enum SORT
 {
 	SORT_UI,
-	SORT_ACTOR,
+	SORT_ACTOR_DARKPICTURE,
 	SORT_LIGHT,
+	SORT_ACTOR,
 	SORT_MAP,
 	SORT_BACKGROUND,
 };
@@ -115,6 +116,8 @@ public:
 
 	Scene* m_sceneptr;
 	Game* m_gameInstance;
+
+	bool m_isPauseStop;	//í‚é~íÜÇ…é~Ç‹ÇÈÇ©Ç«Ç§Ç©
 
 protected:
 	SORT m_sort;			//ï`âÊèáî‘

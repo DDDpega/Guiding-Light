@@ -19,7 +19,7 @@ bool Status::ReadStatus()
 	std::string filename = "Data/status.txt";
 
 	//ファイルを開く
-	std::ifstream inFile(filename);
+	wifstream inFile(filename);
 
 	//ファイルの読み込み失敗
 	if (!inFile) {
@@ -27,37 +27,40 @@ bool Status::ReadStatus()
 	}
 
 	//一行を取得する
-	std::string line;
+	wstring line;
 
 	int rowNum=0;
-	while (std::getline(inFile, line,'\n')) {
+	while (getline(inFile, line)) {
 
 		//「,」の位置を検索する
-		int postion = line.find(",") + 1;
+		int postion = line.find(',') + 1;
 
 		//初めの数字でどのステータスかを判別する
-		switch (std::stoi(line.substr(0,1)))
+		switch (line[0])
 		{
-		case 1:
+		case '1':
 			PLAYER_SPEED = std::stof(line.substr(postion));
 			break;
-		case 2:
+		case '2':
 			PLAYER_JUMP = std::stof(line.substr(postion));
 			break;
-		case 3:
+		case '3':
 			PLAYER_LIGHT = std::stof(line.substr(postion));
 			break;
-		case 4:
+		case '4':
 			GOAL_LIGHT_RADIUS = std::stof(line.substr(postion));
 			break;
-		case 5:
+		case '5':
 			PISHER_SPEED = std::stof(line.substr(postion));
 			break;
-		case 6:
+		case '6':
 			FIGURE_MAXTIME = std::stof(line.substr(postion));
 			break;
-		case 7:
+		case '7':
 			FIGURE_LIGHT= std::stof(line.substr(postion));
+			break;
+		case 'A':
+			SOLARPANELBLOCK_MAXTIME = std::stof(line.substr(postion));
 			break;
 		}
 

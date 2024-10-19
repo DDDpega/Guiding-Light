@@ -70,4 +70,6 @@ private:
 	bool m_firstShot;
 	std::shared_ptr<LightCmp> m_lightCmp;
 	list <LadderCol> m_isLadder;
+	shared_ptr<DarkPictureCmp> m_darkPicture;
+	bool m_isRightdir;
 };

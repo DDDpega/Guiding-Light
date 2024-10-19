@@ -55,8 +55,12 @@ void GamePauseUI::Update()
 {
 	UserInterface::Update();
 
+	if (!GetisVisible()) {
+		return;
+	}
+
 	//決定
-	if (KeyClick(KEY_INPUT_SPACE) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"OK")) {
 
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
@@ -76,7 +80,7 @@ void GamePauseUI::Update()
 
 	//カーソルの変更
 		//カーソルの変更
-	if (KeyClick(KEY_INPUT_S) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"DOWN")) {
 		if (m_nowcursor != 2) {
 			//カーソルを下にずらす
 			m_nowcursor++;
@@ -85,7 +89,7 @@ void GamePauseUI::Update()
 			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
-	if (KeyClick(KEY_INPUT_W) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"UP")) {
 		if (m_nowcursor != 0) {
 			//カーソルを上にずらす
 			m_nowcursor--;

@@ -80,7 +80,7 @@ public:
 	/// <summary>
 	/// スポーン時に右下にずらす
 	/// </summary>
-	void SpawnMove();
+	void SpawnMove(int x, int y);
 
 	int m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;

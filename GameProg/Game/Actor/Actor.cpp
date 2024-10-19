@@ -17,7 +17,7 @@ void Actor::Initialize(Game* gameInstance_,Scene* scene)
 	//テスト
 	Picture::Initialize(gameInstance_,scene);
 
-	
+	m_isPauseStop=true;
 	m_isActive = true;
 }
 
@@ -47,10 +47,6 @@ void Actor::Draw()
 
 void Actor::Move()
 {
-	if (m_sceneptr->m_isPause) {
-		return;
-	}
-
 	//printfDx("ポジションChange\n");
 	m_pos.x += m_vx;	//右移動
 	m_pos.y += m_vy;	//下移動
@@ -67,11 +63,11 @@ bool Actor::GetIsMove(string shaft)
 	if (shaft == "y")return m_isMove_y;
 }
 
-void Actor::SpawnMove()
+void Actor::SpawnMove(int x,int y)
 {
 	//ピボットが真ん中なら画像の幅分右下にずらす
-	m_pos.x += 20;
-	m_pos.y += 20;
+	m_pos.x += 20*x;
+	m_pos.y += 20*y;
 }
 
 void Actor::AddComponent(std::shared_ptr<Component> component, Scene* scene)

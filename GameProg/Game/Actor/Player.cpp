@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 Player::Player(POINT pos)
-	:Actor(pos, 1, "Picture/jiki.png")
+	:Actor(pos, 1, "Picture/jiki2.png")
 	,m_firstShot(false)
 {
 
@@ -16,7 +16,7 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 {
 	Actor::Initialize(gameInstance_, scene);
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 40,80 },TAG::PLAYER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 40 * 1,40 * 2 },TAG::PLAYER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
 
@@ -30,8 +30,12 @@ void Player::Initialize(Game* gameInstance_,Scene* scene)
 	m_rigidBody = std::shared_ptr<RigidbodyCmp>(new RigidbodyCmp(this,STATE::JUMP,TAG::PLAYER));
 	Actor::AddComponent(m_rigidBody, scene);
 
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false,gameInstance_->GetStatus()->PLAYER_LIGHT));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false,gameInstance_->GetStatus()->PLAYER_LIGHT*100));
 	Actor::AddComponent(m_lightCmp, scene);
+
+	//暗闇中に見える画像の生成
+	m_darkPicture = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, "Picture/jiki2_dark.png"));
+	Actor::AddComponent(m_darkPicture, scene);
 }
 
 void Player::Update()
@@ -52,36 +56,49 @@ void Player::Update()
 	bool isClick_y = false;
 
 	//移動
-	if (KeyDown(KEY_INPUT_D) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Down(L"RIGHT")) {
 		m_vx = m_gameInstance->GetStatus()->PLAYER_SPEED;
 		isClick_x = true;
+		m_isRightdir = true;
 	}
-	if (KeyDown(KEY_INPUT_A) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Down(L"LEFT")) {
 		m_vx = -m_gameInstance->GetStatus()->PLAYER_SPEED;
 		//printfDx("Player\n");
 		isClick_x = true;
+		m_isRightdir = false;
 	}
 
+	if (m_isRightdir) {
+		ChangePicture("Picture/jiki2.png");
+		m_darkPicture->m_darkPicture->ChangePicture("Picture/jiki2_dark.png");
+	}
+	else {
+		ChangePicture("Picture/jiki.png");
+		m_darkPicture->m_darkPicture->ChangePicture("Picture/jiki_dark.png");
+
+	}
+
+	//はしご
 	if (m_rigidBody->m_state == STATE::FLY) {
-		if (KeyDown(KEY_INPUT_W) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Down(L"UP")) {
 			m_vy = -m_gameInstance->GetStatus()->PLAYER_SPEED;
 			isClick_y = true;
 		}
-		if (KeyDown(KEY_INPUT_S) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Down(L"DOWN")) {
 			m_vy = m_gameInstance->GetStatus()->PLAYER_SPEED;
 			isClick_y = true;
 		}
 	}
 	//ジャンプ
  	else if (m_rigidBody->m_state == STATE::STAND) {
-		if (KeyClick(KEY_INPUT_SPACE) >= 1) {
+		if (m_gameInstance->GetInputMNG()->Click(L"OK")) {
 			m_rigidBody->ChangeState(STATE::JUMPSTT);
 			isClick_y = true;
 		}
 	}
 
 	//ライトのON、OFF
-	if (KeyClick(KEY_INPUT_E) >= 1) {
+	if (m_gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
 		if (!m_lightCmp->m_changeNow) {
 			m_lightCmp->ChangeLightONOFF();
 		}

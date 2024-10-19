@@ -73,6 +73,7 @@ public:
 private:
 	std::shared_ptr<Player> m_player;	
 	int m_LightNum;	//残りのライトの数
+	bool isGameOver, isGameClear;
 
 	//各種UI
 	shared_ptr<InGameUI> m_gameUI;

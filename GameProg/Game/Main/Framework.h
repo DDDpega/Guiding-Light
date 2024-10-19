@@ -7,6 +7,7 @@ using namespace std;
 #include <memory>
 #include <math.h>
 #include <list>
+#include <map>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -17,6 +18,7 @@ using namespace std;
 #include"Fps.h"
 #include "Key.h"
 #include "Status.h"
+#include "InputManager.h"
 #include "Game.h"
 
 //ピクチャー
@@ -53,6 +55,8 @@ using namespace std;
 #include "MapCollision.h"
 #include "RigidbodyCmp.h"
 #include "LightCmp.h"
+#include "DarkPictureCmp.h"
+
 
 
 //アクター
