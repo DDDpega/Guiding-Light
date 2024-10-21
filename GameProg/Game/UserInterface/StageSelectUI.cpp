@@ -29,7 +29,7 @@ void StageSelectUI::Initialize(Game* gameInstance_, Scene* scene)
 
 	
 	//ステージ左
-	m_stageArray[0] = std::shared_ptr<Picture>(new Picture(POINT{250,scrY / 2 + 200}, 0.4, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI,true,true));
+	m_stageArray[0] = std::shared_ptr<Picture>(new Picture(POINT{250,scrY / 2 + 200}, 0.4, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI,true,false));
 	m_stageMarkers[0] = m_stageArray[0]->GetPos();
 	UserInterface::AddPictureInUI(m_stageArray[0]);
 
@@ -127,8 +127,10 @@ void StageSelectUI::Update()
 		else {
 			switch (m_colSelectNum)
 			{
+				//オプション
 			case 0:
 				break;
+				//クレジット
 			case 1:
 				break;
 			}
@@ -194,11 +196,13 @@ void StageSelectUI::Draw()
 {
 	UserInterface::Draw();
 
+	//メニューセレクトを開いてない状態の時、ステージ番号とステージタイトルを変更する
 	if(!m_isMenu)
 		DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
 
 	auto j = 0;
 	for (int i = m_nowcursor; i < m_nowcursor + 3; i++) {
+		//カーソルの位置を光らす
 		if (m_stage[i] == true) {
 			m_stageArray[j]->ChangePicture("Picture/stageSelectPoint1.png");
 		}
@@ -208,18 +212,23 @@ void StageSelectUI::Draw()
 		j++;
 	}
 
+	//選択されているステージが0なら
 	if (m_nowcursor == 0) {
-		m_stageArray[0]->SetIsAlpha(true);
-		m_stageArray[0]->SetAlpha(0);
+		//左を消す
+		m_stageArray[0]->SetisVisible(false);
+		
 	}
+	//選択されているステージが20なら
 	else if(m_nowcursor == 20){
-		m_stageArray[2]->SetIsAlpha(true);
-		m_stageArray[2]->SetAlpha(0);
+		//右を消す
+		m_stageArray[2]->SetisVisible(false);
+		
 	}
+	//それ以外の時は全てを表示する
 	else {
 		for (auto& array : m_stageArray) {
-			array->SetIsAlpha(false);
-			array->SetAlpha(255);
+			array->SetisVisible(true);
+		
 		}
 	}
 
@@ -227,8 +236,9 @@ void StageSelectUI::Draw()
 
 void StageSelectUI::LordFile()
 {
+	//0=false,1=trueの意味
 	const wstring chipSet = L"01";
-
+	//ステージのクリア状態のデータテキスト取得
 	const wstring filePath = L"Data/StageData.txt";
 
 	wifstream ifs;
@@ -261,16 +271,20 @@ void StageSelectUI::LordFile()
 		else {
 			//文字列からcolのr番目の文字で検索して何番目かを取得する
 			checkNo = chipSet.find(col[r]);
+			//何も得られないならクリアしてない
 			if (checkNo == string::npos) {
 				stageClear = false;
 			}
+			//0ならクリアしていない
 			else if (checkNo == 0) {
 				stageClear = false;
 			}
+			//1ならクリアしている
 			else if (checkNo == 1) {
 				stageClear = true;
 			}
 		}
+		//代入する
 		m_stage[r] = stageClear;
 	}
 	//もしも読み込める行がないならば終了
@@ -283,7 +297,7 @@ void StageSelectUI::LordFile()
 //ファイルからデータを読み込むメソッド
 void StageSelectUI::LordFileText()
 {
-
+	//ステージタイトルのデータ取得
 	const wstring filePath = L"Data/StageText.txt";
 
 	ifstream ifs;

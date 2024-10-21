@@ -19,6 +19,7 @@ void Ladder::Initialize(Game* gameInstance_, Scene* scene)
 	LONG x = (m_pictureSizeX * m_size) / 2;
 	LONG y = (m_pictureSizeY * m_size) / 2;
 
+	//ボックスコリジョン生成
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, { 40,80 }, TAG::LADDER));
 	Actor::AddComponent(collision, scene);
 	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
@@ -33,6 +34,7 @@ void Ladder::HitCollision(Actor* other, TAG tag, TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
+	//プレイヤーに当たったときの判定
 	if (tag == TAG::PLAYER && m_isActive) {
 		m_sceneptr->GetPlayer()->SetisLadder(m_num, true);
 		
@@ -41,7 +43,7 @@ void Ladder::HitCollision(Actor* other, TAG tag, TAG selftag)
 
 void Ladder::NoHitCollision(Actor* other, TAG tag)
 {
-
+	//プレイヤーが外れたときの判定
 	if (tag == TAG::PLAYER && m_isActive) {
 		m_sceneptr->GetPlayer()->SetisLadder(m_num, false);
 
