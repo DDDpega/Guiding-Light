@@ -18,7 +18,7 @@ public:
 	/// <summary>
 	/// ‰Šú‰»ˆ—
 	/// </summary>
-	void Initialize(Game* gameInstance, Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// XVˆ—

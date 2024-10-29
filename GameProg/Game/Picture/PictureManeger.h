@@ -8,7 +8,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	PictureManeger(Game* gameInstane);
+	PictureManeger();
 
 	/// <summary>
 	/// デストラクタ
@@ -34,7 +34,7 @@ public:
 	/// ピクチャーリストにpushする
 	/// </summary>
 	/// <param name=""></param>
-	void AddPicture(std::shared_ptr<Picture> picture,  Scene* scene);
+	void AddPicture(std::shared_ptr<Picture> picture);
 
 	/// <summary>
 	/// リストの削除
@@ -45,7 +45,6 @@ public:
 
 protected:
 	std::list<std::shared_ptr<Picture>> m_pictureList;
-	Game* m_gameInstance;
 };
 
 bool SortChange(std::shared_ptr<Picture>& a, std::shared_ptr<Picture>& b);

@@ -10,12 +10,12 @@ DarkPictureCmp::~DarkPictureCmp()
 {
 }
 
-void DarkPictureCmp::Initialize(Game* gameInstance, Scene* scene)
+void DarkPictureCmp::Initialize()
 {
-	Component::Initialize(gameInstance, scene);
+	Component::Initialize();
 
-	m_darkPicture = shared_ptr<Picture>(new Picture((m_actor->GetPos()), (m_actor->m_size), m_picture, PIVOT::CENTER, SORT::SORT_ACTOR_DARKPICTURE));
-	gameInstance->GetPictureMNG()->AddPicture(m_darkPicture, scene);
+	m_darkPicture = shared_ptr<Picture>(new Picture((m_actor->GetPos()), (m_actor->m_pictureCmp->m_picture->m_size), m_picture, E_PIVOT::CENTER, E_SORT::SORT_ACTOR_DARKPICTURE));
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_darkPicture);
 }
 
 void DarkPictureCmp::Update()

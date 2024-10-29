@@ -2,18 +2,6 @@
 
 class Actor;
 
-//当たり判定のBOX
-struct BOX
-{
-	float left, right, top, bottom;
-};
-
-//コリジョンタグ
-enum TAG
-{
-	PLAYER, BULLET, ENEMY, CHILD, BACKGROUND, LADDER,
-	PLAYER_LIGHT,MAP, LUMINOUSFIGURE,PISHER, SOLARPANEL
-};
 
 class BoxCollisionCmp :public Component
 {
@@ -21,7 +9,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	BoxCollisionCmp(Actor* actor,POINT offset,POINT size,TAG name);
+	BoxCollisionCmp(Actor* actor,POINT offset,POINT size,E_TAG name);
 
 	/// <summary>
 	/// デストラクタ
@@ -31,7 +19,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	void Initialize(Game* gameInstance,Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -53,7 +41,7 @@ public:
 	/// </summary>
 	BOX GetChangeCollision(POINT pos);
 
-	TAG m_tag;		//タグ
+	E_TAG m_tag;		//タグ
 	BOX m_collision;
 
 

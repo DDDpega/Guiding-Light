@@ -16,7 +16,7 @@ public:
 	/// <summary>
 	/// ‰Šú‰»ˆ—
 	/// </summary>
-	void Initialize(Game* gameInstance_, Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// XVˆ—
@@ -27,14 +27,14 @@ public:
 	/// Õ“Ëˆ—
 	/// </summary>
 	/// <param name="other"></param>
-	void HitCollision(Actor* other, TAG tag, TAG selftag);
+	void HitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 	/// <summary>
 	/// Õ“Ë‚µ‚Ä‚¢‚È‚¢
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	void NoHitCollision(Actor* other, TAG tag);
+	void NoHitCollision(Actor* other, E_TAG tag);
 
 protected:
 	shared_ptr<LightCmp> m_lightCmp;

@@ -1,8 +1,8 @@
 #include "Framework.h"
 
+GameScene* SceneManeger::gameScene = nullptr;
 
-SceneManeger::SceneManeger(Game* gameInstance)
-	:m_gameInstance(gameInstance)
+SceneManeger::SceneManeger()
 {
 
 }
@@ -15,9 +15,9 @@ SceneManeger::~SceneManeger()
 void SceneManeger::Initialize()
 {
 	//変数の初期化
-	gameScene = new GameScene(m_gameInstance);
-	titleScene = new TitleScene(m_gameInstance);
-	ssScene = new StageSelectScene(m_gameInstance);
+	gameScene = new GameScene();
+	titleScene = new TitleScene();
+	ssScene = new StageSelectScene();
 
 	//初期をゲームシーンに変更
 	e_NextScene = IniScene;
@@ -39,13 +39,13 @@ void SceneManeger::Draw()
 	nowScene->Draw();
 }
 
-void SceneManeger::ChangeSceneFlag(E_Scene scene)
+void SceneManeger::ChangeSceneFlag(E_SCENE scene)
 {
 	e_NextScene = scene;
 	m_isChange = true;
 }
 
-void SceneManeger::ChangeScene(E_Scene nextScene)
+void SceneManeger::ChangeScene(E_SCENE nextScene)
 {
 	switch (nextScene)
 	{
@@ -66,10 +66,10 @@ void SceneManeger::ChangeScene(E_Scene nextScene)
 	//現在のシーンの状態を変更する
 	e_NowScene = e_NextScene;
 
-
 	//リストの削除
-	m_gameInstance->GetCollisionMNG()->CleanList();
-	m_gameInstance->GetPictureMNG()->CleanList();
+	Game::gameInstance->GetCollisionMNG()->CleanList();
+	Game::gameInstance->GetPictureMNG()->CleanList();
+	Game::gameInstance->GetActorMNG()->CleanList();
 
 	nowScene->Initialize();
 

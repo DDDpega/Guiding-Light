@@ -2,7 +2,7 @@
 
 
 Pisher::Pisher(POINT pos)
-	:Actor(pos,0.5,"Picture/UFO_dot.png")
+	:Actor(pos)
 	,m_target(nullptr)
 {
 
@@ -13,24 +13,28 @@ Pisher::~Pisher()
 
 }
 
-void Pisher::Initialize(Game* gameInstance_, Scene* scene)
+void Pisher::Initialize()
 {
-	Actor::Initialize(gameInstance_, scene);
+	Actor::Initialize();
+
+	//画像コンポーネント
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, "Picture/UFO_dot.png", E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 40,40 }, TAG::PISHER));
-	Actor::AddComponent(collision, scene);
-	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 },PISHER_INFO::COLLISION_SIZE, E_TAG::PISHER));
+	Actor::AddComponent(collision);
+	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//暗闇中に見える画像の生成
 	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this,"Picture/pisherEye.png"));
-	Actor::AddComponent(dark, scene);
+	Actor::AddComponent(dark);
 
 	//プレイヤーを入手する
-	m_player = scene->GetPlayer();
+	m_player = SceneManeger::gameScene->GetPlayer();
 
 	//速度を入手する
-	m_speed = m_gameInstance->GetStatus()->PISHER_SPEED;
+	m_speed = Game::gameInstance->GetStatus()->PISHER_SPEED;
 }
 
 void Pisher::Update()
@@ -79,11 +83,11 @@ void Pisher::Update()
 	m_vx = 0;
 }
 
-void Pisher::HitCollision(Actor* other, TAG tag,TAG selftag)
+void Pisher::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other,tag, selftag);
 }
 
-void Pisher::NoHitCollision(Actor* other, TAG tag)
+void Pisher::NoHitCollision(Actor* other, E_TAG tag)
 {
 }

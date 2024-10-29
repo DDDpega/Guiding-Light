@@ -102,7 +102,7 @@ public:
 	/// </summary>
 	/// <param name="tag"></param>
 	/// <returns></returns>
-	std::shared_ptr<BoxCollisionCmp> GetCollisionActor(TAG tag) {
+	std::shared_ptr<BoxCollisionCmp> GetCollisionActor(E_TAG tag) {
 		for (auto& c : m_BOXcollisionList) {
 			if (c->m_tag == tag)
 				return c;

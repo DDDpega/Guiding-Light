@@ -1,7 +1,7 @@
 #include"Framework.h"
 
 SolarPanelBlock::SolarPanelBlock(POINT pos,bool isBlock, Scene* scene)
-	:Actor(pos, 2.5, "Picture/SolarPanelBlock.png", PIVOT::LEFTUP)
+	:Actor(pos)
 	,m_isBlock(isBlock)
 	, m_scene(scene)
 {
@@ -11,24 +11,30 @@ SolarPanelBlock::~SolarPanelBlock()
 {
 }
 
-void SolarPanelBlock::Initialize(Game* gameInstance_, Scene* scene)
+void SolarPanelBlock::Initialize()
 {
-	Actor::Initialize(gameInstance_,scene);
-	SetisVisible(m_isBlock);
+	Actor::Initialize();
+
+	//画像コンポーネント
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, SOLARPANELBLOCK_INFO::SIZE, "Picture/SolarPanelBlock.png", E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
+	AddComponent(m_pictureCmp);
+
+
+	m_pictureCmp->m_picture->SetisVisible(m_isBlock);
 }
 
 void SolarPanelBlock::Update()
 {
 	Actor::Update();
 	m_isBlock = static_cast<GameScene*>(m_scene)->m_solarpanel->GetIsTrigger();
-	SetisVisible(m_isBlock);
+	m_pictureCmp->m_picture ->SetisVisible(m_isBlock);
 }
 
-void SolarPanelBlock::HitCollision(Actor* other, TAG tag, TAG selftag)
+void SolarPanelBlock::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 }
 
-void SolarPanelBlock::NoHitCollision(Actor* other, TAG tag)
+void SolarPanelBlock::NoHitCollision(Actor* other, E_TAG tag)
 {
 }

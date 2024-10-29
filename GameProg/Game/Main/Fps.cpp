@@ -1,9 +1,5 @@
 //FPS処理のソースファイル
-
-//ヘッダファイル読み込み
-#include"Fps.h"
-
-
+#include "Framework.h"
 
 Fps::Fps()
 {

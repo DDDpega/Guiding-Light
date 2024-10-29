@@ -17,7 +17,7 @@ public:
 	/// <summary>
 	/// ‰Šú‰»ˆ—
 	/// </summary>
-	void Initialize(Game* gameInstance_,Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// XVˆ—
@@ -29,7 +29,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	void NoHitCollision(Actor* other, TAG tag);
+	void NoHitCollision(Actor* other, E_TAG tag);
 
 private:
 };

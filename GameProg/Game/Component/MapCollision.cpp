@@ -1,10 +1,8 @@
 #include "Framework.h"
 
 
-MapCollision::MapCollision(Game* gameInstance ,Scene* const scene , Actor* actor,TAG tag)
+MapCollision::MapCollision(Actor* actor, E_TAG tag)
 	:Component(actor)
-	,m_scene(scene)
-	, m_gameInstance(gameInstance)
 	,m_tag(tag)
 {}
 
@@ -12,8 +10,8 @@ MapCollision::MapCollision(Game* gameInstance ,Scene* const scene , Actor* actor
 // ture = 移動不可能
 bool MapCollision::CheckMapChip(int col, int row)
 {
-	auto chipNo = static_cast<GameScene*>(m_scene)->m_map->getChipNo(col, row);
-	auto solarpanel = static_cast<GameScene*>(m_scene)->m_solarpanel;
+	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
+	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
 	if (chipNo ==1||(chipNo==11)&& solarpanel->GetIsTrigger()) {
 		return true;
 	}
@@ -32,7 +30,7 @@ bool MapCollision::CheckMapChip(int col, int row)
 /// <param name="isCollect">位置を強制的に戻すかどうか</param>
 /// <param name="isTopBottomChk">上下の判定を取るかどうか</param>
 /// <returns></returns>
-bool MapCollision::CheckMapCollide(TAG tag,POINT pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
+bool MapCollision::CheckMapCollide(E_TAG tag,POINT pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
 {
 	bool result = false;
 	const auto mapChipSize = 40;
@@ -42,7 +40,7 @@ bool MapCollision::CheckMapCollide(TAG tag,POINT pos, float dx, float dy, const 
 
 	//TODO rectを作るときに持ってきたposを使ってないからおかしくなっている可能性
 	//auto rect = getColRect(pos.x + m_collition.left, pos.y + m_collition.top + 32, pos.x + m_collition.right, pos.y + m_collition.bottom + 32);
-	auto rect = m_gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->GetChangeCollision(pos);
+	auto rect = Game::gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->GetChangeCollision(pos);
 
 	unsigned int color;
 
@@ -131,7 +129,7 @@ bool MapCollision::CheckMapCollide(TAG tag,POINT pos, float dx, float dy, const 
 
 	if (result) {
 		m_actor->SetPos(pos2);
-		m_gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->ChangeCollision();
+		Game::gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->ChangeCollision();
 	}
 
 	return result;

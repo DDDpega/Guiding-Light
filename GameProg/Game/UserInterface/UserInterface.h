@@ -16,7 +16,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	virtual void Initialize(Game* gameInstance_, Scene* scene);
+	virtual void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -36,8 +36,6 @@ public:
 protected:
 	bool m_isInput;	//操作可能かどうか
 	list<shared_ptr<Picture>> m_pictureList_UI;	//UIの中で表示する画像のリスト
-	Game* m_gameInstance;						//ゲームインスタンス
-	Scene* m_sceneptr;							//シーンのポインタ
 	int m_nowcursor;							//現在のカーソル位置
 	POINT m_nowpostion[3];						//
 	std::shared_ptr<Picture> m_arrow;			//矢印の画像

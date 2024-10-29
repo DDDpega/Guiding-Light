@@ -3,7 +3,7 @@
 
 
 LightPicture::LightPicture()
-	:Picture(SORT::SORT_LIGHT,true)
+	:Picture(E_SORT::SORT_LIGHT,true)
 {
 
 }
@@ -13,12 +13,12 @@ LightPicture::~LightPicture()
 
 }
 
-void LightPicture::Initialize(Game* gameInstance, Scene* scene)
+void LightPicture::Initialize()
 {
-	Picture::Initialize(gameInstance, scene);
+	Picture::Initialize();
 
-	x = scene->screenX;
-	y = scene->screenY;
+	x = WINDOW_INFO::GAME_WIDTH;
+	y = WINDOW_INFO::GAME_HEIGHT;
 }
 
 void LightPicture::Update()
@@ -112,6 +112,6 @@ void LightPicture::Draw()
 
 void LightPicture::AddLightList(shared_ptr<Picture> picture)
 {
-	picture->Initialize(m_gameInstance,m_sceneptr);
+	picture->Initialize();
 	pictureList.push_back(picture);
 }

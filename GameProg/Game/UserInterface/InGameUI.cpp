@@ -9,9 +9,9 @@ InGameUI::~InGameUI()
 {
 }
 
-void InGameUI::Initialize(Game* gameInstance_, Scene* scene)
+void InGameUI::Initialize()
 {
-	UserInterface::Initialize(gameInstance_, scene);
+	UserInterface::Initialize();
 
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 36, 10);
 }
@@ -28,5 +28,5 @@ void InGameUI::Draw()
 
 	//文字の表示
 	DrawFormatStringFToHandle(20, 20, GetColor(255, 255, 255), m_fontHandle, "ステージ%d", m_stageNum);
-	DrawFormatStringFToHandle(m_sceneptr->screenX-310, 20, GetColor(255, 255, 255), m_fontHandle, "残りのランプ　%d", m_lightnum);
+	DrawFormatStringFToHandle(WINDOW_INFO::GAME_WIDTH-310, 20, GetColor(255, 255, 255), m_fontHandle, "残りのランプ　%d", m_lightnum);
 }

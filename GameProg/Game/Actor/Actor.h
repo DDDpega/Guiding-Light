@@ -4,13 +4,13 @@ class RigidbodyCmp;
 class MapCollision;
 
 
-class Actor : public Picture
+class Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot = PIVOT::CENTER, SORT sort = SORT::SORT_ACTOR);
+	Actor(POINT pos);
 
 	/// <summary>
 	/// デストラクタ
@@ -20,7 +20,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	virtual void Initialize(Game* gameInstance_, Scene* scene);
+	virtual void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -43,20 +43,20 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	virtual void HitCollision(Actor* other, TAG tag, TAG selftag);
+	virtual void HitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 	/// <summary>
 	/// 衝突していない
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	virtual void NoHitCollision(Actor* other, TAG tag) = 0;
+	virtual void NoHitCollision(Actor* other, E_TAG tag) = 0;
 
 	/// <summary>
 	/// コンポーネントリストに追加するメソッド
 	/// </summary>
 	/// <param name="actor"></param>
-	void AddComponent(std::shared_ptr<Component> component, Scene* scene);
+	void AddComponent(std::shared_ptr<Component> component);
 
 
 
@@ -82,13 +82,32 @@ public:
 	/// </summary>
 	void SpawnMove(int x, int y);
 
+	/// <summary>
+	/// 現在のポジションを得る
+	/// </summary>
+	/// <returns></returns>
+	POINT GetPos() {
+		return m_pos;
+	}
+
+	/// <summary>
+	/// ポジションの変更
+	/// </summary>
+	/// <returns></returns>
+	void SetPos(POINT changepos) {
+		m_pos = changepos;
+	}
+
+
 	float m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
+	shared_ptr<PictureCmp> m_pictureCmp;
+	bool m_isActive;			//生存するかどうか
 
 protected:
 	bool m_isMove_x;	//x軸に動いているかどうか
 	bool m_isMove_y;	//y軸に動いているかどうか
 	std::list<std::shared_ptr<Component>> m_componentList;
-
+	POINT m_pos;	//位置
 };

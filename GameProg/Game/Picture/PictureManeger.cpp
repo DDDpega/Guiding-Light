@@ -2,8 +2,7 @@
 
 
 
-PictureManeger::PictureManeger(Game* gameInstane)
-	:m_gameInstance(gameInstane)
+PictureManeger::PictureManeger()
 {
 
 }
@@ -37,7 +36,7 @@ void PictureManeger::Update()
 	//ピクチャーのリストの処理
 	for (auto& c : m_pictureList) {
 
-		if (!(c->m_isPauseStop && c->m_sceneptr->m_isPause)) {
+		if (!(c->m_isPauseStop && SceneManeger::gameScene->m_isPause)) {
 			c->Update();
 		}
 	}
@@ -55,7 +54,7 @@ void PictureManeger::Draw()
 }
 
 
-void PictureManeger::AddPicture(std::shared_ptr<Picture> picture, Scene* scene)
+void PictureManeger::AddPicture(std::shared_ptr<Picture> picture)
 {
 	//ピクチャーのList追加と初期化
 	m_pictureList.push_back(picture);
@@ -63,7 +62,7 @@ void PictureManeger::AddPicture(std::shared_ptr<Picture> picture, Scene* scene)
 	//並び替え
 	m_pictureList.sort(SortChange);
 
-	picture->Initialize(m_gameInstance,scene);
+	picture->Initialize();
 
  }
 

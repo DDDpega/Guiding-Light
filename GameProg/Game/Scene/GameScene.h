@@ -12,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	GameScene(Game* gameInstance);
+	GameScene();
 
 	/// <summary>
 	/// デストラクタ

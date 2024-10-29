@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 SolarPanel::SolarPanel(POINT pos)
-	:Actor(pos, 2.5, "Picture/SolarPanel.png", PIVOT::LEFTUP)
+	:Actor(pos)
 	, m_isTrigger(false)
 {
 }
@@ -10,19 +10,24 @@ SolarPanel::~SolarPanel()
 {
 }
 
-void SolarPanel::Initialize(Game* gameInstance_, Scene* scene)
+void SolarPanel::Initialize()
 {
-	Actor::Initialize(gameInstance_,scene);
+	Actor::Initialize();
 
-	LONG x = (m_pictureSizeX * m_size) / 2;
-	LONG y = (m_pictureSizeY * m_size) / 2;
+	//画像コンポーネント
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, SOLARPANEL_INFO::SIZE, "Picture/SolarPanel.png", E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
+	AddComponent(m_pictureCmp);
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, { 40,40 }, TAG::SOLARPANEL));
-	Actor::AddComponent(collision, scene);
-	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
+	//画像サイズ
+	LONG x = (m_pictureCmp->m_picture ->m_pictureSizeX * m_pictureCmp->m_picture->m_size) / 2;
+	LONG y = (m_pictureCmp->m_picture->m_pictureSizeY * m_pictureCmp->m_picture->m_size) / 2;
+
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, SOLARPANEL_INFO::COLLISION_SIZE, E_TAG::SOLARPANEL));
+	Actor::AddComponent(collision);
+	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//何秒効果時間があるか
-	m_maxTime = gameInstance_->GetStatus()->SOLARPANELBLOCK_MAXTIME;
+	m_maxTime = Game::gameInstance->GetStatus()->SOLARPANELBLOCK_MAXTIME;
 }
 
 void SolarPanel::Update()
@@ -36,17 +41,17 @@ void SolarPanel::Update()
 
 }
 
-void SolarPanel::HitCollision(Actor* other, TAG tag, TAG selftag)
+void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == TAG::PLAYER_LIGHT && m_sceneptr->GetPlayer()->GetLightOn() &&
+	if (tag == E_TAG::PLAYER_LIGHT && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
 		m_keepTime < m_maxTime) {
 		m_keepTime++;
 	}
 }
 
-void SolarPanel::NoHitCollision(Actor* other, TAG tag)
+void SolarPanel::NoHitCollision(Actor* other, E_TAG tag)
 {
 
 

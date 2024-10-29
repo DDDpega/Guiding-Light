@@ -11,33 +11,33 @@ GamePauseUI::~GamePauseUI()
 
 }
 
-void GamePauseUI::Initialize(Game* gameInstance_, Scene* scene)
+void GamePauseUI::Initialize()
 {
-	UserInterface::Initialize(gameInstance_, scene);
+	UserInterface::Initialize();
 
 	//画面の幅を取得
-	LONG scrX = scene->screenX;
-	LONG scrY = scene->screenY;
+	LONG scrX = WINDOW_INFO::GAME_WIDTH;
+	LONG scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//----------------------------------------------------------------
 	//ロゴ
 
 	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, "Picture/stageSelectPoint1.png", PIVOT::CENTER, SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, "Picture/stageSelectPoint1.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
-	auto pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 200 }, 0.5, "Picture/pause.png", PIVOT::CENTER, SORT::SORT_UI));
+	auto pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 200 }, 0.5, "Picture/pause.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(pauseLogo);
 
-	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 , 300 }, 0.5, "Picture/UI_61.png", PIVOT::CENTER, SORT::SORT_UI));
+	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 , 300 }, 0.5, "Picture/UI_61.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[0] = picture->GetPos();
 
-	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,450 }, 0.5, "Picture/UI_63.png", PIVOT::CENTER, SORT::SORT_UI));
+	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,450 }, 0.5, "Picture/UI_63.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[1] = picture->GetPos();
 
-	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,600 }, 0.5, "Picture/UI_55.png", PIVOT::CENTER, SORT::SORT_UI));
+	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,600 }, 0.5, "Picture/UI_55.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[2] = picture->GetPos();
 
@@ -60,27 +60,27 @@ void GamePauseUI::Update()
 	}
 
 	//決定
-	if (m_gameInstance->GetInputMNG()->Click(L"OK")) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
-			static_cast<GameScene*>(m_sceneptr)->m_pauseUI->SetisVisible(false);
-			static_cast<GameScene*>(m_sceneptr)->m_isPause = false;
+			SceneManeger::gameScene->m_pauseUI->SetisVisible(false);
+			SceneManeger::gameScene->m_isPause = false;
 			m_arrow->SetPos(m_nowpostion[0]);
 		}
 		else if (m_nowcursor == 1) {
 			//ゲームシーンへ移行フラグをオンにする
-			m_gameInstance->GetSceneMNG()->ChangeSceneFlag(E_Scene::GAME);
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::GAME);
 		}
 		else if (m_nowcursor == 2) {
 			//ゲームシーンへ移行フラグをオンにする
-			m_gameInstance->GetSceneMNG()->ChangeSceneFlag(E_Scene::STAGESELECT);
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
 		}
 	}
 
 	//カーソルの変更
 		//カーソルの変更
-	if (m_gameInstance->GetInputMNG()->Click(L"DOWN")) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"DOWN")) {
 		if (m_nowcursor != 2) {
 			//カーソルを下にずらす
 			m_nowcursor++;
@@ -89,7 +89,7 @@ void GamePauseUI::Update()
 			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
-	if (m_gameInstance->GetInputMNG()->Click(L"UP")) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
 		if (m_nowcursor != 0) {
 			//カーソルを上にずらす
 			m_nowcursor--;

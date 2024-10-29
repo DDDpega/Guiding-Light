@@ -22,6 +22,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	// ウィンドウモードに設定と画面サイズ
 	ChangeWindowMode(true);
 	SetGraphMode(GameWidth, GameHeight, GameColor);
+	SetWindowSize(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT);
 
 	// DXライブラリ初期化処理
 	DxLib_Init();   

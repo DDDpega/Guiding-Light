@@ -5,6 +5,7 @@
 class CollisionManeger;
 class PictureManeger;
 class SceneManeger;
+class ActorManager;
 
 class Status;
 
@@ -68,9 +69,27 @@ public:
 		return m_pictureMNG;
 	}
 
+	/// <summary>
+	/// 入手マネージャーを入手する
+	/// </summary>
+	/// <returns></returns>
 	InputManager* GetInputMNG() {
 		return m_inputMNG;
 	}
+
+	/// <summary>
+	/// アクターマネージャーを入手する
+	/// </summary>
+	/// <returns></returns>
+	ActorManager* GetActorMNG() {
+		return m_actorMNG;
+	}
+
+	/// <summary>
+	/// ゲームインスタンス
+	/// </summary>
+	static Game* gameInstance;
+
 
 private:
 	//マネージャーの宣言
@@ -78,6 +97,7 @@ private:
 	PictureManeger* m_pictureMNG;
 	SceneManeger* m_sceneMNG;
 	InputManager* m_inputMNG;
+	ActorManager* m_actorMNG;
 
 	//ステータス
 	Status* m_status;

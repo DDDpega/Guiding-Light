@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Actor\Actor.cpp" />
+    <ClCompile Include="Game\Actor\ActorManager.cpp" />
     <ClCompile Include="Game\Actor\BackGround.cpp" />
     <ClCompile Include="Game\Actor\GoalLight.cpp" />
     <ClCompile Include="Game\Actor\Ladder.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="Game\Component\DarkPictureCmp.cpp" />
     <ClCompile Include="Game\Component\LightCmp.cpp" />
     <ClCompile Include="Game\Component\MapCollision.cpp" />
+    <ClCompile Include="Game\Component\PictureCmp.cpp" />
     <ClCompile Include="Game\Component\RigidbodyCmp.cpp" />
     <ClCompile Include="Game\Main\Fps.cpp" />
     <ClCompile Include="Game\Main\Game.cpp">
@@ -50,7 +52,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Game\Main\Main.cpp" />
+    <ClCompile Include="Game\Main\Main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Game\Main\Status.cpp" />
     <ClCompile Include="Game\Map\Map.cpp" />
     <ClCompile Include="Game\Picture\LightPicture.cpp" />
@@ -71,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Actor.h" />
+    <ClInclude Include="Game\Actor\ActorManager.h" />
     <ClInclude Include="Game\Actor\BackGround.h" />
     <ClInclude Include="Game\Actor\GoalLight.h" />
     <ClInclude Include="Game\Actor\Ladder.h" />
@@ -86,7 +94,11 @@
     <ClInclude Include="Game\Component\DarkPictureCmp.h" />
     <ClInclude Include="Game\Component\LightCmp.h" />
     <ClInclude Include="Game\Component\MapCollision.h" />
+    <ClInclude Include="Game\Component\PictureCmp.h" />
     <ClInclude Include="Game\Component\RigidbodyCmp.h" />
+    <ClInclude Include="Game\Info\ActorInfo.h" />
+    <ClInclude Include="Game\Info\EnumInfo.h" />
+    <ClInclude Include="Game\Info\SystemInfo.h" />
     <ClInclude Include="Game\Main\Fps.h" />
     <ClInclude Include="Game\Main\Framework.h" />
     <ClInclude Include="Game\Main\Game.h" />
@@ -180,10 +192,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -199,9 +211,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -217,10 +229,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -236,10 +248,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

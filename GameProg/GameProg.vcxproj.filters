@@ -29,6 +29,15 @@
     <Filter Include="Game\UI">
       <UniqueIdentifier>{37653401-6455-4e6a-bed9-978cd5059a73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Info">
+      <UniqueIdentifier>{25783b16-0fe6-434a-a352-3330caa607db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Component\Collision">
+      <UniqueIdentifier>{8bf710bc-c42c-4ed8-b32d-cd4f7b9f8034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Component\Actor">
+      <UniqueIdentifier>{178a1458-77be-48b2-8d3c-00b710026bee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main\Main.cpp">
@@ -64,15 +73,6 @@
     <ClCompile Include="Game\Actor\BackGround.cpp">
       <Filter>Game\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Component\BoxCollisionCmp.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Component\Component.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Component\CollisionManeger.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Main\Game.cpp">
       <Filter>Game\Main</Filter>
     </ClCompile>
@@ -81,12 +81,6 @@
     </ClCompile>
     <ClCompile Include="Game\Map\Map.cpp">
       <Filter>Game\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Component\MapCollision.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Component\RigidbodyCmp.cpp">
-      <Filter>Game\Component</Filter>
     </ClCompile>
     <ClCompile Include="Game\Picture\LightPicture.cpp">
       <Filter>Game\Picture</Filter>
@@ -100,9 +94,6 @@
     <ClCompile Include="Game\UserInterface\UserInterface.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Component\LightCmp.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Main\Fps.cpp">
       <Filter>Game\Main</Filter>
     </ClCompile>
@@ -111,9 +102,6 @@
     </ClCompile>
     <ClCompile Include="Game\UserInterface\StageSelectUI.cpp">
       <Filter>Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Component\CircleCollisionCmp.cpp">
-      <Filter>Game\Component</Filter>
     </ClCompile>
     <ClCompile Include="Game\Actor\GoalLight.cpp">
       <Filter>Game\Actor</Filter>
@@ -142,11 +130,38 @@
     <ClCompile Include="Game\Actor\SolarPanelBlock.cpp">
       <Filter>Game\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Component\DarkPictureCmp.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Main\InputManager.cpp">
       <Filter>Game\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\BoxCollisionCmp.cpp">
+      <Filter>Game\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\CircleCollisionCmp.cpp">
+      <Filter>Game\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\CollisionManeger.cpp">
+      <Filter>Game\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\MapCollision.cpp">
+      <Filter>Game\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\Component.cpp">
+      <Filter>Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\DarkPictureCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\LightCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\RigidbodyCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor\ActorManager.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\PictureCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,15 +196,6 @@
     <ClInclude Include="Game\Actor\BackGround.h">
       <Filter>Game\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Component\BoxCollisionCmp.h">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Component\Component.h">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Component\CollisionManeger.h">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Picture\PictureManeger.h">
       <Filter>Game\Picture</Filter>
     </ClInclude>
@@ -198,12 +204,6 @@
     </ClInclude>
     <ClInclude Include="Game\Map\Map.h">
       <Filter>Game\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Component\MapCollision.h">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Component\RigidbodyCmp.h">
-      <Filter>Game\Component</Filter>
     </ClInclude>
     <ClInclude Include="Game\Picture\LightPicture.h">
       <Filter>Game\Picture</Filter>
@@ -220,9 +220,6 @@
     <ClInclude Include="Game\UserInterface\UserInterface.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Component\LightCmp.h">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Main\Fps.h">
       <Filter>Game\Main</Filter>
     </ClInclude>
@@ -231,9 +228,6 @@
     </ClInclude>
     <ClInclude Include="Game\UserInterface\StageSelectUI.h">
       <Filter>Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Component\CircleCollisionCmp.h">
-      <Filter>Game\Component</Filter>
     </ClInclude>
     <ClInclude Include="Game\Actor\GoalLight.h">
       <Filter>Game\Actor</Filter>
@@ -262,11 +256,47 @@
     <ClInclude Include="Game\Actor\SolarPanelBlock.h">
       <Filter>Game\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Component\DarkPictureCmp.h">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Main\InputManager.h">
       <Filter>Game\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Info\ActorInfo.h">
+      <Filter>Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\BoxCollisionCmp.h">
+      <Filter>Game\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\CircleCollisionCmp.h">
+      <Filter>Game\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\CollisionManeger.h">
+      <Filter>Game\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\MapCollision.h">
+      <Filter>Game\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\Component.h">
+      <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\DarkPictureCmp.h">
+      <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\LightCmp.h">
+      <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\RigidbodyCmp.h">
+      <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\ActorManager.h">
+      <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Info\SystemInfo.h">
+      <Filter>Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Info\EnumInfo.h">
+      <Filter>Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\PictureCmp.h">
+      <Filter>Game\Component\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

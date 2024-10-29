@@ -4,21 +4,7 @@
 class Game;
 class Scene;
 
-enum PIVOT
-{
-	CENTER,LEFTUP
-};
 
-enum SORT
-{
-	SORT_UI,
-	SORT_ACTOR_DARKPICTURE,
-	SORT_LIGHT,
-	SORT_PLAYER,
-	SORT_ACTOR,
-	SORT_MAP,
-	SORT_BACKGROUND,
-};
 
 class Picture
 {
@@ -26,12 +12,12 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Picture(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort, bool isVisible = true, bool isAlpha = false);
+	Picture(POINT pos, float size, const TCHAR* picture, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
 
 	/// <summary>
 	/// 描画しないPicture
 	/// </summary>
-	Picture(SORT sort, bool isVisible);
+	Picture(E_SORT sort, bool isVisible);
 
 	/// <summary>
 	/// デストラクタ
@@ -41,7 +27,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	virtual void Initialize(Game* gameInstance_, Scene* scene);
+	virtual void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -91,7 +77,7 @@ public:
 		return m_isVisible;
 	}
 
-	SORT GetSort() {
+	E_SORT GetSort() {
 		return m_sort;
 	}
 
@@ -115,17 +101,13 @@ public:
 	float m_size;		//画像の倍率
 	int m_handle;				// データハンドル格納用変数
 
-	Scene* m_sceneptr;
-	Game* m_gameInstance;
-
 	bool m_isPauseStop;	//停止中に止まるかどうか
 
 protected:
-	SORT m_sort;			//描画順番
+	E_SORT m_sort;			//描画順番
 	POINT m_pos;			//位置
 	const TCHAR* m_picture;	//画像のファイル名
-	int m_framecnt;			//フレームカウント
-	PIVOT m_pivot;			//画像の中心位置
+	E_PIVOT m_pivot;			//画像の中心位置
 	bool m_isVisible;			//見た目を消す
 	bool m_pictureNull;			//描画しないPicture
 	bool m_isAlpha;			//アルファ値を変更

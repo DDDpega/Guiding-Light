@@ -2,7 +2,7 @@
 
 
 BackGround::BackGround(POINT pos)
-	:Actor(pos, 12, "Picture/background.png",PIVOT::LEFTUP,SORT::SORT_BACKGROUND)
+	:Actor(pos)
 {
 
 }
@@ -11,9 +11,13 @@ BackGround::~BackGround()
 {
 }
 
-void BackGround::Initialize(Game* gameInstance_,Scene* scene)
+void BackGround::Initialize()
 {
-	Actor::Initialize(gameInstance_, scene);
+	Actor::Initialize();
+
+	//画像コンポーネント
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, BACKGROUND_INFO::SIZE, "Picture/background.png", E_PIVOT::LEFTUP, E_SORT::SORT_BACKGROUND));
+	AddComponent(m_pictureCmp);
 }
 
 
@@ -22,7 +26,7 @@ void BackGround::Update()
 	Actor::Update();
 }
 
-void BackGround::NoHitCollision(Actor* other, TAG tag)
+void BackGround::NoHitCollision(Actor* other, E_TAG tag)
 {
 }
 

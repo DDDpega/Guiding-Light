@@ -6,12 +6,9 @@ class GameScene;
 class TitleScene;
 class StageSelectScene;
 
-enum E_Scene
-{
-	GAME, TITLE, STAGESELECT ,RESULT
-};
 
-#define IniScene E_Scene::TITLE	//初めのシーン設定
+
+#define IniScene E_SCENE::TITLE	//初めのシーン設定
 
 class SceneManeger
 {
@@ -19,7 +16,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	SceneManeger(Game* gameInstance);
+	SceneManeger();
 
 	/// <summary>
 	/// デストラクタ
@@ -44,13 +41,13 @@ public:
 	/// <summary>
 	/// シーンの切り替え
 	/// </summary>
-	void ChangeScene(E_Scene nextScene);
+	void ChangeScene(E_SCENE nextScene);
 
 	/// <summary>
 	/// シーン変更のフラグ
 	/// </summary>
 	/// <param name="scene"></param>
-	void ChangeSceneFlag(E_Scene scene);
+	void ChangeSceneFlag(E_SCENE scene);
 
 
 
@@ -62,20 +59,18 @@ public:
 		return nowScene;
 	}
 
+	static GameScene* gameScene;
 
 
 private:
 	//シーン
 	Scene* nowScene;
-	GameScene* gameScene;
 	TitleScene* titleScene;
 	StageSelectScene* ssScene;
 
-	E_Scene e_NowScene;
-	E_Scene e_NextScene;
+	E_SCENE e_NowScene;
+	E_SCENE e_NextScene;
 
-	//ゲームインスタンス
-	Game* m_gameInstance;
 
 	bool m_isChange;
 };

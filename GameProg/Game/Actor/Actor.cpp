@@ -1,43 +1,36 @@
 #include "Framework.h"
 
 
-Actor::Actor(POINT pos, float size, const TCHAR* picture, PIVOT pivot, SORT sort)
-	:Picture(pos,size,picture,pivot,sort)
+Actor::Actor(POINT pos)
+	:m_pos(pos)
 {
 	
 }
 
 Actor::~Actor()
 {
+	for (auto& c : m_componentList) {
+		c.reset();
+	}
 	m_componentList.clear();
 }
 
-void Actor::Initialize(Game* gameInstance_,Scene* scene)
+void Actor::Initialize()
  {
-	//テスト
-	Picture::Initialize(gameInstance_,scene);
-
-	m_isPauseStop=true;
 	m_isActive = true;
 }
 
 void Actor::Update()
 {
-	Picture::Update();
-
 	//コンポーネントリストの更新処理
 	for (auto& c : m_componentList) {
 		c->Update();
 	}
-
-	//フレーム数のカウント
-	m_framecnt++;
 }
 
 
 void Actor::Draw()
 {
-	Picture::Draw();
 
 	//コンポーネントリストの描画
 	for (auto& c : m_componentList) {
@@ -53,7 +46,7 @@ void Actor::Move()
 }
 
 
-void Actor::HitCollision(Actor* other,TAG tag,TAG selftag)
+void Actor::HitCollision(Actor* other,E_TAG tag,E_TAG selftag)
 {
 }
 
@@ -70,9 +63,9 @@ void Actor::SpawnMove(int x,int y)
 	m_pos.y += 20*y;
 }
 
-void Actor::AddComponent(std::shared_ptr<Component> component, Scene* scene)
+void Actor::AddComponent(std::shared_ptr<Component> component)
 {
 	//コンポーネントのList追加と初期化
-	component->Initialize(m_gameInstance,scene);
+	component->Initialize();
 	m_componentList.push_back(component);
 }

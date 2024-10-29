@@ -10,14 +10,14 @@ struct CIRCLE
 class CircleCollisionCmp : public Component
 {
 public:
-	CircleCollisionCmp(Actor* actor, POINT offset, float radius, TAG name);
+	CircleCollisionCmp(Actor* actor, POINT offset, float radius, E_TAG name);
 
 	virtual ~CircleCollisionCmp();
 
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	void Initialize(Game* gameInstance, Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -39,7 +39,7 @@ public:
 	/// </summary>
 	BOX GetChangeCollision(POINT pos);
 
-	TAG m_tag;		//タグ
+	E_TAG m_tag;		//タグ
 	CIRCLE m_collision;
 
 

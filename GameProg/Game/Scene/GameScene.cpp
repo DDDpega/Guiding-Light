@@ -1,8 +1,8 @@
 #include "Framework.h"
 
 
-GameScene::GameScene(Game* gameInstance)
-	:Scene(gameInstance,"ゲームシーン")
+GameScene::GameScene()
+	:Scene("ゲームシーン")
 	, m_pisherList()
 	, m_LightNum(0)
 	, m_stages({
@@ -43,20 +43,20 @@ void GameScene::Initialize()
 
 	//背景画像
 	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
-	m_gameInstance->GetPictureMNG()->AddPicture(background,this);
+	Game::gameInstance->GetActorMNG()->AddActor(background);
 
 	//黒い紙をはる
 	m_lightPicture = std::shared_ptr<LightPicture>(new LightPicture());
-	m_gameInstance->GetPictureMNG()->AddPicture(m_lightPicture, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_lightPicture);
 
 	//プレイヤーの生成
 	m_player = std::shared_ptr<Player>(new Player(POINT{200,200}));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_player, this);
+	Game::gameInstance->GetActorMNG()->AddActor(m_player);
 
 
 	//マップの生成
 	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData16bit.png"));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_map, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_map);
 	
 	auto num = 0;
 	for (auto& actorPos : m_map->GetActorPosList()) {
@@ -72,7 +72,7 @@ void GameScene::Initialize()
 			actorPos.m_isGet = true;
 			//ゴールライトの生成
 			auto light = shared_ptr<GoalLight>(new GoalLight(actorPos.m_actorPos));
-			m_gameInstance->GetPictureMNG()->AddPicture(light, this);
+			Game::gameInstance->GetActorMNG()->AddActor(light);
 			light->SpawnMove(2,2);
 			m_LightNum++;
 		}
@@ -81,7 +81,7 @@ void GameScene::Initialize()
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 7) {
 			actorPos.m_isGet = true;
 			auto ladder = shared_ptr<Ladder>(new Ladder(actorPos.m_actorPos, num));
-			m_gameInstance->GetPictureMNG()->AddPicture(ladder, this);
+			Game::gameInstance->GetActorMNG()->AddActor(ladder);
 		}
 		if (actorPos.m_actorNum == 7) {
 			num++;
@@ -91,14 +91,14 @@ void GameScene::Initialize()
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 8) {
 			actorPos.m_isGet = true;
 			auto figure = shared_ptr<LuminousFigure>(new LuminousFigure(actorPos.m_actorPos));
-			m_gameInstance->GetPictureMNG()->AddPicture(figure, this);
+			Game::gameInstance->GetActorMNG()->AddActor(figure);
 			figure->SpawnMove(1,2);
 		}
 		//ハエ
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 9) {
 			actorPos.m_isGet = true;
 			auto pisher = shared_ptr<Pisher>(new Pisher(actorPos.m_actorPos));
-			m_gameInstance->GetPictureMNG()->AddPicture(pisher, this);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
 			pisher->SpawnMove(1,1);
 
 			//リストに含む
@@ -110,25 +110,25 @@ void GameScene::Initialize()
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 10) {
 			actorPos.m_isGet = true;
 			m_solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_actorPos));
-			m_gameInstance->GetPictureMNG()->AddPicture(m_solarpanel, this);
+			Game::gameInstance->GetActorMNG()->AddActor(m_solarpanel);
 		}
 
 		//起動出現床
 		if (!actorPos.m_isGet && actorPos.m_actorNum == 11) {
 			actorPos.m_isGet = true;
 			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_actorPos, false, this));
-			m_gameInstance->GetPictureMNG()->AddPicture(solarpanelblock, this);
+			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
 		}
 
 	}
 
 	//UIを表示する
 	m_pauseUI = shared_ptr<GamePauseUI>(new GamePauseUI(false));
-	m_gameInstance->GetPictureMNG()->AddPicture(m_pauseUI, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_pauseUI);
 
 	//ゲームUIの表示
 	m_gameUI = shared_ptr<InGameUI>(new InGameUI());
-	m_gameInstance->GetPictureMNG()->AddPicture(m_gameUI, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_gameUI);
 	m_gameUI->ChangeLight(m_LightNum);
 }
 
@@ -137,7 +137,7 @@ void GameScene::Update()
 	Scene::Update();
 
 	//ポーズにする
-	if (m_gameInstance->GetInputMNG()->Click(L"PAUSE") && !isGameClear && !isGameOver) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"PAUSE") && !isGameClear && !isGameOver) {
 		if (m_isPause) {
 			m_isPause = false;
 
@@ -172,7 +172,7 @@ void GameScene::GameOver()
 
 	//ゲームオーバーのUI
 	auto gameOver = shared_ptr<GameOverUI>(new GameOverUI());
-	m_gameInstance->GetPictureMNG()->AddPicture(gameOver, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(gameOver);
 
 }
 
@@ -191,6 +191,6 @@ void GameScene::LightNumMinus()
 
 		//ゲームクリアのUI
 		auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());
-		m_gameInstance->GetPictureMNG()->AddPicture(gameClear, this);
+		Game::gameInstance->GetPictureMNG()->AddPicture(gameClear);
 	}
 }

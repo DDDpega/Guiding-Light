@@ -1,8 +1,12 @@
 #include "Framework.h"
 
+//ゲームインスタンスの初期化
+Game* Game::gameInstance = nullptr;
+
 Game::Game()
 {
-	//コンストラクタ
+	//ゲームインスタンスの初期化
+	gameInstance = this;
 }
 
 Game::~Game()
@@ -22,8 +26,9 @@ void Game::Initialize()
 
 	//マネージャーの初期化
 	(m_collisionMNG = new CollisionManeger())->Initialize();
-	(m_pictureMNG = new PictureManeger(this))->Initialize();
-	(m_sceneMNG = new SceneManeger(this))->Initialize();
+	(m_pictureMNG = new PictureManeger())->Initialize();
+	(m_actorMNG = new ActorManager())->Initialize();
+	(m_sceneMNG = new SceneManeger())->Initialize();
 	m_inputMNG = new InputManager();
 
 	//入力の初期化
@@ -35,6 +40,7 @@ void Game::Update()
 	//マネージャーの更新処理
 	m_sceneMNG->Update();
 	m_pictureMNG->Update();
+	m_actorMNG->Update();
 	m_collisionMNG->Update();
 	m_collisionMNG->CheckCollide_BOXtoBOX();
 	m_collisionMNG->CheckCollide_CIRCLEtoCIRCLE();
@@ -50,4 +56,5 @@ void Game::Draw()
 	//マネージャーの描画処理
 	m_sceneMNG->Draw();
 	m_pictureMNG->Draw();
+	m_actorMNG->Draw();
 }

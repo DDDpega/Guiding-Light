@@ -9,7 +9,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleScene(Game* gameInstance);
+	TitleScene();
 
 	/// <summary>
 	/// デストラクタ
@@ -30,13 +30,6 @@ public:
 	/// 描画
 	/// </summary>
 	virtual void Draw();
-
-	/// <summary>
-	/// Playerのゲッター
-	/// </summary>
-	Player* GetPlayer() {
-		return nullptr;
-	}
 
 private:
 	POINT m_nowpostion[3];

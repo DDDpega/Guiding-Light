@@ -6,7 +6,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	StageSelectScene(Game* gameInstance);
+	StageSelectScene();
 
 	/// <summary>
 	/// デストラクタ
@@ -27,13 +27,6 @@ public:
 	/// 描画
 	/// </summary>
 	void Draw();
-
-	/// <summary>
-	/// Playerのゲッター
-	/// </summary>
-	Player* GetPlayer() {
-		return nullptr;
-	}
 
 protected:
 	int m_stageNum;

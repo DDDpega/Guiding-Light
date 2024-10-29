@@ -1,8 +1,8 @@
 #include "Framework.h"
 
 
-TitleScene::TitleScene(Game* gameInstance)
-	:Scene(gameInstance,"タイトルシーン")
+TitleScene::TitleScene()
+	:Scene("タイトルシーン")
 	, m_nowcursor(0)
 {
 
@@ -18,7 +18,7 @@ void TitleScene::Initialize()
 
 	//UIを表示する
 	auto titleUI = shared_ptr<TitleUI>(new TitleUI());
-	m_gameInstance->GetPictureMNG()->AddPicture(titleUI, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(titleUI);
 
 }
 

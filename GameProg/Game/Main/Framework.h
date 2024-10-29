@@ -14,6 +14,13 @@ using namespace std;
 #include <sstream>
 #include <iostream>
 
+
+//íËêî
+#include "ActorInfo.h"
+#include "EnumInfo.h"
+#include "SystemInfo.h"
+
+
 //ÉVÉXÉeÉÄ
 #include"Fps.h"
 #include "Key.h"
@@ -56,6 +63,7 @@ using namespace std;
 #include "RigidbodyCmp.h"
 #include "LightCmp.h"
 #include "DarkPictureCmp.h"
+#include "PictureCmp.h"
 
 
 
@@ -70,3 +78,4 @@ using namespace std;
 #include "LuminousFigure.h"
 #include"SolarPanel.h"
 #include"SolarPanelBlock.h"
+#include "ActorManager.h"

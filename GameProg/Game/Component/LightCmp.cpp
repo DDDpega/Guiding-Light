@@ -14,12 +14,12 @@ LightCmp::~LightCmp()
 	m_light->m_isActive = false;
 }
 
-void LightCmp::Initialize(Game* gameInstance, Scene* scene)
+void LightCmp::Initialize()
 {
-	Component::Initialize(gameInstance, scene);
+	Component::Initialize();
 
-	m_light = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize, "Picture/light.png", PIVOT::CENTER, SORT::SORT_LIGHT, true));
-	dynamic_cast<GameScene*>(scene)->m_lightPicture->AddLightList(m_light);
+	m_light = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize, "Picture/light.png", E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
+	SceneManeger::gameScene->m_lightPicture->AddLightList(m_light);
 
 
 	

@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-RigidbodyCmp::RigidbodyCmp(Actor* actor,STATE state,TAG tag)
+RigidbodyCmp::RigidbodyCmp(Actor* actor,STATE state, E_TAG tag)
 	:Component(actor)
 	,m_state(state)
 	,m_tag(tag)
@@ -16,9 +16,9 @@ RigidbodyCmp::~RigidbodyCmp()
 }
 
 
-void RigidbodyCmp::Initialize(Game* gameInstance ,Scene* scene)
+void RigidbodyCmp::Initialize()
 {
-	Component::Initialize(gameInstance,scene);
+	Component::Initialize();
 }
 
 
@@ -72,7 +72,7 @@ void RigidbodyCmp::Update()
 		m_actor->m_vy += 1;
 		break;
 	case JUMPSTT:
-		m_actor->m_vy -= m_gameInstance->GetStatus()->PLAYER_JUMP;
+		m_actor->m_vy -= Game::gameInstance->GetStatus()->PLAYER_JUMP;
 		m_state = STATE::JUMP;
 		break;
 	}

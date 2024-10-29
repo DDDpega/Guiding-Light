@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	RigidbodyCmp(Actor* actor,STATE state,TAG tag);
+	RigidbodyCmp(Actor* actor,STATE state, E_TAG tag);
 
 	/// <summary>
 	/// デストラクタ
@@ -21,7 +21,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	void Initialize(Game* gameInstance,Scene* scene);
+	void Initialize();
 
 	/// <summary>
 	/// 更新処理
@@ -39,7 +39,7 @@ public:
 
 
 	STATE m_state;			//現在の状態
-	TAG m_tag;
+	E_TAG m_tag;
 private:
 
 };

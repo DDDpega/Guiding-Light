@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 LuminousFigure::LuminousFigure(POINT pos)
-	:Actor(pos,1,"Picture/figua.png")
+	:Actor(pos)
 	,m_keepTime(0)
 	, m_lightOn(false)
 {
@@ -11,21 +11,25 @@ LuminousFigure::~LuminousFigure()
 {
 }
 
-void LuminousFigure::Initialize(Game* gameInstance_, Scene* scene)
+void LuminousFigure::Initialize()
 {
-	Actor::Initialize(gameInstance_, scene);
+	Actor::Initialize();
+
+	//画像コンポーネント
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LUMINOUSFIGURE_INFO::SIZE, "Picture/figua.png", E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, { 40,80 }, TAG::LUMINOUSFIGURE));
-	Actor::AddComponent(collision, scene);
-	gameInstance_->GetCollisionMNG()->AddBOXCollisionList(collision);
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, LUMINOUSFIGURE_INFO::COLLISION_SIZE, E_TAG::LUMINOUSFIGURE));
+	Actor::AddComponent(collision);
+	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//ライトコンポーネントの作成
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, gameInstance_->GetStatus()->FIGURE_LIGHT));
-	Actor::AddComponent(m_lightCmp, scene);
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT));
+	Actor::AddComponent(m_lightCmp);
 
 	//何秒効果時間があるか
-	m_maxTime = gameInstance_->GetStatus()->FIGURE_MAXTIME;
+	m_maxTime = Game::gameInstance->GetStatus()->FIGURE_MAXTIME;
 
 	//フォントの描画
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 20, 1);
@@ -50,7 +54,7 @@ void LuminousFigure::Update()
 			m_lightCmp->ChangeLightONOFF(m_lightOn);
 
 			//蠅のターゲットをフィギュアにする
-			for (auto& pisher : static_cast<GameScene*>(m_sceneptr)->m_pisherList) {
+			for (auto& pisher : SceneManeger::gameScene->m_pisherList) {
 				pisher->m_target = this;
 				pisher->m_isFigure = true;
 			}
@@ -64,7 +68,7 @@ void LuminousFigure::Update()
 			m_lightCmp->ChangeLightONOFF(m_lightOn);
 
 			//蠅のターゲットをフィギュアから解除する
-			for (auto& pisher : static_cast<GameScene*>(m_sceneptr)->m_pisherList) {
+			for (auto& pisher : SceneManeger::gameScene->m_pisherList) {
 				pisher->m_isFigure = false;
 			}
 		}
@@ -76,23 +80,23 @@ void LuminousFigure::Draw()
 {
 	Actor::Draw();
 
-	DrawFormatStringFToHandle(m_pos.x-70, m_pos.y-50, GetColor(255, 255, 255), m_fontHandle, "%d", m_keepTime);
+	//DrawFormatStringFToHandle(m_pos.x-70, m_pos.y-50, GetColor(255, 255, 255), m_fontHandle, "%d", m_keepTime);
 }
 
-void LuminousFigure::HitCollision(Actor* other, TAG tag, TAG selftag)
+void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == TAG::PLAYER_LIGHT && m_sceneptr->GetPlayer()->GetLightOn() &&
+	if (tag == E_TAG::PLAYER_LIGHT && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
 		m_keepTime<m_maxTime) {
 		m_keepTime = m_maxTime;
 		m_shareNow = true;
 	}
 }
 
-void LuminousFigure::NoHitCollision(Actor* other, TAG tag)
+void LuminousFigure::NoHitCollision(Actor* other, E_TAG tag)
 {
-	if (tag == TAG::PLAYER_LIGHT) {
+	if (tag == E_TAG::PLAYER_LIGHT) {
 		m_shareNow = false;
 	}
 }

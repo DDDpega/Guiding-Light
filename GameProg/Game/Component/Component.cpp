@@ -15,10 +15,9 @@ Component::~Component()
 }
 
 
-void Component::Initialize(Game* gameInstance , Scene* scene)
+void Component::Initialize()
 {
-	m_sceneptr = scene;
-	m_gameInstance = gameInstance;
+
 }
 
 

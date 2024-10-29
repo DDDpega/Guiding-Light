@@ -1,6 +1,6 @@
 #include "Framework.h"
-StageSelectScene::StageSelectScene(Game* gameInstance)
-	:Scene(gameInstance, "ゲームセレクト")
+StageSelectScene::StageSelectScene()
+	:Scene("ゲームセレクト")
 {
 
 }
@@ -16,7 +16,7 @@ void StageSelectScene::Initialize()
 
 	//UIを表示する
 	auto stageSelectUI = shared_ptr<StageSelectUI>(new StageSelectUI());
-	m_gameInstance->GetPictureMNG()->AddPicture(stageSelectUI, this);
+	Game::gameInstance->GetPictureMNG()->AddPicture(stageSelectUI);
 }
 
 void StageSelectScene::Update()

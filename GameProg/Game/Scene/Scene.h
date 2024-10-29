@@ -10,7 +10,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Scene(Game* gameInstance, const char* name);
+	Scene( const char* name);
 
 	/// <summary>
 	/// デストラクタ
@@ -32,16 +32,9 @@ public:
 	/// </summary>
 	virtual void Draw();
 
-	/// <summary>
-	/// Playerのゲッター
-	/// </summary>
-	virtual Player* GetPlayer() = 0;
-
-	int screenX, screenY;	//画面サイズ
 	bool m_isPause;			//ポーズ状態かどうか
 
 
 protected:
 	const char* m_sceneName;	//現在のシーンの名前
-	Game* m_gameInstance;		//ゲームインスタンス
 };
