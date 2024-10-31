@@ -65,6 +65,11 @@ void CollisionManeger::AddCIRCLECollisionList(std::shared_ptr<CircleCollisionCmp
 
 }
 
+void CollisionManeger::AddRayToHitObjectList(std::shared_ptr<BoxCollisionCmp> collision)
+{
+	m_rayToHitObject.push_back(collision);
+}
+
 //-------------------------------BOXtoBOX------------------------
 
 void CollisionManeger::CheckCollide_BOXtoBOX()
@@ -276,6 +281,8 @@ float CollisionManeger::DistanceSqrf(const float t_x1, const float t_y1, const f
 	return (dx * dx) + (dy * dy);
 }
 
+//-------------------------------RayCheck-----------------------
+
 bool CollisionManeger::RayHitCheck(POINT RayPos)
 {
 	//コリジョンを回して衝突しているか検索する
@@ -297,3 +304,26 @@ bool CollisionManeger::RayHitCheck(POINT RayPos)
 
 	return false;
 }
+
+bool CollisionManeger::RayToHitObjectCheck(RayCast* ray)
+{
+	//コリジョンを回して衝突しているか検索する
+	for (auto i = m_rayToHitObject.cbegin(); i != m_rayToHitObject.cend(); i++) {
+
+		//当たっているかどうか
+		auto collObj_i = i->get()->m_collision;
+		auto collObj_j = ray->GetPos();
+
+		//当たり判定
+		if ((collObj_i.left <= collObj_j.x) && (collObj_i.right >= collObj_j.x))
+		{
+			if ((collObj_i.top <= collObj_j.y) && (collObj_i.bottom >= collObj_j.y))
+			{
+				i->get()->GetActor()->HitCollision(ray,ray->m_tag,i->get()->m_tag);
+			}
+		}
+		i->get()->GetActor()->NoHitCollision(ray, ray->m_tag);
+	}
+	return false;
+}
+

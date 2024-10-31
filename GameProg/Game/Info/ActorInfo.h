@@ -14,7 +14,6 @@ namespace PLAYER_INFO {
 
 	constexpr float SIZE = 1.0f;
 	constexpr POINT COLLISION_SIZE = { 40 * 1,40 * 2 };
-	constexpr float CIRCLE_COLLISION_SIZE = 295;
 }
 
 /// <summary>

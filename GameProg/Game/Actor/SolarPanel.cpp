@@ -24,7 +24,7 @@ void SolarPanel::Initialize()
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, SOLARPANEL_INFO::COLLISION_SIZE, E_TAG::SOLARPANEL));
 	Actor::AddComponent(collision);
-	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 
 	//‰½•bŒø‰ÊŽžŠÔ‚ª‚ ‚é‚©
 	m_maxTime = Game::gameInstance->GetStatus()->SOLARPANELBLOCK_MAXTIME;
@@ -45,7 +45,7 @@ void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::PLAYER_LIGHT && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
+	if (tag == E_TAG::RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
 		m_keepTime < m_maxTime) {
 		m_keepTime++;
 	}

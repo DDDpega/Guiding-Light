@@ -41,7 +41,7 @@ protected:
 	int screenB;
 	int screenC;
 
-	list<LightCmp*> pictureList;
+	list<LightCmp*> lightCmpList;
 
 	int x;
 	int y;

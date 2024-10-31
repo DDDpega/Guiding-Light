@@ -34,6 +34,9 @@ void BoxCollisionCmp::Draw()
 {
 	Component::Draw();
 
+	if (!GAME_INFO::DEBUG)
+		return;
+
 	if (m_tag == E_TAG::RAY) {
 		//“–‚½‚è”»’è‚Ì•\Ž¦
 		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom

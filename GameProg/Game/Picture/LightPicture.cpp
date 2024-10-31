@@ -48,7 +48,7 @@ void LightPicture::Draw()
 
 	//----------------------------------------------------------------------
 	//ライトを描画する
-	for (auto& c : pictureList) {
+	for (auto& c : lightCmpList) {
 
 		//スクリーンDに描画先を変更する
 		auto screenD = MakeScreen(x, y, true);
@@ -71,6 +71,29 @@ void LightPicture::Draw()
 					GetColor(255, 0, 0), true);
 			}
 		}
+
+		auto screenE = MakeScreen(x, y, true);
+		FillGraph(screenE, 0, 0, 0, 255);
+		SetDrawScreen(screenE);
+
+		//ライトの画像を描画
+		DrawRotaGraph2(c->m_lightPicture->GetPos().x, c->m_lightPicture->GetPos().y,
+			(c->m_lightPicture->m_pictureSizeX / 2), (c->m_lightPicture->m_pictureSizeY / 2),
+			c->m_lightPicture->m_size, 0, c->m_lightPicture->m_handle, true);
+
+		GraphBlend(screenD,screenE, 255, DX_GRAPH_BLEND_RGBA_SELECT_MIX,
+			DX_RGBA_SELECT_BLEND_R,    // 出力結果の赤成分は AlphaHandle の緑成分
+			DX_RGBA_SELECT_SRC_G,    // 出力結果の緑成分は AlphaHandle の赤成分
+			DX_RGBA_SELECT_SRC_B,    // 出力結果の青成分は AlphaHandle の青成分
+			DX_RGBA_SELECT_SRC_R   // 出力結果のアルファ成分は BlendHandle の赤成分
+		);
+
+		
+		//スクリーンを設定する
+		SetDrawScreen(screenD);
+		//スクリーンを削除する
+		DeleteGraph(screenE);
+
 
 		//スクリーンBにスクリーンDを加算する
 		GraphBlendBlt(screenB, screenD, screenB, 255,
@@ -111,5 +134,6 @@ void LightPicture::Draw()
 
 void LightPicture::AddLightList(LightCmp* lightCmp)
 {
-	pictureList.push_back(lightCmp);
+	lightCmpList.push_back(lightCmp);
+
 }

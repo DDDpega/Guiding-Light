@@ -5,7 +5,7 @@ class RayCast;
 class LightCmp : public Component
 {
 public:
-	LightCmp(Actor* actor, bool lightOn,float lightSize,bool rayUpdate);
+	LightCmp(Actor* actor, bool lightOn,float lightSize,bool rayUpdate,E_TAG tag=E_TAG::RAY);
 
 	virtual ~LightCmp();
 
@@ -38,11 +38,12 @@ public:
 
 	bool m_lightOn;
 	shared_ptr<RayCast> m_ray[GAME_INFO::RAYNUM];
-
+	shared_ptr<Picture> m_lightPicture;
 protected:
 	int m_lightSize;
 	POINT targetPos;
 	bool m_rayUpdate;
 	int m_framecnt;
+	E_TAG m_rayTag;
 };
 

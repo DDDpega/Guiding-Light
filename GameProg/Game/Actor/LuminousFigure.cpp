@@ -22,7 +22,7 @@ void LuminousFigure::Initialize()
 	//当たり判定の作成
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, LUMINOUSFIGURE_INFO::COLLISION_SIZE, E_TAG::LUMINOUSFIGURE));
 	Actor::AddComponent(collision);
-	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 
 	//ライトコンポーネントの作成
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT,false));
@@ -73,7 +73,6 @@ void LuminousFigure::Update()
 			}
 		}
 	}
-
 }
 
 void LuminousFigure::Draw()
@@ -87,7 +86,7 @@ void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::PLAYER_LIGHT && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
+	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
 		m_keepTime<m_maxTime) {
 		m_keepTime = m_maxTime;
 		m_shareNow = true;
@@ -96,7 +95,7 @@ void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 
 void LuminousFigure::NoHitCollision(Actor* other, E_TAG tag)
 {
-	if (tag == E_TAG::PLAYER_LIGHT) {
+	if (tag == E_TAG::PLAYER_RAY) {
 		m_shareNow = false;
 	}
 }

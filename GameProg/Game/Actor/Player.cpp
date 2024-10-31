@@ -20,17 +20,10 @@ void Player::Initialize()
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PLAYER_INFO::SIZE, "Picture/jiki2.png", E_PIVOT::CENTER, E_SORT::SORT_PLAYER));
 	AddComponent(m_pictureCmp);
 
-
 	//当たり判定
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, PLAYER_INFO::COLLISION_SIZE, E_TAG::PLAYER));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
-
-	//ライトの当たり判定
-	auto circle = shared_ptr<CircleCollisionCmp>(new CircleCollisionCmp(this, { 0,0 },
-		Game::gameInstance->GetStatus()->PLAYER_LIGHT * PLAYER_INFO::CIRCLE_COLLISION_SIZE, E_TAG::PLAYER_LIGHT));
-	Actor::AddComponent(circle);
-	Game::gameInstance->GetCollisionMNG()->AddCIRCLECollisionList(circle);
 
 	//マップとの当たり判定
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(this, E_TAG::MAP));
@@ -41,7 +34,7 @@ void Player::Initialize()
 	Actor::AddComponent(m_rigidBody);
 
 	//ライトを光らせるコンポーネント
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false, Game::gameInstance->GetStatus()->PLAYER_LIGHT,true));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false, Game::gameInstance->GetStatus()->PLAYER_LIGHT,true,E_TAG::PLAYER_RAY));
 	Actor::AddComponent(m_lightCmp);
 
 	//暗闇中に見える画像の生成

@@ -45,6 +45,11 @@ public:
 	/// </summary>
 	void AddCIRCLECollisionList(std::shared_ptr<CircleCollisionCmp> collision);
 
+	/// <summary>
+	/// リストに追加する
+	/// </summary>
+	void AddRayToHitObjectList(std::shared_ptr<BoxCollisionCmp> collision);
+
 //-------------------------------BOXtoBOX------------------------
 	/// <summary>
 	/// 当たり判定のチェック
@@ -92,10 +97,21 @@ public:
 	/// <returns></returns>
 	float DistanceSqrf(const float t_x1, const float t_y1, const float t_x2, const float t_y2);
 
-//--------------------------------------------------------------------
+//-----------Ray---------------------------------------------------------
 
-
+	/// <summary>
+	/// レイとマップがぶつかっているかどうか
+	/// </summary>
+	/// <param name="RayPos"></param>
+	/// <returns></returns>
 	bool RayHitCheck(POINT RayPos);
+
+	/// <summary>
+	/// レイとぶつかるオブジェクトの判定
+	/// </summary>
+	/// <param name="ray"></param>
+	/// <returns></returns>
+	bool RayToHitObjectCheck(RayCast* ray);
 
 	/// <summary>
 	/// リストの削除
@@ -103,7 +119,9 @@ public:
 	void CleanList() {
 		m_BOXcollisionList.clear();
 		m_CIRCLEcollisionList.clear();
+		m_rayToHitObject.clear();
 	}
+
 
 	/// <summary>
 	/// リストの中身の1つを入手する
@@ -118,8 +136,9 @@ public:
 		return nullptr;
 	}
 
-	std::list<std::shared_ptr<BoxCollisionCmp>> m_BOXcollisionList;	//当たり判定リスト
-	std::list<std::shared_ptr<BoxCollisionCmp>> m_mapCollision;	//当たり判定リスト
-	std::list<std::shared_ptr<CircleCollisionCmp>> m_CIRCLEcollisionList;	//当たり判定リスト
+	list<shared_ptr<BoxCollisionCmp>> m_BOXcollisionList;	//当たり判定リスト
+	list<shared_ptr<BoxCollisionCmp>> m_mapCollision;	//当たり判定リスト
+	list<shared_ptr<CircleCollisionCmp>> m_CIRCLEcollisionList;	//当たり判定リスト
+	list<shared_ptr<BoxCollisionCmp>> m_rayToHitObject;	//レイが広がる途中に当たるリスト
 };
 

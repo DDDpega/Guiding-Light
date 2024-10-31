@@ -8,12 +8,22 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	/// <param name="pos"></param>
-	RayCast(POINT pos);
+	RayCast(POINT pos,E_TAG tag);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
 	virtual ~RayCast();
+
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	void Update();
+
+	/// <summary>
+	/// 描画処理
+	/// </summary>
+	void Draw();
 
 	/// <summary>
 	/// れいをとばす
@@ -33,6 +43,8 @@ public:
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag);
+
+	E_TAG m_tag;
 
 private:
 	POINT m_targetPos;

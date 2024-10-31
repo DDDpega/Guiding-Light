@@ -1,12 +1,13 @@
 #include "Framework.h"
 
-LightCmp::LightCmp(Actor* actor,bool lightOn,float lightSize,bool rayUpdate)
+LightCmp::LightCmp(Actor* actor,bool lightOn,float lightSize,bool rayUpdate,E_TAG tag)
 	:Component(actor)
 	,m_lightOn(lightOn)
 	,m_lightSize(lightSize)
 	,m_changeNow(false)
 	,m_rayUpdate(rayUpdate)
 	,m_framecnt(0)
+	,m_rayTag(tag)
 {
 
 }
@@ -20,34 +21,36 @@ void LightCmp::Initialize()
 {
 	Component::Initialize();
 
+	m_lightPicture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize*0.004, "Picture/light.png", E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
+	m_lightPicture->Initialize();
+	//Game::gameInstance->GetPictureMNG()->AddPicture(m_lightPicture);
 	SceneManeger::gameScene->m_lightPicture->AddLightList(this);
 
 	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-		m_ray[i] = shared_ptr<RayCast>(new RayCast(m_actor->GetPos()));
+		m_ray[i] = shared_ptr<RayCast>(new RayCast(m_actor->GetPos(), m_rayTag));
 		Game::gameInstance->GetActorMNG()->AddActor(m_ray[i]);
 	}
-	
-	//一回だけRayを飛ばす
-	//if (!m_rayUpdate) {
-
-	//	//レイを飛ばす
-	//	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-
-	//		//レイを飛ばす
-	//		m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize, i);
-	//	}
-	//}
 
 	//ライトを切り替える
-	//if (m_lightOn) {
-	//	//ライトをつける
-	//	m_light->m_size = m_lightSize;
-	//}
-	//else {
-	//	//ライトを消す
-	//	m_light->m_size = 0;
-	//}
+	if (m_lightOn) {
+		//ライトをつける
+		//レイを飛ばす
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+
+			//レイを飛ばす
+			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize, i);
+		}
+	}
+	else {
+		//ライトを消す
+		//レイを飛ばす
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+
+			//レイを飛ばす
+			m_ray[i]->RayStart(m_actor->GetPos(), 0, i);
+		}
+	}
 }
 
 void LightCmp::Update()
@@ -55,19 +58,17 @@ void LightCmp::Update()
 	Component::Update();
 
 	m_framecnt++;
+	m_lightPicture->SetPos(m_actor->GetPos());
 
 	//毎秒レイを飛ばす
-	if (m_rayUpdate &&  m_framecnt % 2 == 0) {
+	if (m_rayUpdate &&  m_framecnt % 2 == 0 && m_lightOn) {
 
 		//レイを飛ばす
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 			//レイを飛ばす
 			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize,i);
 		}
-	}
 
-	if (m_changeNow) {
-		ChangeLightONOFF();
 	}
 }
 
@@ -78,58 +79,52 @@ void LightCmp::Draw()
 
 void LightCmp::ChangeLightONOFF()
 {
-	m_changeNow = true;
+	if (m_lightOn) {
 
-	//if (m_lightOn) {
+		//レイを飛ばす
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-	//	m_light->m_size -= 0.1;
+			//レイを飛ばす
+			m_ray[i]->RayStart(m_actor->GetPos(), 0, i);
+		}
+		m_lightOn = false;
+	}
+	else {
 
-	//	//サイズが0を下回ったら
-	//	if (m_light->m_size <= 0) {
-	//		m_light->m_size = 0;
-	//		m_lightOn = false;
-	//		m_changeNow = false;
-	//	}
-	//}
-	//else {
+		//レイを飛ばす
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-	//	m_light->m_size+=0.1;
+			//レイを飛ばす
+			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize, i);
+		}
+		m_lightOn = true;
 
-	//	//サイズが初期のサイズを上回ったら
-	//	if (m_light->m_size >= m_lightSize) {
-	//		//ライトをつける
-	//		m_light->m_size = m_lightSize;
-	//		m_lightOn = true;
-	//		m_changeNow = false;
-	//	}
-	//}
+	}
 }
 
 void LightCmp::ChangeLightONOFF(bool lightOn)
 {
 	m_changeNow = true;
 
-	//if (!lightOn) {
+	if (!lightOn) {
 
-	//	m_light->m_size -= 0.1;
+		//レイを飛ばす
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-	//	//サイズが0を下回ったら
-	//	if (m_light->m_size <= 0) {
-	//		m_light->m_size = 0;
-	//		m_lightOn = false;
-	//		m_changeNow = false;
-	//	}
-	//}
-	//else {
+			//レイを飛ばす
+			m_ray[i]->RayStart(m_actor->GetPos(), 0, i);
+			m_lightOn = false;
+		}
+	}
+	else {
 
-	//	m_light->m_size += 0.1;
+		//レイを飛ばす
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-	//	//サイズが初期のサイズを上回ったら
-	//	if (m_light->m_size >= m_lightSize) {
-	//		//ライトをつける
-	//		m_light->m_size = m_lightSize;
-	//		m_lightOn = true;
-	//		m_changeNow = false;
-	//	}
-	//}
+			//レイを飛ばす
+			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize, i);
+		}
+		m_lightOn = true;
+
+	}
 }

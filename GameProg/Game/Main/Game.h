@@ -90,7 +90,7 @@ public:
 	/// </summary>
 	static Game* gameInstance;
 
-
+	
 private:
 	//マネージャーの宣言
 	CollisionManeger* m_collisionMNG;
