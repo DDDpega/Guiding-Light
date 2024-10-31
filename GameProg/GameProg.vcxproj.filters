@@ -163,6 +163,12 @@
     <ClCompile Include="Game\Component\PictureCmp.cpp">
       <Filter>Game\Component\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Map\MapChipActor.cpp">
+      <Filter>Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Main\RayCast.cpp">
+      <Filter>Game\Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -297,6 +303,12 @@
     </ClInclude>
     <ClInclude Include="Game\Component\PictureCmp.h">
       <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Map\MapChipActor.h">
+      <Filter>Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Main\RayCast.h">
+      <Filter>Game\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

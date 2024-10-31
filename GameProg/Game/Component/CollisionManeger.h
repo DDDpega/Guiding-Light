@@ -1,5 +1,6 @@
 #pragma once
 
+class RayCast;
 
 class CollisionManeger
 {
@@ -33,6 +34,11 @@ public:
 	/// リストに追加する
 	/// </summary>
 	void AddBOXCollisionList(std::shared_ptr<BoxCollisionCmp> collision);
+
+	/// <summary>
+	/// リストに追加する
+	/// </summary>
+	void AddMapCollisionList(std::shared_ptr<BoxCollisionCmp> collision);
 
 	/// <summary>
 	/// リストに追加する
@@ -89,6 +95,8 @@ public:
 //--------------------------------------------------------------------
 
 
+	bool RayHitCheck(POINT RayPos);
+
 	/// <summary>
 	/// リストの削除
 	/// </summary>
@@ -111,6 +119,7 @@ public:
 	}
 
 	std::list<std::shared_ptr<BoxCollisionCmp>> m_BOXcollisionList;	//当たり判定リスト
+	std::list<std::shared_ptr<BoxCollisionCmp>> m_mapCollision;	//当たり判定リスト
 	std::list<std::shared_ptr<CircleCollisionCmp>> m_CIRCLEcollisionList;	//当たり判定リスト
 };
 

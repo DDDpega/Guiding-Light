@@ -51,6 +51,13 @@ void CollisionManeger::AddBOXCollisionList(std::shared_ptr<BoxCollisionCmp> coll
 	m_BOXcollisionList.push_back(collision);
 }
 
+void CollisionManeger::AddMapCollisionList(std::shared_ptr<BoxCollisionCmp> collision)
+{
+	//リストに入れる
+	m_mapCollision.push_back(collision);
+
+}
+
 void CollisionManeger::AddCIRCLECollisionList(std::shared_ptr<CircleCollisionCmp> collision)
 {
 	//リストに入れる
@@ -267,4 +274,26 @@ float CollisionManeger::DistanceSqrf(const float t_x1, const float t_y1, const f
 	float dy = t_y2 - t_y1;
 
 	return (dx * dx) + (dy * dy);
+}
+
+bool CollisionManeger::RayHitCheck(POINT RayPos)
+{
+	//コリジョンを回して衝突しているか検索する
+	for (auto i = m_mapCollision.cbegin(); i != m_mapCollision.cend(); i++) {
+
+		//当たっているかどうか
+		auto collObj_i = i->get()->m_collision;
+		auto collObj_j = RayPos;
+
+		//当たり判定
+		if ((collObj_i.left<=collObj_j.x) &&(collObj_i.right>=collObj_j.x) )
+		{
+			if ((collObj_i.top<=collObj_j.y)&&(collObj_i.bottom>=collObj_j.y))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 }

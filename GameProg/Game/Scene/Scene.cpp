@@ -24,5 +24,5 @@ void Scene::Update()
 
 void Scene::Draw()
 {
-	DrawFormatString(0, 0, GetColor(255, 255, 255), m_sceneName);
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), m_sceneName);
 }

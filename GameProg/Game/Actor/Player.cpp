@@ -41,7 +41,7 @@ void Player::Initialize()
 	Actor::AddComponent(m_rigidBody);
 
 	//ライトを光らせるコンポーネント
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false, Game::gameInstance->GetStatus()->PLAYER_LIGHT));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false, Game::gameInstance->GetStatus()->PLAYER_LIGHT,true));
 	Actor::AddComponent(m_lightCmp);
 
 	//暗闇中に見える画像の生成

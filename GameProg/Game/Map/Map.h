@@ -46,10 +46,10 @@ public:
 		//RECT			m_goal;		//ゴールエリア
 	};
 
-	struct ActorPos
+	struct MapPos
 	{
-		int			m_actorNum;
-		POINT		m_actorPos;
+		int			m_mapChipNum;
+		POINT		m_mapChipPos;
 		bool		m_isGet;
 	};
 
@@ -83,7 +83,7 @@ public:
 		return m_pos;
 	}
 
-	list<ActorPos> GetActorPosList() {
+	list<MapPos> GetMapChipPosList() {
 		return m_actorPos;
 	}
 
@@ -103,7 +103,7 @@ protected:
 	POINT m_scroll;					//スクロールする位置
 	POINT m_pos;
 
-	list<ActorPos> m_actorPos;			//アクターポジションのリスト
+	list<MapPos> m_actorPos;			//アクターポジションのリスト
 
 	bool m_isInitialize;
 

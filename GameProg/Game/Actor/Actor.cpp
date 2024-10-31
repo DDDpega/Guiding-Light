@@ -31,7 +31,6 @@ void Actor::Update()
 
 void Actor::Draw()
 {
-
 	//コンポーネントリストの描画
 	for (auto& c : m_componentList) {
 		c->Draw();

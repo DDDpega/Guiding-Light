@@ -34,14 +34,22 @@ void BoxCollisionCmp::Draw()
 {
 	Component::Draw();
 
+	if (m_tag == E_TAG::RAY) {
+		//“–‚½‚è”»’è‚Ì•\Ž¦
+		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom
+			, GetColor(100, 100, 100), false);
 
-	//“–‚½‚è”»’è‚Ì•\Ž¦
-	DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom
-		, GetColor(100, 100, 100), false);
+		DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(255, 0, 0));
+		DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(255, 0, 0));
+	}
+	else {
+		//“–‚½‚è”»’è‚Ì•\Ž¦
+		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom
+			, GetColor(100, 100, 100), false);
 
-	DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(255, 255, 255));
-	DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(255, 255, 255));
-
+		DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(255, 255, 255));
+		DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(255, 255, 255));
+	}
 }
 
 void BoxCollisionCmp::ChangeCollision()

@@ -27,19 +27,20 @@ Map::Map(const Info& info, const TCHAR* graph)
 		loadFromFile(info.m_filePath, info.m_chipSet);
 	}
 
-	createMap();
-	m_isInitialize = true;
+	
 
 }
 
 void Map::Initialize()throw()
 {
-	
+	m_isInitialize = false;
+	createMap();
+	m_isInitialize = true;
+
 	m_chipSize.x=MAPCHIP_HEIGHT;
 	m_chipSize.y = MAPCHIP_WIDTH;
 	int i = 0;
 	
-
 }
 void Map::Update() throw()
 {
@@ -54,6 +55,7 @@ void Map::Draw()
 
 void Map::createMap()
 {
+	m_actorPos.clear();
 	// テクスチャのサイズとマップチップのサイズから横と縦のチップ数を割り出す
 	for (int i = 0; i < MAP_SIZE_HEIGHT; i++)
 	{
@@ -85,13 +87,26 @@ void Map::createMap()
 
 
 
-			if (chipNo >= 5&&!m_isInitialize) {
-				auto apos = ActorPos{ chipNo, POINT{position_x ,position_y},false };
+			if (chipNo >= 5&&!m_isInitialize && chipNo!=12) {
+				auto apos = MapPos{ chipNo, POINT{position_x ,position_y},false };
 				m_actorPos.push_back(apos);
 				continue;
 			}
+			else if (chipNo == 12 && !m_isInitialize) {
+				//マップチップのアクターを生成する
+				auto mapChip = shared_ptr<MapChipActor>(new MapChipActor(POINT{ position_x ,position_y }));
+				Game::gameInstance->GetActorMNG()->AddActor(mapChip);
+				/*auto apos = MapPos{ chipNo, POINT{position_x ,position_y},false };
+				m_actorPos.push_back(apos);*/
+			}
 
-			DrawExtendGraph(position_x, position_y, position_x+40, position_y+40, m_bitmap[chipNo], TRUE);
+			if (chipNo == 12) {
+				DrawExtendGraph(position_x, position_y, position_x + 40, position_y + 40, m_bitmap[1], TRUE);
+			}
+			else {
+				DrawExtendGraph(position_x, position_y, position_x + 40, position_y + 40, m_bitmap[chipNo], TRUE);
+
+			}
 			//DrawGraph(position_x, position_y, m_bitmap[chipNo], TRUE);
 		}
 

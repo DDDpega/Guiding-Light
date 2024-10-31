@@ -25,15 +25,6 @@ void LightPicture::Update()
 {
 	Picture::Update();
 
-	//ピクチャーリストの一部削除
-	for (auto i = pictureList.cbegin(); i != pictureList.cend();) {
-		if (i->get()->m_isActive) {
-			i++;
-		}
-		else {
-			i = pictureList.erase(i);
-		}
-	}
 }
 
 void LightPicture::Draw()
@@ -53,25 +44,33 @@ void LightPicture::Draw()
 
 	//スクリーンを設定する
 	SetDrawScreen(screenB);
+	int handle = LoadGraph("Picture/light.png");
 
 	//----------------------------------------------------------------------
 	//ライトを描画する
 	for (auto& c : pictureList) {
-
-		//画像が見えるかどうか
-		if (!c->GetisVisible()) {
-			continue;
-		}
 
 		//スクリーンDに描画先を変更する
 		auto screenD = MakeScreen(x, y, true);
 		FillGraph(screenD, 0, 0, 0, 255);
 		SetDrawScreen(screenD);
 
-		//画像の表示
-		DrawRotaGraph2(c->GetPos().x, c->GetPos().y,
-			(c->m_pictureSizeX / 2), (c->m_pictureSizeY / 2),
-			c->m_size, 0, c->m_handle, true);
+		//レイを元に三角形を作成する
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+
+			if (i == GAME_INFO::RAYNUM-1) {
+				DrawTriangle(c->m_ray[i]->GetPos().x, c->m_ray[i]->GetPos().y,
+					c->m_ray[0]->GetPos().x, c->m_ray[0]->GetPos().y,
+					c->GetActor()->GetPos().x, c->GetActor()->GetPos().y,
+					GetColor(255, 0, 0), true);
+			}
+			else {
+				DrawTriangle(c->m_ray[i]->GetPos().x, c->m_ray[i]->GetPos().y,
+					c->m_ray[i + 1]->GetPos().x, c->m_ray[i + 1]->GetPos().y,
+					c->GetActor()->GetPos().x, c->GetActor()->GetPos().y,
+					GetColor(255, 0, 0), true);
+			}
+		}
 
 		//スクリーンBにスクリーンDを加算する
 		GraphBlendBlt(screenB, screenD, screenB, 255,
@@ -110,8 +109,7 @@ void LightPicture::Draw()
 	DeleteGraph(screenC);
 }
 
-void LightPicture::AddLightList(shared_ptr<Picture> picture)
+void LightPicture::AddLightList(LightCmp* lightCmp)
 {
-	picture->Initialize();
-	pictureList.push_back(picture);
+	pictureList.push_back(lightCmp);
 }

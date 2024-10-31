@@ -1,11 +1,6 @@
 #include "Framework.h"
 
 
-
-#define GameWidth   1280    //画面の幅
-#define GameHeight   720    //画面の高さ
-#define GameColor     32    //画面の色
-
 //ゲーム
 Game* gameInstance;
 Fps* fps;
@@ -20,8 +15,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	SetBackgroundColor(25, 25, 25);
 
 	// ウィンドウモードに設定と画面サイズ
-	ChangeWindowMode(true);
-	SetGraphMode(GameWidth, GameHeight, GameColor);
+	ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
+	SetGraphMode(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT, WINDOW_INFO::GAME_COLOR);
 	SetWindowSize(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT);
 
 	// DXライブラリ初期化処理

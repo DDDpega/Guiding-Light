@@ -14,7 +14,6 @@ using namespace std;
 #include <sstream>
 #include <iostream>
 
-
 //定数
 #include "ActorInfo.h"
 #include "EnumInfo.h"
@@ -27,6 +26,8 @@ using namespace std;
 #include "Status.h"
 #include "InputManager.h"
 #include "Game.h"
+
+
 
 //ピクチャー
 #include "Picture.h"
@@ -78,4 +79,6 @@ using namespace std;
 #include "LuminousFigure.h"
 #include"SolarPanel.h"
 #include"SolarPanelBlock.h"
+#include "MapChipActor.h"
+#include "RayCast.h"
 #include "ActorManager.h"

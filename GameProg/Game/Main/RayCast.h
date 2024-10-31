@@ -1,0 +1,40 @@
+#pragma once
+
+class RayCast : public Actor
+{
+public:
+
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	/// <param name="pos"></param>
+	RayCast(POINT pos);
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	virtual ~RayCast();
+
+	/// <summary>
+	/// れいをとばす
+	/// </summary>
+	/// <returns></returns>
+	POINT RayStart(POINT pos, int radius, int element);
+
+	/// <summary>
+	/// 衝突処理
+	/// </summary>
+	/// <param name="other"></param>
+	void HitCollision(Actor* other, E_TAG tag, E_TAG selftag);
+
+	/// <summary>
+	/// 衝突していない
+	/// </summary>
+	/// <param name="other"></param>
+	/// <param name="tag"></param>
+	void NoHitCollision(Actor* other, E_TAG tag);
+
+private:
+	POINT m_targetPos;
+	int frame;
+};

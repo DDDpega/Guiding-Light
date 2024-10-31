@@ -1,7 +1,7 @@
 #pragma once
 
 class Picture;
-class Actor;
+class LightCmp;
 
 class LightPicture : public Picture
 {
@@ -34,14 +34,14 @@ public:
 	/// <summary>
 	/// ƒ‰ƒCƒg‚ð’Ç‰Á‚·‚é
 	/// </summary>
-	void AddLightList(shared_ptr<Picture> picture);
+	void AddLightList(LightCmp* lightCmp);
 
 protected:
 	int screenA;
 	int screenB;
 	int screenC;
 
-	list<shared_ptr<Picture>> pictureList;
+	list<LightCmp*> pictureList;
 
 	int x;
 	int y;

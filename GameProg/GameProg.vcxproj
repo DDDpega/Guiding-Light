@@ -58,8 +58,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Game\Main\RayCast.cpp" />
     <ClCompile Include="Game\Main\Status.cpp" />
     <ClCompile Include="Game\Map\Map.cpp" />
+    <ClCompile Include="Game\Map\MapChipActor.cpp" />
     <ClCompile Include="Game\Picture\LightPicture.cpp" />
     <ClCompile Include="Game\Picture\Picture.cpp" />
     <ClCompile Include="Game\Picture\PictureManeger.cpp" />
@@ -109,8 +111,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Game\Main\RayCast.h" />
     <ClInclude Include="Game\Main\Status.h" />
     <ClInclude Include="Game\Map\Map.h" />
+    <ClInclude Include="Game\Map\MapChipActor.h" />
     <ClInclude Include="Game\Picture\LightPicture.h" />
     <ClInclude Include="Game\Picture\Picture.h" />
     <ClInclude Include="Game\Picture\PictureManeger.h" />

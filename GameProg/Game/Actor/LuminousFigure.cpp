@@ -25,7 +25,7 @@ void LuminousFigure::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//ライトコンポーネントの作成
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT,false));
 	Actor::AddComponent(m_lightCmp);
 
 	//何秒効果時間があるか

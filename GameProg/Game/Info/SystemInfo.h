@@ -39,12 +39,10 @@ namespace WINDOW_INFO {
 namespace GAME_INFO {
 
 	/// <summary>
-	/// スコアの加算
-	/// </summary>
-	constexpr int PLUS_SCORE = 100;
-
-	/// <summary>
 	/// 初めのシーン
 	/// </summary>
 	constexpr E_SCENE INI_SCENE = E_SCENE::TITLE;
+
+	constexpr int RAYNUM = 100;
+	constexpr int RAYPLUS = 15;
 }

@@ -59,47 +59,47 @@ void GameScene::Initialize()
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_map);
 	
 	auto num = 0;
-	for (auto& actorPos : m_map->GetActorPosList()) {
+	for (auto& actorPos : m_map->GetMapChipPosList()) {
 		//プレイヤーの生成
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 5) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 5) {
 			actorPos.m_isGet = true;
-			m_player->SetPos(actorPos.m_actorPos);
+			m_player->SetPos(actorPos.m_mapChipPos);
 			m_player->SpawnMove(1,1);
 		}
 
 		//ランプ
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 6) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 6) {
 			actorPos.m_isGet = true;
 			//ゴールライトの生成
-			auto light = shared_ptr<GoalLight>(new GoalLight(actorPos.m_actorPos));
+			auto light = shared_ptr<GoalLight>(new GoalLight(actorPos.m_mapChipPos));
+			light->SpawnMove(2, 2);
 			Game::gameInstance->GetActorMNG()->AddActor(light);
-			light->SpawnMove(2,2);
 			m_LightNum++;
 		}
 
 		//はしごの生成
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 7) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 7) {
 			actorPos.m_isGet = true;
-			auto ladder = shared_ptr<Ladder>(new Ladder(actorPos.m_actorPos, num));
+			auto ladder = shared_ptr<Ladder>(new Ladder(actorPos.m_mapChipPos, num));
 			Game::gameInstance->GetActorMNG()->AddActor(ladder);
 		}
-		if (actorPos.m_actorNum == 7) {
+		if (actorPos.m_mapChipNum == 7) {
 			num++;
 		}
 
 		//蓄光
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 8) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 8) {
 			actorPos.m_isGet = true;
-			auto figure = shared_ptr<LuminousFigure>(new LuminousFigure(actorPos.m_actorPos));
+			auto figure = shared_ptr<LuminousFigure>(new LuminousFigure(actorPos.m_mapChipPos));
+			figure->SpawnMove(1, 2);
 			Game::gameInstance->GetActorMNG()->AddActor(figure);
-			figure->SpawnMove(1,2);
 		}
 		//ハエ
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 9) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 9) {
 			actorPos.m_isGet = true;
-			auto pisher = shared_ptr<Pisher>(new Pisher(actorPos.m_actorPos));
+			auto pisher = shared_ptr<Pisher>(new Pisher(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
 			Game::gameInstance->GetActorMNG()->AddActor(pisher);
-			pisher->SpawnMove(1,1);
 
 			//リストに含む
 			m_pisherList.push_back(pisher);
@@ -107,16 +107,16 @@ void GameScene::Initialize()
 		}
 
 		//ソーラーパネル
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 10) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 10) {
 			actorPos.m_isGet = true;
-			m_solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_actorPos));
+			m_solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
 			Game::gameInstance->GetActorMNG()->AddActor(m_solarpanel);
 		}
 
 		//起動出現床
-		if (!actorPos.m_isGet && actorPos.m_actorNum == 11) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 11) {
 			actorPos.m_isGet = true;
-			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_actorPos, false, this));
+			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_mapChipPos, false, this));
 			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
 		}
 
