@@ -25,6 +25,20 @@ namespace UI {
 
 	namespace CREDIT {
 
+		//名前
+		constexpr const char* TAKADA= "Picture/Credit/GL_UI_C_Takada.png";
+		constexpr const char* OOGAKI= "Picture/Credit/GL_UI_C_Oogaki.png";
+		constexpr const char* UEMURA= "Picture/Credit/GL_UI_C_Uemura.png";
+		constexpr const char* KIKUCHI= "Picture/Credit/GL_UI_C_Kikuchi.png";
+		constexpr const char* TANAKA= "Picture/Credit/GL_UI_C_Tanaka.png";
+		
+		//大区分
+		constexpr const char* CREDIT= "Picture/Credit/GL_UI_Credit.png";
+		
+		//小区分
+		constexpr const char* GDIRECTOR= "Picture/Credit/GL_UI_GameDirector.png";
+		constexpr const char* GPLANNER= "Picture/Credit/GL_UI_GamePlanner.png";
+		constexpr const char* GPROGRAMMER= "Picture/Credit/GL_UI_GameProgrammer.png";
 	}
 
 	namespace GAME {
@@ -66,10 +80,31 @@ namespace UI {
 	}
 
 	namespace STAGESELECT {
-
+		//大区分
+		constexpr const char* MENUSELECT = "Picture/StageSelect/GL_UI_MenuSelect.png";
+		
+		//ステージ番号
+		constexpr const char* S_STAGE_1 = "Picture/StageSelect/GL_UI_S_Stage1.png";
+		constexpr const char* S_STAGE_2 = "Picture/StageSelect/GL_UI_S_Stage2.png";
+		constexpr const char* S_STAGE_3 = "Picture/StageSelect/GL_UI_S_Stage3.png";
+		constexpr const char* S_STAGE_4 = "Picture/StageSelect/GL_UI_S_Stage4.png";
+		constexpr const char* S_STAGE_5 = "Picture/StageSelect/GL_UI_S_Stage5.png";
+		constexpr const char* S_STAGE_6 = "Picture/StageSelect/GL_UI_S_Stage6.png";
+		constexpr const char* S_STAGE_7 = "Picture/StageSelect/GL_UI_S_Stage7.png";
+		constexpr const char* S_STAGE_8 = "Picture/StageSelect/GL_UI_S_Stage8.png";
+		constexpr const char* S_STAGE_9 = "Picture/StageSelect/GL_UI_S_Stage9.png";
+		constexpr const char* S_STAGE_10 = "Picture/StageSelect/GL_UI_S_Stage10.png";
 	}
 
 	namespace TITLE {
+		//大区分
+		constexpr const char* TITLE = "Picture/Title/GL_UI_Title.png";
+
+		//選択肢
+		constexpr const char* GAMEEND = "Picture/Title/GL_UI_GameEnd.png";
+		constexpr const char* GAMESTART = "Picture/Title/GL_UI_GameStart.png";
+		constexpr const char* NO = "Picture/Title/GL_UI_No.png";
+		constexpr const char* YES = "Picture/Title/GL_UI_Yes.png";
 
 	}
 }
