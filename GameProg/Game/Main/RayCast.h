@@ -49,4 +49,6 @@ public:
 private:
 	POINT m_targetPos;
 	int frame;
+	int m_moveradius;
+	float m_rad;
 };

@@ -34,7 +34,7 @@ POINT RayCast::RayStart(POINT pos,int radius,int element)
 {
 	//位置の更新
 	m_pos = pos;
-	auto moveradius = 0;
+	m_moveradius = 0;
 
 	//レイを消す
 	if (radius == 0) {
@@ -46,30 +46,30 @@ POINT RayCast::RayStart(POINT pos,int radius,int element)
 	//レイを外側に向かって消す
 	while (true) {
 
-		moveradius++;
+		++m_moveradius;
 
 		//ターゲットの設定
-		float rad = ((float)element / GAME_INFO::RAYNUM) * (3.14159f * 2.0f);
-		m_pos.x = moveradius * cos(rad) + pos.x;
-		m_pos.y = moveradius * sin(rad) + (pos.y-15);
+		m_rad = ((float)element / GAME_INFO::RAYNUM) * (3.14f * 2.0f);
+		m_pos.x = m_moveradius * cos(m_rad) + pos.x;
+		m_pos.y = m_moveradius * sin(m_rad) + (pos.y-15);
 
 		//レイとぶつかるオブジェクトの判定チェック
 		Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(this);
 
 		//最大値になったら終了する
-		if (radius == moveradius) {
+		if (radius == m_moveradius) {
 			break;
 		}
 
 		//以下重いので回数を絞る
-		if (moveradius % 2 != 0)
+		if (m_moveradius % 2 != 0)
 			continue;
 
 		//当たり判定のチェック
 		if (Game::gameInstance->GetCollisionMNG()->RayHitCheck(m_pos)){
 
 
-			if (moveradius >= (radius - 8)) {
+			if (m_moveradius >= (radius - 8)) {
 				break;
 			}
 			//x+

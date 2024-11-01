@@ -39,15 +39,19 @@ void SolarPanel::Update()
 		m_isTrigger = true;
 	}
 
+	//‹Ÿ‹‹’†‚È‚ç
+	if (m_shareNow) {
+		m_keepTime++;
+	}
 }
 
 void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
+	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
 		m_keepTime < m_maxTime) {
-		m_keepTime++;
+		m_shareNow = true;
 	}
 }
 

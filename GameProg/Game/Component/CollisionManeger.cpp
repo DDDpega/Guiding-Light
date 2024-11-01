@@ -289,13 +289,13 @@ bool CollisionManeger::RayHitCheck(POINT RayPos)
 	for (auto i = m_mapCollision.cbegin(); i != m_mapCollision.cend(); i++) {
 
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-		auto collObj_i = i->get()->m_collision;
-		auto collObj_j = RayPos;
+		rayHitCheckCollObj_i = i->get()->m_collision;
+		rayHitCheckCollObj_j = RayPos;
 
 		//“–‚½‚è”»’è
-		if ((collObj_i.left<=collObj_j.x) &&(collObj_i.right>=collObj_j.x) )
+		if ((rayHitCheckCollObj_i.left<=rayHitCheckCollObj_j.x) &&(rayHitCheckCollObj_i.right>=rayHitCheckCollObj_j.x) )
 		{
-			if ((collObj_i.top<=collObj_j.y)&&(collObj_i.bottom>=collObj_j.y))
+			if ((rayHitCheckCollObj_i.top<=rayHitCheckCollObj_j.y)&&(rayHitCheckCollObj_i.bottom>=rayHitCheckCollObj_j.y))
 			{
 				return true;
 			}
@@ -307,12 +307,15 @@ bool CollisionManeger::RayHitCheck(POINT RayPos)
 
 bool CollisionManeger::RayToHitObjectCheck(RayCast* ray)
 {
+	BOX collObj_i;
+	POINT collObj_j;
+
 	//ƒRƒŠƒWƒ‡ƒ“‚ð‰ñ‚µ‚ÄÕ“Ë‚µ‚Ä‚¢‚é‚©ŒŸõ‚·‚é
 	for (auto i = m_rayToHitObject.cbegin(); i != m_rayToHitObject.cend(); i++) {
 
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-		auto collObj_i = i->get()->m_collision;
-		auto collObj_j = ray->GetPos();
+		collObj_i = i->get()->m_collision;
+		collObj_j = ray->GetPos();
 
 		//“–‚½‚è”»’è
 		if ((collObj_i.left <= collObj_j.x) && (collObj_i.right >= collObj_j.x))

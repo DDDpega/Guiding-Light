@@ -15,11 +15,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	SetBackgroundColor(25, 25, 25);
 
 	// ウィンドウモードに設定と画面サイズ
+	SetWindowSize(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT);
 	ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
 	SetGraphMode(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT, WINDOW_INFO::GAME_COLOR);
-	SetWindowSize(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT);
 
 	// DXライブラリ初期化処理
+	SetWindowSizeExtendRate(1.0);
 	DxLib_Init();   
 
 	//描画先を裏画面に設定

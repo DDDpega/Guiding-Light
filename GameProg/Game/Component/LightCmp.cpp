@@ -57,8 +57,10 @@ void LightCmp::Update()
 {
 	Component::Update();
 
+	auto actorPos = m_actor->GetPos();
+
 	m_framecnt++;
-	m_lightPicture->SetPos(m_actor->GetPos());
+	m_lightPicture->SetPos(actorPos);
 
 	//–ˆ•bƒŒƒC‚ð”ò‚Î‚·
 	if (m_rayUpdate &&  m_framecnt % 2 == 0 && m_lightOn) {
@@ -66,7 +68,7 @@ void LightCmp::Update()
 		//ƒŒƒC‚ð”ò‚Î‚·
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 			//ƒŒƒC‚ð”ò‚Î‚·
-			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize,i);
+			m_ray[i]->RayStart(actorPos, m_lightSize,i);
 		}
 
 	}

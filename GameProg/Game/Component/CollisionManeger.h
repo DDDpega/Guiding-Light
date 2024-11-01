@@ -140,5 +140,9 @@ public:
 	list<shared_ptr<BoxCollisionCmp>> m_mapCollision;	//当たり判定リスト
 	list<shared_ptr<CircleCollisionCmp>> m_CIRCLEcollisionList;	//当たり判定リスト
 	list<shared_ptr<BoxCollisionCmp>> m_rayToHitObject;	//レイが広がる途中に当たるリスト
+
+	BOX rayHitCheckCollObj_i;
+	POINT rayHitCheckCollObj_j;
+
 };
 
