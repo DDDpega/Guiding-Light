@@ -100,6 +100,7 @@
     <ClInclude Include="Game\Component\RigidbodyCmp.h" />
     <ClInclude Include="Game\Info\ActorInfo.h" />
     <ClInclude Include="Game\Info\EnumInfo.h" />
+    <ClInclude Include="Game\Info\PictureInfo.h" />
     <ClInclude Include="Game\Info\SystemInfo.h" />
     <ClInclude Include="Game\Main\Fps.h" />
     <ClInclude Include="Game\Main\Framework.h" />

@@ -75,11 +75,11 @@ void Player::Update()
 
 	//¶‰E‚ðŒü‚­
 	if (m_isRightdir) {
-		m_pictureCmp->m_picture->ChangePicture("GL_Picture/GL_UI_Lamp1.png");
+		m_pictureCmp->m_picture->ChangePicture("Picture/jiki2.png");
 		m_darkPicture->m_darkPicture->ChangePicture("Picture/jiki2_dark.png");
 	}
 	else {
-		m_pictureCmp->m_picture->ChangePicture("GL_UI_Lamp1.png");
+		m_pictureCmp->m_picture->ChangePicture("Picture/jiki.png");
 		m_darkPicture->m_darkPicture->ChangePicture("Picture/jiki_dark.png");
 	}
 

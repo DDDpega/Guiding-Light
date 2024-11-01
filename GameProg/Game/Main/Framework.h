@@ -18,7 +18,7 @@ using namespace std;
 #include "ActorInfo.h"
 #include "EnumInfo.h"
 #include "SystemInfo.h"
-
+#include "PictureInfo.h"
 
 //ƒVƒXƒeƒ€
 #include"Fps.h"
