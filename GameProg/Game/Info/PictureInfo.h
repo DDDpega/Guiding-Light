@@ -26,7 +26,7 @@ namespace UI {
 	};
 
 	//オプションのリスト
-	static vector<PICTURE_TYPE> OPTION_LIST = {
+	__declspec(selectany)  vector<PICTURE_TYPE> OPTION_LIST = {
 
 		//画面比率
 		{ RATION16_9,"Picture/UI/Option/GL_UI_16_9.png"},
@@ -62,7 +62,7 @@ namespace UI {
 	};
 
 	//クレジットのリスト
-	static vector<PICTURE_TYPE> CREDIT_LIST = {
+	__declspec(selectany) vector<PICTURE_TYPE> CREDIT_LIST = {
 
 		//名前
 		{ TAKADA , "Picture/UI/Credit/GL_UI_C_Takada.png"},
@@ -115,7 +115,7 @@ namespace UI {
 		LAMP_10,
 	};
 
-	static vector<PICTURE_TYPE> GAME_LIST = {
+	__declspec(selectany) vector<PICTURE_TYPE> GAME_LIST = {
 
 		//選択関係
 		{CONTINUE_GAME , "Picture/UI/Game/GL_UI_ContinueGame.png"},
@@ -173,7 +173,7 @@ namespace UI {
 
 
 	//ステージセレクトリスト
-	static vector<PICTURE_TYPE> STAGESELECT_LIST = {
+	__declspec(selectany) vector<PICTURE_TYPE> STAGESELECT_LIST = {
 
 		//大区分
 		{ MENUSELECT , "Picture/UI/StageSelect/GL_UI_MenuSelect.png"},
@@ -203,7 +203,7 @@ namespace UI{
 	};
 
 	//ステージセレクトリスト
-	static vector<PICTURE_TYPE> TITLE_LIST = {
+	__declspec(selectany) vector<PICTURE_TYPE> TITLE_LIST = {
 		//大区分
 		{TITLE , "Picture/UI/Title/GL_UI_Title.png"},
 
@@ -213,6 +213,8 @@ namespace UI{
 		{NO , "Picture/UI/Title/GL_UI_No.png"},
 		{YES , "Picture/UI/Title/GL_UI_Yes.png"},
 	};
+
+
 }
 
 namespace ILLUST {
@@ -229,5 +231,4 @@ namespace ILLUST {
 
 	}
 }
-
 
