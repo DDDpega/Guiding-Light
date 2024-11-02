@@ -19,11 +19,8 @@ void Ladder::Initialize()
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LADDER_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
-	LONG x = (m_pictureCmp->m_picture->m_pictureSizeX * m_pictureCmp->m_picture->m_size) / 2;
-	LONG y = (m_pictureCmp->m_picture->m_pictureSizeY * m_pictureCmp->m_picture->m_size) / 2;
-
 	//ボックスコリジョン生成
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { x,y }, LADDER_INFO::COLLISION_SIZE, E_TAG::LADDER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 20,20 }, LADDER_INFO::COLLISION_SIZE, E_TAG::LADDER));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 }

@@ -28,7 +28,6 @@ Picture::Picture(E_SORT sort , bool isVisible)
 
 Picture::~Picture()
 {
-	DeleteGraph(m_handle);
 }
 
 void Picture::Initialize()

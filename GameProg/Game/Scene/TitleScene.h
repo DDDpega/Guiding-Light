@@ -1,7 +1,6 @@
 #pragma once
 
 
-class Picture;
 
 class TitleScene : public Scene
 {

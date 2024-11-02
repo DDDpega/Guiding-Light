@@ -2,10 +2,7 @@
 
 //マネージャーのクラス
 
-class CollisionManeger;
-class PictureManeger;
-class SceneManeger;
-class ActorManager;
+
 
 class Status;
 

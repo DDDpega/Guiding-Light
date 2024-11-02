@@ -1,11 +1,5 @@
 #pragma once
 
-
-class Game;
-class Scene;
-
-
-
 class Picture
 {
 public:

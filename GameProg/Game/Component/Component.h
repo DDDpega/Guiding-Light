@@ -1,10 +1,6 @@
 #pragma once
 
 
-class Actor;
-class Scene;
-class Game;
-
 class Component
 {
 public:

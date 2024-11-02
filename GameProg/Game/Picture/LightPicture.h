@@ -1,7 +1,5 @@
 #pragma once
 
-class Picture;
-class LightCmp;
 
 class LightPicture : public Picture
 {

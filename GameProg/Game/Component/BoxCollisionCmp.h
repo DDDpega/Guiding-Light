@@ -1,6 +1,5 @@
 #pragma once
 
-class Actor;
 
 
 class BoxCollisionCmp :public Component

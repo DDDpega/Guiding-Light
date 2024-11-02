@@ -1,6 +1,5 @@
 #pragma once
 
-class RayCast;
 
 class LightCmp : public Component
 {

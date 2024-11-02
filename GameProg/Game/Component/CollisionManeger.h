@@ -1,6 +1,6 @@
 #pragma once
 
-class RayCast;
+
 
 class CollisionManeger
 {

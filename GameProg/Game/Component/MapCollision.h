@@ -1,6 +1,5 @@
 #pragma once
 
-class GameScene;
 
 class MapCollision : public Component
 {

@@ -313,6 +313,9 @@
     <ClInclude Include="Game\Info\PictureInfo.h">
       <Filter>Game\Info</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Info\ForwardDeclaration.h">
+      <Filter>Game\Info</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameProg.rc">

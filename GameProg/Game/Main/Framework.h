@@ -19,6 +19,7 @@ using namespace std;
 #include "EnumInfo.h"
 #include "SystemInfo.h"
 #include "PictureInfo.h"
+#include "ForwardDeclaration.h"
 
 //ƒVƒXƒeƒ€
 #include"Fps.h"

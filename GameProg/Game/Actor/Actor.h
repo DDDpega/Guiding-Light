@@ -1,7 +1,6 @@
 #pragma once
 
-class RigidbodyCmp;
-class MapCollision;
+
 
 
 class Actor

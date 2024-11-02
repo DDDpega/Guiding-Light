@@ -1,10 +1,6 @@
 #pragma once
 
-class Map;
-class Player;
-class Picture;
-class Pisher;
-class SolarPanel;
+
 
 class GameScene : public Scene
 {
