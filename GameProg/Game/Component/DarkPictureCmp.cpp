@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-DarkPictureCmp::DarkPictureCmp(Actor* actor, const TCHAR* picture)
+DarkPictureCmp::DarkPictureCmp(Actor* actor, PICTURE_TYPE picture)
 	:Component(actor)
 	,m_picture(picture)
 {

@@ -45,6 +45,8 @@ public:
 
 protected:
 	std::list<std::shared_ptr<Picture>> m_pictureList;
+
+
 };
 
 bool SortChange(std::shared_ptr<Picture>& a, std::shared_ptr<Picture>& b);

@@ -8,7 +8,7 @@ public:
 	/// </summary>
 	/// <param name="actor"></param>
 	/// <param name="picture"></param>
-	DarkPictureCmp(Actor* actor, const TCHAR* picture);
+	DarkPictureCmp(Actor* actor, PICTURE_TYPE picture);
 
 	/// <summary>
 	/// デストラクタ
@@ -33,6 +33,6 @@ public:
 	shared_ptr<Picture> m_darkPicture;
 
 protected:
-	const TCHAR* m_picture;
+	PICTURE_TYPE m_picture;
 };
 

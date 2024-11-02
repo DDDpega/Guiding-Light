@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-PictureCmp::PictureCmp(Actor* actor, float size, const char* picture,E_PIVOT pivot,E_SORT sort)
+PictureCmp::PictureCmp(Actor* actor, float size, PICTURE_TYPE picture,E_PIVOT pivot,E_SORT sort)
 	:Component(actor)
 	,m_pictureType(picture)
 	,m_size(size)

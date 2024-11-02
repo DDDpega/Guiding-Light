@@ -21,17 +21,17 @@ void GameClearUI::Initialize()
 	LONG scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//–îˆó
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, "Picture/stageSelectPoint1.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
-	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 0.5, "Picture/UI_15.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 
-	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.5, "Picture/UI_59.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[0] = picture->GetPos();
 
-	picture = shared_ptr<Picture>(new Picture({ scrX / 2,600 }, 0.5, "Picture/UI_55.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	picture = shared_ptr<Picture>(new Picture({ scrX / 2,600 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[1] = picture->GetPos();
 

@@ -16,7 +16,7 @@ void Ladder::Initialize()
 	SceneManeger::gameScene->GetPlayer()->AddisLadder(m_num, false);
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LADDER_INFO::SIZE, "Picture/ladder.png", E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LADDER_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 	LONG x = (m_pictureCmp->m_picture->m_pictureSizeX * m_pictureCmp->m_picture->m_size) / 2;

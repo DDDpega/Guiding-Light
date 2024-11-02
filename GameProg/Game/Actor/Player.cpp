@@ -17,7 +17,7 @@ void Player::Initialize()
 	Actor::Initialize();
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PLAYER_INFO::SIZE, "Picture/jiki2.png", E_PIVOT::CENTER, E_SORT::SORT_PLAYER));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PLAYER_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_PLAYER));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定
@@ -38,7 +38,7 @@ void Player::Initialize()
 	Actor::AddComponent(m_lightCmp);
 
 	//暗闇中に見える画像の生成
-	m_darkPicture = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, "Picture/jiki2_dark.png"));
+	m_darkPicture = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]));
 	Actor::AddComponent(m_darkPicture);
 }
 
@@ -75,12 +75,12 @@ void Player::Update()
 
 	//左右を向く
 	if (m_isRightdir) {
-		m_pictureCmp->m_picture->ChangePicture("Picture/jiki2.png");
-		m_darkPicture->m_darkPicture->ChangePicture("Picture/jiki2_dark.png");
+		m_pictureCmp->m_picture->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+		m_darkPicture->m_darkPicture->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
 	}
 	else {
-		m_pictureCmp->m_picture->ChangePicture("Picture/jiki.png");
-		m_darkPicture->m_darkPicture->ChangePicture("Picture/jiki_dark.png");
+		m_pictureCmp->m_picture->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+		m_darkPicture->m_darkPicture->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
 	}
 
 	//はしご中の動作

@@ -13,6 +13,11 @@ void InGameUI::Initialize()
 {
 	UserInterface::Initialize();
 
+	//現在のステージ
+	auto stageNum = std::shared_ptr<Picture>(new Picture(POINT{ 50,50 }, 0.2, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::LEFTUP, E_SORT::SORT_UI, false));
+	UserInterface::AddPictureInUI(stageNum);
+
+
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 36, 10);
 }
 

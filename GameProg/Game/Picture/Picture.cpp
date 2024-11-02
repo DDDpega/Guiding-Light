@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-Picture::Picture(POINT pos, float size, const TCHAR* picture, E_PIVOT pivot, E_SORT sort, bool isVisible, bool isAlpha)
+Picture::Picture(POINT pos, float size, const PICTURE_TYPE picture, E_PIVOT pivot, E_SORT sort, bool isVisible, bool isAlpha)
 	:m_pos(pos)
 	, m_size(size)
 	, m_picture(picture)
@@ -62,13 +62,13 @@ void Picture::Draw()
 	}
 }
 
-void Picture::ChangePicture(const TCHAR* picture) 
+void Picture::ChangePicture(PICTURE_TYPE picture)
 {
+ 	m_handle = picture.handle;
 
-	m_handle = LoadGraph(picture); // 画像をロード
 
 	//画像サイズの取得
-	GetGraphSize(m_handle, &m_pictureSizeX, &m_pictureSizeY);
+	GetGraphSize(picture.handle, &m_pictureSizeX, &m_pictureSizeY);
 }
 
 void Picture::SetAlpha(int alpha)

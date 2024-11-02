@@ -22,7 +22,7 @@ void GoalLight::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, GOALLIGHT_INFO::SIZE, "Picture/GoalLight.png", E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, GOALLIGHT_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 }

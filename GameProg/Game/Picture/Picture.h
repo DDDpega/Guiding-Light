@@ -12,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Picture(POINT pos, float size, const TCHAR* picture, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
+	Picture(POINT pos, float size, const PICTURE_TYPE picture, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
 
 	/// <summary>
 	/// 描画しないPicture
@@ -43,7 +43,7 @@ public:
 	/// 画像の変更
 	/// </summary>
 	/// <param name="picture"></param>
-	void ChangePicture(const TCHAR* picture);
+	void ChangePicture(PICTURE_TYPE picture);
 
 	/// <summary>
 	/// 現在のポジションを得る
@@ -106,7 +106,7 @@ public:
 protected:
 	E_SORT m_sort;			//描画順番
 	POINT m_pos;			//位置
-	const TCHAR* m_picture;	//画像のファイル名
+	PICTURE_TYPE m_picture;	//画像のファイル名
 	E_PIVOT m_pivot;			//画像の中心位置
 	bool m_isVisible;			//見た目を消す
 	bool m_pictureNull;			//描画しないPicture

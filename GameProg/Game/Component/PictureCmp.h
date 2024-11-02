@@ -7,7 +7,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	/// <param name="actor">親アクター</param>
-	PictureCmp(Actor* actor, float size, const char* picture, E_PIVOT pivot, E_SORT sort);
+	PictureCmp(Actor* actor, float size, PICTURE_TYPE picture, E_PIVOT pivot, E_SORT sort);
 
 	/// <summary>
 	/// デストラクタ
@@ -42,7 +42,7 @@ private:
 	/// <summary>
 	/// 画像の情報
 	/// </summary>
-	const char* m_pictureType;
+	PICTURE_TYPE m_pictureType;
 
 	/// <summary>
 	/// 画像のサイズ

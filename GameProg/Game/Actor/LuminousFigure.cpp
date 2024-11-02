@@ -16,7 +16,7 @@ void LuminousFigure::Initialize()
 	Actor::Initialize();
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LUMINOUSFIGURE_INFO::SIZE, "Picture/figua.png", E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LUMINOUSFIGURE_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成

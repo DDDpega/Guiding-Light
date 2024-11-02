@@ -52,7 +52,7 @@ void SceneManeger::ChangeScene(E_SCENE nextScene)
 	case GAME:
 		nowScene = gameScene;
 		break;
-	case TITLE:
+	case E_SCENE::TITLE:
 		nowScene = titleScene;
 		break;
 	case STAGESELECT:

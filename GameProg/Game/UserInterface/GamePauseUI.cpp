@@ -23,21 +23,21 @@ void GamePauseUI::Initialize()
 	//ÉçÉS
 
 	//ñÓàÛ
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, "Picture/stageSelectPoint1.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
-	auto pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 200 }, 0.5, "Picture/pause.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 200 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(pauseLogo);
 
-	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 , 300 }, 0.5, "Picture/UI_61.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 , 300 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[0] = picture->GetPos();
 
-	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,450 }, 0.5, "Picture/UI_63.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,450 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[1] = picture->GetPos();
 
-	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,600 }, 0.5, "Picture/UI_55.png", E_PIVOT::CENTER, E_SORT::SORT_UI));
+	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,600 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[2] = picture->GetPos();
 
