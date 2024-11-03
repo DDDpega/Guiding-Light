@@ -16,7 +16,7 @@ void Ladder::Initialize()
 	SceneManeger::gameScene->GetPlayer()->AddisLadder(m_num, false);
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LADDER_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LADDER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::LADDER],0, E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 	//ボックスコリジョン生成

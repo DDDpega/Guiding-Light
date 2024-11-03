@@ -18,7 +18,7 @@ void Pisher::Initialize()
 	Actor::Initialize();
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER],0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
@@ -27,7 +27,7 @@ void Pisher::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//暗闇中に見える画像の生成
-	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]));
+	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 1));
 	Actor::AddComponent(dark);
 
 	//プレイヤーを入手する

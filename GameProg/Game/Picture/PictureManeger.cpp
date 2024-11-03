@@ -48,7 +48,23 @@ void PictureManeger::Initialize()
 			UI::TITLE_LIST[list.type].handle.push_back(LoadGraph(path));
 		}
 	}
+	for (auto& list : ILLUST::GIMMICK_LIST) {
+		for (auto& path : list.path) {
+			ILLUST::GIMMICK_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
+	}
+	for (auto& list : ILLUST::CHARACTER_LIST) {
+		for (auto& path : list.path) {
+			ILLUST::CHARACTER_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
+	}
+	for (auto& list : ILLUST::STAGE_LIST) {
+		for (auto& path : list.path) {
+			ILLUST::STAGE_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
+	}
 }
+
 
 void PictureManeger::Update()
 {

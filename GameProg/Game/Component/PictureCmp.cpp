@@ -1,12 +1,13 @@
 #include "Framework.h"
 
 
-PictureCmp::PictureCmp(Actor* actor, float size, PICTURE_TYPE picture,E_PIVOT pivot,E_SORT sort)
+PictureCmp::PictureCmp(Actor* actor, float size, PICTURE_TYPE picture,int number,E_PIVOT pivot,E_SORT sort)
 	:Component(actor)
 	,m_pictureType(picture)
 	,m_size(size)
 	,m_pivot(pivot)
 	,m_sort(sort)
+	,m_number(number)
 {
 
 }
@@ -19,7 +20,7 @@ void PictureCmp::Initialize()
 {
 	Component::Initialize();
 
-	m_picture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_size, m_pictureType, 0, m_pivot,m_sort));
+	m_picture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_size, m_pictureType, m_number, m_pivot,m_sort));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_picture);
 }
 

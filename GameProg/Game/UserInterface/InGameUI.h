@@ -33,13 +33,12 @@ public:
 	/// </summary>
 	/// <param name="num"></param>
 	void ChangeLight(int num) {
-		m_lightnum = num;
+		m_pictureLightNum->ChangePicture(UI::GAME_LIST[UI::GAME_TYPE::LAMP_1], num-1);
 	}
 
 
 protected:
-	int m_stageNum;		//ステージ数
-	int m_lightnum;		//残りのライトの数
+	shared_ptr<Picture> m_pictureLightNum;
 };
 
 

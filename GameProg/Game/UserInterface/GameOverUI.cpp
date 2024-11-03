@@ -20,17 +20,20 @@ void GameOverUI::Initialize()
 	LONG scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture({ 0,0 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture({ 0,0 }, 0.5, UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
-	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//ロゴ
+	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::GAMEOVER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
-
-	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	
+	//もう一度プレイする
+	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::ONCEMORE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[0] = picture->GetPos();
-
-	picture = shared_ptr<Picture>(new Picture({ scrX / 2,600 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	
+	//ステージセレクトへ
+	picture = shared_ptr<Picture>(new Picture({ scrX / 2,600 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[1] = picture->GetPos();
 

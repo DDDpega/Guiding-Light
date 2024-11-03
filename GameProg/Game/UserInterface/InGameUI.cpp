@@ -14,11 +14,17 @@ void InGameUI::Initialize()
 	UserInterface::Initialize();
 
 	//現在のステージ
-	auto stageNum = std::shared_ptr<Picture>(new Picture(POINT{ 50,50 }, 0.2, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI, false));
+	auto stageNum = std::shared_ptr<Picture>(new Picture(POINT{ 50,50 }, 0.2, UI::GAME_LIST[UI::GAME_TYPE::G_STAGE], SceneManeger::gameScene->GetNumStage(), E_PIVOT::LEFTUP, E_SORT::SORT_UI, true));
 	UserInterface::AddPictureInUI(stageNum);
 
+	//「残りのランプ」
+	auto lamp = std::shared_ptr<Picture>(new Picture(POINT{ WINDOW_INFO::GAME_WIDTH-400,50 }, 0.2, UI::GAME_LIST[UI::GAME_TYPE::LAMP], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI, true));
+	UserInterface::AddPictureInUI(lamp);
 
-	m_fontHandle = CreateFontToHandle("MS ゴシック", 36, 10);
+	//残りのランプの数
+	m_pictureLightNum=std::shared_ptr<Picture>(new Picture(POINT{ WINDOW_INFO::GAME_WIDTH - 100,50 }, 0.2, UI::GAME_LIST[UI::GAME_TYPE::LAMP_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI, true));
+	UserInterface::AddPictureInUI(m_pictureLightNum);
+
 }
 
 void InGameUI::Update()
@@ -30,8 +36,4 @@ void InGameUI::Update()
 void InGameUI::Draw()
 {
 	UserInterface::Draw();
-
-	//文字の表示
-	DrawFormatStringFToHandle(20, 20, GetColor(255, 255, 255), m_fontHandle, "ステージ%d", m_stageNum);
-	DrawFormatStringFToHandle(WINDOW_INFO::GAME_WIDTH-310, 20, GetColor(255, 255, 255), m_fontHandle, "残りのランプ　%d", m_lightnum);
 }

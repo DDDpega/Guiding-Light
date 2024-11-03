@@ -23,21 +23,24 @@ void GamePauseUI::Initialize()
 	//ロゴ
 
 	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE],0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
-	auto pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 200 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto pauseLogo = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 - 200 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::PAUSE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(pauseLogo);
 
-	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 , 300 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//ゲームを続ける
+	auto picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 , 300 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::CONTINUE_GAME], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[0] = picture->GetPos();
 
-	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,450 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//最初からプレイする
+	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,450 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::REPLAY], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[1] = picture->GetPos();
 
-	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,600 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//ステージセレクトへ
+	picture = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2,600 }, 0.5, UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 	m_nowpostion[2] = picture->GetPos();
 

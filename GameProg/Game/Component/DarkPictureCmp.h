@@ -8,7 +8,7 @@ public:
 	/// </summary>
 	/// <param name="actor"></param>
 	/// <param name="picture"></param>
-	DarkPictureCmp(Actor* actor, PICTURE_TYPE picture);
+	DarkPictureCmp(Actor* actor, PICTURE_TYPE picture,int number);
 
 	/// <summary>
 	/// デストラクタ
@@ -34,5 +34,6 @@ public:
 
 protected:
 	PICTURE_TYPE m_picture;
+	int m_number;
 };
 

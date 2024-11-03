@@ -135,6 +135,17 @@ namespace UI {
 			{ "Picture/UI/Game/GL_UI_G_Stage8.png" },
 			{ "Picture/UI/Game/GL_UI_G_Stage9.png" },
 			{ "Picture/UI/Game/GL_UI_G_Stage10.png" },
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
 		}},
 
 		//écÇËÉâÉìÉvêî
@@ -150,6 +161,7 @@ namespace UI {
 			{ "Picture/UI/Game/GL_UI_Lamp8.png" },
 			{ "Picture/UI/Game/GL_UI_Lamp9.png" },
 			{ "Picture/UI/Game/GL_UI_Lamp10.png" },
+
 
 		}},
 
@@ -276,16 +288,55 @@ namespace UI{
 
 namespace ILLUST {
 
-	namespace GIMMICK {
 
-	}
+	enum GIMMICK_TYPE {
+		FIGUA,
+		GOALLIGHT,
+		LIGHT,
+		PISHER,
+		LADDER,
+		SOLARPANEL,
+		SOLARPANEL_BLOCK
+	};
 
-	namespace CHARACTER {
+	__declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
+		{FIGUA , {"Picture/figua.png"} },
+		{GOALLIGHT , {"Picture/GoalLight.png"}},
+		{LIGHT , {"Picture/light.png"}},
+		{PISHER ,{
+			{"Picture/UFO_dot.png"},
+			{"Picture/pisherEye.png"},
+		}},
+		{LADDER , {"Picture/ladder.png"}},
+		{SOLARPANEL , {"Picture/SolarPanel.png"}},
+		{SOLARPANEL_BLOCK , {"Picture/SolarPanelBlock.png"}},
+	};
+}
 
-	}
+namespace ILLUST {
+	enum CHARACTER_TYPE {
+		PLAYER,
+	};
 
-	namespace STAGE {
+	__declspec(selectany) vector<PICTURE_TYPE> CHARACTER_LIST = {
+		{PLAYER , {
+			{"Picture/jiki.png"},
+			{"Picture/jiki2.png"},
+			{"Picture/jiki_dark.png"},
+			{"Picture/jiki2_dark.png"},
+		}},
+	};
+}
 
-	}
+namespace ILLUST {
+		enum STAGE_TYPE {
+			DEFAULT_MAPCHIP,
+			BACKGROUND
+		};
+	
+		__declspec(selectany) vector<PICTURE_TYPE> STAGE_LIST = {
+			{SOLARPANEL_BLOCK , {"Picture/mapChipData16bit.png"}},
+			{BACKGROUND , {"Picture/background.png"}},
+		};
 }
 

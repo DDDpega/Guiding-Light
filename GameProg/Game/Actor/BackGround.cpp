@@ -16,7 +16,7 @@ void BackGround::Initialize()
 	Actor::Initialize();
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, BACKGROUND_INFO::SIZE, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::LEFTUP, E_SORT::SORT_BACKGROUND));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, BACKGROUND_INFO::SIZE, ILLUST::STAGE_LIST[ILLUST::STAGE_TYPE::BACKGROUND],0, E_PIVOT::LEFTUP, E_SORT::SORT_BACKGROUND));
 	AddComponent(m_pictureCmp);
 }
 

@@ -1,8 +1,9 @@
 #include "Framework.h"
 
-DarkPictureCmp::DarkPictureCmp(Actor* actor, PICTURE_TYPE picture)
+DarkPictureCmp::DarkPictureCmp(Actor* actor, PICTURE_TYPE picture,int number)
 	:Component(actor)
 	,m_picture(picture)
+	,m_number(number)
 {
 }
 
@@ -14,7 +15,7 @@ void DarkPictureCmp::Initialize()
 {
 	Component::Initialize();
 
-	m_darkPicture = shared_ptr<Picture>(new Picture((m_actor->GetPos()), (m_actor->m_pictureCmp->m_picture->m_size), m_picture, 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR_DARKPICTURE));
+	m_darkPicture = shared_ptr<Picture>(new Picture((m_actor->GetPos()), (m_actor->m_pictureCmp->m_picture->m_size), m_picture, m_number, E_PIVOT::CENTER, E_SORT::SORT_ACTOR_DARKPICTURE));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_darkPicture);
 }
 
