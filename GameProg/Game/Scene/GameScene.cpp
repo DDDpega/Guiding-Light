@@ -16,10 +16,11 @@ GameScene::GameScene()
 		{
 			MAPCHIP_HEIGHT,MAPCHIP_WIDTH,
 			MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
-			L"_=",
+			L"_=56789abc",
 			L"Data/Map1.txt",
 			POINT{3,15},
 		},
+
 
 		})
 {

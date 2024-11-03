@@ -59,6 +59,17 @@ public:
 	//ライトの数を引く
 	void LightNumMinus();
 
+	/// <summary>
+	/// ステージの番号を変更
+	/// </summary>
+	/// <param name="num">ステージ番号</param>
+	void SetNumStage(int num) { m_nowStageNum = num; }
+
+	/// <summary>
+	/// ステージの番号を取得
+	/// </summary>
+	int GetNumStage() { return m_nowStageNum; }
+
 
 	std::shared_ptr<Map>	m_map;
 	shared_ptr<LightPicture> m_lightPicture;
@@ -73,4 +84,6 @@ private:
 
 	//各種UI
 	shared_ptr<InGameUI> m_gameUI;
+
+	int m_nowStageNum;
 };

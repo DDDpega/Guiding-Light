@@ -48,36 +48,36 @@ void StageSelectUI::Initialize()
 	}
 
 	//ステージ番号
-	m_stageNum = std::shared_ptr<Picture>(new Picture(POINT{  50,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_stageNum = std::shared_ptr<Picture>(new Picture(POINT{  50,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_stageNum);
 
-	//ステージ番号
-	m_stageTitle = std::shared_ptr<Picture>(new Picture(POINT{ 150,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//ステージタイトル
+	m_stageTitle = std::shared_ptr<Picture>(new Picture(POINT{ 600,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_stageTitle);
 
 	//メニューセレクトアイコン
 	m_menuIcon = std::shared_ptr<Picture>(new Picture(POINT{ scrX - 50,  50 }, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_menuIcon);
 
-	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//キャラ
+	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 0.5, UI::CREDIT_LIST[UI::CREDIT_TYPE::TAKADA], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
 	//黒背景
-	m_backGround = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 }, 5, UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
+	m_backGround = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 }, 1, UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
 	UserInterface::AddPictureInUI(m_backGround);
-	m_backGround->SetAlpha(180);
+	m_backGround->SetAlpha(225);
 
 	//メニューセレクト
 	m_menuSelect= std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2-200 }, 1, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENUSELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menuSelect);
 
 	//クレジット
-	m_menu[0] = std::shared_ptr<Picture>(new Picture(POINT{300 ,scrY / 2 + 150}, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_menu[0] = std::shared_ptr<Picture>(new Picture(POINT{300 ,scrY / 2 + 150}, 0.25, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menu[0]);
 
 	//オプション
-	m_menu[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX-300 ,scrY / 2 + 150 }, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::OPTION_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_menu[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX-300 ,scrY / 2 + 150 }, 0.25, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::OPTION_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menu[1]);
 
 }
@@ -112,6 +112,7 @@ void StageSelectUI::Update()
 			case 0:
 				//ゲームシーンへ移行フラグをオンにする
 				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::GAME);
+				SceneManeger::gameScene->SetNumStage(m_nowcursor);
 				//元に戻す
 				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 				break;
