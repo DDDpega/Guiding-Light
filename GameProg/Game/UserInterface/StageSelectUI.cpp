@@ -28,17 +28,17 @@ void StageSelectUI::Initialize()
 	LONG scrY = WINDOW_INFO::GAME_HEIGHT;
 	
 	//ステージ左
-	m_stageArray[0] = std::shared_ptr<Picture>(new Picture(POINT{250,scrY / 2 + 200}, 0.4, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI,true,false));
+	m_stageArray[0] = std::shared_ptr<Picture>(new Picture(POINT{250,scrY / 2 + 200}, 0.4, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,false,false));
 	m_stageMarkers[0] = m_stageArray[0]->GetPos();
 	UserInterface::AddPictureInUI(m_stageArray[0]);
 
 	//ステージ真ん中
-	m_stageArray[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 + 200 }, 0.4, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_stageArray[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 + 200 }, 0.4, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	m_stageMarkers[1] = m_stageArray[1]->GetPos();
 	UserInterface::AddPictureInUI(m_stageArray[1]);
 
 	//ステージ右
-	m_stageArray[2] = std::shared_ptr<Picture>(new Picture(POINT{ scrX - 250 ,scrY / 2 + 200 }, 0.4, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_stageArray[2] = std::shared_ptr<Picture>(new Picture(POINT{ scrX - 250 ,scrY / 2 + 200 }, 0.4, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	m_stageMarkers[2] = m_stageArray[2]->GetPos();
 	UserInterface::AddPictureInUI(m_stageArray[2]);
 
@@ -47,35 +47,38 @@ void StageSelectUI::Initialize()
 		m_stageMarkers[i].y -= 100;
 	}
 
+	//ステージ番号
+	m_stageNum = std::shared_ptr<Picture>(new Picture(POINT{  50,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_stageNum);
+
+	//ステージ番号
+	m_stageTitle = std::shared_ptr<Picture>(new Picture(POINT{ 150,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_stageTitle);
+
 	//メニューセレクトアイコン
-	m_menuIcon = std::shared_ptr<Picture>(new Picture(POINT{ scrX - 50,  50 }, 0.2, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_menuIcon = std::shared_ptr<Picture>(new Picture(POINT{ scrX - 50,  50 }, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_menuIcon);
 
 	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 3, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
 	//黒背景
-	m_backGround = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 }, 5, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
+	m_backGround = std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2 }, 5, UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
 	UserInterface::AddPictureInUI(m_backGround);
 	m_backGround->SetAlpha(180);
 
 	//メニューセレクト
-	m_menuSelect= std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2-200 }, 0.2, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_menuSelect= std::shared_ptr<Picture>(new Picture(POINT{ scrX / 2 ,scrY / 2-200 }, 1, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENUSELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menuSelect);
 
 	//クレジット
-	m_menu[0] = std::shared_ptr<Picture>(new Picture(POINT{300 ,scrY / 2 + 150}, 0.2, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_menu[0] = std::shared_ptr<Picture>(new Picture(POINT{300 ,scrY / 2 + 150}, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menu[0]);
 
 	//オプション
-	m_menu[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX-300 ,scrY / 2 + 150 }, 0.2, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_menu[1] = std::shared_ptr<Picture>(new Picture(POINT{ scrX-300 ,scrY / 2 + 150 }, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::OPTION_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menu[1]);
-
-	//フォントの描画
-	m_fontHandle = CreateFontToHandle("MS ゴシック", 80, 1);
-	m_stageTitlePos = POINT{ 50,100 };
-	LordFileText();
 
 }
 
@@ -157,16 +160,16 @@ void StageSelectUI::Update()
 		//縦カーソルの変更
 		if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
 			if (m_colSelectNum != 1) {
-				//カーソルを下にずらす
+				//カーソルを上にずらす
 				m_colSelectNum++;
-				m_menuIcon->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+				m_menuIcon->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_LIGHT]);
 			}
 		}
 		if (Game::gameInstance->GetInputMNG()->Click(L"DOWN")) {
 			if (m_colSelectNum != 0) {
-				//カーソルを上にずらす
+				//カーソルを下にずらす
 				m_colSelectNum--;
-				m_menuIcon->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+				m_menuIcon->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT]);
 			}
 		}
 	}
@@ -174,18 +177,18 @@ void StageSelectUI::Update()
 		//横カーソルの変更
 		if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
 			if (m_isNowMenuCursor != 1) {
-				//カーソルを下にずらす
+				//カーソルを右にずらす
 				m_isNowMenuCursor++;
-				m_menu[0]->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
-				m_menu[1]->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+				m_menu[0]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_LIGHT]);
+				m_menu[1]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::OPTION_N_LIGHT]);
 			}
 		}
 		if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
 			if (m_isNowMenuCursor != 0) {
-				//カーソルを上にずらす
+				//カーソルを左にずらす
 				m_isNowMenuCursor--;
-				m_menu[0]->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
-				m_menu[1]->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+				m_menu[0]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_N_LIGHT]);
+				m_menu[1]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::OPTION_LIGHT]);
 			}
 		}
 	}
@@ -196,17 +199,22 @@ void StageSelectUI::Draw()
 	UserInterface::Draw();
 
 	//メニューセレクトを開いてない状態の時、ステージ番号とステージタイトルを変更する
-	if(!m_isMenu)
-		DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
+	if (!m_isMenu)
+	{
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], m_nowcursor);
+		m_stageTitle->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::T_STAGE_1], m_nowcursor);
+	}
+		
+		//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
 
 	auto j = 0;
 	for (int i = m_nowcursor; i < m_nowcursor + 3; i++) {
 		//カーソルの位置を光らす
 		if (m_stage[i] == true) {
-			m_stageArray[j]->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+			m_stageArray[j]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
 		}
 		else {
-			m_stageArray[j]->ChangePicture(UI::TITLE_LIST[UI::TITLE_TYPE::TITLE]);
+			m_stageArray[j]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
 		}
 		j++;
 	}
@@ -293,34 +301,75 @@ void StageSelectUI::LordFile()
 }
 
 
-//ファイルからデータを読み込むメソッド
-void StageSelectUI::LordFileText()
+void StageSelectUI::ChangeStageTitle(int num)
 {
-	//ステージタイトルのデータ取得
-	const wstring filePath = L"Data/StageText.txt";
+	switch (num)
+	{
+	case 0:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 1:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 2:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 3:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 4:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 5:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 6:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 7:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 8:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 9:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 10:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 11:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 12:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 13:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 14:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 15:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 16:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 17:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 18:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 19:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
+	case 20:
+		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1]);
+		break;
 
-	ifstream ifs;
-
-	//ファイルを開く
-	ifs.open(filePath.c_str());
-
-	//失敗したら何もしない
-	if (ifs.fail()) {
-		return;
-	}
-
-	//ファイルから取得した文字列
-	string col;
-
-
-
-	for (int r = 0; r < 21; r++) {
-		//ファイルから1行読み込む
-		getline(ifs, col);
-		m_stageTitle[r] = col;
-	}
-	//もしも読み込める行がないならば終了
-	if (ifs.eof()) {
-		ifs.close();
+	default:
+		break;
 	}
 }

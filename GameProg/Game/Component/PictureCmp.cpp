@@ -19,7 +19,7 @@ void PictureCmp::Initialize()
 {
 	Component::Initialize();
 
-	m_picture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_size, m_pictureType, m_pivot,m_sort));
+	m_picture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_size, m_pictureType, 0, m_pivot,m_sort));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_picture);
 }
 

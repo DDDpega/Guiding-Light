@@ -18,20 +18,35 @@ void PictureManeger::Initialize()
 	m_pictureList.clear();
 
 	//äeâÊëúÇÉçÅ[ÉhÇ∑ÇÈ
+	for (auto& list : UI::ALLTYPE_LIST) {
+		for (auto& path : list.path) {
+			UI::ALLTYPE_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
+	}
 	for (auto& list : UI::CREDIT_LIST) {
-		UI::CREDIT_LIST[list.type].handle = LoadGraph(list.path);
+		for (auto& path : list.path) {
+			UI::CREDIT_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
 	}
 	for (auto& list : UI::GAME_LIST) {
-		UI::GAME_LIST[list.type].handle = LoadGraph(list.path);
+		for (auto& path : list.path) {
+			UI::GAME_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
 	}
 	for (auto& list : UI::OPTION_LIST) {
-		UI::OPTION_LIST[list.type].handle = LoadGraph(list.path);
+		for (auto& path : list.path) {
+			UI::OPTION_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
 	}
 	for (auto& list : UI::STAGESELECT_LIST) {
-		UI::STAGESELECT_LIST[list.type].handle = LoadGraph(list.path);
+		for (auto& path : list.path) {
+			UI::STAGESELECT_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
 	}
 	for (auto& list : UI::TITLE_LIST) {
-		UI::TITLE_LIST[list.type].handle = LoadGraph(list.path);
+		for (auto& path : list.path) {
+			UI::TITLE_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
 	}
 }
 

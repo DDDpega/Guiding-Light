@@ -21,7 +21,7 @@ void LightCmp::Initialize()
 {
 	Component::Initialize();
 
-	m_lightPicture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize*0.004, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
+	m_lightPicture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize*0.004, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
 	m_lightPicture->Initialize();
 	//Game::gameInstance->GetPictureMNG()->AddPicture(m_lightPicture);
 	SceneManeger::gameScene->m_lightPicture->AddLightList(this);

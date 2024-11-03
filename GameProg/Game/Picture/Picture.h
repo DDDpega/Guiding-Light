@@ -6,7 +6,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Picture(POINT pos, float size, const PICTURE_TYPE picture, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
+	Picture(POINT pos, float size, const PICTURE_TYPE picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
 
 	/// <summary>
 	/// 描画しないPicture
@@ -37,7 +37,8 @@ public:
 	/// 画像の変更
 	/// </summary>
 	/// <param name="picture"></param>
-	void ChangePicture(PICTURE_TYPE picture);
+	/// <param name="num"></param>
+	void ChangePicture(PICTURE_TYPE picture, int num = 0);
 
 	/// <summary>
 	/// 現在のポジションを得る
@@ -106,5 +107,6 @@ protected:
 	bool m_pictureNull;			//描画しないPicture
 	bool m_isAlpha;			//アルファ値を変更
 	int m_alpha;			//アルファ値
+	int m_num;			//画像配列番号
 };
 
