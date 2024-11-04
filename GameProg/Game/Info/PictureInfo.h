@@ -335,7 +335,7 @@ namespace ILLUST {
 		};
 	
 		__declspec(selectany) vector<PICTURE_TYPE> STAGE_LIST = {
-			{SOLARPANEL_BLOCK , {"Picture/mapChipData16bit.png"}},
+			{DEFAULT_MAPCHIP , {"Picture/mapChipData16bit.png"}},
 			{BACKGROUND , {"Picture/background.png"}},
 		};
 }
