@@ -45,7 +45,7 @@ public:
 	void NoHitCollision(Actor* other, E_TAG tag);
 
 	E_TAG m_tag;
-
+	bool m_isRayStart;
 private:
 	Point m_targetPos;
 	int frame;

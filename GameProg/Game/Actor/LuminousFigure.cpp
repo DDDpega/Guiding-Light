@@ -79,7 +79,8 @@ void LuminousFigure::Draw()
 {
 	Actor::Draw();
 
-	//DrawFormatStringFToHandle(m_pos.x-70, m_pos.y-50, GetColor(255, 255, 255), m_fontHandle, "%d", m_keepTime);
+	if(GAME_INFO::DEBUG)
+		DrawFormatStringFToHandle(m_pos.x-70, m_pos.y-50, GetColor(255, 255, 255), m_fontHandle, "%d", m_keepTime);
 }
 
 void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)

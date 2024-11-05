@@ -48,6 +48,9 @@ void Pisher::Update()
 		if (m_player->GetLightOn()) {
 			m_target = m_player;
 		}
+		else {
+			m_target = nullptr;
+		}
 	}
 
 	//ターゲットが存在したら

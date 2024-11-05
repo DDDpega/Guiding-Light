@@ -38,6 +38,7 @@ public:
 	bool m_lightOn;
 	shared_ptr<RayCast> m_ray[GAME_INFO::RAYNUM];
 	shared_ptr<Picture> m_lightPicture;
+
 protected:
 	int m_lightSize;
 	Point targetPos;

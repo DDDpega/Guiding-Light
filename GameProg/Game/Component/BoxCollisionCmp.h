@@ -42,10 +42,10 @@ public:
 
 	E_TAG m_tag;		//タグ
 	BOX m_collision;
+	Point m_size;	//左右のサイズ
 
+	Point m_offset;	//どれだけづれているか
 
 protected:
-	Point m_size;	//左右のサイズ
-	Point m_offset;	//どれだけづれているか
 };
 

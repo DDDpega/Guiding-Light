@@ -24,6 +24,11 @@ public:
 	void Update();
 
 	/// <summary>
+	/// •`‰æˆ—
+	/// </summary>
+	void Draw();
+
+	/// <summary>
 	/// Õ“Ëˆ—
 	/// </summary>
 	/// <param name="other"></param>
@@ -35,5 +40,8 @@ public:
 		/// <param name="other"></param>
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag);
+
+	int	m_fontHandle;
+	shared_ptr<BoxCollisionCmp> m_collisionCmp;
 };
 

@@ -4,6 +4,7 @@ RayCast::RayCast(Point pos,E_TAG tag)
 	:Actor(pos)
 	,frame(0)
 	,m_tag(tag)
+	,m_isRayStart(false)
 {
 	//当たり判定
 	/*auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, {5,5}, E_TAG::RAY));
@@ -25,9 +26,7 @@ void RayCast::Update()
 
 void RayCast::Draw()
 {
-	if (GAME_INFO::DEBUG) {
-		DrawPixel(m_pos.x, m_pos.y, GetColor(255, 0, 0));
-	}
+	DrawPixel(m_pos.x, m_pos.y, GetColor(255, 0, 0));
 }
 
 Point RayCast::RayStart(Point pos,int radius,int element)
@@ -35,11 +34,13 @@ Point RayCast::RayStart(Point pos,int radius,int element)
 	//位置の更新
 	m_pos = pos;
 	m_moveradius = 0;
+	m_isRayStart = true;
 
 	//レイを消す
 	if (radius == 0) {
 		m_pos.x = 0;
 		m_pos.y = 0;
+		m_isRayStart = false;
 		return m_pos;
 	}
 

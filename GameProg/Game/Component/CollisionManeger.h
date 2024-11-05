@@ -38,7 +38,10 @@ public:
 	/// <summary>
 	/// リストに追加する
 	/// </summary>
-	void AddMapCollisionList(std::shared_ptr<BoxCollisionCmp> collision);
+	void AddMapCollisionList(std::shared_ptr<BoxCollisionCmp> collision) {
+		//リストに入れる
+		m_mapCollision.push_back(collision);
+	}
 
 	/// <summary>
 	/// リストに追加する

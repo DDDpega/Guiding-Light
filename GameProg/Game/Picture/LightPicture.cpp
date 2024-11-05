@@ -58,6 +58,9 @@ void LightPicture::Draw()
 		//ƒŒƒC‚ğŒ³‚ÉOŠpŒ`‚ğì¬‚·‚é
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
+			if (!c->m_ray[i]->m_isRayStart)
+				continue;
+
 			if (i == GAME_INFO::RAYNUM-1) {
 				DrawTriangle(c->m_ray[i]->GetPos().x, c->m_ray[i]->GetPos().y,
 					c->m_ray[0]->GetPos().x, c->m_ray[0]->GetPos().y,

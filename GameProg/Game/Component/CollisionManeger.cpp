@@ -51,12 +51,6 @@ void CollisionManeger::AddBOXCollisionList(std::shared_ptr<BoxCollisionCmp> coll
 	m_BOXcollisionList.push_back(collision);
 }
 
-void CollisionManeger::AddMapCollisionList(std::shared_ptr<BoxCollisionCmp> collision)
-{
-	//ƒŠƒXƒg‚É“ü‚ê‚é
-	m_mapCollision.push_back(collision);
-
-}
 
 void CollisionManeger::AddCIRCLECollisionList(std::shared_ptr<CircleCollisionCmp> collision)
 {
@@ -293,15 +287,12 @@ bool CollisionManeger::RayHitCheck(Point RayPos)
 		rayHitCheckCollObj_j = RayPos;
 
 		//“–‚½‚è”»’è
-		if ((rayHitCheckCollObj_i.left<=rayHitCheckCollObj_j.x) &&(rayHitCheckCollObj_i.right>=rayHitCheckCollObj_j.x) )
+		if (((int)rayHitCheckCollObj_i.left<= (int)rayHitCheckCollObj_j.x) &&((int)rayHitCheckCollObj_i.right>= (int)rayHitCheckCollObj_j.x)&&
+			((int)rayHitCheckCollObj_i.top <= (int)rayHitCheckCollObj_j.y) && ((int)rayHitCheckCollObj_i.bottom >= (int)rayHitCheckCollObj_j.y))
 		{
-			if ((rayHitCheckCollObj_i.top<=rayHitCheckCollObj_j.y)&&(rayHitCheckCollObj_i.bottom>=rayHitCheckCollObj_j.y))
-			{
-				return true;
-			}
+			return true;
 		}
 	}
-
 	return false;
 }
 
