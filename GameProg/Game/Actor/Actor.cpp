@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-Actor::Actor(POINT pos)
+Actor::Actor(Point pos)
 	:m_pos(pos)
 {
 	

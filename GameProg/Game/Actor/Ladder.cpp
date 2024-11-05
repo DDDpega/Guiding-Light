@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-Ladder::Ladder(POINT pos,int num)
+Ladder::Ladder(Point pos,int num)
 	:Actor(pos)
 	, m_num(num)
 {

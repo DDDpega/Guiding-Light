@@ -12,7 +12,7 @@ bool MapCollision::CheckMapChip(int col, int row)
 {
 	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
 	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
-	if (chipNo==12 ||chipNo ==1||(chipNo==11)&& solarpanel->GetIsTrigger()) {
+	if (chipNo==2 ||chipNo ==1||(chipNo==11)&& solarpanel->GetIsTrigger()) {
 		return true;
 	}
 	else {
@@ -30,7 +30,7 @@ bool MapCollision::CheckMapChip(int col, int row)
 /// <param name="isCollect">ˆÊ’u‚ğ‹­§“I‚É–ß‚·‚©‚Ç‚¤‚©</param>
 /// <param name="isTopBottomChk">ã‰º‚Ì”»’è‚ğæ‚é‚©‚Ç‚¤‚©</param>
 /// <returns></returns>
-bool MapCollision::CheckMapCollide(E_TAG tag,POINT pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
+bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
 {
 	bool result = false;
 	const auto mapChipSize = 40;

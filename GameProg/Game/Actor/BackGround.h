@@ -7,7 +7,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	BackGround(POINT pos);
+	BackGround(Point pos);
 
 	/// <summary>
 	/// デストラクタ

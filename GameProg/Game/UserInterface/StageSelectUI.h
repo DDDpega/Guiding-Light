@@ -43,7 +43,7 @@ private:
 	bool m_stage[20];	//ステージクリア状態
 
 	shared_ptr<Picture> m_stageArray[3];	//ステージ選択の画像
-	POINT m_stageMarkers[3];	//ステージ選択の位置
+	Point m_stageMarkers[3];	//ステージ選択の位置
 	shared_ptr<Picture> m_menu[2];	//メニューセレクト時の選択画像
 	shared_ptr<Picture> m_menuSelect;	//メニューセレクトの画像
 	int m_colSelectNum;			//上下の選択されている数字

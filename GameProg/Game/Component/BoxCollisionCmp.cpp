@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-BoxCollisionCmp::BoxCollisionCmp(Actor* actor, POINT offset, POINT size, E_TAG name)
+BoxCollisionCmp::BoxCollisionCmp(Actor* actor, Point offset, Point size, E_TAG name)
 	:Component(actor)
 	,m_size(size)
 	,m_offset(offset)
@@ -68,7 +68,7 @@ void BoxCollisionCmp::ChangeCollision()
 	};
 }
 
-BOX BoxCollisionCmp::GetChangeCollision(POINT pos)
+BOX BoxCollisionCmp::GetChangeCollision(Point pos)
 {
 	//ìñÇΩÇËîªíËÇÃçÏê¨
 	BOX collision = {

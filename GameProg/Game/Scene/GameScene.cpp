@@ -9,16 +9,16 @@ GameScene::GameScene()
 		{
 			MAPCHIP_HEIGHT,MAPCHIP_WIDTH,
 			MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
-			L"_=56789abc",
+			L"_=^56789abc",
 			L"Data/Map1.txt",
-			POINT{3,15},
+			Point{3,15},
 		},
 		{
 			MAPCHIP_HEIGHT,MAPCHIP_WIDTH,
 			MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
-			L"_=56789abc",
+			L"_=^56789abc",
 			L"Data/Map1.txt",
-			POINT{3,15},
+			Point{3,15},
 		},
 
 
@@ -43,7 +43,7 @@ void GameScene::Initialize()
 	isGameClear = false;
 
 	//背景画像
-	auto background = std::shared_ptr<BackGround>(new BackGround(POINT{ 0,0 }));
+	auto background = std::shared_ptr<BackGround>(new BackGround(Point{ 0,0 }));
 	Game::gameInstance->GetActorMNG()->AddActor(background);
 
 	//黒い紙をはる
@@ -51,7 +51,7 @@ void GameScene::Initialize()
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_lightPicture);
 
 	//プレイヤーの生成
-	m_player = std::shared_ptr<Player>(new Player(POINT{200,200}));
+	m_player = std::shared_ptr<Player>(new Player(Point{200,200}));
 	Game::gameInstance->GetActorMNG()->AddActor(m_player);
 
 
@@ -168,6 +168,11 @@ Player* GameScene::GetPlayer()
 
 void GameScene::GameOver()
 {
+	//現在がゲームオーバーならばreturn
+	if (isGameOver)
+		return;
+
+	//各種フラグを変更
 	m_isPause = true;
 	isGameOver = true;
 

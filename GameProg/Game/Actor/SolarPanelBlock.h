@@ -8,7 +8,7 @@ public:
 	/// </summary>
 	/// <param name="x">x座標</param>
 	/// <param name="y">y座標</param>
-	SolarPanelBlock(POINT pos,bool isBlock, Scene* scene);
+	SolarPanelBlock(Point pos,bool isBlock, Scene* scene);
 
 	/// <summary>
 	/// デストラクタ

@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-RayCast::RayCast(POINT pos,E_TAG tag)
+RayCast::RayCast(Point pos,E_TAG tag)
 	:Actor(pos)
 	,frame(0)
 	,m_tag(tag)
@@ -30,7 +30,7 @@ void RayCast::Draw()
 	}
 }
 
-POINT RayCast::RayStart(POINT pos,int radius,int element)
+Point RayCast::RayStart(Point pos,int radius,int element)
 {
 	//à íuÇÃçXêV
 	m_pos = pos;

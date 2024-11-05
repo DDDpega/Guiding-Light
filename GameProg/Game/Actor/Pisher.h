@@ -6,7 +6,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Pisher(POINT pos);
+	Pisher(Point pos);
 
 	/// <summary>
 	/// デストラクタ

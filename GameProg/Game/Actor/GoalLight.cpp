@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-GoalLight::GoalLight(POINT pos)
+GoalLight::GoalLight(Point pos)
 	:Actor(pos)
 	,m_isLightOn(false)
 

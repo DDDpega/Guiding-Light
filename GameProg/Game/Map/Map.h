@@ -30,7 +30,7 @@ public:
 	struct RespawnPoint {
 		int		left, top;		//左上の位置
 		int		right, bottom;	//右下の位置
-		POINT		m_respawnSquare;
+		Point		m_respawnSquare;
 	};
 
 	struct Info {
@@ -41,7 +41,7 @@ public:
 		wstring			m_chipSet;		//チップの文字セット
 		wstring			m_filePath;		//ファイルパス名""なら読み込まない
 
-		POINT			m_initSquare;	//最初のプレイヤーのマスの位置
+		Point			m_initSquare;	//最初のプレイヤーのマスの位置
 		//vector<RespawnPoint>		m_respawnList;	//リスポーン・ポイントの配列
 		//RECT			m_goal;		//ゴールエリア
 	};
@@ -49,7 +49,7 @@ public:
 	struct MapPos
 	{
 		int			m_mapChipNum;
-		POINT		m_mapChipPos;
+		Point		m_mapChipPos;
 		bool		m_isGet;
 	};
 
@@ -70,7 +70,7 @@ public:
 	void loadFromFile(const wstring filsePath, const wstring chipSet);
 
 	//スクロール位置をセットするメソッド
-	void setScroll(POINT pos);
+	void setScroll(Point pos);
 	//チップナンバーを取得するメソッド
 	int getChipNo(const int col, const int row)const;
 
@@ -79,7 +79,7 @@ public:
 		return m_chipSize;
 	}
 
-	inline POINT getPos() {
+	inline Point getPos() {
 		return m_pos;
 	}
 
@@ -100,8 +100,8 @@ protected:
 
 	vector<int> m_MapChipList[MAPCHIPCOLNUM];	//マップチップ換算の縦幅のマス目＝18　「マップチップリスト」
 
-	POINT m_scroll;					//スクロールする位置
-	POINT m_pos;
+	Point m_scroll;					//スクロールする位置
+	Point m_pos;
 
 	list<MapPos> m_actorPos;			//アクターポジションのリスト
 

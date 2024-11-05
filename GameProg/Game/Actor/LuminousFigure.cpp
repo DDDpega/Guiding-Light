@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-LuminousFigure::LuminousFigure(POINT pos)
+LuminousFigure::LuminousFigure(Point pos)
 	:Actor(pos)
 	,m_keepTime(0)
 	, m_lightOn(false)

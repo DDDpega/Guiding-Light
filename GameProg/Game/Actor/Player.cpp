@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-Player::Player(POINT pos)
+Player::Player(Point pos)
 	:Actor(pos)
 	,m_firstShot(false)
 {
@@ -45,14 +45,17 @@ void Player::Initialize()
 void Player::Update()
 {
 	Actor::Update();
+
+	bool isRideLadder = false;
 	
 	//梯子の乗り始めと終わり
 	for (auto& ladder : m_isLadder) {
-		if (ladder.isLadder) {
+		if (ladder.isLadder && (m_rigidBody->m_state==STATE::FALL || m_rigidBody->m_state == STATE::STAND)) {
 			m_rigidBody->ChangeState(STATE::FLY);
+			isRideLadder = true;
 			break;
 		}
-		else if(m_rigidBody->m_state!=FALL&& m_rigidBody->m_state != STAND){
+		else if(m_rigidBody->m_state!=JUMP && m_rigidBody->m_state!=FALL&& m_rigidBody->m_state != STAND){
 			m_rigidBody->ChangeState(STATE::STAND);
 		}
 	}
@@ -95,7 +98,8 @@ void Player::Update()
 		}
 	}
 	//ジャンプ
- 	else if (m_rigidBody->m_state == STATE::STAND) {
+ 	if (m_rigidBody->m_state == STATE::STAND ||
+			m_rigidBody->m_state == STATE::FLY) {
 		if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 			m_rigidBody->ChangeState(STATE::JUMPSTT);
 			isClick_y = true;

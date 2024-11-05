@@ -38,7 +38,7 @@ public:
 	}
 
 
-	POINT m_pos;	//中心位置
+	Point m_pos;	//中心位置
 
 protected:
 	Actor* m_actor;	//どの親にくっつくか

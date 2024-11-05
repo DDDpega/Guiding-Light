@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-MapChipActor::MapChipActor(POINT pos)
+MapChipActor::MapChipActor(Point pos)
 	:Actor(pos)
 {
 }

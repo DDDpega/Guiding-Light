@@ -6,7 +6,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	GoalLight(POINT pos);
+	GoalLight(Point pos);
 
 	/// <summary>
 	/// デストラクタ

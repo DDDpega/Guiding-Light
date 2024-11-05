@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-SolarPanel::SolarPanel(POINT pos)
+SolarPanel::SolarPanel(Point pos)
 	:Actor(pos)
 	, m_isTrigger(false)
 {

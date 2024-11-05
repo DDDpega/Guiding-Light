@@ -8,7 +8,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	BoxCollisionCmp(Actor* actor,POINT offset,POINT size,E_TAG name);
+	BoxCollisionCmp(Actor* actor, Point offset, Point size,E_TAG name);
 
 	/// <summary>
 	/// デストラクタ
@@ -38,14 +38,14 @@ public:
 	/// <summary>
 	/// 当たり判定をポジションだけ変更し取得する
 	/// </summary>
-	BOX GetChangeCollision(POINT pos);
+	BOX GetChangeCollision(Point pos);
 
 	E_TAG m_tag;		//タグ
 	BOX m_collision;
 
 
 protected:
-	POINT m_size;	//左右のサイズ
-	POINT m_offset;	//どれだけづれているか
+	Point m_size;	//左右のサイズ
+	Point m_offset;	//どれだけづれているか
 };
 

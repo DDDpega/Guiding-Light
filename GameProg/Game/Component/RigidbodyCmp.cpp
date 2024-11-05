@@ -68,11 +68,14 @@ void RigidbodyCmp::Update()
 
 		break;
 	case JUMP:
+		if (m_actor->m_vy >= 0) {
+			m_state = FALL;
+		}
 	case FALL:
 		m_actor->m_vy += 1;
 		break;
 	case JUMPSTT:
-		m_actor->m_vy -= Game::gameInstance->GetStatus()->PLAYER_JUMP;
+		m_actor->m_vy = -Game::gameInstance->GetStatus()->PLAYER_JUMP;
 		m_state = STATE::JUMP;
 		break;
 	}
@@ -81,7 +84,7 @@ void RigidbodyCmp::Update()
 	
 	auto pos = m_actor->GetPos();
 	pos.y += 1.0f;
-	if ((m_state != FALL && m_state != FLY) && !m_actor->m_mapCollision->CheckMapCollide(m_tag, pos, 0.0f, 1.0f, false, true)) {
+	if ((m_state!=JUMP && m_state != FALL && m_state != FLY) && !m_actor->m_mapCollision->CheckMapCollide(m_tag, pos, 0.0f, 1.0f, false, true)) {
 		m_state = FALL;
 		//printfDx("—Ž‰º”»’è%d\n", pos.y);
 	}

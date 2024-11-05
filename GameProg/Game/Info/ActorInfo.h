@@ -13,7 +13,7 @@ namespace BACKGROUND_INFO {
 namespace PLAYER_INFO {
 
 	constexpr float SIZE = 1.0f;
-	constexpr POINT COLLISION_SIZE = { 40 * 1,40 * 2 };
+	constexpr Point COLLISION_SIZE = { 40 * 1,40 * 2 };
 }
 
 /// <summary>
@@ -28,7 +28,7 @@ namespace SOLARPANELBLOCK_INFO {
 /// </summary>
 namespace SOLARPANEL_INFO {
 	constexpr float SIZE = 2.5f;
-	constexpr POINT COLLISION_SIZE = { 40,40 };
+	constexpr Point COLLISION_SIZE = { 40,40 };
 }
 
 /// <summary>
@@ -36,7 +36,7 @@ namespace SOLARPANEL_INFO {
 /// </summary>
 namespace PISHER_INFO {
 	constexpr float SIZE = 0.5f;
-	constexpr POINT COLLISION_SIZE = { 40,40 };
+	constexpr Point COLLISION_SIZE = { 40,40 };
 }
 
 /// <summary>
@@ -44,7 +44,7 @@ namespace PISHER_INFO {
 /// </summary>
 namespace LUMINOUSFIGURE_INFO {
 	constexpr float SIZE = 1.0f;
-	constexpr POINT COLLISION_SIZE = { 40,40 * 2 };
+	constexpr Point COLLISION_SIZE = { 40,40 * 2 };
 }
 
 /// <summary>
@@ -52,7 +52,7 @@ namespace LUMINOUSFIGURE_INFO {
 /// </summary>
 namespace LADDER_INFO {
 	constexpr float SIZE = 2.5f;
-	constexpr POINT COLLISION_SIZE = { 40,40 * 2 };
+	constexpr Point COLLISION_SIZE = { 40,40 * 2 };
 }
 
 /// <summary>
@@ -60,5 +60,13 @@ namespace LADDER_INFO {
 /// </summary>
 namespace GOALLIGHT_INFO {
 	constexpr float SIZE = 0.5f;
-	constexpr POINT COLLISION_SIZE = { 40 * 2,40 * 2 };
+	constexpr Point COLLISION_SIZE = { 40 * 2,40 * 2 };
+}
+
+/// <summary>
+/// êÖó≠Ç‹ÇËÇÃèÓïÒ
+/// </summary>
+namespace PUDDLE_INFO {
+	constexpr float SIZE = 0.5f;
+	constexpr Point COLLISION_SIZE = { 40 ,40 };
 }

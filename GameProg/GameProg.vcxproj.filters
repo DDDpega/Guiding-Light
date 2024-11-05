@@ -169,6 +169,9 @@
     <ClCompile Include="Game\Main\RayCast.cpp">
       <Filter>Game\Main</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Actor\Puddle.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -314,6 +317,12 @@
       <Filter>Game\Info</Filter>
     </ClInclude>
     <ClInclude Include="Game\Info\ForwardDeclaration.h">
+      <Filter>Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\Puddle.h">
+      <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Info\Point.h">
       <Filter>Game\Info</Filter>
     </ClInclude>
   </ItemGroup>

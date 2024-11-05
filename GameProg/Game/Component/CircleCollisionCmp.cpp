@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-CircleCollisionCmp::CircleCollisionCmp(Actor* actor, POINT offset, float radius, E_TAG name)
+CircleCollisionCmp::CircleCollisionCmp(Actor* actor, Point offset, float radius, E_TAG name)
 	:Component(actor)
 	, m_radius(radius)
 	, m_offset(offset)
@@ -49,7 +49,7 @@ void CircleCollisionCmp::ChangeCollision()
 	};
 }
 
-BOX CircleCollisionCmp::GetChangeCollision(POINT pos)
+BOX CircleCollisionCmp::GetChangeCollision(Point pos)
 {
 	return BOX();
 }

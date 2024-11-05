@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-BackGround::BackGround(POINT pos)
+BackGround::BackGround(Point pos)
 	:Actor(pos)
 {
 

@@ -11,7 +11,7 @@ public:
 
     bool CheckMapChip(int col, int row);
 
-    bool CheckMapCollide(E_TAG tag,POINT pos, float dx, float dy, const bool isCollect = true, const bool isTopBottomChk = true);
+    bool CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, const bool isCollect = true, const bool isTopBottomChk = true);
 
 protected:
     E_TAG m_tag;

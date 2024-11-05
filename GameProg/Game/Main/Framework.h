@@ -15,6 +15,7 @@ using namespace std;
 #include <iostream>
 
 //íËêî
+#include "Point.h"
 #include "ActorInfo.h"
 #include "EnumInfo.h"
 #include "SystemInfo.h"
@@ -82,4 +83,5 @@ using namespace std;
 #include"SolarPanelBlock.h"
 #include "MapChipActor.h"
 #include "RayCast.h"
+#include "Puddle.h"
 #include "ActorManager.h"

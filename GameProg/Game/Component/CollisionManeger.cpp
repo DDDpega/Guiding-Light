@@ -283,7 +283,7 @@ float CollisionManeger::DistanceSqrf(const float t_x1, const float t_y1, const f
 
 //-------------------------------RayCheck-----------------------
 
-bool CollisionManeger::RayHitCheck(POINT RayPos)
+bool CollisionManeger::RayHitCheck(Point RayPos)
 {
 	//コリジョンを回して衝突しているか検索する
 	for (auto i = m_mapCollision.cbegin(); i != m_mapCollision.cend(); i++) {
@@ -308,7 +308,7 @@ bool CollisionManeger::RayHitCheck(POINT RayPos)
 bool CollisionManeger::RayToHitObjectCheck(RayCast* ray)
 {
 	BOX collObj_i;
-	POINT collObj_j;
+	Point collObj_j;
 
 	//コリジョンを回して衝突しているか検索する
 	for (auto i = m_rayToHitObject.cbegin(); i != m_rayToHitObject.cend(); i++) {

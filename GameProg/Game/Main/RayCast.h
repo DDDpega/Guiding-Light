@@ -8,7 +8,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	/// <param name="pos"></param>
-	RayCast(POINT pos,E_TAG tag);
+	RayCast(Point pos,E_TAG tag);
 
 	/// <summary>
 	/// デストラクタ
@@ -29,7 +29,7 @@ public:
 	/// れいをとばす
 	/// </summary>
 	/// <returns></returns>
-	POINT RayStart(POINT pos, int radius, int element);
+	Point RayStart(Point pos, int radius, int element);
 
 	/// <summary>
 	/// 衝突処理
@@ -47,7 +47,7 @@ public:
 	E_TAG m_tag;
 
 private:
-	POINT m_targetPos;
+	Point m_targetPos;
 	int frame;
 	int m_moveradius;
 	float m_rad;

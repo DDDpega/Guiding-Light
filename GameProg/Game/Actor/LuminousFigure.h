@@ -8,7 +8,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	/// <param name="pos"></param>
-	LuminousFigure(POINT pos);
+	LuminousFigure(Point pos);
 
 	/// <summary>
 	/// デストラクタ

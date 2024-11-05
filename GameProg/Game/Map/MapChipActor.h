@@ -6,7 +6,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	MapChipActor(POINT pos);
+	MapChipActor(Point pos);
 
 	/// <summary>
 	/// デストラクタ

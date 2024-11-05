@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-Picture::Picture(POINT pos, float size, const PICTURE_TYPE picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible, bool isAlpha)
+Picture::Picture(Point pos, float size, const PICTURE_TYPE picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible, bool isAlpha)
 	:m_pos(pos)
 	, m_size(size)
 	, m_picture(picture)

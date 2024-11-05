@@ -10,7 +10,7 @@ struct CIRCLE
 class CircleCollisionCmp : public Component
 {
 public:
-	CircleCollisionCmp(Actor* actor, POINT offset, float radius, E_TAG name);
+	CircleCollisionCmp(Actor* actor, Point offset, float radius, E_TAG name);
 
 	virtual ~CircleCollisionCmp();
 
@@ -37,7 +37,7 @@ public:
 	/// <summary>
 	/// 当たり判定をポジションだけ変更し取得する
 	/// </summary>
-	BOX GetChangeCollision(POINT pos);
+	BOX GetChangeCollision(Point pos);
 
 	E_TAG m_tag;		//タグ
 	CIRCLE m_collision;
@@ -45,6 +45,6 @@ public:
 
 protected:
 	float m_radius;
-	POINT m_offset;	//どれだけづれているか
+	Point m_offset;	//どれだけづれているか
 };
 

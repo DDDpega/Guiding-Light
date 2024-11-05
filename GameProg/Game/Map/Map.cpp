@@ -82,25 +82,25 @@ void Map::createMap()
 
 
 			// 描画座標を割り出す
-			int position_x = (MAPCHIP_WIDTH * j) - m_scroll.x;
-			int position_y = MAPCHIP_HEIGHT * i;
+			float position_x = (MAPCHIP_WIDTH * j) - m_scroll.x;
+			float position_y = MAPCHIP_HEIGHT * i;
 
 
 
-			if (chipNo >= 5&&!m_isInitialize && chipNo!=12) {
-				auto apos = MapPos{ chipNo, POINT{position_x ,position_y},false };
+			if (chipNo >= 5&&!m_isInitialize) {
+				auto apos = MapPos{ chipNo, Point{position_x ,position_y},false };
 				m_actorPos.push_back(apos);
 				continue;
 			}
-			else if (chipNo == 12 && !m_isInitialize) {
+			else if (chipNo == 2 && !m_isInitialize) {
 				//マップチップのアクターを生成する
-				auto mapChip = shared_ptr<MapChipActor>(new MapChipActor(POINT{ position_x ,position_y }));
+				auto mapChip = shared_ptr<MapChipActor>(new MapChipActor(Point{ position_x ,position_y }));
 				Game::gameInstance->GetActorMNG()->AddActor(mapChip);
 				/*auto apos = MapPos{ chipNo, POINT{position_x ,position_y},false };
 				m_actorPos.push_back(apos);*/
 			}
 
-			if (chipNo == 12) {
+			if (chipNo == 2) {
 				DrawExtendGraph(position_x, position_y, position_x + 40, position_y + 40, m_bitmap[1], TRUE);
 			}
 			else {
@@ -153,7 +153,7 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 					chipNo = -1;
 				}
 			}
-			if (chipNo >= 2) {
+			if (chipNo >= 3) {
 				switch (chipSet[chipNo])
 				{
 				case 'a':
@@ -187,7 +187,7 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 
 
 //スクロール位置をセットするメソッド
-void Map::setScroll(POINT pos)
+void Map::setScroll(Point pos)
 {
 	m_scroll = pos;
 

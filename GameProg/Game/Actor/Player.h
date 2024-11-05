@@ -16,7 +16,7 @@ public:
 	/// </summary>
 	/// <param name="x">x座標</param>
 	/// <param name="y">y座標</param>
-	Player(POINT pos);
+	Player(Point pos);
 
 	/// <summary>
 	/// デストラクタ

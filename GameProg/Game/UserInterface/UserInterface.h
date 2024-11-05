@@ -37,7 +37,7 @@ protected:
 	bool m_isInput;	//操作可能かどうか
 	list<shared_ptr<Picture>> m_pictureList_UI;	//UIの中で表示する画像のリスト
 	int m_nowcursor;							//現在のカーソル位置
-	POINT m_nowpostion[3];						//
+	Point m_nowpostion[3];						//
 	std::shared_ptr<Picture> m_arrow;			//矢印の画像
 	int m_fontHandle;	//フォント
 

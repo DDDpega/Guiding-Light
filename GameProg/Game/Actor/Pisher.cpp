@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 
-Pisher::Pisher(POINT pos)
+Pisher::Pisher(Point pos)
 	:Actor(pos)
 	,m_target(nullptr)
 {
@@ -48,9 +48,6 @@ void Pisher::Update()
 		if (m_player->GetLightOn()) {
 			m_target = m_player;
 		}
-		else {
-			m_target = nullptr;
-		}
 	}
 
 	//ターゲットが存在したら
@@ -59,21 +56,10 @@ void Pisher::Update()
 		//ターゲットの位置
 		auto targetPos = m_target->GetPos();
 
-		//ターゲットを追いかけるX
-		if (m_pos.x - targetPos.x >= 0) {
-			m_vx = -m_speed;
-		}
-		else {
-			m_vx  = m_speed;
-		}
-
-		//ターゲットを追いかけるY
-		if (m_pos.y - targetPos.y >= 0) {
-			m_vy = -m_speed;
-		}
-		else {
-			m_vy = m_speed;
-		}
+		//移動の速度決定
+		float radial = atan2f((targetPos.y - m_pos.y), (targetPos.x - m_pos.x));
+		m_vx = cos(radial) * m_speed;
+		m_vy = sin(radial) * m_speed;
 	}
 
 	Actor::Move();

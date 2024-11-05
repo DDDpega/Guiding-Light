@@ -1,6 +1,6 @@
 #include"Framework.h"
 
-SolarPanelBlock::SolarPanelBlock(POINT pos,bool isBlock, Scene* scene)
+SolarPanelBlock::SolarPanelBlock(Point pos,bool isBlock, Scene* scene)
 	:Actor(pos)
 	,m_isBlock(isBlock)
 	, m_scene(scene)

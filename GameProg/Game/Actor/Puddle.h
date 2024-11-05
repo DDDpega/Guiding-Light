@@ -1,18 +1,18 @@
 #pragma once
-class SolarPanel :public Actor
+
+
+class Puddle : public Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	/// <param name="x">x座標</param>
-	/// <param name="y">y座標</param>
-	SolarPanel(Point pos);
+	Puddle(Point pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~SolarPanel();
+	virtual ~Puddle();
 
 	/// <summary>
 	/// 初期化処理
@@ -23,7 +23,6 @@ public:
 	/// 更新処理
 	/// </summary>
 	void Update();
-
 
 	/// <summary>
 	/// 衝突処理
@@ -38,15 +37,5 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag);
 
-	/// <summary>
-	/// IsTriggerのゲッター
-	/// </summary>
-	/// <returns></returns>
-	bool GetIsTrigger();
-private:
-	bool m_isTrigger;	//光に当たっているかどうか
-	int m_maxTime;		//起動する最大秒数
-	int m_keepTime;		//残り起動秒数
-	bool m_shareNow;	//光に当たっているか
 };
 

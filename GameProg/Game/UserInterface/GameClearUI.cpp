@@ -17,8 +17,8 @@ void GameClearUI::Initialize()
 
 
 	//âÊñ ÇÃïùÇéÊìæ
-	LONG scrX = WINDOW_INFO::GAME_WIDTH;
-	LONG scrY = WINDOW_INFO::GAME_HEIGHT;
+	float scrX = WINDOW_INFO::GAME_WIDTH;
+	float scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//ñÓàÛ
 	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.5, UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));

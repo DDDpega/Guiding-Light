@@ -40,7 +40,7 @@ public:
 	shared_ptr<Picture> m_lightPicture;
 protected:
 	int m_lightSize;
-	POINT targetPos;
+	Point targetPos;
 	bool m_rayUpdate;
 	int m_framecnt;
 	E_TAG m_rayTag;

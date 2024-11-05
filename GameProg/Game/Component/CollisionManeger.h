@@ -104,7 +104,7 @@ public:
 	/// </summary>
 	/// <param name="RayPos"></param>
 	/// <returns></returns>
-	bool RayHitCheck(POINT RayPos);
+	bool RayHitCheck(Point RayPos);
 
 	/// <summary>
 	/// レイとぶつかるオブジェクトの判定
@@ -142,7 +142,7 @@ public:
 	list<shared_ptr<BoxCollisionCmp>> m_rayToHitObject;	//レイが広がる途中に当たるリスト
 
 	BOX rayHitCheckCollObj_i;
-	POINT rayHitCheckCollObj_j;
+	Point rayHitCheckCollObj_j;
 
 };
 

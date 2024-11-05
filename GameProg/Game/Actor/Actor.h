@@ -9,7 +9,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Actor(POINT pos);
+	Actor(Point pos);
 
 	/// <summary>
 	/// デストラクタ
@@ -85,7 +85,7 @@ public:
 	/// 現在のポジションを得る
 	/// </summary>
 	/// <returns></returns>
-	POINT GetPos() {
+	Point GetPos() {
 		return m_pos;
 	}
 
@@ -93,7 +93,7 @@ public:
 	/// ポジションの変更
 	/// </summary>
 	/// <returns></returns>
-	void SetPos(POINT changepos) {
+	void SetPos(Point changepos) {
 		m_pos = changepos;
 	}
 
@@ -108,5 +108,5 @@ protected:
 	bool m_isMove_x;	//x軸に動いているかどうか
 	bool m_isMove_y;	//y軸に動いているかどうか
 	std::list<std::shared_ptr<Component>> m_componentList;
-	POINT m_pos;	//位置
+	Point m_pos;	//位置
 };
