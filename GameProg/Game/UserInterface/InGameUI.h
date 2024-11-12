@@ -32,9 +32,7 @@ public:
 	/// c‚è‚Ìƒ‰ƒCƒg‚Ì”
 	/// </summary>
 	/// <param name="num"></param>
-	void ChangeLight(int num) {
-		m_pictureLightNum->ChangePicture(UI::GAME_LIST[UI::GAME_TYPE::LAMP_1], num-1);
-	}
+	void ChangeLight(int num);
 
 
 protected:

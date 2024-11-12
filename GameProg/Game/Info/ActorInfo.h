@@ -35,7 +35,7 @@ namespace SOLARPANEL_INFO {
 /// ハエの情報
 /// </summary>
 namespace PISHER_INFO {
-	constexpr float SIZE = 0.5f;
+	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40,40 };
 }
 
@@ -43,7 +43,7 @@ namespace PISHER_INFO {
 /// 蓄光フィギュアの情報
 /// </summary>
 namespace LUMINOUSFIGURE_INFO {
-	constexpr float SIZE = 1.0f;
+	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40,40 * 2 };
 }
 
@@ -59,7 +59,7 @@ namespace LADDER_INFO {
 /// ゴールライトの情報
 /// </summary>
 namespace GOALLIGHT_INFO {
-	constexpr float SIZE = 0.5f;
+	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40 * 2,40 * 2 };
 }
 
@@ -67,6 +67,6 @@ namespace GOALLIGHT_INFO {
 /// 水溜まりの情報
 /// </summary>
 namespace PUDDLE_INFO {
-	constexpr float SIZE = 0.5f;
+	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40 ,40 };
 }

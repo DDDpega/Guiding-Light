@@ -63,9 +63,8 @@ void LightCmp::Update()
 		//ƒŒƒC‚ð”ò‚Î‚·
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 			//ƒŒƒC‚ð”ò‚Î‚·
-			m_ray[i]->RayStart(actorPos, m_lightSize,i);
+			m_ray[i]->RayStart( actorPos, m_lightSize, i);
 		}
-
 	}
 }
 
@@ -119,7 +118,6 @@ void LightCmp::ChangeLightONOFF(bool lightOn)
 		}
 	}
 	else {
-
 		//ƒŒƒC‚ð”ò‚Î‚·
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 

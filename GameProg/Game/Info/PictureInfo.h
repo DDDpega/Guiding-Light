@@ -15,7 +15,7 @@ namespace UI {
 	};
 
 	//オプションのリスト
-	__declspec(selectany)  vector<PICTURE_TYPE> ALLTYPE_LIST = {
+	_declspec(selectany)  vector<PICTURE_TYPE> ALLTYPE_LIST = {
 		// 背景
 		{ BACKGROUND,{"Picture/AllBlack.png"}},
 		{ SELECT,{"Picture/stageSelectPoint1.png"}},
@@ -40,7 +40,7 @@ namespace UI {
 	};
 
 	//オプションのリスト
-	__declspec(selectany)  vector<PICTURE_TYPE> OPTION_LIST = {
+	_declspec(selectany)  vector<PICTURE_TYPE> OPTION_LIST = {
 
 		//画面比率
 		{ RATION16_9,{"Picture/UI/Option/GL_UI_16_9.png"}},
@@ -76,7 +76,7 @@ namespace UI {
 	};
 
 	//クレジットのリスト
-	__declspec(selectany) vector<PICTURE_TYPE> CREDIT_LIST = {
+	_declspec(selectany) vector<PICTURE_TYPE> CREDIT_LIST = {
 
 		//名前
 		{ TAKADA , {"Picture/UI/Credit/GL_UI_C_Takada.png"}},
@@ -111,7 +111,7 @@ namespace UI {
 		LAMP_1,
 	};
 
-	__declspec(selectany) vector<PICTURE_TYPE> GAME_LIST = {
+	_declspec(selectany) vector<PICTURE_TYPE> GAME_LIST = {
 
 		//選択関係
 		{CONTINUE_GAME , {"Picture/UI/Game/GL_UI_ContinueGame.png"}},
@@ -135,23 +135,23 @@ namespace UI {
 			{ "Picture/UI/Game/GL_UI_G_Stage8.png" },
 			{ "Picture/UI/Game/GL_UI_G_Stage9.png" },
 			{ "Picture/UI/Game/GL_UI_G_Stage10.png" },
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
-			{"Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
+			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
 		}},
 
 		//残りランプ数
-		{LAMP , {"Picture/UI/Game/GL_UI_Lamp.png"}},
+		{LAMP , { "Picture/UI/Game/GL_UI_Lamp.png"}},
 		{LAMP_1 , {
-			{"Picture/UI/Game/GL_UI_Lamp1.png"},
+			{ "Picture/UI/Game/GL_UI_Lamp1.png"},
 			{ "Picture/UI/Game/GL_UI_Lamp2.png" },
 			{ "Picture/UI/Game/GL_UI_Lamp3.png" },
 			{ "Picture/UI/Game/GL_UI_Lamp4.png" },
@@ -187,7 +187,7 @@ namespace UI {
 
 
 	//ステージセレクトリスト
-	__declspec(selectany) vector<PICTURE_TYPE> STAGESELECT_LIST = {
+	_declspec(selectany) vector<PICTURE_TYPE> STAGESELECT_LIST = {
 
 		//大区分
 		{ MENUSELECT , {"Picture/UI/StageSelect/GL_UI_MenuSelect.png"}},
@@ -272,7 +272,7 @@ namespace UI{
 	};
 
 	//ステージセレクトリスト
-	__declspec(selectany) vector<PICTURE_TYPE> TITLE_LIST = {
+	_declspec(selectany) vector<PICTURE_TYPE> TITLE_LIST = {
 		//大区分
 		{TITLE , {"Picture/UI/Title/GL_UI_Title.png"} },
 
@@ -294,22 +294,24 @@ namespace ILLUST {
 		GOALLIGHT,
 		LIGHT,
 		PISHER,
+		PISHER_EYE,
 		LADDER,
 		SOLARPANEL,
 		SOLARPANEL_BLOCK
 	};
 
-	__declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
-		{FIGUA , {"Picture/figua.png"} },
-		{GOALLIGHT , {"Picture/GoalLight.png"}},
+	_declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
+		{FIGUA , {"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"} },
+		{GOALLIGHT , {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}},
 		{LIGHT , {"Picture/light.png"}},
 		{PISHER ,{
-			{"Picture/UFO_dot.png"},
-			{"Picture/pisherEye.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
 		}},
-		{LADDER , {"Picture/ladder.png"}},
-		{SOLARPANEL , {"Picture/SolarPanel.png"}},
-		{SOLARPANEL_BLOCK , {"Picture/SolarPanelBlock.png"}},
+		{PISHER_EYE,{"Picture/Illust/Gimmick/GL_Gimmick_Pisher3.png"}},
+		{LADDER , {"Picture/Illust/Gimmick/GL_Gimmick_Ladder.png"}},
+		{SOLARPANEL , {"Picture/Illust/Gimmick/GL_Gimmick_SolarPanel.png"}},
+		{SOLARPANEL_BLOCK , {"Picture/Illust/Gimmick/GL_Gimmick_Launch.png"}},
 	};
 }
 
@@ -318,7 +320,7 @@ namespace ILLUST {
 		PLAYER,
 	};
 
-	__declspec(selectany) vector<PICTURE_TYPE> CHARACTER_LIST = {
+	_declspec(selectany) vector<PICTURE_TYPE> CHARACTER_LIST = {
 		{PLAYER , {
 			{"Picture/jiki.png"},
 			{"Picture/jiki2.png"},
@@ -334,7 +336,7 @@ namespace ILLUST {
 			BACKGROUND
 		};
 	
-		__declspec(selectany) vector<PICTURE_TYPE> STAGE_LIST = {
+		_declspec(selectany) vector<PICTURE_TYPE> STAGE_LIST = {
 			{DEFAULT_MAPCHIP , {"Picture/mapChipData16bit.png"}},
 			{BACKGROUND , {"Picture/background.png"}},
 		};

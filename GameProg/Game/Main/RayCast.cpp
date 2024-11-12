@@ -26,7 +26,9 @@ void RayCast::Update()
 
 void RayCast::Draw()
 {
-	DrawPixel(m_pos.x, m_pos.y, GetColor(255, 0, 0));
+	if (GAME_INFO::DEBUG) {
+		DrawPixel(m_pos.x, m_pos.y, GetColor(255, 0, 0));
+	}
 }
 
 Point RayCast::RayStart(Point pos,int radius,int element)

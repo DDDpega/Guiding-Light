@@ -13,6 +13,7 @@ using namespace std;
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include <future>
 
 //’è”
 #include "Point.h"

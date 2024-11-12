@@ -37,3 +37,10 @@ void InGameUI::Draw()
 {
 	UserInterface::Draw();
 }
+
+void InGameUI::ChangeLight(int num)
+{
+	if ((num - 1) != -1){
+		m_pictureLightNum->ChangePicture(UI::GAME_LIST[UI::GAME_TYPE::LAMP_1], num - 1);
+	}
+}

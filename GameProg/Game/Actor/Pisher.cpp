@@ -27,7 +27,7 @@ void Pisher::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//ˆÃˆÅ’†‚ÉŒ©‚¦‚é‰æ‘œ‚Ì¶¬
-	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 1));
+	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER_EYE], 0));
 	Actor::AddComponent(dark);
 
 	//ƒvƒŒƒCƒ„[‚ğ“üè‚·‚é
