@@ -65,7 +65,9 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 	const int middle_y = pos2.y / mapChipSize;
 
 
-
+	auto middleBottomNum = SceneManeger::gameScene->m_map->getChipNo(middle_x, bottom);
+	auto rightBottomNum = SceneManeger::gameScene->m_map->getChipNo(right, bottom);
+	auto leftBottomNum = SceneManeger::gameScene->m_map->getChipNo(left, bottom);
 
 	//左上、左ッ↓、右上、右のチェックを先に済ませておく
 	auto leftTop = CheckMapChip(left, top);
@@ -76,6 +78,10 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 	auto rightBottom = CheckMapChip(right, bottom);
 	auto middleTop = CheckMapChip(middle_x, top);
 	auto middleBottom = CheckMapChip(middle_x, bottom);
+
+	auto bottmLadder = false;
+	if (middleBottomNum == 7 || rightBottomNum == 7 || leftBottomNum == 7)
+		bottmLadder = true;
 
 	if (leftBottom) {
 		result = false;
@@ -116,7 +122,10 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 			
 		}
 	}
-	else if (dy > 0 && (rightBottom || middleBottom || leftBottom)) {
+	//下方向をチェック
+	//TODO定数に変更したい+プレイヤーの方ではしごに当たった数を取得する
+	//はしご
+	else if (dy > 0 && (rightBottom || middleBottom || leftBottom)/* || (bottmLadder && m_actor->m_rigidBody->m_state == FLY)*/) {
 		result = true;
 
 		if (isCollect) {
