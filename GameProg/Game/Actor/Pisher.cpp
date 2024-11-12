@@ -27,8 +27,8 @@ void Pisher::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//暗闇中に見える画像の生成
-	auto dark = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER_EYE], 0));
-	Actor::AddComponent(dark);
+	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER_EYE], 0));
+	Actor::AddComponent(m_darkPictureCmp);
 
 	//プレイヤーを入手する
 	m_player = SceneManeger::gameScene->GetPlayer();
@@ -84,6 +84,10 @@ void Pisher::Update()
 		float radial = atan2f((targetPos.y - m_pos.y), (targetPos.x - m_pos.x));
 		m_vx = cos(radial) * m_speed;
 		m_vy = sin(radial) * m_speed;
+
+		//左右反転
+		m_pictureCmp->m_picture->m_reverse = (m_vx < 0);
+		m_darkPictureCmp->m_darkPicture->m_reverse=(m_vx < 0);
 
 
 		//10フレームごとに画像を変更する

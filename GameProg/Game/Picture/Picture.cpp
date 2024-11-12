@@ -14,6 +14,8 @@ Picture::Picture(Point pos, float size, const PICTURE_TYPE picture, int num, E_P
 	, m_alpha(0)
 	, m_isPauseStop(false)
 	, m_num(num)
+	, m_reverse(false)
+
 {
 
 }
@@ -23,6 +25,7 @@ Picture::Picture(E_SORT sort , bool isVisible)
 	,m_isVisible(isVisible)
 	,m_isActive(true)
 	,m_pictureNull(true)
+	,m_reverse(false)
 {
 
 }
@@ -55,10 +58,10 @@ void Picture::Draw()
 
 	//‰æ‘œ‚Ì•`‰æ
 	if (m_pivot == E_PIVOT::CENTER) {
-		DrawRotaGraph2(m_pos.x, m_pos.y, (m_pictureSizeX/2), (m_pictureSizeY / 2), m_size, 0,  m_handle, true);
+		DrawRotaGraph2(m_pos.x, m_pos.y, (m_pictureSizeX/2), (m_pictureSizeY / 2), m_size, 0,  m_handle, true, m_reverse);
 	}
 	else if (m_pivot == E_PIVOT::LEFTUP) {
-		DrawRotaGraph2(m_pos.x, m_pos.y, 0, 0, m_size, 0, m_handle, true);
+		DrawRotaGraph2(m_pos.x, m_pos.y, 0, 0, m_size, 0, m_handle, true, m_reverse);
 	}
 }
 

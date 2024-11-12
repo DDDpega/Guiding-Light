@@ -125,6 +125,7 @@ namespace UI {
 
 		//ステージ数
 		{G_STAGE , {
+			{"Picture/UI/Game/GL_UI_G_Stage0.png"},
 			{"Picture/UI/Game/GL_UI_G_Stage1.png"},
 			{ "Picture/UI/Game/GL_UI_G_Stage2.png" },
 			{ "Picture/UI/Game/GL_UI_G_Stage3.png" },
@@ -317,16 +318,35 @@ namespace ILLUST {
 }
 
 namespace ILLUST {
-	enum CHARACTER_TYPE {
-		PLAYER,
+	enum PLAYER_TYPE {
+		ASCEND,
+		IDOL,
+		JUMP,
+		MOVE,
 	};
 
-	_declspec(selectany) vector<PICTURE_TYPE> CHARACTER_LIST = {
-		{PLAYER , {
-			{"Picture/jiki.png"},
-			{"Picture/jiki2.png"},
-			{"Picture/jiki_dark.png"},
-			{"Picture/jiki2_dark.png"},
+	_declspec(selectany) vector<PICTURE_TYPE> PLAYER_LIST = {
+		{ASCEND , {
+			{"Picture/Illust/Player/GL_Player_Ascend1_A.png"},
+			{"Picture/Illust/Player/GL_Player_Ascend1_B.png"},
+			{"Picture/Illust/Player/GL_Player_Ascend2_A.png"},
+			{"Picture/Illust/Player/GL_Player_Ascend2_B.png"},
+		}},
+		{IDOL , {
+			{"Picture/Illust/Player/GL_Player_Idol_A.png"},
+			{"Picture/Illust/Player/GL_Player_Idol_B.png"},
+		}},
+		{JUMP , {
+			{"Picture/Illust/Player/GL_Player_Jump_A.png"},
+			{"Picture/Illust/Player/GL_Player_Jump_B.png"},
+		}},
+		{MOVE , {
+			{"Picture/Illust/Player/GL_Player_Move1_A.png"},
+			{"Picture/Illust/Player/GL_Player_Move1_B.png"},
+			{"Picture/Illust/Player/GL_Player_Move2_A.png"},
+			{"Picture/Illust/Player/GL_Player_Move2_B.png"},
+			{"Picture/Illust/Player/GL_Player_Move3_A.png"},
+			{"Picture/Illust/Player/GL_Player_Move3_B.png"},
 		}},
 	};
 }

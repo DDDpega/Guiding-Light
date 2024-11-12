@@ -71,4 +71,8 @@ private:
 	list <LadderCol> m_isLadder;
 	shared_ptr<DarkPictureCmp> m_darkPicture;
 	bool m_isRightdir;
+
+	int m_movePictureNum;	//動いている際のプレイヤーの画像
+	int m_movePictureUp;	//動いている際のプレイヤーの画像
+	int m_ascendPictureNum;	//登っている際のプレイヤーの画像
 };

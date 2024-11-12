@@ -95,6 +95,8 @@ public:
 	int m_pictureSizeY;		//画像サイズ
 	float m_size;		//画像の倍率
 	int m_handle;				// データハンドル格納用変数
+	bool m_reverse;	//反転するかどうか
+
 
 	bool m_isPauseStop;	//停止中に止まるかどうか
 

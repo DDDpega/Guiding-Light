@@ -43,5 +43,6 @@ public:
 protected:
 	Player* m_player;	//プレイヤー
 	float m_speed;		//蠅の移動速度
+	shared_ptr<DarkPictureCmp> m_darkPictureCmp;
 };
 

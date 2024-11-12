@@ -53,9 +53,9 @@ void PictureManeger::Initialize()
 			ILLUST::GIMMICK_LIST[list.type].handle.push_back(LoadGraph(path));
 		}
 	}
-	for (auto& list : ILLUST::CHARACTER_LIST) {
+	for (auto& list : ILLUST::PLAYER_LIST) {
 		for (auto& path : list.path) {
-			ILLUST::CHARACTER_LIST[list.type].handle.push_back(LoadGraph(path));
+			ILLUST::PLAYER_LIST[list.type].handle.push_back(LoadGraph(path));
 		}
 	}
 	for (auto& list : ILLUST::STAGE_LIST) {
