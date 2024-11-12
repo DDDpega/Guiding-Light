@@ -53,6 +53,8 @@ void GameClearUI::Update()
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 
 		if (m_nowcursor == 0) {
+			//ステージ番号を1つ上げる
+			SceneManeger::gameScene->SetNumStage(SceneManeger::gameScene->GetNumStage() + 1);
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::GAME);
 		}

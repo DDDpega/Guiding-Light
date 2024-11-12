@@ -12,7 +12,7 @@ bool MapCollision::CheckMapChip(int col, int row)
 {
 	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
 	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
-	if (chipNo==-1||chipNo==2 ||chipNo ==1||chipNo==11||chipNo==12&& solarpanel->GetIsTrigger()) {
+	if (chipNo==-1||chipNo==2 ||chipNo ==1||chipNo==12 || (chipNo == 11 && solarpanel->GetIsTrigger())) {
 		return true;
 	}
 	else {

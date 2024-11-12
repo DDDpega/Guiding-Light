@@ -194,6 +194,7 @@ namespace UI {
 
 		//ステージ番号
 		{ S_STAGE_1,  {
+			{ "Picture/UI/StageSelect/GL_UI_S_Stage0.png" },
 			{ "Picture/UI/StageSelect/GL_UI_S_Stage1.png" },
 			{ "Picture/UI/StageSelect/GL_UI_S_Stage2.png" },
 			{ "Picture/UI/StageSelect/GL_UI_S_Stage3.png" },
