@@ -87,7 +87,9 @@ public:
 	/// </summary>
 	static Game* gameInstance;
 
-	
+	//フレーム
+	int m_framecnt;
+
 private:
 	//マネージャーの宣言
 	CollisionManeger* m_collisionMNG;
@@ -98,5 +100,6 @@ private:
 
 	//ステータス
 	Status* m_status;
+
 };
 

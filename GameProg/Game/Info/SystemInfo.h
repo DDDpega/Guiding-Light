@@ -33,7 +33,7 @@ namespace WINDOW_INFO {
 	/// <summary>
 	/// ç≈ëÂâÊñ 
 	/// </summary>
-	constexpr bool FULL_SCREEN = true;
+	constexpr bool FULL_SCREEN = false;
 }
 
 namespace GAME_INFO {
@@ -45,5 +45,5 @@ namespace GAME_INFO {
 
 	constexpr int RAYNUM = 100;
 	constexpr int RAYPLUS = 15;
-	constexpr bool DEBUG = false;
+	constexpr bool DEBUG = true;
 }

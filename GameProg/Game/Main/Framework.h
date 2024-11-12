@@ -50,13 +50,6 @@ using namespace std;
 //マップ
 #include "Map.h"
 
-//シーン
-#include "Scene.h"
-#include "GameScene.h"
-#include"StageSelectScene.h"
-#include "TitleScene.h"
-#include "SceneManeger.h"
-
 
 //コンポーネント
 #include "Component.h"
@@ -78,11 +71,20 @@ using namespace std;
 #include "Player.h"
 #include "GoalLight.h"
 #include "Ladder.h"
-#include "Pisher.h"
 #include "LuminousFigure.h"
+#include "Pisher.h"
 #include"SolarPanel.h"
 #include"SolarPanelBlock.h"
 #include "MapChipActor.h"
 #include "RayCast.h"
 #include "Puddle.h"
 #include "ActorManager.h"
+
+
+//シーン
+#include "Scene.h"
+#include "GameScene.h"
+#include"StageSelectScene.h"
+#include "TitleScene.h"
+#include "SceneManeger.h"
+

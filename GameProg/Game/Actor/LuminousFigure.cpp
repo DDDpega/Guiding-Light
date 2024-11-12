@@ -53,11 +53,8 @@ void LuminousFigure::Update()
 			m_lightOn = true;
 			m_lightCmp->ChangeLightONOFF(m_lightOn);
 
-			//蠅のターゲットをフィギュアにする
-			for (auto& pisher : SceneManeger::gameScene->m_pisherList) {
-				pisher->m_target = this;
-				pisher->m_isFigure = true;
-			}
+			//リストに含む
+			SceneManeger::gameScene->m_figureList.push_back(this);
 		}
 	}
 	else{
@@ -66,11 +63,6 @@ void LuminousFigure::Update()
 		if (m_lightOn) {
 			m_lightOn = false;
 			m_lightCmp->ChangeLightONOFF(m_lightOn);
-
-			//蠅のターゲットをフィギュアから解除する
-			for (auto& pisher : SceneManeger::gameScene->m_pisherList) {
-				pisher->m_isFigure = false;
-			}
 		}
 	}
 }

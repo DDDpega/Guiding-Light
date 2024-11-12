@@ -18,6 +18,7 @@ void Game::Initialize()
 {
 	//ステータスの取得
 	m_status = new Status();
+	m_framecnt = 0;
 
 	if (!m_status->ReadStatus()) {
 		// DXライブラリ終了処理
@@ -37,6 +38,8 @@ void Game::Initialize()
 
 void Game::Update()
 {
+	m_framecnt++;
+
 	//マネージャーの更新処理
 	m_sceneMNG->Update();
 	m_pictureMNG->Update();

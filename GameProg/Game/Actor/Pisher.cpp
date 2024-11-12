@@ -18,7 +18,7 @@ void Pisher::Initialize()
 	Actor::Initialize();
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER],0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER],0, E_PIVOT::CENTER, E_SORT::SORT_PISHER));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
@@ -40,6 +40,27 @@ void Pisher::Initialize()
 void Pisher::Update()
 {
 	Actor::Update();
+
+	//現在電気がついているもののリストを回す
+	auto figureList = SceneManeger::gameScene->m_figureList;
+	for (int i = 0; i < figureList.size(); i++) {
+		if (figureList[i]->m_lightOn) {
+			m_isFigure = true;
+			m_target = figureList[i];
+			break;
+		}
+		else {
+			m_isFigure = false;
+		}
+	}
+
+	//蠅のターゲットをフィギュアから解除する
+	SceneManeger::gameScene->m_figureList.clear();
+	for (int i = 0; i < figureList.size(); i++) {
+		if (figureList[i]->m_lightOn) {
+			SceneManeger::gameScene->m_figureList.push_back(figureList[i]);
+		}
+	}
 
 	//フィギュアがターゲット先だったら
 	if (!m_isFigure) {
@@ -63,6 +84,17 @@ void Pisher::Update()
 		float radial = atan2f((targetPos.y - m_pos.y), (targetPos.x - m_pos.x));
 		m_vx = cos(radial) * m_speed;
 		m_vy = sin(radial) * m_speed;
+
+
+		//10フレームごとに画像を変更する
+		if (Game::gameInstance->m_framecnt % 10 == 0) {
+			if (m_pictureCmp->m_picture->m_handle == ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER].handle[0]) {
+				m_pictureCmp->m_picture->ChangePicture(ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 1);
+			}
+			else {
+				m_pictureCmp->m_picture->ChangePicture(ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 0);
+			}
+		}
 	}
 
 	Actor::Move();

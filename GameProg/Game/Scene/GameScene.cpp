@@ -3,7 +3,7 @@
 
 GameScene::GameScene()
 	:Scene("ゲームシーン")
-	, m_pisherList()
+	, m_figureList()
 	, m_LightNum(0)
 	, m_mapInfo({
 		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
@@ -42,7 +42,7 @@ void GameScene::Initialize()
 	Scene::Initialize();
 
 	//変数の初期化
-	m_pisherList.clear();
+	m_figureList.clear();
 	m_isPause = false;
 	m_LightNum = 0;
 	isGameOver = false;
@@ -57,7 +57,7 @@ void GameScene::Initialize()
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_lightPicture);
 
 	//プレイヤーの生成
-	m_player = std::shared_ptr<Player>(new Player(Point{200,200}));
+	m_player = std::shared_ptr<Player>(new Player(Point{-1000,-1000 }));
 	Game::gameInstance->GetActorMNG()->AddActor(m_player);
 
 
@@ -107,10 +107,6 @@ void GameScene::Initialize()
 			auto pisher = shared_ptr<Pisher>(new Pisher(actorPos.m_mapChipPos));
 			pisher->SpawnMove(1, 1);
 			Game::gameInstance->GetActorMNG()->AddActor(pisher);
-
-			//リストに含む
-			m_pisherList.push_back(pisher);
-
 		}
 
 		//ソーラーパネル

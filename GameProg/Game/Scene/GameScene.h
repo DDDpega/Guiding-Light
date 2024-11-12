@@ -1,6 +1,6 @@
 #pragma once
 
-
+class LuminousFigure;
 
 class GameScene : public Scene
 {
@@ -75,7 +75,7 @@ public:
 
 	shared_ptr<Map>	m_map;
 	shared_ptr<LightPicture> m_lightPicture;
-	list<shared_ptr<Pisher>> m_pisherList;	//蓄光フィギュアのリスト
+	vector<LuminousFigure*> m_figureList;	//蓄光フィギュアのリスト
 	shared_ptr<GamePauseUI> m_pauseUI;
 	shared_ptr<SolarPanel> m_solarpanel;
 
