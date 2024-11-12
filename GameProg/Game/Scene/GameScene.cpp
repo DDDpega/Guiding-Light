@@ -5,24 +5,30 @@ GameScene::GameScene()
 	:Scene("ゲームシーン")
 	, m_pisherList()
 	, m_LightNum(0)
+	, m_mapInfo({
+		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
+		L"_=^56789abcd",
+	})
 	, m_stages({
-		{
-			MAPCHIP_HEIGHT,MAPCHIP_WIDTH,
-			MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
-			L"_=^56789abc",
-			L"Data/Map1.txt",
-			Point{3,15},
-		},
-		{
-			MAPCHIP_HEIGHT,MAPCHIP_WIDTH,
-			MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
-			L"_=^56789abc",
-			L"Data/Map1.txt",
-			Point{3,15},
-		},
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage0.txt",
+	},
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage1.txt",
+	},
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage2.txt",
+	},
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage3.txt",
+	},
 
 
-		})
+	})
 {
 
 }
@@ -56,7 +62,7 @@ void GameScene::Initialize()
 
 
 	//マップの生成
-	m_map = std::shared_ptr<Map>(new Map(m_stages[0], "Picture/mapChipData16bit.png"));
+	m_map = std::shared_ptr<Map>(new Map(m_stages[SceneManeger::gameScene->GetNumStage()], m_mapInfo, "Picture/mapChipData16bit.png"));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_map);
 	
 	auto num = 0;
@@ -119,6 +125,13 @@ void GameScene::Initialize()
 			actorPos.m_isGet = true;
 			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_mapChipPos, false, this));
 			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
+		}
+
+		//水たまり
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 12) {
+			actorPos.m_isGet = true;
+			auto puddle = shared_ptr<Puddle>(new Puddle(actorPos.m_mapChipPos));
+			Game::gameInstance->GetActorMNG()->AddActor(puddle);
 		}
 
 	}

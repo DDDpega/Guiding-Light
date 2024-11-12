@@ -14,6 +14,9 @@ GoalLight::~GoalLight()
 void GoalLight::Initialize()
 {
 	Actor::Initialize();
+
+	m_isLightOn = false;
+	
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,false));
 	Actor::AddComponent(m_lightCmp);
 

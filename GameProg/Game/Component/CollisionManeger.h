@@ -123,6 +123,7 @@ public:
 		m_BOXcollisionList.clear();
 		m_CIRCLEcollisionList.clear();
 		m_rayToHitObject.clear();
+		m_mapCollision.clear();
 	}
 
 

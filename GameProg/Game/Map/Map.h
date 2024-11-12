@@ -26,24 +26,19 @@ public:
 		float x, y;
 	};
 
-	//リスポーン・ポイント構造体
-	struct RespawnPoint {
-		int		left, top;		//左上の位置
-		int		right, bottom;	//右下の位置
-		Point		m_respawnSquare;
-	};
 
-	struct Info {
+	//共通情報
+	struct Info{
 		float			m_chipSize_x;	//マップチップサイズ
 		float			m_chipSize_y;	//マップチップサイズ
+		wstring			m_chipSet;		//チップの文字セット
+	};
+
+	//各種マップ情報
+	struct OnryMapInfo {
 		int				m_col;			//マップの列数
 		int				m_row;			//マップの行数
-		wstring			m_chipSet;		//チップの文字セット
 		wstring			m_filePath;		//ファイルパス名""なら読み込まない
-
-		Point			m_initSquare;	//最初のプレイヤーのマスの位置
-		//vector<RespawnPoint>		m_respawnList;	//リスポーン・ポイントの配列
-		//RECT			m_goal;		//ゴールエリア
 	};
 
 	struct MapPos
@@ -54,7 +49,7 @@ public:
 	};
 
 	//コンストラクタ
-	Map(const Info& info , const TCHAR* graph);
+	Map(const OnryMapInfo& onryInfo, const Info& info, const TCHAR* graph);
 
 	//デストラクタ
 	virtual inline ~Map() {};
@@ -96,6 +91,7 @@ protected:
 	int m_col;						//マップの列数
 	int m_row;						//マップの行数
 
+	OnryMapInfo m_onryInfo;
 	Info m_info;
 
 	vector<int> m_MapChipList[MAPCHIPCOLNUM];	//マップチップ換算の縦幅のマス目＝18　「マップチップリスト」

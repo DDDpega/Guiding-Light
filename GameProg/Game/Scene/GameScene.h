@@ -45,14 +45,16 @@ public:
 		float x, y;
 	};
 
-	const vector<Map::Info> m_stages;    //ステージのマップ情報配列
+	const vector<Map::OnryMapInfo> m_stages;    //ステージのマップ情報配列
+
+	const Map::Info m_mapInfo;    //ステージのマップ情報配列
 
 	/// <summary>
 	/// MapInfoのゲッター
 	/// </summary>
 	/// <param name="num">配列の数字</param>
 	/// <returns></returns>
-	inline Map::Info getInfo(int num) {
+	inline Map::OnryMapInfo getInfo(int num) {
 		return m_stages[num];
 	}
 
@@ -71,7 +73,7 @@ public:
 	int GetNumStage() { return m_nowStageNum; }
 
 
-	std::shared_ptr<Map>	m_map;
+	shared_ptr<Map>	m_map;
 	shared_ptr<LightPicture> m_lightPicture;
 	list<shared_ptr<Pisher>> m_pisherList;	//蓄光フィギュアのリスト
 	shared_ptr<GamePauseUI> m_pauseUI;

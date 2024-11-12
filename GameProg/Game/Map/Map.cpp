@@ -1,13 +1,14 @@
 #include "Framework.h"
 
 
-Map::Map(const Info& info, const TCHAR* graph)
+Map::Map(const OnryMapInfo& onryInfo, const Info& info, const TCHAR* graph)
 	:Picture(E_SORT::SORT_MAP,true)
 	, m_bitmap()
 	, m_chipSize()
 	, m_chipCol()
-	, m_col(info.m_col)
-	, m_row(info.m_row)
+	, m_col(onryInfo.m_col)
+	, m_row(onryInfo.m_row)
+	, m_onryInfo(onryInfo)
 	, m_info(info)
 	, m_scroll()
 	, m_isInitialize(false)
@@ -23,8 +24,8 @@ Map::Map(const Info& info, const TCHAR* graph)
 	}
 
 	//ファイルからマップデータを読み込む
-	if (info.m_filePath != L"") {
-		loadFromFile(info.m_filePath, info.m_chipSet);
+	if (onryInfo.m_filePath != L"") {
+		loadFromFile(onryInfo.m_filePath, info.m_chipSet);
 	}
 
 	
@@ -165,6 +166,9 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 				case 'c':
 					m_MapChipList[c][r] = 12;
 					break;
+				case 'd':
+					m_MapChipList[c][r] = 13;
+					break;
 				default:
 					auto a = (int)(chipSet[chipNo]-'0');
 					m_MapChipList[c][r] = (int)(chipSet[chipNo] - '0');
@@ -206,13 +210,13 @@ void Map::setScroll(Point pos)
 }
 
 //指定した位置のマップ番号を取得するメソッド
-int Map::getChipNo(const int col, const int row)const
+int Map::getChipNo(const int row, const int col)const
 {
 	//int a = m_MapChipList[row][col];
 
 	//範囲内か調べて値を返す
-	if (col >= 0 && col < MAP_SIZE_WIDTH && row >= 0 && row < MAP_SIZE_HEIGHT) {
-		return m_MapChipList[row][col];
+	if (row >= 0 && row < m_row && col >= 0 && col < m_col) {
+		return m_MapChipList[col][row];
 	}
 	else {
 		return -1;
