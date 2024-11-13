@@ -45,7 +45,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	void NoHitCollision(Actor* other, E_TAG tag);
+	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 	/// <summary>
 	/// 現在プレイヤーのライトがついているかどうか
@@ -69,7 +69,6 @@ private:
 	bool m_firstShot;
 	std::shared_ptr<LightCmp> m_lightCmp;
 	list <LadderCol> m_isLadder;
-	shared_ptr<DarkPictureCmp> m_darkPicture;
 	bool m_isRightdir;
 
 	int m_movePictureNum;	//動いている際のプレイヤーの画像

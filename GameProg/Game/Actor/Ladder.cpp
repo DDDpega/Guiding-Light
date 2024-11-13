@@ -41,7 +41,7 @@ void Ladder::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}
 }
 
-void Ladder::NoHitCollision(Actor* other, E_TAG tag)
+void Ladder::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	//プレイヤーが外れたときの判定
 	if (tag == E_TAG::PLAYER && m_isActive) {

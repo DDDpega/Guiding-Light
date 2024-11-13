@@ -17,7 +17,7 @@ void GoalLight::Initialize()
 
 	m_isLightOn = false;
 	
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,false));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS));
 	Actor::AddComponent(m_lightCmp);
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, GOALLIGHT_INFO::COLLISION_SIZE, E_TAG::OTHER));
@@ -49,7 +49,7 @@ void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}
 }
 
-void GoalLight::NoHitCollision(Actor* other, E_TAG tag)
+void GoalLight::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 
 

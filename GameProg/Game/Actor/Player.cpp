@@ -28,6 +28,8 @@ void Player::Initialize()
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, PLAYER_INFO::COLLISION_SIZE, E_TAG::PLAYER));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
+
 
 	//マップとの当たり判定
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(this, E_TAG::MAP));
@@ -38,12 +40,12 @@ void Player::Initialize()
 	Actor::AddComponent(m_rigidBody);
 
 	//ライトを光らせるコンポーネント
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false, Game::gameInstance->GetStatus()->PLAYER_LIGHT,true,E_TAG::PLAYER_RAY));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this,false, Game::gameInstance->GetStatus()->PLAYER_LIGHT,E_TAG::PLAYER_RAY));
 	Actor::AddComponent(m_lightCmp);
 
 	//暗闇中に見える画像の生成
-	m_darkPicture = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 1));
-	Actor::AddComponent(m_darkPicture);
+	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 1));
+	Actor::AddComponent(m_darkPictureCmp);
 }
 
 void Player::Update()
@@ -72,14 +74,14 @@ void Player::Update()
 		m_vx = Game::gameInstance->GetStatus()->PLAYER_SPEED;
 		isClick_x = true;
 		m_pictureCmp->m_picture->m_reverse = false;
-		m_darkPicture->m_darkPicture->m_reverse = false;
+		m_darkPictureCmp->m_darkPicture->m_reverse = false;
 	}
 	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
 		m_vx = -Game::gameInstance->GetStatus()->PLAYER_SPEED;
 		//printfDx("Player\n");
 		isClick_x = true;
 		m_pictureCmp->m_picture->m_reverse = true;
-		m_darkPicture->m_darkPicture->m_reverse = true;
+		m_darkPictureCmp->m_darkPicture->m_reverse = true;
 
 	}
 
@@ -115,7 +117,7 @@ void Player::Update()
 	case FLY:
 		if (Game::gameInstance->m_framecnt % 10 == 0) {
 			m_pictureCmp->m_picture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::ASCEND], m_ascendPictureNum);
-			m_darkPicture->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::ASCEND], m_ascendPictureNum + 1);
+			m_darkPictureCmp->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::ASCEND], m_ascendPictureNum + 1);
 
 			//次の画像を変える
 			if ((m_ascendPictureNum+2) < ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::ASCEND].path.size())
@@ -124,11 +126,10 @@ void Player::Update()
 				m_ascendPictureNum = 0;
 		}
 		break;
-
 	case WALK:
-		if (Game::gameInstance->m_framecnt % 10 == 0) {
+		if (Game::gameInstance->m_framecnt % 5 == 0) {
 			m_pictureCmp->m_picture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_movePictureNum);
-			m_darkPicture->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_movePictureNum + 1);
+			m_darkPictureCmp->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_movePictureNum + 1);
 		
 			if (m_movePictureUp && ((m_movePictureNum + 2) < ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE].path.size())) {
 				m_movePictureNum += 2;
@@ -145,13 +146,13 @@ void Player::Update()
 
 	case STAND:
 		m_pictureCmp->m_picture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 0);
-		m_darkPicture->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 1);
+		m_darkPictureCmp->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 1);
 		break;
 	case JUMP:
 	case FALL:
 	case JUMPSTT:
 		m_pictureCmp->m_picture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::JUMP], 0);
-		m_darkPicture->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::JUMP], 1);
+		m_darkPictureCmp->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::JUMP], 1);
 		break;
 	}
 
@@ -170,14 +171,24 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag,selftag);
 
+	//死亡
 	if (tag == E_TAG::PISHER && selftag== E_TAG::PLAYER && m_isActive) {
 		SceneManeger::gameScene->GameOver();
 		m_isActive = false;
 	}	
+
+	//明るい所に来た
+	/*if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY) && m_isActive && selftag == E_TAG::PLAYER) {
+		m_darkPictureCmp->m_darkPicture->SetisVisible(false);
+	}*/
 }
 
-void Player::NoHitCollision(Actor* other, E_TAG tag)
+void Player::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
+	//暗い所に来た
+	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY) && m_isActive && selftag==E_TAG::PLAYER) {
+		m_darkPictureCmp->m_darkPicture->SetisVisible(true);
+	}
 }
 
 Player* Player::Getthis()

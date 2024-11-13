@@ -49,7 +49,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	virtual void NoHitCollision(Actor* other, E_TAG tag) = 0;
+	virtual void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag) = 0;
 
 	/// <summary>
 	/// コンポーネントリストに追加するメソッド
@@ -102,6 +102,7 @@ public:
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 	shared_ptr<PictureCmp> m_pictureCmp;
+	shared_ptr<DarkPictureCmp> m_darkPictureCmp;
 	bool m_isActive;			//生存するかどうか
 
 protected:

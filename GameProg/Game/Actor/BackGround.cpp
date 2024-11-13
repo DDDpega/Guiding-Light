@@ -26,7 +26,7 @@ void BackGround::Update()
 	Actor::Update();
 }
 
-void BackGround::NoHitCollision(Actor* other, E_TAG tag)
+void BackGround::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }
 

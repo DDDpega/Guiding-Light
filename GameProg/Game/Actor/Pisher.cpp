@@ -113,6 +113,10 @@ void Pisher::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other,tag, selftag);
 }
 
-void Pisher::NoHitCollision(Actor* other, E_TAG tag)
+void Pisher::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
+	//à√Ç¢èäÇ…óàÇΩ
+	if (tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY && m_isActive) {
+
+	}
 }

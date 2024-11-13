@@ -40,8 +40,8 @@ Point RayCast::RayStart(Point pos,int radius,int element)
 
 	//ÉåÉCÇè¡Ç∑
 	if (radius == 0) {
-		m_pos.x = 0;
-		m_pos.y = 0;
+		m_pos.x = -1000.0f;
+		m_pos.y = -1000.0f;
 		m_isRayStart = false;
 		return m_pos;
 	}
@@ -104,6 +104,6 @@ void RayCast::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }
 
-void RayCast::NoHitCollision(Actor* other, E_TAG tag)
+void RayCast::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }

@@ -42,7 +42,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	void NoHitCollision(Actor* other, E_TAG tag);
+	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 	E_TAG m_tag;
 	bool m_isRayStart;

@@ -46,6 +46,6 @@ void Puddle::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}
 }
 
-void Puddle::NoHitCollision(Actor* other, E_TAG tag)
+void Puddle::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }

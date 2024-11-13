@@ -29,4 +29,6 @@ void DarkPictureCmp::Update()
 void DarkPictureCmp::Draw()
 {
 	Component::Draw();
+
+	m_darkPicture->SetisVisible(true);
 }

@@ -34,7 +34,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	void NoHitCollision(Actor* other, E_TAG tag);
+	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 protected:
 	shared_ptr<LightCmp> m_lightCmp;

@@ -35,6 +35,6 @@ void SolarPanelBlock::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other, tag, selftag);
 }
 
-void SolarPanelBlock::NoHitCollision(Actor* other, E_TAG tag)
+void SolarPanelBlock::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }

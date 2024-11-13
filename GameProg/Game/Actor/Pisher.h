@@ -34,7 +34,7 @@ public:
 	/// </summary>
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
-	void NoHitCollision(Actor* other, E_TAG tag);
+	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 	Actor* m_target;
 	bool m_isFigure;			//フィギュアがターゲットかどうか
@@ -43,6 +43,5 @@ public:
 protected:
 	Player* m_player;	//プレイヤー
 	float m_speed;		//蠅の移動速度
-	shared_ptr<DarkPictureCmp> m_darkPictureCmp;
 };
 

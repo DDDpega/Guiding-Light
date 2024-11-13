@@ -4,7 +4,7 @@
 class LightCmp : public Component
 {
 public:
-	LightCmp(Actor* actor, bool lightOn,float lightSize,bool rayUpdate,E_TAG tag=E_TAG::RAY);
+	LightCmp(Actor* actor, bool lightOn,float lightSize,E_TAG tag=E_TAG::RAY);
 
 	virtual ~LightCmp();
 
@@ -42,7 +42,6 @@ public:
 protected:
 	int m_lightSize;
 	Point targetPos;
-	bool m_rayUpdate;
 	int m_framecnt;
 	E_TAG m_rayTag;
 };

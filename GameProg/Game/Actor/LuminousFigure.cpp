@@ -25,7 +25,7 @@ void LuminousFigure::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 
 	//ライトコンポーネントの作成
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT,false));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT));
 	Actor::AddComponent(m_lightCmp);
 
 	//何秒効果時間があるか
@@ -86,7 +86,7 @@ void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}
 }
 
-void LuminousFigure::NoHitCollision(Actor* other, E_TAG tag)
+void LuminousFigure::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	if (tag == E_TAG::PLAYER_RAY) {
 		m_shareNow = false;

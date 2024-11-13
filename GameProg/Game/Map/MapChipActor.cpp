@@ -84,6 +84,6 @@ void MapChipActor::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other, tag, selftag);
 }
 
-void MapChipActor::NoHitCollision(Actor* other, E_TAG tag)
+void MapChipActor::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }

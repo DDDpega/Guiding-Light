@@ -106,8 +106,8 @@ bool CollisionManeger::CheckObjectHit_BOXtoBOX(BoxCollisionCmp* obj_i, BoxCollis
 	}
 
 	//オブジェクトに衝突通知を送る
-	obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag));
-	obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag));
+	obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag),obj_i->m_tag);
+	obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag),obj_j->m_tag);
 	return false;
 }
 
@@ -159,8 +159,8 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoCIRLCE(CircleCollisionCmp* obj_i, 
 	}
 
 	//オブジェクトに衝突通知を送る
-	obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag));
-	obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag));
+	obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag),obj_i->m_tag);
+	obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag), obj_j->m_tag);
 	return false;
 }
 
@@ -261,8 +261,8 @@ bool CollisionManeger::CheckObjectHit_CIRCLEtoBOX(CircleCollisionCmp* obj_i, Box
 	else {
 
 		//オブジェクトに衝突通知を送る
-		obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag));
-		obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag));
+		obj_i->GetActor()->NoHitCollision((obj_j->GetActor()), (obj_j->m_tag),obj_i->m_tag);
+		obj_j->GetActor()->NoHitCollision((obj_i->GetActor()), (obj_i->m_tag), obj_j->m_tag);
 		return false;
 	}
 }
@@ -316,7 +316,8 @@ bool CollisionManeger::RayToHitObjectCheck(RayCast* ray)
 				i->get()->GetActor()->HitCollision(ray,ray->m_tag,i->get()->m_tag);
 			}
 		}
-		i->get()->GetActor()->NoHitCollision(ray, ray->m_tag);
+
+		i->get()->GetActor()->NoHitCollision(ray, ray->m_tag,i->get()->m_tag);
 	}
 	return false;
 }
