@@ -83,6 +83,14 @@ public:
 	}
 
 	/// <summary>
+	/// サウンドマネージャーを入手する
+	/// </summary>
+	/// <returns></returns>
+	SoundManager* GetSoundMNG() {
+		return m_soundMNG;
+	}
+
+	/// <summary>
 	/// ゲームインスタンス
 	/// </summary>
 	static Game* gameInstance;
@@ -97,6 +105,7 @@ private:
 	SceneManeger* m_sceneMNG;
 	InputManager* m_inputMNG;
 	ActorManager* m_actorMNG;
+	SoundManager* m_soundMNG;
 
 	//ステータス
 	Status* m_status;

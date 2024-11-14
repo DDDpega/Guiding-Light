@@ -34,4 +34,6 @@ private:
 	Point m_nowpostion[3];
 	int m_nowcursor;
 	std::shared_ptr<Picture> m_arrow;
+	shared_ptr<Sound>m_bgm;
+	float v;
 };

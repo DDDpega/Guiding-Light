@@ -22,6 +22,7 @@ using namespace std;
 #include "SystemInfo.h"
 #include "PictureInfo.h"
 #include "ForwardDeclaration.h"
+#include "SoundInfo.h"
 
 //システム
 #include"Fps.h"
@@ -30,7 +31,9 @@ using namespace std;
 #include "InputManager.h"
 #include "Game.h"
 
-
+//サウンド
+#include "Sound.h"
+#include "SoundManager.h"
 
 //ピクチャー
 #include "Picture.h"

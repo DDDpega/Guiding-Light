@@ -38,6 +38,9 @@
     <Filter Include="Game\Component\Actor">
       <UniqueIdentifier>{178a1458-77be-48b2-8d3c-00b710026bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Sound">
+      <UniqueIdentifier>{9f0bfe38-9db8-4f2b-99c4-d658cd801b00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main\Main.cpp">
@@ -171,6 +174,12 @@
     </ClCompile>
     <ClCompile Include="Game\Actor\Puddle.cpp">
       <Filter>Game\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Sound\SoundManager.cpp">
+      <Filter>Game\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Sound\Sound.cpp">
+      <Filter>Game\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +332,15 @@
       <Filter>Game\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Game\Info\Point.h">
+      <Filter>Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Sound\Sound.h">
+      <Filter>Game\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Sound\SoundManager.h">
+      <Filter>Game\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Info\SoundInfo.h">
       <Filter>Game\Info</Filter>
     </ClInclude>
   </ItemGroup>

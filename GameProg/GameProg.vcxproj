@@ -71,6 +71,8 @@
     <ClCompile Include="Game\Scene\SceneManeger.cpp" />
     <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
+    <ClCompile Include="Game\Sound\Sound.cpp" />
+    <ClCompile Include="Game\Sound\SoundManager.cpp" />
     <ClCompile Include="Game\UserInterface\GameClearUI.cpp" />
     <ClCompile Include="Game\UserInterface\GameOverUI.cpp" />
     <ClCompile Include="Game\UserInterface\GamePauseUI.cpp" />
@@ -105,6 +107,7 @@
     <ClInclude Include="Game\Info\ForwardDeclaration.h" />
     <ClInclude Include="Game\Info\PictureInfo.h" />
     <ClInclude Include="Game\Info\Point.h" />
+    <ClInclude Include="Game\Info\SoundInfo.h" />
     <ClInclude Include="Game\Info\SystemInfo.h" />
     <ClInclude Include="Game\Main\Fps.h" />
     <ClInclude Include="Game\Main\Framework.h" />
@@ -128,6 +131,8 @@
     <ClInclude Include="Game\Scene\SceneManeger.h" />
     <ClInclude Include="Game\Scene\StageSelectScene.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
+    <ClInclude Include="Game\Sound\Sound.h" />
+    <ClInclude Include="Game\Sound\SoundManager.h" />
     <ClInclude Include="Game\UserInterface\GameClearUI.h" />
     <ClInclude Include="Game\UserInterface\GameOverUI.h" />
     <ClInclude Include="Game\UserInterface\GamePauseUI.h" />
@@ -201,7 +206,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture;$(ProjectDir)Game/Sound</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
@@ -226,7 +231,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture;$(ProjectDir)Game/Sound</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>
@@ -250,7 +255,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture;$(ProjectDir)Game/Sound</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>
@@ -275,7 +280,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DirectXlib;$(ProjectDir)Game/Actor;$(ProjectDir)Game/Scene;$(ProjectDir)Game/Main;$(ProjectDir)Game/Picture;$(ProjectDir)Game/Component;$(ProjectDir)Game/Map;$(ProjectDir)Game/UserInterface;$(ProjectDir)Game/Info;$(SolutionDir)GL_Picture;$(ProjectDir)Game/Sound</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Framework.h</PrecompiledHeaderFile>

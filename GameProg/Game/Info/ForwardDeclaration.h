@@ -14,6 +14,7 @@ class Scene;
 class LightCmp;
 class RayCast;
 class Actor;
+class Sound;
 
 class RigidbodyCmp;
 class MapCollision;
@@ -21,3 +22,4 @@ class CollisionManeger;
 class PictureManeger;
 class SceneManeger;
 class ActorManager;
+class SoundManager;

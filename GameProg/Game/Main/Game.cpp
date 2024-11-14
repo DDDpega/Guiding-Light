@@ -28,9 +28,11 @@ void Game::Initialize()
 	//マネージャーの初期化
 	(m_collisionMNG = new CollisionManeger())->Initialize();
 	(m_pictureMNG = new PictureManeger())->Initialize();
+	(m_soundMNG = new SoundManager())->Initialize();
 	(m_actorMNG = new ActorManager())->Initialize();
 	(m_sceneMNG = new SceneManeger())->Initialize();
 	m_inputMNG = new InputManager();
+	
 
 	//入力の初期化
 	KeyInit();
