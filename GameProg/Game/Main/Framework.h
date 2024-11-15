@@ -23,6 +23,7 @@ using namespace std;
 #include "PictureInfo.h"
 #include "ForwardDeclaration.h"
 #include "SoundInfo.h"
+#include "VideoInfo.h"
 
 //ƒVƒXƒeƒ€
 #include"Fps.h"

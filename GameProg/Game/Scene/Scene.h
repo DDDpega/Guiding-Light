@@ -36,4 +36,5 @@ public:
 
 protected:
 	const char* m_sceneName;	//Œ»İ‚ÌƒV[ƒ“‚Ì–¼‘O
+	shared_ptr<Sound>m_bgm;		//BGM
 };

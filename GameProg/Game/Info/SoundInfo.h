@@ -23,8 +23,8 @@ namespace SOUND {
 
 		//‰æ–Ê”ä—¦
 		{ TITLE,		{"Sound/BGM/GL_BGM_Title.wav"}},
-		{ STAGESELECT,	{"Sound/BGM/GL_BGM_Title.png" }},
-		{ STAGE,		{"Sound/BGM/GL_BGM_Stage.png" }},
+		{ STAGESELECT,	{"Sound/BGM/GL_BGM_Title.wav" }},
+		{ STAGE,		{"Sound/BGM/GL_BGM_Stage.wav" }},
 
 	};
 }
@@ -53,7 +53,7 @@ namespace SOUND {
 
 	enum PLAYERSE_TYPE {
 		MOVE,
-		//JUMP,
+		JUMP,
 		LIGHT,
 	};
 
@@ -62,7 +62,7 @@ namespace SOUND {
 
 		//–¼‘O
 		{ MOVE ,	{"Sound/SE/PlayerSE/GL_SE_Move.wav"}},
-		//{ JUMP ,	{"Sound/SE/PlayerSE/GL_SE_Jump.wav"}},
+		{ JUMP ,	{"Sound/SE/PlayerSE/GL_SE_Jump.wav"}},
 		{ LIGHT ,	{"Sound/SE/PlayerSE/GL_SE_Lights.wav"}},
 
 	};

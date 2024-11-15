@@ -47,6 +47,7 @@ void SceneManeger::ChangeSceneFlag(E_SCENE scene)
 
 void SceneManeger::ChangeScene(E_SCENE nextScene)
 {
+	Game::gameInstance->GetSoundMNG()->SoundStopAll();
 	switch (nextScene)
 	{
 	case GAME:

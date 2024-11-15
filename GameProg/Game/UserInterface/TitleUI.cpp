@@ -16,6 +16,8 @@ void TitleUI::Initialize()
 {
 	UserInterface::Initialize();
 
+	m_isVideo = false;
+
 	//画面の幅を取得
 	float scrX = WINDOW_INFO::GAME_WIDTH;
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
@@ -72,68 +74,73 @@ void TitleUI::Initialize()
 void TitleUI::Update()
 {
 	UserInterface::Update();
-
-	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
-		m_isMenuActive = true;
-		m_nowcursor = 2;
-		for (int i = 1; i < 3; i++) {
-			m_startText[i]->SetisVisible(true);
-		}
-		//カーソル位置の変更
-		m_arrow->SetPos(m_nowpostion[m_nowcursor]);
-		m_gameExitText->SetisVisible(true);
-		m_arrow->SetisVisible(true);
-		m_backGround->SetisVisible(true);
-	}
-
-	//決定
-	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
-
-		if (m_nowcursor == 0) {
-			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
-			//元に戻す
-			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-		}
-		else if (m_nowcursor == 1) {
-			//ゲームを終了する
-			// DXライブラリ終了処理
-			DxLib_End();
-			return;
-
-		}
-		else if (m_nowcursor == 2) {
-			m_isMenuActive = false;
-			m_nowcursor = 0;
+	if (!m_isVideo) {
+		if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
+			m_isMenuActive = true;
+			m_nowcursor = 2;
 			for (int i = 1; i < 3; i++) {
-				m_startText[i]->SetisVisible(false);
+				m_startText[i]->SetisVisible(true);
 			}
-			m_gameExitText->SetisVisible(false);
-			m_arrow->SetisVisible(false);
-			m_backGround->SetisVisible(false);
-		}
-	}
-
-	//カーソルの変更
-	if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
-		if (m_nowcursor != 2) {
-			//カーソルを下にずらす
-			m_nowcursor++;
-
 			//カーソル位置の変更
 			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			m_gameExitText->SetisVisible(true);
+			m_arrow->SetisVisible(true);
+			m_backGround->SetisVisible(true);
+		}
+
+		//決定
+		if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
+
+			if (m_nowcursor == 0) {
+				//ゲームシーンへ移行フラグをオンにする
+				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
+				//元に戻す
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+			}
+			else if (m_nowcursor == 1) {
+				//ゲームを終了する
+				// DXライブラリ終了処理
+				DxLib_End();
+				return;
+
+			}
+			else if (m_nowcursor == 2) {
+				m_isMenuActive = false;
+				m_nowcursor = 0;
+				for (int i = 1; i < 3; i++) {
+					m_startText[i]->SetisVisible(false);
+				}
+				m_gameExitText->SetisVisible(false);
+				m_arrow->SetisVisible(false);
+				m_backGround->SetisVisible(false);
+			}
+		}
+
+		//カーソルの変更
+		if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
+			if (m_nowcursor != 2) {
+				//カーソルを下にずらす
+				m_nowcursor++;
+
+				//カーソル位置の変更
+				m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			}
+		}
+		if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
+			if (m_nowcursor != 1) {
+				//カーソルを上にずらす
+				m_nowcursor--;
+
+				//カーソル位置の変更
+				m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			}
 		}
 	}
-	if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
-		if (m_nowcursor != 1) {
-			//カーソルを上にずらす
-			m_nowcursor--;
-
-			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+	else {
+		if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
+			m_isVideo = false;
 		}
 	}
-
 }
 
 void TitleUI::Draw()

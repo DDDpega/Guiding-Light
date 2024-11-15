@@ -27,10 +27,12 @@ public:
 	/// •`‰æˆ—
 	/// </summary>
 	void Draw();
+
+	bool m_isVideo;			//“®‰æ‚ª—¬‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
 private:
 	shared_ptr<Picture> m_startText[3];
 	shared_ptr<Picture> m_gameExitText;
 	bool m_isMenuActive;	//ƒƒjƒ…[‰æ–Ê
-
+	
 };
 

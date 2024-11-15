@@ -109,6 +109,7 @@
     <ClInclude Include="Game\Info\Point.h" />
     <ClInclude Include="Game\Info\SoundInfo.h" />
     <ClInclude Include="Game\Info\SystemInfo.h" />
+    <ClInclude Include="Game\Info\VideoInfo.h" />
     <ClInclude Include="Game\Main\Fps.h" />
     <ClInclude Include="Game\Main\Framework.h" />
     <ClInclude Include="Game\Main\Game.h" />
