@@ -72,7 +72,7 @@ void RigidbodyCmp::Update()
 			m_state = FALL;
 		}
 	case FALL:
-		m_actor->m_vy += 1;
+		m_actor->m_vy += Game::gameInstance->GetStatus()->PLAYER_GRAVITY;
 		break;
 	case JUMPSTT:
 		m_actor->m_vy = -Game::gameInstance->GetStatus()->PLAYER_JUMP;

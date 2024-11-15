@@ -59,6 +59,8 @@ bool Status::ReadStatus()
 		case '7':
 			FIGURE_LIGHT= std::stof(line.substr(postion));
 			break;
+		case '8':
+			PLAYER_GRAVITY= std::stof(line.substr(postion));
 		case 'A':
 			SOLARPANELBLOCK_MAXTIME = std::stof(line.substr(postion));
 			break;

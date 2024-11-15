@@ -185,10 +185,7 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 
 void Player::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
-	//ˆÃ‚¢Š‚É—ˆ‚½
-	/*if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY) && m_isActive && selftag==E_TAG::PLAYER) {
-		m_darkPictureCmp->m_darkPicture->SetisVisible(true);
-	}*/
+
 }
 
 Player* Player::Getthis()
