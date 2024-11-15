@@ -5,7 +5,7 @@ TitleScene::TitleScene()
 	:Scene("タイトルシーン")
 	, m_nowcursor(0)
 {
-
+	Game::gameInstance->GetSoundMNG()->SetMasterVolume(100);
 }
 
 TitleScene::~TitleScene()
@@ -16,18 +16,22 @@ void TitleScene::Initialize()
 {
 	Scene::Initialize();
 	
-	Game::gameInstance->GetSoundMNG()->SetMasterVolume(100);
+	
 
 	m_waittime = VideoInfo::WAIT_TIME;
 	
-	m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::TITLE], Sound::E_Sound::BGM, 0));
-	Game::gameInstance->GetSoundMNG()->AddSoundList(m_bgm);
+	if (Game::gameInstance->GetSoundMNG()->GetSoundLength() == 0)
+	{
+		m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::TITLE], Sound::E_Sound::BGM, 0));
+		Game::gameInstance->GetSoundMNG()->AddSoundList(m_bgm);
+		m_bgm->SoundPlay(Sound::LOOP);
+	}
 
 	//UIを表示する
 	auto titleUI = shared_ptr<TitleUI>(new TitleUI());
 	Game::gameInstance->GetPictureMNG()->AddPicture(titleUI);
 
-	m_bgm->SoundPlay(Sound::LOOP);
+	
 
 	
 	

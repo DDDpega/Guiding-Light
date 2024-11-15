@@ -118,7 +118,7 @@ void TitleUI::Update()
 	}
 
 	//カーソルの変更
-	if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")&& m_isMenuActive) {
 		if (m_nowcursor != 2) {
 			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
@@ -128,7 +128,7 @@ void TitleUI::Update()
 			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
-	if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"LEFT") && m_isMenuActive) {
 		if (m_nowcursor != 1) {
 			m_isSoundPlay[2] = true;
 			//カーソルを上にずらす

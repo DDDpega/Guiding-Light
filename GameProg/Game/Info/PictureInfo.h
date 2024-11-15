@@ -368,7 +368,7 @@ namespace ILLUST {
 	
 		_declspec(selectany) vector<PICTURE_TYPE> STAGE_LIST = {
 			{DEFAULT_MAPCHIP , {"Picture/mapChipData16bit.png"}},
-			{BACKGROUND , {"Picture/background.png"}},
+			{BACKGROUND , {"Picture/Illust/BackGround/GL_BackGround.png"}},
 		};
 }
 

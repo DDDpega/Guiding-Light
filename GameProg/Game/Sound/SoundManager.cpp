@@ -45,8 +45,16 @@ void SoundManager::Initialize()
 
 void SoundManager::AddSoundList(shared_ptr<Sound> sound)
 {
+	m_sounds.remove(sound);
+
 	sound->Initialize();
 	m_sounds.push_back(sound);
+}
+
+void SoundManager::DelateSoundList(shared_ptr<Sound> sound)
+{
+	
+	m_sounds.remove(sound);
 }
 
 void SoundManager::SetVolume()
@@ -59,7 +67,7 @@ void SoundManager::SetVolume()
 			ChangeVolumeSoundMem(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 10) / 10), sound->GetSound());
 			break;
 		case Sound::SE:
-			ChangeVolumeSoundMem(int(m_seVolume * (float)(m_masterVolume / MAXVOLUME)), sound->GetSound());
+			ChangeVolumeSoundMem(int(m_seVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100), sound->GetSound());
 			break;
 		}
 	}
@@ -115,6 +123,9 @@ void SoundManager::SetMasterVolume(int volume)
 void SoundManager::ClearSound()
 {
 	SoundStopAll();
+	for (auto& sound : m_sounds) {
+		sound.reset();
+	}
 	m_sounds.clear();
 }
 

@@ -14,23 +14,22 @@ UserInterface::UserInterface(bool isVisible,bool isInput)
 
 UserInterface::~UserInterface()
 {
-
+	
 }
 
 void UserInterface::Initialize()
 {
 	m_nowcursor = 0;
 
-	m_sound->reset();
+	
 	m_sound[0] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::DECISION], Sound::E_Sound::SE, 0));
-	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[0]);
-
 	m_sound[1] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::CANCEL], Sound::E_Sound::SE, 0));
-	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[1]);
-
 	m_sound[2] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::CURSORCONTROL], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[0]);
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[1]);
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[2]);
-
+	auto a = Game::gameInstance->GetSoundMNG()->GetSoundLength();
+	auto b = a;
 	for (int i = 0; i < sizeof(m_isSoundPlay); i++) {
 		m_isSoundPlay[i] = false;
 	}

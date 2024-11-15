@@ -41,5 +41,6 @@ void TitleVideoScene::Draw()
 	Scene::Draw();
 	//Œ³‚É–ß‚·
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	DrawGraph(0, 0, m_videoHandle, TRUE);
+	// ƒ€[ƒr[‰f‘œ‚ğ‰æ–Ê‚¢‚Á‚Ï‚¢‚É•`‰æ‚µ‚Ü‚·
+	DrawExtendGraph(0, 0, WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT, m_videoHandle, FALSE);
 }

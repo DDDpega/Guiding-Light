@@ -25,12 +25,14 @@ public:
 	/// <param name="sound"></param>
 	void AddSoundList(shared_ptr<Sound> sound);
 
+	void DelateSoundList(shared_ptr<Sound> sound);
+
 	/// <summary>
 	/// サウンドの音量をセットする
 	/// </summary>
 	void SetVolume();
 
-
+	int GetSoundLength() { return m_sounds.size(); }
 
 	/// <summary>
 	/// 音量をBGM、SE別に変更

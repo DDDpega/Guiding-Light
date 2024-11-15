@@ -61,6 +61,8 @@ void GameClearUI::Update()
 			}
 		}
 		else if (m_nowcursor == 1) {
+			//全てのサウンドを止める
+			Game::gameInstance->GetSoundMNG()->ClearSound();
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
 		}

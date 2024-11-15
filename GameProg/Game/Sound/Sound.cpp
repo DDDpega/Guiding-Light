@@ -14,7 +14,7 @@ Sound::Sound(SOUND_TYPE soundType, E_Sound playType, int num)
 Sound::~Sound()
 {
 	// サウンドハンドルの削除
-	DeleteSoundMem(m_sound);
+	//DeleteSoundMem(m_sound);
 }
 
 void Sound::Initialize() throw()
