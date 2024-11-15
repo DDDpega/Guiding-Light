@@ -1,17 +1,17 @@
 #pragma once
 
-class TitleUI : public UserInterface
+class TitleVideoUI : public UserInterface
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleUI();
+	TitleVideoUI();
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~TitleUI();
+	virtual ~TitleVideoUI();
 
 	/// <summary>
 	/// 初期化処理
@@ -28,12 +28,9 @@ public:
 	/// </summary>
 	void Draw();
 
-	bool m_isVideo;			//動画が流すかどうか
-	bool m_isVideoPlay;		//動画が流れているかどうか
 private:
-	shared_ptr<Picture> m_startText[3];
-	shared_ptr<Picture> m_gameExitText;
-	bool m_isMenuActive;	//メニュー画面
-	
+	shared_ptr<Picture> m_startText;
+	shared_ptr<Picture> m_demoText;
+
 };
 

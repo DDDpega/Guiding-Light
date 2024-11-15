@@ -181,6 +181,12 @@
     <ClCompile Include="Game\Sound\Sound.cpp">
       <Filter>Game\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scene\TitleVideoScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UserInterface\TitleVideoUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -345,6 +351,12 @@
     </ClInclude>
     <ClInclude Include="Game\Info\VideoInfo.h">
       <Filter>Game\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TitleVideoScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\TitleVideoUI.h">
+      <Filter>Game\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

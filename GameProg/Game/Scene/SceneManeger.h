@@ -64,6 +64,7 @@ private:
 	Scene* nowScene;
 	TitleScene* titleScene;
 	StageSelectScene* ssScene;
+	TitleVideoScene* tvScene;
 
 	E_SCENE e_NowScene;
 	E_SCENE e_NextScene;

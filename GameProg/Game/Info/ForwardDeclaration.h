@@ -4,6 +4,7 @@ class Picture;
 class Game;
 class GameScene;
 class TitleScene;
+class TitleVideoScene;
 class StageSelectScene;
 class Player;
 class Map;

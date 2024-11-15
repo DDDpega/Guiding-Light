@@ -45,6 +45,7 @@ using namespace std;
 #include "UserInterface.h"
 #include "GamePauseUI.h"
 #include "TitleUI.h"
+#include "TitleVideoUI.h"
 #include"StageSelectUI.h"
 #include "InGameUI.h"
 #include "GameClearUI.h"
@@ -90,5 +91,6 @@ using namespace std;
 #include "GameScene.h"
 #include"StageSelectScene.h"
 #include "TitleScene.h"
+#include "TitleVideoScene.h"
 #include "SceneManeger.h"
 

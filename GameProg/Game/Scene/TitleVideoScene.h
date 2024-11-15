@@ -1,19 +1,18 @@
 #pragma once
 
-
-
-class TitleScene : public Scene
+class TitleVideoScene :
+    public Scene
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleScene();
+	TitleVideoScene();
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~TitleScene();
+	virtual ~TitleVideoScene();
 
 	/// <summary>
 	/// 初期化処理
@@ -29,12 +28,8 @@ public:
 	/// 描画
 	/// </summary>
 	virtual void Draw();
-
 private:
-	Point m_nowpostion[3];
-	int m_nowcursor;
-	std::shared_ptr<Picture> m_arrow;
-	shared_ptr<TitleUI> m_titleUI;
-	int m_waittime;
-	
+	int m_waitTime;
+	int m_videoHandle;
 };
+

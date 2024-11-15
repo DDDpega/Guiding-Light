@@ -21,7 +21,7 @@ enum class E_TAG
 /// </summary>
 enum E_SCENE
 {
-	GAME, TITLE, STAGESELECT, RESULT
+	GAME, TITLE,TITLEVIDEO, STAGESELECT, RESULT
 };
 
 /// <summary>
