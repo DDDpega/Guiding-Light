@@ -26,6 +26,13 @@ public:
 	void AddSoundList(shared_ptr<Sound> sound);
 
 	/// <summary>
+	/// サウンドの音量をセットする
+	/// </summary>
+	void SetVolume();
+
+
+
+	/// <summary>
 	/// 音量をBGM、SE別に変更
 	/// </summary>
 	/// <param name="volume">音量</param>

@@ -4,7 +4,7 @@
 /// ”wŒi‚Ìî•ñ
 /// </summary>
 namespace BACKGROUND_INFO {
-	constexpr float SIZE = 12.0f;
+	constexpr float SIZE = 2.5f;
 }
 
 /// <summary>

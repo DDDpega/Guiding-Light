@@ -49,6 +49,21 @@ void SoundManager::AddSoundList(shared_ptr<Sound> sound)
 	m_sounds.push_back(sound);
 }
 
+void SoundManager::SetVolume()
+{
+
+	for (auto& sound : m_sounds) {
+		switch (sound->GetSoundType())
+		{
+		case Sound::BGM:
+			ChangeVolumeSoundMem(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 10) / 10), sound->GetSound());
+			break;
+		case Sound::SE:
+			ChangeVolumeSoundMem(int(m_seVolume * (float)(m_masterVolume / MAXVOLUME)), sound->GetSound());
+			break;
+		}
+	}
+}
 // Šeí‰¹—Ê‚Ìİ’è
 void SoundManager::ChangeVolume(int volume, Sound::E_Sound soundType)
 {

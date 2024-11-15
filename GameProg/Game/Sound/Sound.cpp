@@ -34,6 +34,8 @@ void Sound::SoundPlay(E_PlaySound type)
 
 	SetPlaySoundVolume(m_volume);
 
+	
+
 	switch (type)
 	{
 	case Sound::NOMAL:
@@ -49,6 +51,7 @@ void Sound::SoundPlay(E_PlaySound type)
 		PlaySoundMem(m_sound, DX_PLAYTYPE_LOOP);
 		break;
 	}
+	Game::gameInstance->GetSoundMNG()->SetVolume();
 	
 }
 

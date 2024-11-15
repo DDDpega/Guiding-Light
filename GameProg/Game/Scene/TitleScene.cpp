@@ -16,6 +16,8 @@ void TitleScene::Initialize()
 {
 	Scene::Initialize();
 	
+	Game::gameInstance->GetSoundMNG()->SetMasterVolume(100);
+
 	m_waittime = VideoInfo::WAIT_TIME;
 	
 	m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::TITLE], Sound::E_Sound::BGM, 0));
