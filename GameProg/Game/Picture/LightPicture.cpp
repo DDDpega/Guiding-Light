@@ -33,9 +33,9 @@ void LightPicture::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 	//画像を描画するためのスクリーンを作成する
-	screenA = MakeScreen(x, y, true);
-	screenB = MakeScreen(x, y, true);
-	screenC = MakeScreen(x, y, true);
+	auto screenA = MakeScreen(x, y, true);
+	auto screenB = MakeScreen(x, y, true);
+	auto screenC = MakeScreen(x, y, true);
 
 	//スクリーンを色で塗りつぶす
 	FillGraph(screenA, 0, 0, 0, 255);			//白
@@ -44,7 +44,6 @@ void LightPicture::Draw()
 
 	//スクリーンを設定する
 	SetDrawScreen(screenB);
-	int handle = LoadGraph("Picture/light.png");
 
 	//----------------------------------------------------------------------
 	//ライトを描画する

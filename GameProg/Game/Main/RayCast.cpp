@@ -40,8 +40,8 @@ Point RayCast::RayStart(Point pos,int radius,int element)
 
 	//ƒŒƒC‚ğÁ‚·
 	if (radius == 0) {
-		m_pos.x = -1000.0f;
-		m_pos.y = -1000.0f;
+		m_pos.x = -10.0f;
+		m_pos.y = -10.0f;
 		m_isRayStart = false;
 		return m_pos;
 	}

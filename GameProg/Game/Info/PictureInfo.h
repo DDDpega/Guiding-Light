@@ -302,6 +302,7 @@ namespace ILLUST {
 		FIGUA,
 		GOALLIGHT,
 		LIGHT,
+		GOALLIGHTRED,
 		PISHER,
 		PISHER_EYE,
 		LADDER,
@@ -313,6 +314,7 @@ namespace ILLUST {
 		{FIGUA , {"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"} },
 		{GOALLIGHT , {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}},
 		{LIGHT , {"Picture/light.png"}},
+		{GOALLIGHTRED , {"Picture/goalLampLight.png"}},
 		{PISHER ,{
 			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
 			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},

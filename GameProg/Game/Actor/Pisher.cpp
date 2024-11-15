@@ -104,6 +104,10 @@ void Pisher::Update()
 		}
 	}
 
+	//ƒTƒEƒ“ƒh
+	float distance = (1.0f/sqrt(abs(m_pos.x - m_player->GetPos().x) + abs(m_pos.y - m_player->GetPos().y)))*10;
+	//printfDx("%f\n", distance);
+
 	Actor::Move();
 
 	//•Ï”‚Ì‰Šú‰»

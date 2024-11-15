@@ -141,7 +141,7 @@ void Player::Update()
 	switch (m_rigidBody->m_state)
 	{
 	case FLY:
-		if (Game::gameInstance->m_framecnt % 10 == 0) {
+		if (Game::gameInstance->m_framecnt % 10 == 0 && isClick_y) {
 			m_pictureCmp->m_picture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::ASCEND], m_ascendPictureNum);
 			m_darkPictureCmp->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::ASCEND], m_ascendPictureNum + 1);
 

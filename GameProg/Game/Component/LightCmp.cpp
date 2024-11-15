@@ -1,12 +1,13 @@
 #include "Framework.h"
 
-LightCmp::LightCmp(Actor* actor,bool lightOn,float lightSize,E_TAG tag)
+LightCmp::LightCmp(Actor* actor,bool lightOn,float lightSize,E_TAG tag,PICTURE_TYPE pictureType)
 	:Component(actor)
 	,m_lightOn(lightOn)
 	,m_lightSize(lightSize)
 	,m_changeNow(false)
 	,m_framecnt(0)
 	,m_rayTag(tag)
+	,m_pictureType(pictureType)
 {
 
 }
@@ -21,7 +22,7 @@ void LightCmp::Initialize()
 	Component::Initialize();
 
 	//Œõ‚Ì•`‰æ
-	m_lightPicture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize*0.004, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
+	m_lightPicture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize*0.004, m_pictureType, 0, E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
 	m_lightPicture->Initialize();
 	SceneManeger::gameScene->m_lightPicture->AddLightList(this);
 

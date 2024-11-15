@@ -35,9 +35,7 @@ public:
 	void AddLightList(LightCmp* lightCmp);
 
 protected:
-	int screenA;
-	int screenB;
-	int screenC;
+
 
 	list<LightCmp*> lightCmpList;
 

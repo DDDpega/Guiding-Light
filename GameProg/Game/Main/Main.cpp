@@ -1,13 +1,11 @@
 #include "Framework.h"
 
-
 //ゲーム
 Game* gameInstance;
 Fps* fps;
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-
 	//アイコンの設定
 	SetWindowIconID(101);
 

@@ -4,7 +4,7 @@
 class LightCmp : public Component
 {
 public:
-	LightCmp(Actor* actor, bool lightOn,float lightSize,E_TAG tag=E_TAG::RAY);
+	LightCmp(Actor* actor, bool lightOn,float lightSize,E_TAG tag=E_TAG::RAY, PICTURE_TYPE pictureType= ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::LIGHT]);
 
 	virtual ~LightCmp();
 
@@ -44,5 +44,6 @@ protected:
 	Point targetPos;
 	int m_framecnt;
 	E_TAG m_rayTag;
+	PICTURE_TYPE m_pictureType;
 };
 
