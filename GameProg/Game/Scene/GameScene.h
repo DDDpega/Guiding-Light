@@ -76,6 +76,7 @@ public:
 	shared_ptr<Map>	m_map;
 	shared_ptr<LightPicture> m_lightPicture;
 	vector<LuminousFigure*> m_figureList;	//蓄光フィギュアのリスト
+	vector<shared_ptr<Picture>> m_darkPictureList;
 	shared_ptr<GamePauseUI> m_pauseUI;
 	shared_ptr<SolarPanel> m_solarpanel;
 

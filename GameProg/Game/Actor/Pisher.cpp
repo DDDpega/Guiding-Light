@@ -79,6 +79,7 @@ void Pisher::Update()
 
 		//ターゲットの位置
 		auto targetPos = m_target->GetPos();
+		targetPos.y -= 80;
 
 		//移動の速度決定
 		float radial = atan2f((targetPos.y - m_pos.y), (targetPos.x - m_pos.x));

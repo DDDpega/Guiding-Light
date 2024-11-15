@@ -47,7 +47,7 @@ void GameScene::Initialize()
 	m_LightNum = 0;
 	isGameOver = false;
 	isGameClear = false;
-
+	m_darkPictureList.clear();
 	//”wŒi‰æ‘œ
 	auto background = std::shared_ptr<BackGround>(new BackGround(Point{ 0,0 }));
 	Game::gameInstance->GetActorMNG()->AddActor(background);

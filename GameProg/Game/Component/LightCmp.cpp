@@ -43,8 +43,12 @@ void LightCmp::Update()
 	m_framecnt++;
 	m_lightPicture->SetPos(actorPos);
 
+	if (m_actor->m_darkPictureCmp != nullptr) {
+		m_actor->m_darkPictureCmp->m_darkPicture->SetisVisible(true);
+	}
+
 	//–ˆ•bƒŒƒC‚ğ”ò‚Î‚·
-	if ( m_framecnt % 2 == 0 && m_lightOn) {
+	if (m_lightOn) {
 
 		//ƒŒƒC‚ğ”ò‚Î‚·
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {

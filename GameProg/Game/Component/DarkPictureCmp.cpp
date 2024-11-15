@@ -17,6 +17,8 @@ void DarkPictureCmp::Initialize()
 
 	m_darkPicture = shared_ptr<Picture>(new Picture((m_actor->GetPos()), (m_actor->m_pictureCmp->m_picture->m_size), m_picture, m_number, E_PIVOT::CENTER, E_SORT::SORT_ACTOR_DARKPICTURE));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_darkPicture);
+
+	SceneManeger::gameScene->m_darkPictureList.push_back(m_darkPicture);
 }
 
 void DarkPictureCmp::Update()
@@ -30,5 +32,5 @@ void DarkPictureCmp::Draw()
 {
 	Component::Draw();
 
-	m_darkPicture->SetisVisible(true);
+	//m_darkPicture->SetisVisible(true);
 }
