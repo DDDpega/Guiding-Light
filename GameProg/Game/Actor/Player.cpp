@@ -20,6 +20,18 @@ void Player::Initialize()
 	m_ascendPictureNum = 0;
 	m_movePictureUp = true;
 
+	m_soundFrame[0] =0;
+	m_soundFrame[1] = 0;
+
+	m_sound[0]=shared_ptr<Sound>(new Sound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::JUMP], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[0]);
+
+	m_sound[1] = shared_ptr<Sound>(new Sound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::LIGHT], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[1]);
+
+	m_sound[2] = shared_ptr<Sound>(new Sound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[2]);
+
 	//画像コンポーネント
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PLAYER_INFO::SIZE, ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL],0, E_PIVOT::CENTER, E_SORT::SORT_PLAYER));
 	AddComponent(m_pictureCmp);
@@ -85,6 +97,18 @@ void Player::Update()
 
 	}
 
+	//移動時の音声を出力
+	if (isClick_x ) {
+		if (m_soundFrame[0]-- < 0) {
+			m_sound[2]->SoundPlay(Sound::BACK);
+			m_soundFrame[0] = PLAYER_INFO::MOVEFRAME;
+		}
+	}
+	else {
+		m_sound[2]->SoundStop();
+		m_soundFrame[0] = 0;
+	}
+
 	//はしご中の動作
 	if (m_rigidBody->m_state == STATE::FLY) {
 		if (Game::gameInstance->GetInputMNG()->Down(L"UP")) {
@@ -96,7 +120,8 @@ void Player::Update()
 			isClick_y = true;
 		}
 	}
-	
+
+
 	//左右の操作がされ、ジャンプ・梯子状態ではない時
 	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL&& m_rigidBody->m_state != STATE::FLY) {
 		m_rigidBody->ChangeState(STATE::WALK);
@@ -107,6 +132,7 @@ void Player::Update()
 			m_rigidBody->m_state == STATE::FLY || m_rigidBody->m_state==STATE::WALK) {
 		if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 			m_rigidBody->ChangeState(STATE::JUMPSTT);
+			m_sound[0]->SoundPlay(Sound::BACK);
 			isClick_y = true;
 		}
 	}
@@ -151,6 +177,7 @@ void Player::Update()
 	case JUMP:
 	case FALL:
 	case JUMPSTT:
+		
 		m_pictureCmp->m_picture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::JUMP], 0);
 		m_darkPictureCmp->m_darkPicture->ChangePicture(ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::JUMP], 1);
 		break;
@@ -160,6 +187,7 @@ void Player::Update()
 	if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
 		if (!m_lightCmp->m_changeNow) {
 			m_lightCmp->ChangeLightONOFF();
+			m_sound[1]->SoundPlay(Sound::BACK);
 		}
 	}
 

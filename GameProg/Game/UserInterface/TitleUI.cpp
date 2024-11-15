@@ -76,6 +76,7 @@ void TitleUI::Update()
 {
 	UserInterface::Update();
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
+		m_isSoundPlay[1] = true;
 		m_isMenuActive = true;
 		m_nowcursor = 2;
 		for (int i = 1; i < 3; i++) {
@@ -90,7 +91,7 @@ void TitleUI::Update()
 
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
-
+		m_isSoundPlay[0] = true;
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
@@ -119,6 +120,7 @@ void TitleUI::Update()
 	//カーソルの変更
 	if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
 		if (m_nowcursor != 2) {
+			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
 			m_nowcursor++;
 
@@ -128,6 +130,7 @@ void TitleUI::Update()
 	}
 	if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
 		if (m_nowcursor != 1) {
+			m_isSoundPlay[2] = true;
 			//カーソルを上にずらす
 			m_nowcursor--;
 

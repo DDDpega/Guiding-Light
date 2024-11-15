@@ -51,7 +51,7 @@ void GameOverUI::Update()
 
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
-
+		m_isSoundPlay[0] = true;
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::GAME);
@@ -64,7 +64,9 @@ void GameOverUI::Update()
 
 	//カーソルの変更
 	if (Game::gameInstance->GetInputMNG()->Click(L"DOWN")) {
+		
 		if (m_nowcursor != 1) {
+			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
 			m_nowcursor++;
 
@@ -73,7 +75,10 @@ void GameOverUI::Update()
 		}
 	}
 	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
+
 		if (m_nowcursor != 0) {
+			m_isSoundPlay[2] = true;
+
 			//カーソルを上にずらす
 			m_nowcursor--;
 

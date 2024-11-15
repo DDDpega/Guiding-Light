@@ -106,6 +106,7 @@ void StageSelectUI::Update()
 
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
+		m_isSoundPlay[0] = true;
 		if (!m_isMenu) {
 			switch (m_colSelectNum)
 			{
@@ -147,12 +148,14 @@ void StageSelectUI::Update()
 		if (m_colSelectNum == 0) {
 			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
 				if (m_nowcursor <= 2) {
+					m_isSoundPlay[2] = true;
 					//カーソルを下にずらす
 					m_nowcursor++;
 				}
 			}
 			if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
 				if (m_nowcursor != 0) {
+					m_isSoundPlay[2] = true;
 					//カーソルを上にずらす
 					m_nowcursor--;
 				}
@@ -161,6 +164,7 @@ void StageSelectUI::Update()
 		//縦カーソルの変更
 		if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
 			if (m_colSelectNum != 1) {
+				m_isSoundPlay[2] = true;
 				//カーソルを上にずらす
 				m_colSelectNum++;
 				m_menuIcon->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_LIGHT]);
@@ -168,6 +172,7 @@ void StageSelectUI::Update()
 		}
 		if (Game::gameInstance->GetInputMNG()->Click(L"DOWN")) {
 			if (m_colSelectNum != 0) {
+				m_isSoundPlay[2] = true;
 				//カーソルを下にずらす
 				m_colSelectNum--;
 				m_menuIcon->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT]);

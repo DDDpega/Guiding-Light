@@ -41,6 +41,10 @@ void GameScene::Initialize()
 {
 	Scene::Initialize();
 
+	m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::STAGE], Sound::E_Sound::BGM, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_bgm);
+	m_bgm->SoundPlay(Sound::LOOP);
+
 	//•Ï”‚Ì‰Šú‰»
 	m_figureList.clear();
 	m_isPause = false;

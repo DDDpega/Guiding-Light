@@ -273,6 +273,7 @@ namespace UI{
 		TITLE,
 		GAMEEND,
 		GAMESTART,
+		DEMO,
 		NO,
 		YES,
 	};
@@ -285,6 +286,7 @@ namespace UI{
 		//‘I‘ðŽˆ
 		{GAMEEND , {"Picture/UI/Title/GL_UI_GameEnd.png"}},
 		{GAMESTART , {"Picture/UI/Title/GL_UI_GameStart.png"}},
+		{DEMO , {"Picture/UI/Title/GL_UI_DemoMovie.png"}},
 		{NO , {"Picture/UI/Title/GL_UI_No.png"}},
 		{YES ,{"Picture/UI/Title/GL_UI_Yes.png"}},
 	};

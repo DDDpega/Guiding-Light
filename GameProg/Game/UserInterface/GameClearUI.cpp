@@ -51,7 +51,7 @@ void GameClearUI::Update()
 
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
-
+		m_isSoundPlay[0] = true;
 		if (m_nowcursor == 0) {
 			//ステージ番号を1つ上げる
 			SceneManeger::gameScene->SetNumStage(SceneManeger::gameScene->GetNumStage() + 1);
@@ -66,7 +66,9 @@ void GameClearUI::Update()
 
 	//カーソルの変更
 	if (Game::gameInstance->GetInputMNG()->Click(L"DOWN")) {
+		
 		if (m_nowcursor != 1) {
+			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
 			m_nowcursor++;
 
@@ -75,7 +77,9 @@ void GameClearUI::Update()
 		}
 	}
 	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
+		m_isSoundPlay[2] = true;
 		if (m_nowcursor != 0) {
+			m_isSoundPlay[2] = true;
 			//カーソルを上にずらす
 			m_nowcursor--;
 

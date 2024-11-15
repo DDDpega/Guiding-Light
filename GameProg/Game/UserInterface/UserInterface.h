@@ -45,5 +45,8 @@ protected:
 	int m_add;		//アルファ値の変更する値の量
 	shared_ptr<Picture> m_backGround;
 
+	shared_ptr<Sound> m_sound[3];		//UIのサウンド 0=決定　1 = キャンセル 2 = カーソル移動
+
+	bool m_isSoundPlay[3];				//UIのサウンドを出力するかどうか　0 = 決定　1 = キャンセル 2 = カーソル移動
 	
 };
