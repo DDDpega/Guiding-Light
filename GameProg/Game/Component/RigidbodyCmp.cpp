@@ -47,7 +47,7 @@ void RigidbodyCmp::Update()
 	
 
 	//落下中のじめん判定チェック
-	if ((m_state == FALL||m_state==FLY )&& m_actor->m_mapCollision->CheckMapCollide(m_tag, m_actor->GetPos(), 0.0f, m_actor->m_vy, true, true)) {
+	if ((m_state == FALL||m_state==FLY ||m_state==JUMP)&& m_actor->m_mapCollision->CheckMapCollide(m_tag, m_actor->GetPos(), 0.0f, m_actor->m_vy, true, true)) {
 		//m_ay = 0.0f;    //重力
 		m_actor->m_vy = 0.0f;
 		m_actor->m_vx = 0.0f;

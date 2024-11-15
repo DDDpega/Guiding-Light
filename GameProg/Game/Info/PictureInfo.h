@@ -183,6 +183,7 @@ namespace UI {
 		CREDIT_N_LIGHT,
 		OPTION_LIGHT,
 		OPTION_N_LIGHT,
+		S_PLAYER,
 	};
 
 
@@ -257,6 +258,9 @@ namespace UI {
 		{ CREDIT_N_LIGHT, {"Picture/MS_Credit_on.png" }},
 		{ OPTION_LIGHT, {"Picture/MS_Option_off.png" }},
 		{ OPTION_N_LIGHT, {"Picture/MS_Option_on.png" }},
+
+		//キャラのアイコン
+		{S_PLAYER,{"Picture/Illust/Player/GL_Player_Idol_A.png"}},
 
 
 

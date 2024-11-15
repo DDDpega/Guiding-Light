@@ -60,7 +60,7 @@ void StageSelectUI::Initialize()
 	UserInterface::AddPictureInUI(m_menuIcon);
 
 	//キャラ
-	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 0.5, UI::CREDIT_LIST[UI::CREDIT_TYPE::TAKADA], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 6, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_PLAYER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
 	//黒背景
@@ -146,7 +146,7 @@ void StageSelectUI::Update()
 		//横カーソルの変更
 		if (m_colSelectNum == 0) {
 			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
-				if (m_nowcursor != 20) {
+				if (m_nowcursor <= 2) {
 					//カーソルを下にずらす
 					m_nowcursor++;
 				}
@@ -227,7 +227,7 @@ void StageSelectUI::Draw()
 		
 	}
 	//選択されているステージが20なら
-	else if(m_nowcursor == 20){
+	else if(m_nowcursor == 3){
 		//右を消す
 		m_stageArray[2]->SetisVisible(false);
 		
