@@ -88,9 +88,10 @@ void Pisher::Update()
 		m_vy = sin(radial) * m_speed;
 
 		//左右反転
-		m_pictureCmp->m_picture->m_reverse = (m_vx < 0);
-		m_darkPictureCmp->m_darkPicture->m_reverse=(m_vx < 0);
-
+		if ((int)m_pos.x != (int)targetPos.x && (int)m_pos.y != (int)targetPos.y) {
+			m_pictureCmp->m_picture->m_reverse = (m_vx < 0);
+			m_darkPictureCmp->m_darkPicture->m_reverse = (m_vx < 0);
+		}
 
 		//10フレームごとに画像を変更する
 		if (Game::gameInstance->m_framecnt % 10 == 0) {
