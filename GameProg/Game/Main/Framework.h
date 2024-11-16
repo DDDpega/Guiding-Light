@@ -29,7 +29,6 @@ using namespace std;
 #include"Fps.h"
 #include "Key.h"
 #include "Status.h"
-#include "MapStatus.h"
 #include "InputManager.h"
 #include "Game.h"
 
