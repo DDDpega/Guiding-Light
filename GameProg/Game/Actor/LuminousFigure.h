@@ -51,5 +51,7 @@ protected:
 	int m_fontHandle;	//フォントの情報
 	shared_ptr<LightCmp> m_lightCmp;	//ライトコンポーネント
 	bool m_shareNow;	//ライトを与えている最中かどうか
+	shared_ptr<Sound>	m_figureSound;
+
 };
 

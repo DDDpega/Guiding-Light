@@ -16,6 +16,11 @@ Map::Map(const OnryMapInfo& onryInfo, const Info& info, const TCHAR* graph)
 {
 	LoadDivGraph(graph, 2, 2, 1, 16, 16, m_bitmap);
 
+	//ファイルからマップデータを読み込む
+	if (onryInfo.m_filePath != L"") {
+		LoadMapSize(onryInfo.m_filePath);
+	}
+
 	//要素数
 	size_t size = m_row;
 	for (int i = 0; i < m_col; i++) {
@@ -25,7 +30,7 @@ Map::Map(const OnryMapInfo& onryInfo, const Info& info, const TCHAR* graph)
 
 	//ファイルからマップデータを読み込む
 	if (onryInfo.m_filePath != L"") {
-		loadFromFile(onryInfo.m_filePath, info.m_chipSet);
+		LoadFromFile(onryInfo.m_filePath, info.m_chipSet);
 	}
 
 	
@@ -79,7 +84,7 @@ void Map::createMap()
 			{
 				continue;
 			}
-			m_pos.x = (MAPCHIP_WIDTH * 0) - m_scroll.x;
+			m_pos.x =  - m_scroll.x;
 
 
 			// 描画座標を割り出す
@@ -114,8 +119,28 @@ void Map::createMap()
 	}
 }
 
+void Map::LoadMapSize(const wstring filePath) 
+{
+	wifstream ifs;
+
+	//ファイルを開く
+	ifs.open(filePath.c_str());
+
+	//失敗したら何もしない
+	if (ifs.fail()) {
+		return;
+	}
+
+	//ファイルから取得した文字列
+	wstring col;
+	//チップ番号
+	int chipNo;
+	getline(ifs, col);
+	m_row = col.length();
+}
+
 //ファイルからデータを読み込むメソッド
-void Map::loadFromFile(const wstring filePath, const wstring chipSet)
+void Map::LoadFromFile(const wstring filePath, const wstring chipSet)
 {
 	wifstream ifs;
 
@@ -132,11 +157,10 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 	//チップ番号
 	int chipNo;
 
-
 	for (int c = 0; c < m_col; c++) {
 		//ファイルから1行読み込む
 		getline(ifs, col);
-
+		
 		//もしも読み込める行がないならば終了
 		if (ifs.eof()) {
 			ifs.close();
@@ -191,7 +215,7 @@ void Map::loadFromFile(const wstring filePath, const wstring chipSet)
 
 
 //スクロール位置をセットするメソッド
-void Map::setScroll(Point pos)
+void Map::SetScroll(Point pos)
 {
 	m_scroll = pos;
 
@@ -202,9 +226,9 @@ void Map::setScroll(Point pos)
 		m_scroll.x = 0.0f;
 	}
 	//マップの幅のピクセル数が画面の幅より大きい場合のみチェックする
-	else if (m_scroll.x > MAP_FULLSIZE_WIDTH * MAPCHIP_WIDTH - GameWidth) {
+	else if (m_scroll.x > m_row * MAPCHIP_WIDTH - GameWidth) {
 		//マップの実際のピクセルサイズ
-		m_scroll.x = MAP_FULLSIZE_WIDTH * MAPCHIP_WIDTH - GameWidth;
+		m_scroll.x = m_row * MAPCHIP_WIDTH - GameWidth;
 
 	}
 }

@@ -34,6 +34,8 @@ void LuminousFigure::Initialize()
 	//フォントの描画
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 20, 1);
 
+	m_figureSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::FIGURE], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_figureSound);
 }
 
 void LuminousFigure::Update()
@@ -55,6 +57,8 @@ void LuminousFigure::Update()
 
 			//リストに含む
 			SceneManeger::gameScene->m_figureList.push_back(this);
+
+			m_figureSound->SoundPlay();
 		}
 	}
 	else{

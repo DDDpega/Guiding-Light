@@ -90,6 +90,14 @@ public:
 		m_isAlpha = isAlpha;
 	}
 
+	/// <summary>
+	/// アクターかどうかをセットする
+	/// </summary>
+	/// <param name="isActor"></param>
+	void SetIsActor(bool isActor=false) {
+		m_isActive = isActor;
+	}
+
 	bool m_isActive;			//生存するかどうか
 	int m_pictureSizeX;		//画像サイズ
 	int m_pictureSizeY;		//画像サイズ
@@ -110,5 +118,6 @@ protected:
 	bool m_isAlpha;			//アルファ値を変更
 	int m_alpha;			//アルファ値
 	int m_num;			//画像配列番号
+	bool m_isActor;		//アクターかどうか
 };
 

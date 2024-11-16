@@ -99,7 +99,8 @@ private:
 	SOUND_TYPE m_soundType;	//サウンドファイルパス
 	int m_sound;		//サウンドのhandle
 	int m_pitch;		//サウンドのピッチ
-	float m_volume;		//音量の割合(Max1～Min0)
+	float m_volumeRate;		//音量の割合(Max1～Min0)
 	int m_num;			//サウンドの配列番号
+	int m_volume;		//サウンドの音量
 };
 

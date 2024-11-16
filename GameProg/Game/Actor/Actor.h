@@ -97,6 +97,9 @@ public:
 		m_pos = changepos;
 	}
 
+	void SetIsPisher(bool isPisher) {
+		m_isPisher = isPisher;
+	}
 
 	float m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
@@ -104,7 +107,7 @@ public:
 	shared_ptr<PictureCmp> m_pictureCmp;
 	shared_ptr<DarkPictureCmp> m_darkPictureCmp;
 	bool m_isActive;			//ê∂ë∂Ç∑ÇÈÇ©Ç«Ç§Ç©
-
+	bool m_isPisher;			//Â¢Ç©Ç«Ç§Ç©
 protected:
 	bool m_isMove_x;	//xé≤Ç…ìÆÇ¢ÇƒÇ¢ÇÈÇ©Ç«Ç§Ç©
 	bool m_isMove_y;	//yé≤Ç…ìÆÇ¢ÇƒÇ¢ÇÈÇ©Ç«Ç§Ç©

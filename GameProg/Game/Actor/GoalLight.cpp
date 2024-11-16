@@ -28,6 +28,9 @@ void GoalLight::Initialize()
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, GOALLIGHT_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT],0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
+	m_goalLightSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::LAMP], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_goalLightSound);
+
 }
 
 void GoalLight::Update()
@@ -43,6 +46,8 @@ void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	if (tag == E_TAG::PLAYER && !m_isLightOn) {
 		m_lightCmp->ChangeLightONOFF();
 		m_isLightOn = true;
+
+		m_goalLightSound->SoundPlay();
 
 		//ゲームシーンに通知を送る
 		SceneManeger::gameScene->LightNumMinus();

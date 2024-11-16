@@ -25,7 +25,11 @@ void DarkPictureCmp::Update()
 {
 	Component::Update();
 
-	m_darkPicture->SetPos(m_actor->GetPos());
+	//マップのポジションをプラスする
+	auto pos = m_actor->GetPos();
+	pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
+
+	m_darkPicture->SetPos(pos);
 }
 
 void DarkPictureCmp::Draw()

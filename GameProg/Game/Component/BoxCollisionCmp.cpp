@@ -59,12 +59,15 @@ void BoxCollisionCmp::ChangeCollision()
 {
 	//親の位置
 	m_pos = m_actor->GetPos();
+	//マップのポジションをプラスする
+	auto pos = m_pos;
+	pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
 	//当たり判定の作成
 	m_collision = {
-		(float)((m_pos.x + m_offset.x) - (m_size.x / 2)),
-		(float)((m_pos.x + m_offset.x) + (m_size.x / 2)),
-		(float)((m_pos.y + m_offset.y) - (m_size.y / 2)),
-		(float)((m_pos.y + m_offset.y) + (m_size.y / 2)),
+		(float)((pos.x + m_offset.x) - (m_size.x / 2)),
+		(float)((pos.x + m_offset.x) + (m_size.x / 2)),
+		(float)((pos.y + m_offset.y) - (m_size.y / 2)),
+		(float)((pos.y + m_offset.y) + (m_size.y / 2)),
 	};
 }
 

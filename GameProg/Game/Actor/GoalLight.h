@@ -39,5 +39,6 @@ public:
 protected:
 	shared_ptr<LightCmp> m_lightCmp;
 	bool m_isLightOn;
+	shared_ptr<Sound>	m_goalLightSound;
 };
 

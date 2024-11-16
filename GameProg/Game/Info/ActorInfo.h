@@ -14,7 +14,7 @@ namespace PLAYER_INFO {
 
 	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40 * 1,40 * 2 };
-	constexpr int MOVEFRAME = 740;
+	constexpr int MOVEFRAME = 20;
 	constexpr int LADDERFRAME = 10;
 	constexpr int LIGHTFRAME = 10;
 }
@@ -32,6 +32,7 @@ namespace SOLARPANELBLOCK_INFO {
 namespace SOLARPANEL_INFO {
 	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40,40 };
+	constexpr int PANELFRAME = 100;
 }
 
 /// <summary>
@@ -40,6 +41,7 @@ namespace SOLARPANEL_INFO {
 namespace PISHER_INFO {
 	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40,40 };
+	constexpr int BUZZFRAME = 30;
 }
 
 /// <summary>

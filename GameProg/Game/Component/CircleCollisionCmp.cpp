@@ -40,11 +40,13 @@ void CircleCollisionCmp::ChangeCollision()
 {
 	//e‚ÌˆÊ’u
 	m_pos = m_actor->GetPos();
+	auto pos = m_pos;
+	pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
 
 	//“–‚½‚è”»’è‚Ìì¬
 	m_collision = {
-		(float)(m_pos.x + m_offset.x),
-		(float)(m_pos.y + m_offset.y),
+		(float)(pos.x + m_offset.x),
+		(float)(pos.y + m_offset.y),
 		m_radius,
 	};
 }

@@ -39,7 +39,13 @@ void LightCmp::Update()
 {
 	Component::Update();
 
+	//マップのポジションをプラスする
 	auto actorPos = m_actor->GetPos();
+	actorPos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
+
+	//auto actorPos = m_actor->GetPos();
+
+	
 
 	m_framecnt++;
 	m_lightPicture->SetPos(actorPos);

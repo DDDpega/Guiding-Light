@@ -72,6 +72,24 @@ void SoundManager::SetVolume()
 		}
 	}
 }
+
+int SoundManager::GetVolume(Sound::E_Sound soundType)
+{
+	int vol;
+	switch (soundType)
+	{
+	case Sound::BGM:
+		vol=(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 10) / 10));
+		break;
+	case Sound::SE:
+		vol = (int(m_seVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100));
+		break;
+	}
+
+
+	return vol;
+}
+
 // Šeí‰¹—Ê‚Ìİ’è
 void SoundManager::ChangeVolume(int volume, Sound::E_Sound soundType)
 {

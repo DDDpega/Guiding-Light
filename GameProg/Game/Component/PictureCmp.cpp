@@ -28,8 +28,11 @@ void PictureCmp::Update()
 {
 	Component::Update();
 
+	//マップのポジションをプラスする
+	auto pos = m_actor->GetPos();
+	pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
 	//画像の位置を変更する
-	m_picture->SetPos(m_actor->GetPos());
+	m_picture->SetPos(pos);
 
 	//画像コンポーネントの消去
 	if (!m_actor->m_isActive) {

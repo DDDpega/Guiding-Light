@@ -5,7 +5,7 @@ TitleScene::TitleScene()
 	:Scene("タイトルシーン")
 	, m_nowcursor(0)
 {
-	Game::gameInstance->GetSoundMNG()->SetMasterVolume(100);
+	//Game::gameInstance->GetSoundMNG()->SetMasterVolume(100);
 }
 
 TitleScene::~TitleScene()

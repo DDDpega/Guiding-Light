@@ -48,5 +48,8 @@ private:
 	int m_maxTime;		//‹N“®‚·‚éÅ‘å•b”
 	int m_keepTime;		//c‚è‹N“®•b”
 	bool m_shareNow;	//Œõ‚É“–‚½‚Á‚Ä‚¢‚é‚©
+	shared_ptr<Sound>	m_spanelSound;
+	shared_ptr<Sound>	m_floorSound;
+	int m_soundFrame;
 };
 

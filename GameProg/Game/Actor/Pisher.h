@@ -39,9 +39,11 @@ public:
 	Actor* m_target;
 	bool m_isFigure;			//フィギュアがターゲットかどうか
 
-
+	shared_ptr<Sound> m_sound;	//蠅の飛ぶ音
 protected:
 	Player* m_player;	//プレイヤー
 	float m_speed;		//蠅の移動速度
+	
+	int m_soundFrame;		//サウンドのフレーム数
 };
 

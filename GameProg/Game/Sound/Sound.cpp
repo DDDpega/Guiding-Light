@@ -4,8 +4,9 @@ Sound::Sound(SOUND_TYPE soundType, E_Sound playType, int num)
 	:m_soundType(soundType)
 	, m_playType(playType)
 	, m_pitch(-1)
-	, m_volume(1)
+	, m_volumeRate(1)
 	, m_num(num)
+	, m_volume(255)
 {
 	
 }
@@ -29,13 +30,12 @@ void Sound::Initialize() throw()
 
 void Sound::SoundPlay(E_PlaySound type)
 {
-	//ü”g”‚É•ÏX‚·‚é
-	SetFrequencySoundMem(m_pitch, m_sound);
-
-	SetPlaySoundVolume(m_volume);
-
+	
+	
 	
 
+	
+	
 	switch (type)
 	{
 	case Sound::NOMAL:
@@ -51,7 +51,12 @@ void Sound::SoundPlay(E_PlaySound type)
 		PlaySoundMem(m_sound, DX_PLAYTYPE_LOOP);
 		break;
 	}
-	Game::gameInstance->GetSoundMNG()->SetVolume();
+	m_volume = Game::gameInstance->GetSoundMNG()->GetVolume(m_playType);
+	
+	SetPlaySoundVolume(m_volumeRate);
+
+	//ü”g”‚É•ÏX‚·‚é
+	//SetFrequencySoundMem(m_pitch, m_sound);
 	
 }
 
@@ -76,9 +81,9 @@ void Sound::AddPitch(int pitch,bool isReset)
 
 void Sound::SetPlaySoundVolume(float vol)
 {
-	m_volume = vol;
-	auto nowVol = GetVolumeSoundMem2(m_sound);
-	ChangeVolumeSoundMem(nowVol * m_volume, m_sound);
+	m_volumeRate = vol;
+
+	ChangeVolumeSoundMem(int(m_volume * m_volumeRate), m_sound);
 }
 
 void Sound::ChangeSound(SOUND_TYPE soundType, int num)

@@ -75,7 +75,7 @@ private:
 	int m_movePictureUp;	//動いている際のプレイヤーの画像
 	int m_ascendPictureNum;	//登っている際のプレイヤーの画像
 
-	shared_ptr<Sound> m_sound[3];//0=jump1=light2=move
+	shared_ptr<Sound> m_sound[4];//0=jump1=light2=move
 
-	int m_soundFrame[2];
+	int m_soundFrame[3];
 };

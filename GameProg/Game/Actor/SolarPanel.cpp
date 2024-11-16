@@ -14,6 +14,10 @@ void SolarPanel::Initialize()
 {
 	Actor::Initialize();
 
+	m_soundFrame = 0;
+
+	
+
 	//画像コンポーネント
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, SOLARPANEL_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SOLARPANEL],0, E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
@@ -28,6 +32,14 @@ void SolarPanel::Initialize()
 
 	//何秒効果時間があるか
 	m_maxTime = Game::gameInstance->GetStatus()->SOLARPANELBLOCK_MAXTIME;
+
+	//チャージ音
+	m_spanelSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::SOLARPANEL ], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_spanelSound);
+
+	//床出現音
+	m_floorSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::LAUNCH], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_floorSound);
 }
 
 void SolarPanel::Update()
@@ -36,12 +48,27 @@ void SolarPanel::Update()
 
 	//供給時間が経過したら
 	if (m_keepTime >= m_maxTime) {
+		if (!m_isTrigger) {
+			m_spanelSound->SoundStop();
+			m_floorSound->SoundPlay();
+		}
 		m_isTrigger = true;
+		
 	}
 
 	//供給中なら
 	if (m_shareNow) {
 		m_keepTime++;
+		if (m_soundFrame-- < 0&& !m_isTrigger) {
+			m_spanelSound->SoundStop();
+			m_soundFrame = SOLARPANEL_INFO::PANELFRAME;
+			m_spanelSound->SoundPlay();
+		}
+		
+	}
+	else {
+		m_spanelSound->SoundStop();
+		m_soundFrame = 0;
 	}
 }
 

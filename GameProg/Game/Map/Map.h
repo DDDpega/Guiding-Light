@@ -60,12 +60,18 @@ public:
 
 	//マップチップを使ってマップを生成するメソッド
 	void createMap();
+	
+	/// <summary>
+	/// マップの幅を取得
+	/// </summary>
+	/// <param name="filePath"></param>
+	void LoadMapSize(const wstring filePath);
 
 	//ファイルからデータを読み込むメソッド
-	void loadFromFile(const wstring filsePath, const wstring chipSet);
+	void LoadFromFile(const wstring filsePath, const wstring chipSet);
 
 	//スクロール位置をセットするメソッド
-	void setScroll(Point pos);
+	void SetScroll(Point pos);
 	//チップナンバーを取得するメソッド
 	int getChipNo(const int col, const int row)const;
 

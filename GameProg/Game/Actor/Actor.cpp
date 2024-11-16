@@ -42,6 +42,10 @@ void Actor::Move()
 	//printfDx("ポジションChange\n");
 	m_pos.x += m_vx;	//右移動
 	m_pos.y += m_vy;	//下移動
+
+	//マップのポジションをプラスする
+	auto pos = m_pos;
+	pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
 }
 
 

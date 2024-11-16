@@ -53,22 +53,37 @@ void GameScene::Initialize()
 	isGameOver = false;
 	isGameClear = false;
 	m_darkPictureList.clear();
-	//背景画像
-	auto background = std::shared_ptr<BackGround>(new BackGround(Point{ 0,0 }));
-	Game::gameInstance->GetActorMNG()->AddActor(background);
+	
+	//TODO 後で無限に表示できるようにする
+	for (int i = 0; i < 5; i++) {
+		//xの位置
+		float x = WINDOW_INFO::GAME_WIDTH * i;
+		//背景画像
+		auto background = std::shared_ptr<BackGround>(new BackGround(Point{ x  ,0 }));
+		Game::gameInstance->GetActorMNG()->AddActor(background);
+	}
+	////背景画像
+	//auto background = std::shared_ptr<BackGround>(new BackGround(Point{ 0,0 }));
+	//Game::gameInstance->GetActorMNG()->AddActor(background);
+
+	
+
+
 
 	//黒い紙をはる
 	m_lightPicture = std::shared_ptr<LightPicture>(new LightPicture());
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_lightPicture);
 
-	//プレイヤーの生成
-	m_player = std::shared_ptr<Player>(new Player(Point{-1000,-1000 }));
-	Game::gameInstance->GetActorMNG()->AddActor(m_player);
+	
 
 
 	//マップの生成
 	m_map = std::shared_ptr<Map>(new Map(m_stages[SceneManeger::gameScene->GetNumStage()], m_mapInfo, "Picture/mapChipData16bit.png"));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_map);
+
+	//プレイヤーの生成
+	m_player = std::shared_ptr<Player>(new Player(Point{-1000,-1000 }));
+	Game::gameInstance->GetActorMNG()->AddActor(m_player);
 	
 	auto num = 0;
 	for (auto& actorPos : m_map->GetMapChipPosList()) {

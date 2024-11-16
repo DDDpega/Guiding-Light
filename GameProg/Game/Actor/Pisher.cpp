@@ -16,6 +16,10 @@ Pisher::~Pisher()
 void Pisher::Initialize()
 {
 	Actor::Initialize();
+	m_soundFrame = 0;
+
+	m_sound= shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::PISHER], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound);
 
 	//画像コンポーネント
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER],0, E_PIVOT::CENTER, E_SORT::SORT_PISHER));
@@ -35,6 +39,8 @@ void Pisher::Initialize()
 
 	//速度を入手する
 	m_speed = Game::gameInstance->GetStatus()->PISHER_SPEED;
+
+	SetIsPisher(true);
 }
 
 void Pisher::Update()
@@ -76,9 +82,11 @@ void Pisher::Update()
 
 	//ターゲットが存在したら
 	if (m_target != nullptr) {
-
-		//ターゲットの位置
+		//マップのポジションをプラスする
 		auto targetPos = m_target->GetPos();
+		//targetPos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
+		//ターゲットの位置
+		
 		if (m_isFigure) {
 			targetPos.y -= 80;
 		}
@@ -106,6 +114,19 @@ void Pisher::Update()
 
 	//サウンド
 	float distance = (1.0f/sqrt(abs(m_pos.x - m_player->GetPos().x) + abs(m_pos.y - m_player->GetPos().y)))*10;
+	distance = int(distance * 100.0f) / 100.0f;
+	if (distance >= 1.0f) {
+		distance = 1.0f;
+	}
+	
+	if (m_soundFrame-- < 0) {
+		//m_sound->SoundStop();
+		m_soundFrame = PISHER_INFO::BUZZFRAME;
+		m_sound->SetPlaySoundVolume(distance);
+		m_sound->SoundPlay(Sound::BACK);
+	}
+
+
 	//printfDx("%f\n", distance);
 
 	Actor::Move();

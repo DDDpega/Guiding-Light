@@ -21,7 +21,7 @@ void StageSelectUI::Initialize()
 	UserInterface::Initialize();
 	LordFile();
 
-	m_nowcursor = 0;
+	m_nowcursor = 1;
 
 	//画面の幅を取得
 	float scrX = WINDOW_INFO::GAME_WIDTH;
@@ -154,7 +154,7 @@ void StageSelectUI::Update()
 				}
 			}
 			if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
-				if (m_nowcursor != 0) {
+				if (m_nowcursor != 1) {
 					m_isSoundPlay[2] = true;
 					//カーソルを上にずらす
 					m_nowcursor--;
@@ -190,7 +190,7 @@ void StageSelectUI::Update()
 			}
 		}
 		if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
-			if (m_isNowMenuCursor != 0) {
+			if (m_isNowMenuCursor != 1) {
 				//カーソルを左にずらす
 				m_isNowMenuCursor--;
 				m_menu[0]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_N_LIGHT]);
@@ -226,7 +226,7 @@ void StageSelectUI::Draw()
 	}
 
 	//選択されているステージが0なら
-	if (m_nowcursor == 0) {
+	if (m_nowcursor == 1) {
 		//左を消す
 		m_stageArray[0]->SetisVisible(false);
 		

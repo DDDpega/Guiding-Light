@@ -22,6 +22,7 @@ void Player::Initialize()
 
 	m_soundFrame[0] =0;
 	m_soundFrame[1] = 0;
+	m_soundFrame[2] = 0;
 
 	m_sound[0]=shared_ptr<Sound>(new Sound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::JUMP], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[0]);
@@ -31,6 +32,9 @@ void Player::Initialize()
 
 	m_sound[2] = shared_ptr<Sound>(new Sound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[2]);
+
+	m_sound[3] = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::LADDER], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound[3]);
 
 	//画像コンポーネント
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PLAYER_INFO::SIZE, ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL],0, E_PIVOT::CENTER, E_SORT::SORT_PLAYER));
@@ -64,6 +68,10 @@ void Player::Update()
 {
 	Actor::Update();
 
+	auto playerPos = SceneManeger::gameScene->GetPlayer()->GetPos();
+	auto scroll = Point{ playerPos.x - WINDOW_INFO::GAME_WIDTH_HALF, playerPos.x - WINDOW_INFO::GAME_HEIGHT_HALF };
+	Game::gameInstance->GetSceneMNG()->gameScene->m_map->SetScroll(scroll);
+	
 	bool isRideLadder = false;
 	
 	//梯子の乗り始めと終わり
@@ -97,8 +105,9 @@ void Player::Update()
 
 	}
 
+
 	//移動時の音声を出力
-	if (isClick_x ) {
+	if (isClick_x&& m_rigidBody->m_state != STATE::FLY) {
 		if (m_soundFrame[0]-- < 0) {
 			m_sound[2]->SoundPlay(Sound::BACK);
 			m_soundFrame[0] = PLAYER_INFO::MOVEFRAME;
@@ -121,6 +130,17 @@ void Player::Update()
 		}
 	}
 
+	//移動時の音声を出力
+	if ((isClick_y|| isClick_x) && m_rigidBody->m_state == STATE::FLY) {
+		if (m_soundFrame[2]-- < 0) {
+			m_sound[3]->SoundPlay(Sound::BACK);
+			m_soundFrame[2] = PLAYER_INFO::LADDERFRAME;
+		}
+	}
+	else {
+		m_sound[3]->SoundStop();
+		m_soundFrame[2] = 0;
+	}
 
 	//左右の操作がされ、ジャンプ・梯子状態ではない時
 	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL&& m_rigidBody->m_state != STATE::FLY) {
