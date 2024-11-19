@@ -1,5 +1,6 @@
 #pragma once
 
+
 class TitleUI : public UserInterface
 {
 public:
@@ -27,6 +28,7 @@ public:
 	/// •`‰æˆ—
 	/// </summary>
 	void Draw();
+
 
 	bool m_isVideo;			//“®‰æ‚ª—¬‚·‚©‚Ç‚¤‚©
 	bool m_isVideoPlay;		//“®‰æ‚ª—¬‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©

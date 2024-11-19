@@ -36,7 +36,9 @@ namespace UI {
 		DELETE_SAVE,
 		EXECUTE,
 		GAME_SETTINGS,
-		OPTION
+		OPTION,
+		BAR,
+		PINCH
 	};
 
 	//オプションのリスト
@@ -57,7 +59,9 @@ namespace UI {
 		{DELETE_SAVE,{"Picture/UI/Option/GL_UI_DeleteSave.png"}},
 		{EXECUTE, {"Picture/UI/Option/GL_UI_Execute.png"}},
 		{GAME_SETTINGS,{"Picture/UI/Option/GL_UI_GameSettings.png"}},
-		{OPTION,{"Picture/UI/UI/Option/GL_UI_Option.png"}},
+		{OPTION,{"Picture/UI/Option/GL_UI_Option.png"}},
+		{BAR,{"Picture/UI/Option/bar.png"}},
+		{PINCH,{"Picture/UI/Option/pinch.png"}},
 	};
 }
 

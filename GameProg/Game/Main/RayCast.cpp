@@ -57,7 +57,7 @@ Point RayCast::RayStart(Point pos,int radius,int element)
 		m_pos.y = m_moveradius * sin(m_rad) + (pos.y-15);
 
 		//レイとぶつかるオブジェクトの判定チェック
-		Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(this);
+		//Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(this);
 
 		//最大値になったら終了する
 		if (radius == m_moveradius) {

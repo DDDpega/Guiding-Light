@@ -63,6 +63,9 @@ void Picture::Draw()
 	else if (m_pivot == E_PIVOT::LEFTUP) {
 		DrawRotaGraph2(m_pos.x, m_pos.y, 0, 0, m_size, 0, m_handle, true, m_reverse);
 	}
+
+	//Œ³‚É–ß‚·
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 void Picture::ChangePicture(PICTURE_TYPE picture,int num)

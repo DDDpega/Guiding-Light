@@ -38,6 +38,9 @@ bool Status::ReadStatus()
 		//初めの数字でどのステータスかを判別する
 		switch (line[0])
 		{
+		case '0':
+			GAME_NORMAL = std::stof(line.substr(postion)) == 1 ? true : false;
+			break;
 		case '1':
 			PLAYER_SPEED = std::stof(line.substr(postion));
 			break;

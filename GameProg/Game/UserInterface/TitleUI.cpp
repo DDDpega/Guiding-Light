@@ -68,8 +68,8 @@ void TitleUI::Initialize()
 		m_nowpostion[i].y += 50;
 	}
 
-	
-
+	//ƒtƒHƒ“ƒg‚Ì•`‰æ
+	m_fontHandle = CreateFontToHandle("MS ƒSƒVƒbƒN", 20, 1);
 }
 
 void TitleUI::Update()
@@ -145,10 +145,19 @@ void TitleUI::Draw()
 {
 	UserInterface::Draw();
 
-	m_alpha += m_add;
+	//’Êí”Å‚©“WŽ¦”Å‚ðØ‚è‘Ö‚¦‚é
+	Point pos = Point{ WINDOW_INFO::GAME_WIDTH - 70,WINDOW_INFO::GAME_HEIGHT -70};
+	if (Game::gameInstance->GetStatus()->GAME_NORMAL) {
+		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "’Êí”Å");
+	}
+	else {
+		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "“WŽ¦”Å");
+	}
+
+	m_startText[0]->m_alpha += m_add;
 	
-	if (m_alpha <= 0 || m_alpha >= 255) {
+	if (m_startText[0]->m_alpha <= 0 || m_startText[0]->m_alpha >= 255) {
 		m_add *= -1;
 	}
-	m_startText[0]->SetAlpha(m_alpha);
+	m_startText[0]->SetAlpha(m_startText[0]->m_alpha);
 }

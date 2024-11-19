@@ -20,7 +20,7 @@ void Player::Initialize()
 	m_ascendPictureNum = 0;
 	m_movePictureUp = true;
 
-	m_soundFrame[0] =0;
+	m_soundFrame[0] = 0;
 	m_soundFrame[1] = 0;
 	m_soundFrame[2] = 0;
 

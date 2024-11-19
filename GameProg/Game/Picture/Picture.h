@@ -107,6 +107,7 @@ public:
 
 
 	bool m_isPauseStop;	//停止中に止まるかどうか
+	int m_alpha;			//アルファ値
 
 protected:
 	E_SORT m_sort;			//描画順番
@@ -116,7 +117,6 @@ protected:
 	bool m_isVisible;			//見た目を消す
 	bool m_pictureNull;			//描画しないPicture
 	bool m_isAlpha;			//アルファ値を変更
-	int m_alpha;			//アルファ値
 	int m_num;			//画像配列番号
 	bool m_isActor;		//アクターかどうか
 };

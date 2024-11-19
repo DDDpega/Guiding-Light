@@ -3,6 +3,7 @@
 GoalLight::GoalLight(Point pos)
 	:Actor(pos)
 	,m_isLightOn(false)
+	,m_isHit(false)
 
 {
 }
@@ -36,14 +37,9 @@ void GoalLight::Initialize()
 void GoalLight::Update()
 {
 	Actor::Update();
-}
 
-void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
-{
-	Actor::HitCollision(other, tag,selftag);
-
-	//Playerからライトを当てられたら
-	if (tag == E_TAG::PLAYER && !m_isLightOn) {
+	//ライトをつける
+	if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"OK") && !m_isLightOn) {
 		m_lightCmp->ChangeLightONOFF();
 		m_isLightOn = true;
 
@@ -54,8 +50,19 @@ void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}
 }
 
+void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
+{
+	Actor::HitCollision(other, tag,selftag);
+
+	//Playerからライトを当てられたら
+	if (tag == E_TAG::PLAYER && SceneManeger::gameScene->GetPlayer()->GetLightOn()) {
+		m_isHit = true;
+	}
+}
+
 void GoalLight::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
-
-
+	if (tag == E_TAG::PLAYER && !m_isLightOn) {
+		m_isHit = false;
+	}
 }
