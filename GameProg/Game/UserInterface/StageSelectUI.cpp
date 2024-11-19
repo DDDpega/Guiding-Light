@@ -48,12 +48,12 @@ void StageSelectUI::Initialize()
 	}
 
 	//ステージ番号
-	m_stageNum = std::shared_ptr<Picture>(new Picture(Point{  50,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	m_stageNum = std::shared_ptr<Picture>(new Picture(Point{ scrX/2-200,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_stageNum);
 
-	//ステージタイトル
-	m_stageTitle = std::shared_ptr<Picture>(new Picture(Point{ 600,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(m_stageTitle);
+	////ステージタイトル
+	/*m_stageTitle = std::shared_ptr<Picture>(new Picture(Point{ 600,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_stageTitle);*/
 
 	//メニューセレクトアイコン
 	m_menuIcon = std::shared_ptr<Picture>(new Picture(Point{ scrX - 50,  50 }, 0.2, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
@@ -129,13 +129,17 @@ void StageSelectUI::Update()
 		}
 		//メニューセレクト時
 		else {
-			switch (m_colSelectNum)
+			switch (m_isNowMenuCursor)
 			{
 				//オプション
 			case 0:
+				//ゲームシーンへ移行フラグをオンにする
+				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::CREDIT);
 				break;
 				//クレジット
 			case 1:
+				//ゲームシーンへ移行フラグをオンにする
+				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::OPTION);
 				break;
 			}
 		}
@@ -190,7 +194,7 @@ void StageSelectUI::Update()
 			}
 		}
 		if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
-			if (m_isNowMenuCursor != 1) {
+			if (m_isNowMenuCursor != 0) {
 				//カーソルを左にずらす
 				m_isNowMenuCursor--;
 				m_menu[0]->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::CREDIT_N_LIGHT]);
@@ -208,7 +212,7 @@ void StageSelectUI::Draw()
 	if (!m_isMenu)
 	{
 		m_stageNum->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], m_nowcursor);
-		m_stageTitle->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::T_STAGE_1], m_nowcursor);
+		//m_stageTitle->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::T_STAGE_1], m_nowcursor);
 	}
 		
 		//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());

@@ -6,6 +6,8 @@ class GameScene;
 class TitleScene;
 class TitleVideoScene;
 class StageSelectScene;
+class OptionScene;
+class CreditScene;
 class Player;
 class Map;
 class Picture;

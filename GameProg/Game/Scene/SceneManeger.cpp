@@ -18,6 +18,8 @@ void SceneManeger::Initialize()
 	gameScene = new GameScene();
 	titleScene = new TitleScene();
 	ssScene = new StageSelectScene();
+	creditScene = new CreditScene();
+	optionScene = new OptionScene();
 	tvScene = new TitleVideoScene();
 
 	//初期をゲームシーンに変更
@@ -65,6 +67,12 @@ void SceneManeger::ChangeScene(E_SCENE nextScene)
 		nowScene = ssScene;
 		break;
 	case RESULT:
+		break;
+	case CREDIT:
+		nowScene = creditScene;
+		break;
+	case OPTION:
+		nowScene = optionScene;
 		break;
 	
 	}

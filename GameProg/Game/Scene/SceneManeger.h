@@ -64,6 +64,8 @@ private:
 	Scene* nowScene;
 	TitleScene* titleScene;
 	StageSelectScene* ssScene;
+	OptionScene* optionScene;
+	CreditScene* creditScene;
 	TitleVideoScene* tvScene;
 
 	E_SCENE e_NowScene;

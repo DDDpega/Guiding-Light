@@ -66,7 +66,9 @@
     <ClCompile Include="Game\Picture\LightPicture.cpp" />
     <ClCompile Include="Game\Picture\Picture.cpp" />
     <ClCompile Include="Game\Picture\PictureManeger.cpp" />
+    <ClCompile Include="Game\Scene\CreditScene.cpp" />
     <ClCompile Include="Game\Scene\GameScene.cpp" />
+    <ClCompile Include="Game\Scene\OptionScene.cpp" />
     <ClCompile Include="Game\Scene\Scene.cpp" />
     <ClCompile Include="Game\Scene\SceneManeger.cpp" />
     <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
@@ -74,10 +76,12 @@
     <ClCompile Include="Game\Scene\TitleVideoScene.cpp" />
     <ClCompile Include="Game\Sound\Sound.cpp" />
     <ClCompile Include="Game\Sound\SoundManager.cpp" />
+    <ClCompile Include="Game\UserInterface\CreditUI.cpp" />
     <ClCompile Include="Game\UserInterface\GameClearUI.cpp" />
     <ClCompile Include="Game\UserInterface\GameOverUI.cpp" />
     <ClCompile Include="Game\UserInterface\GamePauseUI.cpp" />
     <ClCompile Include="Game\UserInterface\InGameUI.cpp" />
+    <ClCompile Include="Game\UserInterface\OptionUI.cpp" />
     <ClCompile Include="Game\UserInterface\StageSelectUI.cpp" />
     <ClCompile Include="Game\UserInterface\TitleUI.cpp" />
     <ClCompile Include="Game\UserInterface\TitleVideoUI.cpp" />
@@ -129,7 +133,9 @@
     <ClInclude Include="Game\Picture\LightPicture.h" />
     <ClInclude Include="Game\Picture\Picture.h" />
     <ClInclude Include="Game\Picture\PictureManeger.h" />
+    <ClInclude Include="Game\Scene\CreditScene.h" />
     <ClInclude Include="Game\Scene\GameScene.h" />
+    <ClInclude Include="Game\Scene\OptionScene.h" />
     <ClInclude Include="Game\Scene\Scene.h" />
     <ClInclude Include="Game\Scene\SceneManeger.h" />
     <ClInclude Include="Game\Scene\StageSelectScene.h" />
@@ -137,10 +143,12 @@
     <ClInclude Include="Game\Scene\TitleVideoScene.h" />
     <ClInclude Include="Game\Sound\Sound.h" />
     <ClInclude Include="Game\Sound\SoundManager.h" />
+    <ClInclude Include="Game\UserInterface\CreditUI.h" />
     <ClInclude Include="Game\UserInterface\GameClearUI.h" />
     <ClInclude Include="Game\UserInterface\GameOverUI.h" />
     <ClInclude Include="Game\UserInterface\GamePauseUI.h" />
     <ClInclude Include="Game\UserInterface\InGameUI.h" />
+    <ClInclude Include="Game\UserInterface\OptionUI.h" />
     <ClInclude Include="Game\UserInterface\StageSelectUI.h" />
     <ClInclude Include="Game\UserInterface\TitleUI.h" />
     <ClInclude Include="Game\UserInterface\TitleVideoUI.h" />
