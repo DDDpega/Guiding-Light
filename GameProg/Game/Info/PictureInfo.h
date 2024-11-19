@@ -51,16 +51,19 @@ namespace UI {
 
 		//‰¹ŠyŒn
 		{ SOUND_SETTINGS,{"Picture/UI/Option/GL_UI_SoundSetting.png"}},
-		{ VOLUME_ALL,{"Picture/Option/GL_UI_Volume_All.png"}},
-		{ VOLUME_BGM,{"Picture/Option/GL_UI_Volume_BGM.png"}},
-		{ VOLUME_SE,{"Picture/Option/GL_UI_Volume_SE.png"}},
+		{ VOLUME_ALL,{"Picture/UI/Option/GL_UI_Volume_All.png"}},
+		{ VOLUME_BGM,{"Picture/UI/Option/GL_UI_Volume_BGM.png"}},
+		{ VOLUME_SE,{"Picture/UI/Option/GL_UI_Volume_SE.png"}},
 
 		//‚»‚Ì‘¼
 		{DELETE_SAVE,{"Picture/UI/Option/GL_UI_DeleteSave.png"}},
 		{EXECUTE, {"Picture/UI/Option/GL_UI_Execute.png"}},
 		{GAME_SETTINGS,{"Picture/UI/Option/GL_UI_GameSettings.png"}},
 		{OPTION,{"Picture/UI/Option/GL_UI_Option.png"}},
-		{BAR,{"Picture/UI/Option/bar.png"}},
+		{BAR,{
+				{"Picture/UI/Option/bar.png"},
+				{ "Picture/UI/Option/bar2.png" }
+		}},
 		{PINCH,{"Picture/UI/Option/pinch.png"}},
 	};
 }

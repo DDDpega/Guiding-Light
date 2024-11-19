@@ -1,5 +1,4 @@
 #pragma once
-#include "UserInterface.h"
 class OptionUI :
     public UserInterface
 {
@@ -31,6 +30,9 @@ public:
 
 private:
 	shared_ptr<Picture> m_modeText;
+	shared_ptr<Slider> m_allSound;
+	shared_ptr<Slider> m_bgmSound;
+	shared_ptr<Slider> m_seSound;
 
 };
 

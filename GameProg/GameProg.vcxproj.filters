@@ -187,10 +187,21 @@
     <ClCompile Include="Game\UserInterface\TitleVideoUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\OptionScene.cpp" />
-    <ClCompile Include="Game\Scene\CreditScene.cpp" />
-    <ClCompile Include="Game\UserInterface\OptionUI.cpp" />
-    <ClCompile Include="Game\UserInterface\CreditUI.cpp" />
+    <ClCompile Include="Game\Picture\Slider.cpp">
+      <Filter>Game\Picture</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\CreditScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\OptionScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UserInterface\CreditUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UserInterface\OptionUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -362,10 +373,21 @@
     <ClInclude Include="Game\UserInterface\TitleVideoUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\OptionScene.h" />
-    <ClInclude Include="Game\Scene\CreditScene.h" />
-    <ClInclude Include="Game\UserInterface\OptionUI.h" />
-    <ClInclude Include="Game\UserInterface\CreditUI.h" />
+    <ClInclude Include="Game\Picture\Slider.h">
+      <Filter>Game\Picture</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\CreditScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\OptionScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\CreditUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\OptionUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameProg.rc">

@@ -15,6 +15,8 @@ Picture::Picture(Point pos, float size, const PICTURE_TYPE picture, int num, E_P
 	, m_isPauseStop(false)
 	, m_num(num)
 	, m_reverse(false)
+	, m_scaleX(1)
+	, m_scaleY(1)
 
 {
 
@@ -56,12 +58,13 @@ void Picture::Draw()
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
+
 	//‰æ‘œ‚Ì•`‰æ
 	if (m_pivot == E_PIVOT::CENTER) {
-		DrawRotaGraph2(m_pos.x, m_pos.y, (m_pictureSizeX/2), (m_pictureSizeY / 2), m_size, 0,  m_handle, true, m_reverse);
+		DrawRotaGraph3(m_pos.x, m_pos.y, (m_pictureSizeX / 2), (m_pictureSizeY / 2), m_scaleX * m_size, m_scaleY * m_size , 0, m_handle, true, m_reverse);
 	}
 	else if (m_pivot == E_PIVOT::LEFTUP) {
-		DrawRotaGraph2(m_pos.x, m_pos.y, 0, 0, m_size, 0, m_handle, true, m_reverse);
+		DrawRotaGraph3(m_pos.x, m_pos.y, 0, 0, m_scaleX * m_size, m_scaleY * m_size, 0, m_handle, true, m_reverse);
 	}
 
 	//Œ³‚É–ß‚·

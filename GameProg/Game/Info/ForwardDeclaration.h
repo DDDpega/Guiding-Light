@@ -10,7 +10,7 @@ class OptionScene;
 class CreditScene;
 class Player;
 class Map;
-class Picture;
+class Slider;
 class Pisher;
 class SolarPanel;
 class Scene;

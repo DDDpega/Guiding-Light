@@ -39,6 +39,7 @@ using namespace std;
 //ピクチャー
 #include "Picture.h"
 #include "LightPicture.h"
+#include "Slider.h"
 #include "PictureManeger.h"
 
 //ユーザーインターフェース

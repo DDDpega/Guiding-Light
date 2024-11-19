@@ -48,11 +48,20 @@ void OptionUI::Initialize()
 	auto all = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 140 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_ALL], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(all);
 
+	m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
+	UserInterface::AddPictureInUI(m_allSound);
+
 	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(bgm);
 
+	m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
+	UserInterface::AddPictureInUI(m_bgmSound);
+
 	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(se);
+
+	m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
+	UserInterface::AddPictureInUI(m_seSound);
 }
 
 void OptionUI::Update()
@@ -63,6 +72,15 @@ void OptionUI::Update()
 		//ゲームシーンへ移行フラグをオンにする
 		Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
 	}
+
+	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
+		m_seSound->LeftMove();
+	}
+	else if (Game::gameInstance->GetInputMNG()->Down(L"RIGHT")) {
+		m_seSound->RightMove();
+	}
+
+
 
 }
 

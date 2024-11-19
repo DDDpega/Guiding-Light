@@ -66,6 +66,7 @@
     <ClCompile Include="Game\Picture\LightPicture.cpp" />
     <ClCompile Include="Game\Picture\Picture.cpp" />
     <ClCompile Include="Game\Picture\PictureManeger.cpp" />
+    <ClCompile Include="Game\Picture\Slider.cpp" />
     <ClCompile Include="Game\Scene\CreditScene.cpp" />
     <ClCompile Include="Game\Scene\GameScene.cpp" />
     <ClCompile Include="Game\Scene\OptionScene.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Game\Picture\LightPicture.h" />
     <ClInclude Include="Game\Picture\Picture.h" />
     <ClInclude Include="Game\Picture\PictureManeger.h" />
+    <ClInclude Include="Game\Picture\Slider.h" />
     <ClInclude Include="Game\Scene\CreditScene.h" />
     <ClInclude Include="Game\Scene\GameScene.h" />
     <ClInclude Include="Game\Scene\OptionScene.h" />

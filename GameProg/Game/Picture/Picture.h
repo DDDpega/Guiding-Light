@@ -105,6 +105,9 @@ public:
 	int m_handle;				// データハンドル格納用変数
 	bool m_reverse;	//反転するかどうか
 
+	float m_scaleX; // 画像のx軸のスケール
+
+	float m_scaleY; // 画像のy軸のスケール
 
 	bool m_isPauseStop;	//停止中に止まるかどうか
 	int m_alpha;			//アルファ値

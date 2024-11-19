@@ -1,5 +1,5 @@
 #pragma once
-#include "UserInterface.h"
+
 class CreditUI :
     public UserInterface
 {
