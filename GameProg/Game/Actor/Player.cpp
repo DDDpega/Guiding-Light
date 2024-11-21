@@ -15,7 +15,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	Actor::Initialize();
-
+	m_isNowLadder = false;
 	m_movePictureNum = 0;
 	m_ascendPictureNum = 0;
 	m_movePictureUp = true;
@@ -72,13 +72,12 @@ void Player::Update()
 	auto scroll = Point{ playerPos.x - WINDOW_INFO::GAME_WIDTH_HALF, playerPos.x - WINDOW_INFO::GAME_HEIGHT_HALF };
 	Game::gameInstance->GetSceneMNG()->gameScene->m_map->SetScroll(scroll);
 	
-	bool isRideLadder = false;
-	
+	auto isNowLadder = false;
 	//梯子の乗り始めと終わり
 	for (auto& ladder : m_isLadder) {
-		if (ladder.isLadder && (m_rigidBody->m_state==STATE::FALL || m_rigidBody->m_state == STATE::STAND)) {
+		if (ladder.isLadder && (m_rigidBody->m_state==STATE::WALK || m_rigidBody->m_state == STATE::STAND)) {
 			m_rigidBody->ChangeState(STATE::FLY);
-			isRideLadder = true;
+			isNowLadder = true;
 			break;
 		}
 		else if(m_rigidBody->m_state!=JUMP && m_rigidBody->m_state!=FALL&& m_rigidBody->m_state != STAND){
@@ -88,6 +87,8 @@ void Player::Update()
 
 	bool isClick_x = false;
 	bool isClick_y = false;
+
+	
 
 	//移動
 	if (Game::gameInstance->GetInputMNG()->Down(L"RIGHT")) {
@@ -105,30 +106,43 @@ void Player::Update()
 
 	}
 
-
-	//移動時の音声を出力
-	if (isClick_x&& m_rigidBody->m_state != STATE::FLY) {
-		if (m_soundFrame[0]-- < 0) {
-			m_sound[2]->SoundPlay(Sound::BACK);
-			m_soundFrame[0] = PLAYER_INFO::MOVEFRAME;
+	auto isRideLadderPos = Point{ 0,0 };
+	//梯子の乗り始めと終わり
+	for (auto& ladder : m_isLadder) {
+		if (ladder.isLadder) {
+			isRideLadderPos = ladder.ladderPos;
+			break;
 		}
 	}
-	else {
-		m_sound[2]->SoundStop();
-		m_soundFrame[0] = 0;
-	}
+
+	m_isNowLadder = (!isNowLadder && !m_isLadderTop);
 
 	//はしご中の動作
 	if (m_rigidBody->m_state == STATE::FLY) {
+		m_isLadderTop = false;
 		if (Game::gameInstance->GetInputMNG()->Down(L"UP")) {
 			m_vy = -Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
+			m_pos.x = isRideLadderPos.x;
 			isClick_y = true;
+
+			m_isLadderTop = true;
 		}
 		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
 			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
 			isClick_y = true;
+			
 		}
 	}
+
+	//はしごの上で降りるとき
+	if ((m_mapCollision->CheckLadder(E_TAG::PLAYER, m_pos) && (m_rigidBody->m_state == STATE::STAND || m_rigidBody->m_state == STATE::WALK))) {
+		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
+			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
+			isClick_y = true;
+		}
+	}
+
+	
 
 	//移動時の音声を出力
 	if ((isClick_y|| isClick_x) && m_rigidBody->m_state == STATE::FLY) {
@@ -149,7 +163,7 @@ void Player::Update()
 	
 	//ジャンプ
  	if (m_rigidBody->m_state == STATE::STAND ||
-			m_rigidBody->m_state == STATE::FLY || m_rigidBody->m_state==STATE::WALK) {
+			 m_rigidBody->m_state==STATE::WALK) {
 		if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 			m_rigidBody->ChangeState(STATE::JUMPSTT);
 			m_sound[0]->SoundPlay(Sound::BACK);
@@ -241,9 +255,9 @@ Player* Player::Getthis()
 	return this;
 }
 
-void Player::AddisLadder(int num, bool isladder)
+void Player::AddisLadder(int num, bool isladder, Point pos)
 {
-	m_isLadder.push_back(LadderCol{ num,isladder });
+	m_isLadder.push_back(LadderCol{ num,isladder ,pos});
 }
 
 void Player::SetisLadder(int num, bool isladder)

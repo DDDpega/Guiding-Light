@@ -50,27 +50,26 @@ void OptionUI::Initialize()
 
 	
 	
-	/*m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
+	m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_allSound);
-	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);*/
+	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);
 
 	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(bgm);
 
-	/*m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
+	m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_bgmSound);
-	SetSlider(Sound::E_Sound::BGM,BGMVOL);*/
+	SetSlider(Sound::E_Sound::BGM,BGMVOL);
 
 	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(se);
 
 	
 
-	/*m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
+	m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_seSound);
-	SetSlider(Sound::E_Sound::SE,SEVOL);*/
+	SetSlider(Sound::E_Sound::SE,SEVOL);
 	
-	handle = LoadGraph("Picture/stageSelectPoint1.png");
 
 	m_nowcursor = 0;
 }
@@ -78,18 +77,6 @@ void OptionUI::Initialize()
 void OptionUI::Update()
 {
 	UserInterface::Update();
-
-	auto isSelect = false;
-
-	auto x = 0;
-	auto y = 0;
-
-	
-	GetGraphSize(handle, &x, &y);
-
-	if (x < 0) {
-		auto a = 0;
-	}
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
@@ -171,7 +158,6 @@ void OptionUI::Update()
 void OptionUI::Draw()
 {
 	UserInterface::Draw();
-	DrawBox(100, 100, 500, 500, GetColor(255, 0, 0), 1);
 
 }
 
@@ -223,6 +209,10 @@ void OptionUI::RereadUIList()
 {
 	auto uilist = UserInterface::GetPictureUI();
 	for (auto ui : uilist) {
-		ui->RecordPicture();
+		ui->ReloadPicture();
 	}
+
+	m_allSound->ReloadPicture();
+	m_seSound->ReloadPicture();
+	m_bgmSound->ReloadPicture();
 }

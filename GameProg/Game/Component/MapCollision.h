@@ -9,9 +9,11 @@ public:
 
     ~MapCollision() {};
 
-    bool CheckMapChip(int col, int row);
+    bool CheckMapChip(int col, int row, bool isFly=false);
 
-    bool CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, const bool isCollect = true, const bool isTopBottomChk = true);
+    bool CheckLadder(E_TAG tag,Point pos);
+
+    bool CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, const bool isCollect = true, const bool isTopBottomChk = true, const bool isFlayChk = false);
 
 protected:
     E_TAG m_tag;

@@ -28,6 +28,9 @@ public:
 	/// </summary>
 	void Draw();
 
+
+	void ReloadPicture();
+
 	/// <summary>
 	/// ‰E‚ÉˆÚ“®
 	/// </summary>

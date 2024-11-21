@@ -9,6 +9,7 @@ public:
 	{
 		int		num;
 		bool	isLadder;
+		Point	ladderPos;
 	};
 
 	/// <summary>
@@ -61,7 +62,7 @@ public:
 	/// <returns></returns>
 	Player* Getthis();
 
-	void AddisLadder(int num,bool isladder);
+	void AddisLadder(int num,bool isladder,Point pos);
 
 	void SetisLadder(int num, bool isladder);
 
@@ -78,4 +79,6 @@ private:
 	shared_ptr<Sound> m_sound[4];//0=jump1=light2=move
 
 	int m_soundFrame[3];
+
+	bool m_isLadderTop;		//‚Í‚µ‚²‚ğ“o‚èØ‚Á‚½‚©
 };

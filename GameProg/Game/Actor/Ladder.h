@@ -41,5 +41,6 @@ public:
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 private:
 	int m_num;
+	Point m_pos;
 };
 

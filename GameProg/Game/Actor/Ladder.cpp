@@ -1,8 +1,9 @@
 #include "Framework.h"
 
-Ladder::Ladder(Point pos,int num)
+Ladder::Ladder(Point pos, int num)
 	:Actor(pos)
 	, m_num(num)
+	, m_pos(pos)
 {
 }
 
@@ -13,7 +14,8 @@ Ladder::~Ladder()
 void Ladder::Initialize()
 {
 	Actor::Initialize();
-	SceneManeger::gameScene->GetPlayer()->AddisLadder(m_num, false);
+	m_pos.x += (MAPCHIP_WIDTH / 2);
+	SceneManeger::gameScene->GetPlayer()->AddisLadder(m_num, false, m_pos);
 
 	//画像コンポーネント
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LADDER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::LADDER],0, E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));

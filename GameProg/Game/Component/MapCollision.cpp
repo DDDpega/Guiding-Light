@@ -8,10 +8,16 @@ MapCollision::MapCollision(Actor* actor, E_TAG tag)
 
 //マップチップが移動可能かチェックするメソッド
 // ture = 移動不可能
-bool MapCollision::CheckMapChip(int col, int row)
+bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 {
 	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
 	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
+	if (chipNo == 7 && isFly) {
+		return true;
+	}
+	else if (isFly) {
+		return false;
+	}
 	if (chipNo==-1||chipNo==2 ||chipNo ==1||chipNo==12 || (chipNo == 11 && solarpanel->GetIsTrigger())) {
 		return true;
 	}
@@ -20,6 +26,20 @@ bool MapCollision::CheckMapChip(int col, int row)
 	}
 }
 
+bool MapCollision::CheckLadder(E_TAG tag,Point pos)
+{
+	auto rect = Game::gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->GetChangeCollision(pos);
+	const auto mapChipSize = 40;
+	auto pos2 = m_actor->GetPos();
+
+	const int bottom = ((rect.bottom - 1) / mapChipSize)+1;
+	const int middle_x = pos2.x / mapChipSize;
+
+	auto middleBottom = CheckMapChip(middle_x, bottom, true);
+
+
+	return middleBottom;
+}
 
 /// <summary>
 /// マップのコリジョンを調べる
@@ -30,7 +50,7 @@ bool MapCollision::CheckMapChip(int col, int row)
 /// <param name="isCollect">位置を強制的に戻すかどうか</param>
 /// <param name="isTopBottomChk">上下の判定を取るかどうか</param>
 /// <returns></returns>
-bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk)
+bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, const bool isCollect, const bool isTopBottomChk, const bool isFlayChk)
 {
 	bool result = false;
 	const auto mapChipSize = 40;
@@ -77,7 +97,7 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 	auto rightMiddle = CheckMapChip(right, middle_y);
 	auto rightBottom = CheckMapChip(right, bottom);
 	auto middleTop = CheckMapChip(middle_x, top);
-	auto middleBottom = CheckMapChip(middle_x, bottom);
+	auto middleBottom = CheckMapChip(middle_x, bottom,isFlayChk);
 
 	auto bottmLadder = false;
 	if (middleBottomNum == 7 || rightBottomNum == 7 || leftBottomNum == 7)
@@ -92,7 +112,6 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 	}
 
 
-	
 
 	//左方向をチェック
 	if (dx < 0 && (leftTop || leftMiddle || leftBottom)) {

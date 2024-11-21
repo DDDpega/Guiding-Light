@@ -57,7 +57,7 @@ namespace LUMINOUSFIGURE_INFO {
 /// </summary>
 namespace LADDER_INFO {
 	constexpr float SIZE = 2.5f;
-	constexpr Point COLLISION_SIZE = { 40,70 };
+	constexpr Point COLLISION_SIZE = { 40,40 };
 }
 
 /// <summary>

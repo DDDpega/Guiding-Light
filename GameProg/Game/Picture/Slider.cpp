@@ -63,6 +63,14 @@ void Slider::Draw()
 	Picture::Draw();
 }
 
+void Slider::ReloadPicture()
+{
+	m_bar->ReloadPicture();
+	m_bar2->ReloadPicture();
+	m_pinch->ReloadPicture();
+}
+
+
 int Slider::RightMove()
 {
 	auto pinchPos = m_pinch->GetPos();

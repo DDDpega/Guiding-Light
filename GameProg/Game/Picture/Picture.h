@@ -45,7 +45,7 @@ public:
 	/// </summary>
 	/// <param name="picture"></param>
 	/// <param name="num"></param>
-	void RecordPicture();
+	void ReloadPicture();
 
 	/// <summary>
 	/// Œ»İ‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğ“¾‚é

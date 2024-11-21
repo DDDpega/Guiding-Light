@@ -101,6 +101,12 @@ public:
 		m_isPisher = isPisher;
 	}
 
+	/// <summary>
+	/// はしごに当たっているかのゲッター
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsLadder() { return m_isNowLadder; }
+
 	float m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
@@ -113,4 +119,6 @@ protected:
 	bool m_isMove_y;	//y軸に動いているかどうか
 	std::list<std::shared_ptr<Component>> m_componentList;
 	Point m_pos;	//位置
+
+	bool m_isNowLadder;	//はしごに当たっているか
 };

@@ -82,9 +82,10 @@ void Picture::ChangePicture(PICTURE_TYPE* picture,int num)
 	GetGraphSize(m_handle, &m_pictureSizeX, &m_pictureSizeY);
 }
 
-void Picture::RecordPicture()
+void Picture::ReloadPicture()
 {
-	ChangePicture(m_picture, m_num);
+	if (m_picture != nullptr)
+		ChangePicture(m_picture, m_num);
 }
 
 void Picture::SetAlpha(int alpha)
