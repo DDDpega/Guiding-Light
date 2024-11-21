@@ -16,6 +16,11 @@ public:
 	virtual ~RayCast();
 
 	/// <summary>
+	/// ‰Šú‰»ˆ—
+	/// </summary>
+	void Initialize();
+
+	/// <summary>
 	/// XVˆ—
 	/// </summary>
 	void Update();
@@ -25,11 +30,14 @@ public:
 	/// </summary>
 	void Draw();
 
+	void Run(Point pos, int radius);
+
 	/// <summary>
 	/// ‚ê‚¢‚ğ‚Æ‚Î‚·
 	/// </summary>
 	/// <returns></returns>
-	Point RayStart(Point pos, int radius, int element);
+	static void RayStart(Point pos, int radius,RayCast& ray);
+
 
 	/// <summary>
 	/// Õ“Ëˆ—
@@ -46,9 +54,16 @@ public:
 
 	E_TAG m_tag;
 	bool m_isRayStart;
+	bool m_isNowRayCast;
+
+	vector<Point> rayPos;
+	vector<bool> m_ismapHit;
+
 private:
 	Point m_targetPos;
 	int frame;
 	int m_moveradius;
 	float m_rad;
+
+
 };

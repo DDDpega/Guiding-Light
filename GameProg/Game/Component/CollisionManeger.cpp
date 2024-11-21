@@ -280,44 +280,48 @@ float CollisionManeger::DistanceSqrf(const float t_x1, const float t_y1, const f
 bool CollisionManeger::RayHitCheck(Point RayPos)
 {
 	//コリジョンを回して衝突しているか検索する
-	for (auto i = m_mapCollision.cbegin(); i != m_mapCollision.cend(); i++) {
+	auto max = m_mapCollision.cend();
+	auto min = m_mapCollision.cbegin();
+
+	for (auto i = min; i != max; i++) {
 
 		//当たっているかどうか
 		rayHitCheckCollObj_i = i->get()->m_collision;
 		rayHitCheckCollObj_j = RayPos;
 
 		//当たり判定
-		if (((int)rayHitCheckCollObj_i.left<= (int)rayHitCheckCollObj_j.x) &&((int)rayHitCheckCollObj_i.right>= (int)rayHitCheckCollObj_j.x)&&
-			((int)rayHitCheckCollObj_i.top <= (int)rayHitCheckCollObj_j.y) && ((int)rayHitCheckCollObj_i.bottom >= (int)rayHitCheckCollObj_j.y))
-		{
-			return true;
+		if (((int)rayHitCheckCollObj_i.left <= (int)rayHitCheckCollObj_j.x) && ((int)rayHitCheckCollObj_i.right >= (int)rayHitCheckCollObj_j.x)) {
+			if (((int)rayHitCheckCollObj_i.top <= (int)rayHitCheckCollObj_j.y) && ((int)rayHitCheckCollObj_i.bottom >= (int)rayHitCheckCollObj_j.y)){
+				return true;
+			}
 		}
+
 	}
 	return false;
 }
 
-bool CollisionManeger::RayToHitObjectCheck(RayCast* ray)
+bool CollisionManeger::RayToHitObjectCheck(RayCast* ray, int number)
 {
 	BOX collObj_i;
-	Point collObj_j;
+	Point collObj_j=ray->rayPos[number];;
 
+	int size = m_rayToHitObject.size();
 	//コリジョンを回して衝突しているか検索する
-	for (auto i = m_rayToHitObject.cbegin(); i != m_rayToHitObject.cend(); i++) {
+	for (int i = 0; i < size; i++) {
 
-		//当たっているかどうか
-		collObj_i = i->get()->m_collision;
-		collObj_j = ray->GetPos();
+		auto obj = m_rayToHitObject[i];
+		collObj_i = m_rayToHitObject[i]->m_collision;
 
 		//当たり判定
 		if ((collObj_i.left <= collObj_j.x) && (collObj_i.right >= collObj_j.x))
 		{
 			if ((collObj_i.top <= collObj_j.y) && (collObj_i.bottom >= collObj_j.y))
 			{
-				i->get()->GetActor()->HitCollision(ray,ray->m_tag,i->get()->m_tag);
+				obj->GetActor()->HitCollision(ray,ray->m_tag, obj->m_tag);
 			}
 		}
 
-		i->get()->GetActor()->NoHitCollision(ray, ray->m_tag,i->get()->m_tag);
+		obj->GetActor()->NoHitCollision(ray, ray->m_tag, obj->m_tag);
 	}
 	return false;
 }

@@ -59,7 +59,7 @@ public:
 	}
 
 	//ライトの数を引く
-	void LightNumMinus();
+	void LightNumChange(int change);
 
 	/// <summary>
 	/// ステージの番号を変更

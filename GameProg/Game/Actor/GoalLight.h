@@ -42,5 +42,10 @@ protected:
 	shared_ptr<Sound>	m_goalLightSound;
 	bool m_isHit;
 
+
+	float m_minusRaySize;
+	int m_time;
+	int m_maxTime;
+
 };
 

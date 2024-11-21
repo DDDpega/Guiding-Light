@@ -68,7 +68,8 @@ void Fps::FPSCheck()
 //•`‰æ
 void Fps::FPSDraw()
 {
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), "FPS:%3.1f", fps.Average);
+	if(GAME_INFO::DEBUG)
+		DrawFormatString(0, 0, GetColor(255, 255, 255), "FPS:%3.1f", fps.Average);
 
 	return;
 }

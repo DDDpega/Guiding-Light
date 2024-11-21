@@ -53,7 +53,7 @@ void LuminousFigure::Update()
 		//ライトをつける
 		if (!m_lightOn) {
 			m_lightOn = true;
-			m_lightCmp->ChangeLightONOFF(m_lightOn);
+			m_lightCmp->ChangeLightONOFF();
 
 			//リストに含む
 			SceneManeger::gameScene->m_figureList.push_back(this);
@@ -66,7 +66,7 @@ void LuminousFigure::Update()
 		//ライトを消す
 		if (m_lightOn) {
 			m_lightOn = false;
-			m_lightCmp->ChangeLightONOFF(m_lightOn);
+			m_lightCmp->ChangeLightONOFF();
 		}
 	}
 }

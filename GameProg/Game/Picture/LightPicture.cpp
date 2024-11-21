@@ -57,18 +57,18 @@ void LightPicture::Draw()
 		//レイを元に三角形を作成する
 		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-			if (!c->m_ray[i]->m_isRayStart)
+			if (!c->m_ray->m_isRayStart)
 				continue;
 
 			if (i == GAME_INFO::RAYNUM-1) {
-				DrawTriangle(c->m_ray[i]->GetPos().x, c->m_ray[i]->GetPos().y,
-					c->m_ray[0]->GetPos().x, c->m_ray[0]->GetPos().y,
+				DrawTriangle(c->m_ray->rayPos[i].x, c->m_ray->rayPos[i].y,
+					c->m_ray->rayPos[0].x, c->m_ray->rayPos[0].y,
 					c->GetActor()->GetPos().x, c->GetActor()->GetPos().y,
 					GetColor(255, 0, 0), true);
 			}
 			else {
-				DrawTriangle(c->m_ray[i]->GetPos().x, c->m_ray[i]->GetPos().y,
-					c->m_ray[i + 1]->GetPos().x, c->m_ray[i + 1]->GetPos().y,
+				DrawTriangle(c->m_ray->rayPos[i].x, c->m_ray->rayPos[i].y,
+					c->m_ray->rayPos[i+1].x, c->m_ray->rayPos[i+1].y,
 					c->GetActor()->GetPos().x, c->GetActor()->GetPos().y,
 					GetColor(255, 0, 0), true);
 			}
@@ -81,7 +81,7 @@ void LightPicture::Draw()
 		//ライトの画像を描画
 		DrawRotaGraph2(c->m_lightPicture->GetPos().x, c->m_lightPicture->GetPos().y,
 			(c->m_lightPicture->m_pictureSizeX / 2), (c->m_lightPicture->m_pictureSizeY / 2),
-			c->m_lightPicture->m_size, 0, c->m_lightPicture->m_handle, true);
+			(c->m_nowLightSize*0.004), 0, c->m_lightPicture->m_handle, true);
 
 		GraphBlend(screenD,screenE, 255, DX_GRAPH_BLEND_RGBA_SELECT_MIX,
 			DX_RGBA_SELECT_BLEND_R,    // 出力結果の赤成分は AlphaHandle の緑成分

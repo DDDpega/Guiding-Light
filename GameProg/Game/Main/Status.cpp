@@ -64,6 +64,10 @@ bool Status::ReadStatus()
 			break;
 		case '8':
 			PLAYER_GRAVITY= std::stof(line.substr(postion));
+			break;
+		case '9':
+			GOAL_LIGHT_DELETE_TIME = std::stof(line.substr(postion));
+			break;
 		case 'A':
 			SOLARPANELBLOCK_MAXTIME = std::stof(line.substr(postion));
 			break;

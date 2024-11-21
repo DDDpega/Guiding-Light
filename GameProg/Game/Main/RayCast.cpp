@@ -17,85 +17,134 @@ RayCast::~RayCast()
 
 }
 
+void RayCast::Initialize()
+{
+	Actor::Initialize();
+
+	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+		rayPos.push_back(Point{ 0, 0 });
+		m_ismapHit.push_back(false);
+	}
+}
+
 void RayCast::Update()
 {
-	//レイとぶつかるオブジェクトの判定チェック
-	Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(this);
+	Actor::Update();
 
+	//レイとぶつかるオブジェクトの判定チェック
+	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+		Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(this,i);
+	}
 }
 
 void RayCast::Draw()
 {
+	Actor::Draw();
+
 	if (GAME_INFO::DEBUG) {
-		DrawPixel(m_pos.x, m_pos.y, GetColor(255, 0, 0));
+
+		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+
+			if (GAME_INFO::DEBUG && m_isRayStart) {
+				DrawPixel(rayPos[i].x, rayPos[i].y, GetColor(255, 0, 0));
+			}
+		}
 	}
 }
 
-Point RayCast::RayStart(Point pos,int radius,int element)
+void RayCast::Run(Point pos, int radius)
 {
-	//位置の更新
-	m_pos = pos;
-	m_moveradius = 0;
-	m_isRayStart = true;
 
-	//レイを消す
-	if (radius == 0) {
-		m_pos.x = -10.0f;
-		m_pos.y = -10.0f;
-		m_isRayStart = false;
-		return m_pos;
-	}
+	async(launch::async, RayCast::RayStart, pos, radius , ref(*this));
 
-	//レイを外側に向かって消す
-	while (true) {
+	/*for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-		++m_moveradius;
-
-		//ターゲットの設定
-		m_rad = ((float)element / GAME_INFO::RAYNUM) * (3.14f * 2.0f);
-		m_pos.x = m_moveradius * cos(m_rad) + pos.x;
-		m_pos.y = m_moveradius * sin(m_rad) + (pos.y-15);
-
-		//レイとぶつかるオブジェクトの判定チェック
-		//Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(this);
-
-		//最大値になったら終了する
-		if (radius == m_moveradius) {
+		if (radius == 0) {
+			m_isRayStart = false;
 			break;
 		}
+		m_isRayStart = true;
 
-		//以下重いので回数を絞る
-		if (m_moveradius % 2 != 0)
+
+		rayPos[i] = RayCast::RayStart(pos, radius, i, &rayPos[i]);
+	}*/
+}
+
+void RayCast::RayStart(Point pos,int radius, RayCast& ray)
+{
+
+	vector<Point>& m_pos = ray.rayPos;
+	bool& isRayStart = ray.m_isRayStart;
+	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
+
+		ray.m_ismapHit[i]=false;
+
+		//レイを消す
+		if (radius == 0) {
+			m_pos[i].x = -10.0f;
+			m_pos[i].y = -10.0f;
+			isRayStart = false;
 			continue;
+		}
 
-		//当たり判定のチェック
-		if (Game::gameInstance->GetCollisionMNG()->RayHitCheck(m_pos)){
+		isRayStart = true;
+		auto m_moveradius = 0;
 
 
-			if (m_moveradius >= (radius - 8)) {
+		auto circle = 3.14f * 2.0f;
+		float element_f = (float)i;
+
+		//レイを外側に向かって消す
+		while (true) {
+
+			++m_moveradius;
+
+			//ターゲットの設定
+			auto m_rad = (element_f / GAME_INFO::RAYNUM) * circle;
+			m_pos[i].x = m_moveradius * cos(m_rad) + pos.x;
+			m_pos[i].y = m_moveradius * sin(m_rad) + (pos.y - 15);
+
+			//レイとぶつかるオブジェクトの判定チェック
+			Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheck(&ray,i);
+
+			//最大値になったら終了する
+			if (radius == m_moveradius) {
 				break;
 			}
-			//x+
-			if (pos.x <= m_pos.x) {
-				m_pos.x += 10;
-			}
-			//x-
-			else if (pos.x > m_pos.x) {
-				m_pos.x -= 10;
-			}
-			//y+
-			if (pos.y <= m_pos.y) {
-				m_pos.y += 10;
-			}
-			//y-
-			else if (pos.y > m_pos.y) {
-				m_pos.y -= 10;
-			}
 
-			break;
+			//以下重いので回数を絞る
+			if (m_moveradius % 2 != 0)
+				continue;
+
+
+			//当たり判定のチェック
+			if (Game::gameInstance->GetCollisionMNG()->RayHitCheck(m_pos[i])) {
+
+
+				if (m_moveradius >= (radius - 8)) {
+					break;
+				}
+				//x+
+				if (pos.x <= m_pos[i].x) {
+					m_pos[i].x += 10;
+				}
+				//x-
+				else if (pos.x > m_pos[i].x) {
+					m_pos[i].x -= 10;
+				}
+				//y+
+				if (pos.y <= m_pos[i].y) {
+					m_pos[i].y += 10;
+				}
+				//y-
+				else if (pos.y > m_pos[i].y) {
+					m_pos[i].y -= 10;
+				}
+
+				break;
+			}
 		}
 	}
-	return m_pos;
 }
 
 

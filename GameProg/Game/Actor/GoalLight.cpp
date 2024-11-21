@@ -32,6 +32,9 @@ void GoalLight::Initialize()
 	m_goalLightSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::LAMP], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_goalLightSound);
 
+	m_maxTime = Game::gameInstance->GetStatus()->GOAL_LIGHT_DELETE_TIME;
+	m_minusRaySize=(float)m_lightCmp->m_lightSize/ (float)m_maxTime;
+
 }
 
 void GoalLight::Update()
@@ -42,11 +45,27 @@ void GoalLight::Update()
 	if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"OK") && !m_isLightOn) {
 		m_lightCmp->ChangeLightONOFF();
 		m_isLightOn = true;
+		m_time = m_maxTime;
 
 		m_goalLightSound->SoundPlay();
 
 		//ゲームシーンに通知を送る
-		SceneManeger::gameScene->LightNumMinus();
+		SceneManeger::gameScene->LightNumChange(-1);
+	}
+
+	//ライトがついている途中
+	if (m_isLightOn && !m_lightCmp->m_changeNow) {
+		m_time--;
+		m_lightCmp->m_nowLightSize-=m_minusRaySize;
+
+		//残りタイムが0になったら
+		if (m_time == 0) {
+			m_isLightOn = false;
+			m_lightCmp->m_nowLightSize = 0;
+			m_lightCmp->ChangeLightONOFF();
+			//ゲームシーンに通知を送る
+			SceneManeger::gameScene->LightNumChange(1);
+		}
 	}
 }
 

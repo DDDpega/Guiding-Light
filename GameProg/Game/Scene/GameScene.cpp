@@ -211,10 +211,10 @@ void GameScene::GameOver()
 
 }
 
-void GameScene::LightNumMinus()
+void GameScene::LightNumChange(int change)
 {
 	//ƒ‰ƒCƒg‚ð1ˆø‚­
-	m_LightNum--;
+	m_LightNum+=change;
 
 	m_gameUI->ChangeLight(m_LightNum);
 

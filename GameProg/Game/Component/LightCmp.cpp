@@ -8,6 +8,7 @@ LightCmp::LightCmp(Actor* actor,bool lightOn,float lightSize,E_TAG tag,PICTURE_T
 	,m_framecnt(0)
 	,m_rayTag(tag)
 	,m_pictureType(pictureType)
+
 {
 
 }
@@ -27,12 +28,14 @@ void LightCmp::Initialize()
 	SceneManeger::gameScene->m_lightPicture->AddLightList(this);
 
 	//レイを追加する
-	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-		m_ray[i] = shared_ptr<RayCast>(new RayCast(m_actor->GetPos(), m_rayTag));
-		Game::gameInstance->GetActorMNG()->AddActor(m_ray[i]);
-	}
+	m_ray = shared_ptr<RayCast>(new RayCast(m_actor->GetPos(), m_rayTag));
+	Game::gameInstance->GetActorMNG()->AddActor(m_ray);
 
-	ChangeLightONOFF(false);
+	//光を消しておく
+	m_lightOn = false;
+	m_nowLightSize = 0;
+	m_ray->Run(m_actor->GetPos(), 0);
+
 }
 
 void LightCmp::Update()
@@ -43,88 +46,58 @@ void LightCmp::Update()
 	auto actorPos = m_actor->GetPos();
 	actorPos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
 
-	//auto actorPos = m_actor->GetPos();
-
-	
-
 	m_framecnt++;
 	m_lightPicture->SetPos(actorPos);
 
+	//暗い時に見える画像を全て見えるようにする
 	if (m_actor->m_darkPictureCmp != nullptr) {
 		m_actor->m_darkPictureCmp->m_darkPicture->SetisVisible(true);
 	}
 
 	//毎秒レイを飛ばす
 	if (m_lightOn) {
+		for (int i = 0; i < 20; i++) {
+			if (m_nowLightSize <= m_lightSize && m_changeNow) {
+				m_nowLightSize ++;
+			}
+			else {
+				m_changeNow = false;
+			}
+		}
+
+		
+		//レイを飛ばす
+		m_ray->Run( actorPos, m_nowLightSize);
+	}
+	else {
+		for (int i = 0; i < 20; i++) {
+			if (m_nowLightSize != 0 && m_changeNow) {
+				m_nowLightSize--;
+			}
+			else {
+				m_changeNow = false;
+			}
+		}
 
 		//レイを飛ばす
-		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-			//レイを飛ばす
-			m_ray[i]->RayStart( actorPos, m_lightSize, i);
-		}
+		m_ray->Run(actorPos, m_nowLightSize);
 	}
 }
 
 void LightCmp::Draw()
 {
 	Component::Draw();
+
 	for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
-		if (GAME_INFO::DEBUG && m_ray[i]->m_isRayStart) {
-			DrawLine(m_actor->GetPos().x, m_actor->GetPos().y, m_ray[i]->GetPos().x, m_ray[i]->GetPos().y, GetColor(100, 100, 100));
+		if (GAME_INFO::DEBUG && m_ray->m_isRayStart) {
+			DrawLine(m_actor->GetPos().x, m_actor->GetPos().y, m_ray->rayPos[i].x, m_ray->rayPos[i].y, GetColor(100, 100, 100));
 		}
 	}
 }
 
 void LightCmp::ChangeLightONOFF()
 {
-	if (m_lightOn) {
-
-		//レイを飛ばす
-		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-
-			//レイを飛ばす
-			m_ray[i]->RayStart(m_actor->GetPos(), 0, i);
-		}
-		m_lightOn = false;
-	}
-	else {
-
-		//レイを飛ばす
-		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-
-			//レイを飛ばす
-			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize, i);
-		}
-		m_lightOn = true;
-
-	}
-}
-
-void LightCmp::ChangeLightONOFF(bool lightOn)
-{
 	m_changeNow = true;
-
-	if (!lightOn) {
-
-		//レイを飛ばす
-		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-
-			//レイを飛ばす
-			m_ray[i]->RayStart(m_actor->GetPos(), 0, i);
-		}
-		m_lightOn = false;
-	}
-	else {
-		//レイを飛ばす
-		for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
-
-			//レイを飛ばす
-			m_ray[i]->RayStart(m_actor->GetPos(), m_lightSize, i);
-		}
-		m_lightOn = true;
-
-	}
-
-	m_changeNow = false;
+	m_lightOn = m_lightOn ? false : true;
 }

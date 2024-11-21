@@ -28,19 +28,16 @@ public:
 	/// </summary>
 	void ChangeLightONOFF();
 
-	/// <summary>
-	///ƒ‰ƒCƒg‚ÌON,OFF‚ğØ‚è‘Ö‚¦‚é 
-	/// </summary>
-	void ChangeLightONOFF(bool lightOn);
 
 	bool m_changeNow = false;
 
 	bool m_lightOn;
-	shared_ptr<RayCast> m_ray[GAME_INFO::RAYNUM];
+	shared_ptr<RayCast> m_ray;
 	shared_ptr<Picture> m_lightPicture;
+	int m_lightSize;
+	float m_nowLightSize;
 
 protected:
-	int m_lightSize;
 	Point targetPos;
 	int m_framecnt;
 	E_TAG m_rayTag;

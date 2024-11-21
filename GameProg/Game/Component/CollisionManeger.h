@@ -114,7 +114,7 @@ public:
 	/// </summary>
 	/// <param name="ray"></param>
 	/// <returns></returns>
-	bool RayToHitObjectCheck(RayCast* ray);
+	bool RayToHitObjectCheck(RayCast* ray, int number);
 
 	/// <summary>
 	/// リストの削除
@@ -140,10 +140,10 @@ public:
 		return nullptr;
 	}
 
-	list<shared_ptr<BoxCollisionCmp>> m_BOXcollisionList;	//当たり判定リスト
-	list<shared_ptr<BoxCollisionCmp>> m_mapCollision;	//当たり判定リスト
-	list<shared_ptr<CircleCollisionCmp>> m_CIRCLEcollisionList;	//当たり判定リスト
-	list<shared_ptr<BoxCollisionCmp>> m_rayToHitObject;	//レイが広がる途中に当たるリスト
+	vector<shared_ptr<BoxCollisionCmp>> m_BOXcollisionList;	//当たり判定リスト
+	vector<shared_ptr<BoxCollisionCmp>> m_mapCollision;	//当たり判定リスト
+	vector<shared_ptr<CircleCollisionCmp>> m_CIRCLEcollisionList;	//当たり判定リスト
+	vector<shared_ptr<BoxCollisionCmp>> m_rayToHitObject;	//レイが広がる途中に当たるリスト
 
 	BOX rayHitCheckCollObj_i;
 	Point rayHitCheckCollObj_j;
