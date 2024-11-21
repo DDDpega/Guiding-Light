@@ -1,10 +1,10 @@
 #include "Framework.h"
 
 
-Picture::Picture(Point pos, float size, const PICTURE_TYPE picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible, bool isAlpha)
+Picture::Picture(Point pos, float size, PICTURE_TYPE picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible, bool isAlpha)
 	:m_pos(pos)
 	, m_size(size)
-	, m_picture(picture)
+	, m_picture(&picture)
 	, m_pivot(pivot)
 	, m_isVisible(isVisible)
 	, m_sort(sort)
@@ -39,7 +39,7 @@ Picture::~Picture()
 void Picture::Initialize()
 {
 	if (!m_pictureNull) {
-		ChangePicture(m_picture,m_num);
+		ChangePicture(*m_picture,m_num);
 	}
 }
 
@@ -58,7 +58,8 @@ void Picture::Draw()
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
-
+	
+	
 	//‰æ‘œ‚Ì•`‰æ
 	if (m_pivot == E_PIVOT::CENTER) {
 		DrawRotaGraph3(m_pos.x, m_pos.y, (m_pictureSizeX / 2), (m_pictureSizeY / 2), m_scaleX * m_size, m_scaleY * m_size , 0, m_handle, true, m_reverse);
@@ -74,10 +75,16 @@ void Picture::Draw()
 void Picture::ChangePicture(PICTURE_TYPE picture,int num)
 {
 	m_num = num;
+	m_picture = &picture;
  	m_handle = picture.handle[m_num];
 
 	//‰æ‘œƒTƒCƒY‚ÌŽæ“¾
 	GetGraphSize(m_handle, &m_pictureSizeX, &m_pictureSizeY);
+}
+
+void Picture::RecordPicture()
+{
+	ChangePicture(*m_picture, m_num);
 }
 
 void Picture::SetAlpha(int alpha)

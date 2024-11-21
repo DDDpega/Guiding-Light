@@ -43,12 +43,15 @@ public:
 	/// <param name="type"></param>
 	void SetSlider(Sound::E_Sound type,int num);
 
+	void RereadUIList();
+
 private:
 	shared_ptr<Picture> m_modeText;
 	shared_ptr<Slider> m_allSound;
 	shared_ptr<Slider> m_bgmSound;
 	shared_ptr<Slider> m_seSound;
 	int m_nowCursorCol;
+	int handle;
 
 };
 

@@ -4,7 +4,7 @@
 
 PictureManeger::PictureManeger()
 {
-
+	m_pictureList.clear();
 }
 
 PictureManeger:: ~PictureManeger()
@@ -15,12 +15,58 @@ PictureManeger:: ~PictureManeger()
 
 void PictureManeger::Initialize()
 {
-	m_pictureList.clear();
+	for (auto& list : UI::ALLTYPE_LIST) {
+		for (auto& path : list.path) {
+			UI::ALLTYPE_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : UI::CREDIT_LIST) {
+		for (auto& path : list.path) {
+			UI::CREDIT_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : UI::GAME_LIST) {
+		for (auto& path : list.path) {
+			UI::GAME_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : UI::OPTION_LIST) {
+		for (auto& path : list.path) {
+			UI::OPTION_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : UI::STAGESELECT_LIST) {
+		for (auto& path : list.path) {
+			UI::STAGESELECT_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : UI::TITLE_LIST) {
+		for (auto& path : list.path) {
+			UI::TITLE_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : ILLUST::GIMMICK_LIST) {
+		for (auto& path : list.path) {
+			ILLUST::GIMMICK_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : ILLUST::PLAYER_LIST) {
+		for (auto& path : list.path) {
+			ILLUST::PLAYER_LIST[list.type].handle.clear();
+		}
+	}
+	for (auto& list : ILLUST::STAGE_LIST) {
+		for (auto& path : list.path) {
+			ILLUST::STAGE_LIST[list.type].handle.clear();
+		}
+	}
+
+
 
 	//äeâÊëúÇÉçÅ[ÉhÇ∑ÇÈ
 	for (auto& list : UI::ALLTYPE_LIST) {
 		for (auto& path : list.path) {
-			UI::ALLTYPE_LIST[list.type].handle.push_back(LoadGraph(path));
+ 			UI::ALLTYPE_LIST[list.type].handle.push_back(LoadGraph(path));
 		}
 	}
 	for (auto& list : UI::CREDIT_LIST) {

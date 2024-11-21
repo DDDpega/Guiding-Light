@@ -33,6 +33,8 @@ public:
 	/// </summary>
 	void AddPictureInUI(shared_ptr<Picture> picture);
 
+	list<shared_ptr<Picture>> GetPictureUI() { return m_pictureList_UI; }
+
 protected:
 	bool m_isInput;	//操作可能かどうか
 	list<shared_ptr<Picture>> m_pictureList_UI;	//UIの中で表示する画像のリスト

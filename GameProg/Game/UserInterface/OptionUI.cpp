@@ -50,26 +50,28 @@ void OptionUI::Initialize()
 
 	
 	
-	m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
+	/*m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_allSound);
-	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);
+	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);*/
 
 	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(bgm);
 
-	m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
+	/*m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_bgmSound);
-	SetSlider(Sound::E_Sound::BGM,BGMVOL);
+	SetSlider(Sound::E_Sound::BGM,BGMVOL);*/
 
 	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(se);
 
 	
 
-	m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
+	/*m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_seSound);
-	SetSlider(Sound::E_Sound::SE,SEVOL);
+	SetSlider(Sound::E_Sound::SE,SEVOL);*/
 	
+	handle = LoadGraph("Picture/stageSelectPoint1.png");
+
 	m_nowcursor = 0;
 }
 
@@ -78,6 +80,16 @@ void OptionUI::Update()
 	UserInterface::Update();
 
 	auto isSelect = false;
+
+	auto x = 0;
+	auto y = 0;
+
+	
+	GetGraphSize(handle, &x, &y);
+
+	if (x < 0) {
+		auto a = 0;
+	}
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
@@ -101,10 +113,12 @@ void OptionUI::Update()
 		{
 		case WINDOWMODE:
 			if (m_nowCursorCol != 0)m_nowCursorCol--;
-			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
-			SetWindowSize(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT);
+			
 			ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
-			SetGraphMode(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT, WINDOW_INFO::GAME_COLOR);
+			Game::gameInstance->GetPictureMNG()->Initialize();
+			RereadUIList();
+			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
+			
 			break;
 		case MASTERVOL:
 			Game::gameInstance->GetSoundMNG()->SetMasterVolume(m_allSound->LeftMove());
@@ -127,8 +141,12 @@ void OptionUI::Update()
 		{
 		case WINDOWMODE:
 			if (m_nowCursorCol != 1)m_nowCursorCol++;
-			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
 			ChangeWindowMode(WINDOW_INFO::FULL_SCREEN);
+			Game::gameInstance->GetPictureMNG()->Initialize();
+			RereadUIList();
+			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
+			
+			
 
 			break;
 		case MASTERVOL:
@@ -153,6 +171,7 @@ void OptionUI::Update()
 void OptionUI::Draw()
 {
 	UserInterface::Draw();
+	DrawBox(100, 100, 500, 500, GetColor(255, 0, 0), 1);
 
 }
 
@@ -197,5 +216,13 @@ void OptionUI::SetSlider(Sound::E_Sound type,int num)
 				break;
 			}
 		}
+	}
+}
+
+void OptionUI::RereadUIList()
+{
+	auto uilist = UserInterface::GetPictureUI();
+	for (auto ui : uilist) {
+		ui->RecordPicture();
 	}
 }
