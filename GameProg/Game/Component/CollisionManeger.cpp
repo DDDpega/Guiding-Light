@@ -280,22 +280,20 @@ float CollisionManeger::DistanceSqrf(const float t_x1, const float t_y1, const f
 bool CollisionManeger::RayHitCheck(Point RayPos)
 {
 	//ƒRƒŠƒWƒ‡ƒ“‚ğ‰ñ‚µ‚ÄÕ“Ë‚µ‚Ä‚¢‚é‚©ŒŸõ‚·‚é
-	auto max = m_mapCollision.cend();
-	auto min = m_mapCollision.cbegin();
+	auto size = m_mapCollision.size();
+	rayHitCheckCollObj_j = RayPos;
 
-	for (auto i = min; i != max; i++) {
+	for (int i = 0; i < size; i++) {
 
 		//“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-		rayHitCheckCollObj_i = i->get()->m_collision;
-		rayHitCheckCollObj_j = RayPos;
+		rayHitCheckCollObj_i = m_mapCollision[i]->m_collision;
 
 		//“–‚½‚è”»’è
-		if (((int)rayHitCheckCollObj_i.left <= (int)rayHitCheckCollObj_j.x) && ((int)rayHitCheckCollObj_i.right >= (int)rayHitCheckCollObj_j.x)) {
-			if (((int)rayHitCheckCollObj_i.top <= (int)rayHitCheckCollObj_j.y) && ((int)rayHitCheckCollObj_i.bottom >= (int)rayHitCheckCollObj_j.y)){
+		if ((rayHitCheckCollObj_i.left <= rayHitCheckCollObj_j.x) && (rayHitCheckCollObj_i.right >= rayHitCheckCollObj_j.x)) {
+			if ((rayHitCheckCollObj_i.top <= rayHitCheckCollObj_j.y) && (rayHitCheckCollObj_i.bottom >= rayHitCheckCollObj_j.y)){
 				return true;
 			}
 		}
-
 	}
 	return false;
 }
