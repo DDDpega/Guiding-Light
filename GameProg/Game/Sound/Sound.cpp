@@ -32,10 +32,6 @@ void Sound::SoundPlay(E_PlaySound type)
 {
 	
 	
-	
-
-	
-	
 	switch (type)
 	{
 	case Sound::NOMAL:

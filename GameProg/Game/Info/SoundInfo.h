@@ -10,6 +10,7 @@ struct SOUND_TYPE
 
 constexpr int MAXVOLUME = 255;
 constexpr float VOLUMERATE = 1.0f;
+constexpr float SETTINGVOLRATE = 2.55f;
 
 namespace SOUND {
 

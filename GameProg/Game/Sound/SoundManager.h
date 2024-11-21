@@ -32,6 +32,8 @@ public:
 	/// </summary>
 	void SetVolume();
 
+	int GetTypeVolumeNum(Sound::E_Sound soundType);
+
 	int GetVolume(Sound::E_Sound soundType);
 
 	int GetSoundLength() { return m_sounds.size(); }

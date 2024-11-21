@@ -3,6 +3,15 @@ class OptionUI :
     public UserInterface
 {
 public:
+
+	enum CURSORPOINT {
+		WINDOWMODE,
+		SAVEDELETE,
+		MASTERVOL,
+		BGMVOL,
+		SEVOL,
+	};
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
@@ -28,11 +37,18 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// サウンドのSliderの位置をサウンドのタイプの現在の音量に合わせる
+	/// </summary>
+	/// <param name="type"></param>
+	void SetSlider(Sound::E_Sound type,int num);
+
 private:
 	shared_ptr<Picture> m_modeText;
 	shared_ptr<Slider> m_allSound;
 	shared_ptr<Slider> m_bgmSound;
 	shared_ptr<Slider> m_seSound;
+	int m_nowCursorCol;
 
 };
 

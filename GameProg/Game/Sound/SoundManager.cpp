@@ -1,9 +1,9 @@
 #include "Framework.h"
 
 SoundManager::SoundManager()
-	:m_masterVolume(255)
-	, m_bgmVolume(255)
-	, m_seVolume(255)
+	:m_masterVolume(128)
+	, m_bgmVolume(128)
+	, m_seVolume(128)
 {
 }
 
@@ -64,7 +64,7 @@ void SoundManager::SetVolume()
 		switch (sound->GetSoundType())
 		{
 		case Sound::BGM:
-			ChangeVolumeSoundMem(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 10) / 10), sound->GetSound());
+			ChangeVolumeSoundMem(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100), sound->GetSound());
 			break;
 		case Sound::SE:
 			ChangeVolumeSoundMem(int(m_seVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100), sound->GetSound());
@@ -73,13 +73,37 @@ void SoundManager::SetVolume()
 	}
 }
 
+int SoundManager::GetTypeVolumeNum(Sound::E_Sound soundType) 
+{
+	int vol;
+	switch (soundType)
+	{
+	case Sound::MASTER:
+		vol = m_masterVolume;
+		break;
+
+	case Sound::BGM:
+		vol = m_bgmVolume;;
+		break;
+	case Sound::SE:
+		vol = m_seVolume;
+		break;
+	}
+
+	vol /= SETTINGVOLRATE;
+
+
+	return vol;
+}
+
+
 int SoundManager::GetVolume(Sound::E_Sound soundType)
 {
 	int vol;
 	switch (soundType)
 	{
 	case Sound::BGM:
-		vol=(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 10) / 10));
+		vol=(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100));
 		break;
 	case Sound::SE:
 		vol = (int(m_seVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100));
@@ -94,22 +118,27 @@ int SoundManager::GetVolume(Sound::E_Sound soundType)
 void SoundManager::ChangeVolume(int volume, Sound::E_Sound soundType)
 {
 	
+	int vol = volume * SETTINGVOLRATE;
+
 	for (auto& sound : m_sounds) {
 		//SoundTypeが同じなら
 		if (sound->GetSoundType() == soundType) {
 			//volumeをマスターボリュームの割合で減らして音量をセットする
-			ChangeVolumeSoundMem(volume * (float)(m_masterVolume / MAXVOLUME), sound->GetSound());
+
+			ChangeVolumeSoundMem(int(vol * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100), sound->GetSound());
 		}
 	}
 	switch (soundType)
 	{
 	case Sound::BGM:
-		m_bgmVolume = volume;
+		m_bgmVolume = vol;
 		break;
 	case Sound::SE:
-		m_seVolume = volume;
+		m_seVolume = vol;
 		break;
 	}
+
+	
 
 }
 
@@ -117,19 +146,17 @@ void SoundManager::ChangeVolume(int volume, Sound::E_Sound soundType)
 void SoundManager::SetMasterVolume(int volume)
 {
 	//マスター音量を変更
-	m_masterVolume = volume;
+	m_masterVolume = volume* SETTINGVOLRATE;
 
 	//マスターに合わせてBGMとSEを変更
 	for (auto& sound : m_sounds) {
 		switch (sound->GetSoundType())
 		{
 		case Sound::BGM:
-			//volumeをマスターボリュームの割合で減らして音量をセットする
-			ChangeVolumeSoundMem(m_bgmVolume * (float)(m_masterVolume / MAXVOLUME), sound->GetSound());
+			ChangeVolumeSoundMem(int(m_bgmVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100), sound->GetSound());
 			break;
 		case Sound::SE:
-			//volumeをマスターボリュームの割合で減らして音量をセットする
-			ChangeVolumeSoundMem(m_seVolume * (float)(m_masterVolume / MAXVOLUME), sound->GetSound());
+			ChangeVolumeSoundMem(int(m_seVolume * floor(((float)m_masterVolume / (float)MAXVOLUME) * 100) / 100), sound->GetSound());
 			break;
 		}
 

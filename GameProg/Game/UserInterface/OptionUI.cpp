@@ -13,7 +13,7 @@ OptionUI::~OptionUI()
 void OptionUI::Initialize()
 {
 	UserInterface::Initialize();
-
+	m_nowCursorCol = 0;
 
 	//画面の幅を取得
 	float scrX = WINDOW_INFO::GAME_WIDTH;
@@ -48,36 +48,101 @@ void OptionUI::Initialize()
 	auto all = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 140 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_ALL], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(all);
 
+	
+	
 	m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_allSound);
+	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);
 
 	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(bgm);
 
 	m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_bgmSound);
+	SetSlider(Sound::E_Sound::BGM,BGMVOL);
 
 	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(se);
 
+	
+
 	m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_seSound);
+	SetSlider(Sound::E_Sound::SE,SEVOL);
+	
+	m_nowcursor = 0;
 }
 
 void OptionUI::Update()
 {
 	UserInterface::Update();
+
+	auto isSelect = false;
+
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
 		//ゲームシーンへ移行フラグをオンにする
 		Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
 	}
 
+	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
+		if (m_nowcursor != 0) {
+			m_nowcursor--;
+		}
+	}
+	else if (Game::gameInstance->GetInputMNG()->Click(L"DOWN")) {
+		if (m_nowcursor != 4) {
+			m_nowcursor++;
+		}
+	}
+
 	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
-		m_seSound->LeftMove();
+		switch (m_nowcursor)
+		{
+		case WINDOWMODE:
+			if (m_nowCursorCol != 0)m_nowCursorCol--;
+			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
+			SetWindowSize(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT);
+			ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
+			SetGraphMode(WINDOW_INFO::GAME_WIDTH, WINDOW_INFO::GAME_HEIGHT, WINDOW_INFO::GAME_COLOR);
+			break;
+		case MASTERVOL:
+			Game::gameInstance->GetSoundMNG()->SetMasterVolume(m_allSound->LeftMove());
+			break;
+		case BGMVOL:
+			Game::gameInstance->GetSoundMNG()->ChangeVolume(m_bgmSound->LeftMove(), Sound::E_Sound::BGM);
+			break;
+		case SEVOL:
+			Game::gameInstance->GetSoundMNG()->ChangeVolume(m_seSound->LeftMove(), Sound::E_Sound::SE);
+			break;
+		default:
+			break;
+		}
+		
+		
 	}
 	else if (Game::gameInstance->GetInputMNG()->Down(L"RIGHT")) {
-		m_seSound->RightMove();
+		
+		switch (m_nowcursor)
+		{
+		case WINDOWMODE:
+			if (m_nowCursorCol != 1)m_nowCursorCol++;
+			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
+			ChangeWindowMode(WINDOW_INFO::FULL_SCREEN);
+
+			break;
+		case MASTERVOL:
+			Game::gameInstance->GetSoundMNG()->SetMasterVolume(m_allSound->RightMove());
+			break;
+		case BGMVOL:
+			Game::gameInstance->GetSoundMNG()->ChangeVolume(m_bgmSound->RightMove(), Sound::E_Sound::BGM);
+			break;
+		case SEVOL:
+			Game::gameInstance->GetSoundMNG()->ChangeVolume(m_seSound->RightMove(), Sound::E_Sound::SE);
+			break;
+		default:
+			break;
+		}
 	}
 
 
@@ -89,4 +154,48 @@ void OptionUI::Draw()
 {
 	UserInterface::Draw();
 
+}
+
+void OptionUI::SetSlider(Sound::E_Sound type,int num)
+{
+	auto soundMNG = Game::gameInstance->GetSoundMNG();
+	auto masterVol = soundMNG->GetTypeVolumeNum(type);
+	auto changeVolNum = 0;
+	auto isPlusVol = false;
+	if (masterVol >= 50) {
+		isPlusVol = true;
+	}
+	changeVolNum = masterVol - 50;
+	changeVolNum = abs(changeVolNum);
+
+	for (int i = 0; i < changeVolNum; i++) {
+		if (isPlusVol) {
+			switch (num)
+			{
+			case MASTERVOL:
+				Game::gameInstance->GetSoundMNG()->SetMasterVolume(m_allSound->RightMove());
+				break;
+			case BGMVOL:
+				Game::gameInstance->GetSoundMNG()->ChangeVolume(m_bgmSound->RightMove(), Sound::E_Sound::BGM);
+				break;
+			case SEVOL:
+				Game::gameInstance->GetSoundMNG()->ChangeVolume(m_seSound->RightMove(), Sound::E_Sound::SE);
+				break;
+			}
+		}
+		else {
+			switch (num)
+			{
+			case MASTERVOL:
+				Game::gameInstance->GetSoundMNG()->SetMasterVolume(m_allSound->LeftMove());
+				break;
+			case BGMVOL:
+				Game::gameInstance->GetSoundMNG()->ChangeVolume(m_bgmSound->LeftMove(), Sound::E_Sound::BGM);
+				break;
+			case SEVOL:
+				Game::gameInstance->GetSoundMNG()->ChangeVolume(m_seSound->LeftMove(), Sound::E_Sound::SE);
+				break;
+			}
+		}
+	}
 }
