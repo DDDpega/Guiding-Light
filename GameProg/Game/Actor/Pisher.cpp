@@ -104,10 +104,10 @@ void Pisher::Update()
 		//10ƒtƒŒ[ƒ€‚²‚Æ‚É‰æ‘œ‚ð•ÏX‚·‚é
 		if (Game::gameInstance->m_framecnt % 10 == 0) {
 			if (m_pictureCmp->m_picture->m_handle == ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER].handle[0]) {
-				m_pictureCmp->m_picture->ChangePicture(ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 1);
+				m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 1);
 			}
 			else {
-				m_pictureCmp->m_picture->ChangePicture(ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 0);
+				m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 0);
 			}
 		}
 	}

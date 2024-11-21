@@ -20,32 +20,32 @@ void OptionUI::Initialize()
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//çïîwåi
-	auto background = std::shared_ptr<Picture>(new Picture(Point{ 0,0 }, 0.37, UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto background = std::shared_ptr<Picture>(new Picture(Point{ 0,0 }, 0.37, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(background);
 
 	//OptionTitle
-	auto title = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 250 }, 0.6, UI::OPTION_LIST[UI::OPTION_TYPE::OPTION], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto title = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 250 }, 0.6, &UI::OPTION_LIST[UI::OPTION_TYPE::OPTION], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(title);
 
-	auto gameSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2-150 }, 0.3, UI::OPTION_LIST[UI::OPTION_TYPE::GAME_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto gameSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2-150 }, 0.3, &UI::OPTION_LIST[UI::OPTION_TYPE::GAME_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(gameSetting);
 
-	auto windowSetting = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 - 70 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::SCREEN_RATIO], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto windowSetting = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::SCREEN_RATIO], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(windowSetting);
 
-	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 170 ,scrY / 2 - 70 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 170 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_modeText);
 
-	auto saveDelate = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::DELETE_SAVE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto saveDelate = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::DELETE_SAVE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(saveDelate);
 
-	auto delateButton = std::shared_ptr<Picture>(new Picture(Point{ scrX-150 ,scrY / 2 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto delateButton = std::shared_ptr<Picture>(new Picture(Point{ scrX-150 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(delateButton);
 
-	auto soundSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2+80  }, 0.3, UI::OPTION_LIST[UI::OPTION_TYPE::SOUND_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto soundSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2+80  }, 0.3, &UI::OPTION_LIST[UI::OPTION_TYPE::SOUND_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(soundSetting);
 
-	auto all = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 140 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_ALL], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto all = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 140 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_ALL], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(all);
 
 	
@@ -54,14 +54,14 @@ void OptionUI::Initialize()
 	UserInterface::AddPictureInUI(m_allSound);
 	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);*/
 
-	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(bgm);
 
 	/*m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_bgmSound);
 	SetSlider(Sound::E_Sound::BGM,BGMVOL);*/
 
-	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(se);
 
 	
@@ -117,7 +117,7 @@ void OptionUI::Update()
 			ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
 			Game::gameInstance->GetPictureMNG()->Initialize();
 			RereadUIList();
-			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
+			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
 			
 			break;
 		case MASTERVOL:
@@ -144,7 +144,7 @@ void OptionUI::Update()
 			ChangeWindowMode(WINDOW_INFO::FULL_SCREEN);
 			Game::gameInstance->GetPictureMNG()->Initialize();
 			RereadUIList();
-			m_modeText->ChangePicture(UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
+			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
 			
 			
 

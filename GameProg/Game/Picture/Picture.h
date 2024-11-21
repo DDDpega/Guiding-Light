@@ -6,7 +6,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Picture(Point pos, float size, PICTURE_TYPE picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
+	Picture(Point pos, float size, PICTURE_TYPE* picture, int num, E_PIVOT pivot, E_SORT sort, bool isVisible = true, bool isAlpha = false);
 
 	/// <summary>
 	/// 描画しないPicture
@@ -38,7 +38,7 @@ public:
 	/// </summary>
 	/// <param name="picture"></param>
 	/// <param name="num"></param>
-	void ChangePicture(PICTURE_TYPE picture, int num = 0);
+	void ChangePicture(PICTURE_TYPE* picture, int num = 0);
 
 	/// <summary>
 	/// 画像のリロード

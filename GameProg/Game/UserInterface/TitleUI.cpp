@@ -24,42 +24,42 @@ void TitleUI::Initialize()
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//çïîwåi
-	auto background = std::shared_ptr<Picture>(new Picture(Point{ 0,0},0.37 , UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND],0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	auto background = std::shared_ptr<Picture>(new Picture(Point{ 0,0},0.37 , &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND],0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(background);
 
 	//ÉçÉS
-	auto picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 1, UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 1, &UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 
 	//----------------------------------------------------------------------------------
 	//ÉQÅ[ÉÄÉXÉ^Å[ÉgâÊëú
-	m_startText[0] = std::shared_ptr<Picture>(new Picture(Point{scrX / 2 ,scrY / 2 + 150}, 0.3, UI::TITLE_LIST[UI::TITLE_TYPE::GAMESTART], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, true, true));
+	m_startText[0] = std::shared_ptr<Picture>(new Picture(Point{scrX / 2 ,scrY / 2 + 150}, 0.3, &UI::TITLE_LIST[UI::TITLE_TYPE::GAMESTART], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, true, true));
 	m_nowpostion[0] = m_startText[0]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[0]);
 	
 
 	//çïîwåi
-	m_backGround = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2  }, 5, UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
+	m_backGround = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2  }, 5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
 	UserInterface::AddPictureInUI(m_backGround);
 	m_backGround->SetAlpha(180);
 
 	//ëIëèÛë‘Ç™åıÇÈâÊëú
-	m_arrow = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 + 200 ,scrY / 2 + 250 }, 0.5, UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,false,true));
+	m_arrow = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 + 200 ,scrY / 2 + 250 }, 0.5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,false,true));
 	UserInterface::AddPictureInUI(m_arrow);
 	m_arrow->SetAlpha(180);
 
 	//ÇÕÇ¢âÊëú
-	m_startText[1] = std::shared_ptr<Picture>(new Picture(Point{ 300, scrY / 2 + 200 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::YES], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_startText[1] = std::shared_ptr<Picture>(new Picture(Point{ 300, scrY / 2 + 200 }, 0.5, &UI::TITLE_LIST[UI::TITLE_TYPE::YES], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	m_nowpostion[1] = m_startText[1]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[1]);
 
 	//Ç¢Ç¢Ç¶âÊëú
-	m_startText[2] = std::shared_ptr<Picture>(new Picture(Point{ scrX -300 ,scrY / 2 + 200 }, 0.5, UI::TITLE_LIST[UI::TITLE_TYPE::NO], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_startText[2] = std::shared_ptr<Picture>(new Picture(Point{ scrX -300 ,scrY / 2 + 200 }, 0.5, &UI::TITLE_LIST[UI::TITLE_TYPE::NO], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	m_nowpostion[2] = m_startText[2]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[2]);
 
 	//ÉQÅ[ÉÄèIóπâÊëú
-	m_gameExitText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 0.7, UI::TITLE_LIST[UI::TITLE_TYPE::GAMEEND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_gameExitText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 0.7, &UI::TITLE_LIST[UI::TITLE_TYPE::GAMEEND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_gameExitText);
 	//----------------------------------------------------------------------------------
 

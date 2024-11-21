@@ -22,7 +22,7 @@ void Slider::Initialize()
 	Picture::Initialize();
 
 	//バーの表示
-	m_bar = shared_ptr<Picture>(new Picture(m_barCenter, m_barSize, UI::OPTION_LIST[UI::OPTION_TYPE::BAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_bar = shared_ptr<Picture>(new Picture(m_barCenter, m_barSize, &UI::OPTION_LIST[UI::OPTION_TYPE::BAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_bar);
 
 	//1つのメモリ当たりの増加量
@@ -31,12 +31,12 @@ void Slider::Initialize()
 	m_plusX = ((rightPointX - leftPointX) / m_max);
 
 	//バーの表示
-	m_bar2 = shared_ptr<Picture>(new Picture(m_barCenter, m_barSize, UI::OPTION_LIST[UI::OPTION_TYPE::BAR], 1, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_bar2 = shared_ptr<Picture>(new Picture(m_barCenter, m_barSize, &UI::OPTION_LIST[UI::OPTION_TYPE::BAR], 1, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_bar2);
 
 	
 	//つまみの表示
-	m_pinch = shared_ptr<Picture>(new Picture(Point{ rightPointX - (m_num * m_plusX),m_bar->GetPos().y }, m_pinchSize, UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_pinch = shared_ptr<Picture>(new Picture(Point{ rightPointX - (m_num * m_plusX),m_bar->GetPos().y }, m_pinchSize, &UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_pinch);
 
 }
