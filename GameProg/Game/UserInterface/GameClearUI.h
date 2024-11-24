@@ -22,7 +22,14 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// ステージのクリアデータをテキストに書き込む
+	/// </summary>
+	/// <param name="StageNum"></param>
+	void SaveClearData(int stageNum, bool isClear);
+
 protected:
 	int sentence1;
+	bool m_stage[20];
 };
 

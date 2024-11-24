@@ -217,8 +217,10 @@ void StageSelectUI::Draw()
 		
 		//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
 
+	//-1している理由は1つ右に描画しているため
+	//+2している理由は右に二つステージ選択画像を用意するため
 	auto j = 0;
-	for (int i = m_nowcursor; i < m_nowcursor + 3; i++) {
+	for (int i = m_nowcursor-1; i < m_nowcursor + 2; i++) {
 		//カーソルの位置を光らす
 		if (m_stage[i] == true) {
 			m_stageArray[j]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
