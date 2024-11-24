@@ -35,37 +35,110 @@ void GoalLight::Initialize()
 	m_maxTime = Game::gameInstance->GetStatus()->GOAL_LIGHT_DELETE_TIME;
 	m_minusRaySize=(float)m_lightCmp->m_lightSize/ (float)m_maxTime;
 
+	//フォントの描画
+	m_fontHandle = CreateFontToHandle("MS ゴシック", 20, 1);
+
+	m_time = 0;
+	m_moveType = E_GOAL_LIGHT_MOVE::NONE;
 }
 
 void GoalLight::Update()
 {
 	Actor::Update();
 
-	//ライトをつける
-	if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"OK") && !m_isLightOn) {
-		m_lightCmp->ChangeLightONOFF();
-		m_isLightOn = true;
-		m_time = m_maxTime;
+	switch (m_moveType)
+	{
+	case E_GOAL_LIGHT_MOVE::NONE:
 
-		m_goalLightSound->SoundPlay();
 
-		//ゲームシーンに通知を送る
-		SceneManeger::gameScene->LightNumChange(-1);
-	}
+		//ライトを溜める
+		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"ENTER")) {
+	
+			//プレイヤーの操作を止める
+			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = true;
 
-	//ライトがついている途中
-	if (m_isLightOn && !m_lightCmp->m_changeNow) {
-		m_time--;
-		m_lightCmp->m_nowLightSize-=m_minusRaySize;
+			//次のステートに移動する
+			m_moveType = E_GOAL_LIGHT_MOVE::CHARGE;
+		}
+		break;
+	case E_GOAL_LIGHT_MOVE::CHARGE:
 
-		//残りタイムが0になったら
-		if (m_time == 0) {
+		//タイムを増やす
+		++m_time;
+
+		//1秒後に次のステートに移動し、タイムを戻す
+		if (m_time >= 60) {
+			m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_UP;
+			m_time = 0;
+		}
+		break;
+	case E_GOAL_LIGHT_MOVE::SLOWLY_UP:
+
+		//タイムを増やし、ライトのレイを広げる
+		++m_time;
+		m_lightCmp->m_nowLightSize += ((float)m_lightCmp->m_lightSize / 60.0f);
+		//画像を変更する
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
+
+
+
+		//1秒経ったらレイが完成する
+		if (m_time >= 60) {
+			m_lightCmp->ChangeLightONOFF();
+			m_isLightOn = true;
+			m_goalLightSound->SoundPlay();
+
+			//ゲームシーンに通知を送る
+			SceneManeger::gameScene->LightNumChange(-1);
+
+			//次のステートを移動し、タイムを戻す
+			m_time = 0;
+			m_moveType = E_GOAL_LIGHT_MOVE::LIGHTNING;
+
+			//プレイヤーの動作を許可する
+			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = false;
+		}
+		break;
+	case E_GOAL_LIGHT_MOVE::LIGHTNING:
+
+		++m_time;
+
+		//タイムがマックスになったら
+		if (m_time >= m_maxTime) {
+			m_time = 0;
+			m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
+		}
+
+		break;
+	case E_GOAL_LIGHT_MOVE::SLOWLY_DOWN:
+
+		++m_time;
+		m_lightCmp->m_nowLightSize -= ((float)m_lightCmp->m_lightSize / 60.0f);
+
+		//1秒経ったら
+		if (m_time >= 60) {
+			//ライトを消す
 			m_isLightOn = false;
 			m_lightCmp->m_nowLightSize = 0;
 			m_lightCmp->ChangeLightONOFF();
-			//ゲームシーンに通知を送る
 			SceneManeger::gameScene->LightNumChange(1);
+			m_moveType = E_GOAL_LIGHT_MOVE::NONE;
+
+			//画像を変更する
+			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 0);
+
+			m_time = 0;
 		}
+
+		break;
+	}
+
+}
+
+void GoalLight::Draw()
+{
+	if (GAME_INFO::DEBUG) {
+		DrawFormatStringFToHandle(m_pos.x - 70, m_pos.y - 50, GetColor(255, 255, 255), m_fontHandle, "%d:%d",m_moveType,m_time);
 	}
 }
 

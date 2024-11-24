@@ -310,6 +310,8 @@ namespace ILLUST {
 		GOALLIGHT,
 		LIGHT,
 		GOALLIGHTRED,
+		GOAST_CHASE,
+		GOAST_CHASE_EYE,
 		PISHER,
 		PISHER_EYE,
 		LADDER,
@@ -319,9 +321,13 @@ namespace ILLUST {
 
 	_declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
 		{FIGUA , {"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"} },
-		{GOALLIGHT , {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}},
+		{GOALLIGHT ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Lamp2.png"},
+					 {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}
+		}},
 		{LIGHT , {"Picture/light.png"}},
 		{GOALLIGHTRED , {"Picture/goalLampLight.png"}},
+		{GOAST_CHASE , {"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost.png"}},
+		{GOAST_CHASE_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost_Eye.png"}},
 		{PISHER ,{
 			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
 			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
@@ -339,6 +345,7 @@ namespace ILLUST {
 		IDOL,
 		JUMP,
 		MOVE,
+		SUPPLY
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> PLAYER_LIST = {
@@ -363,6 +370,9 @@ namespace ILLUST {
 			{"Picture/Illust/Player/GL_Player_Move2_B.png"},
 			{"Picture/Illust/Player/GL_Player_Move3_A.png"},
 			{"Picture/Illust/Player/GL_Player_Move3_B.png"},
+		}},
+		{SUPPLY,{
+			{"Picture/Illust/Player/GL_Player_Supply.png"}
 		}},
 	};
 }

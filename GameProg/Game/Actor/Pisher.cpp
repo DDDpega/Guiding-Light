@@ -22,7 +22,7 @@ void Pisher::Initialize()
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound);
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER],0, E_PIVOT::CENTER, E_SORT::SORT_PISHER));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE],0, E_PIVOT::CENTER, E_SORT::SORT_PISHER));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
@@ -31,7 +31,7 @@ void Pisher::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//暗闇中に見える画像の生成
-	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER_EYE], 0));
+	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE_EYE], 0));
 	Actor::AddComponent(m_darkPictureCmp);
 
 	//プレイヤーを入手する
@@ -97,19 +97,19 @@ void Pisher::Update()
 
 		//左右反転
 		if ((int)m_pos.x != (int)targetPos.x && (int)m_pos.y != (int)targetPos.y) {
-			m_pictureCmp->m_picture->m_reverse = (m_vx < 0);
-			m_darkPictureCmp->m_darkPicture->m_reverse = (m_vx < 0);
+			m_pictureCmp->m_picture->m_reverse = (m_vx > 0);
+			m_darkPictureCmp->m_darkPicture->m_reverse = (m_vx > 0);
 		}
 
 		//10フレームごとに画像を変更する
-		if (Game::gameInstance->m_framecnt % 10 == 0) {
+		/*if (Game::gameInstance->m_framecnt % 10 == 0) {
 			if (m_pictureCmp->m_picture->m_handle == ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER].handle[0]) {
 				m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 1);
 			}
 			else {
 				m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PISHER], 0);
 			}
-		}
+		}*/
 	}
 
 	//サウンド

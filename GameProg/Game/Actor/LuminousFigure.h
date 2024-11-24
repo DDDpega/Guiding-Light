@@ -52,6 +52,6 @@ protected:
 	shared_ptr<LightCmp> m_lightCmp;	//ライトコンポーネント
 	bool m_shareNow;	//ライトを与えている最中かどうか
 	shared_ptr<Sound>	m_figureSound;
-
+	E_FIGUA_MOVE m_figuaMove;
 };
 

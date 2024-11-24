@@ -3,6 +3,7 @@
 Player::Player(Point pos)
 	:Actor(pos)
 	,m_firstShot(false)
+	,m_isGoalLight_Tought(false)
 {
 
 }
@@ -67,6 +68,11 @@ void Player::Initialize()
 void Player::Update()
 {
 	Actor::Update();
+
+	if (m_isGoalLight_Tought) {
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SUPPLY], 0);
+		return;
+	}
 
 	auto playerPos = SceneManeger::gameScene->GetPlayer()->GetPos();
 	auto scroll = Point{ playerPos.x - WINDOW_INFO::GAME_WIDTH_HALF, playerPos.x - WINDOW_INFO::GAME_HEIGHT_HALF };

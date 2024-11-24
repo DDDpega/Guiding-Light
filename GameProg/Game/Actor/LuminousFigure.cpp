@@ -36,11 +36,30 @@ void LuminousFigure::Initialize()
 
 	m_figureSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::FIGURE], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_figureSound);
+
+	m_figuaMove = E_FIGUA_MOVE::NONE;
 }
 
 void LuminousFigure::Update()
 {
 	Actor::Update();
+
+	switch (m_figuaMove)
+	{
+	case E_FIGUA_MOVE::NONE:
+		break;
+	case E_FIGUA_MOVE::CHARGE:
+		break;
+	case E_FIGUA_MOVE::SLOWLY_UP:
+		break;
+	case E_FIGUA_MOVE::LIGHTNING:
+		break;
+	case E_FIGUA_MOVE::SLOWLY_DOWN:
+		break;
+
+	}
+
+
 
 	//Œõ‚é•b”‚ª‚ ‚ê‚Î
 	if (m_keepTime > 0) {

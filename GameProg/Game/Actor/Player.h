@@ -66,6 +66,9 @@ public:
 
 	void SetisLadder(int num, bool isladder);
 
+
+	bool m_isGoalLight_Tought;	//ƒS[ƒ‹ƒ‰ƒCƒg‚Ìì‹Æ’†‚©‚Ç‚¤‚©
+
 private:
 	bool m_firstShot;
 	std::shared_ptr<LightCmp> m_lightCmp;
@@ -81,4 +84,6 @@ private:
 	int m_soundFrame[3];
 
 	bool m_isLadderTop;		//‚Í‚µ‚²‚ğ“o‚èØ‚Á‚½‚©
+
+
 };

@@ -24,6 +24,11 @@ public:
 	void Update();
 
 	/// <summary>
+	/// •`‰æˆ—
+	/// </summary>
+	void Draw();
+
+	/// <summary>
 	/// Õ“Ëˆ—
 	/// </summary>
 	/// <param name="other"></param>
@@ -42,6 +47,9 @@ protected:
 	shared_ptr<Sound>	m_goalLightSound;
 	bool m_isHit;
 
+	int m_fontHandle;	//ƒtƒHƒ“ƒg‚Ìî•ñ
+
+	E_GOAL_LIGHT_MOVE m_moveType;
 
 	float m_minusRaySize;
 	int m_time;
