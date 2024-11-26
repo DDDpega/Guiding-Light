@@ -17,11 +17,11 @@ void Door::Initialize()
 	//m_soundFrame = 0;
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, LUMINOUSFIGURE_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::FIGUA], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, DOOR_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, LUMINOUSFIGURE_INFO::COLLISION_SIZE, E_TAG::LUMINOUSFIGURE));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, DOOR_INFO::COLLISION_SIZE, E_TAG::DOOR));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 

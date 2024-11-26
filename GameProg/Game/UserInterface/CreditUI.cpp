@@ -67,15 +67,40 @@ void CreditUI::Initialize()
 
 
 	//----------------------------------------------------------------------------------
+
+	//フェード
+	m_fadeUI = shared_ptr<FadeUI>(new FadeUI());
+	m_fadeUI->Initialize();
+
+	m_isRightFade = Game::gameInstance->GetSceneMNG()->GetNowScene()->m_isRightFade;
+
 }
 
 void CreditUI::Update()
 {
 	UserInterface::Update();
+
+	if (m_isChangeScene) {
+		m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
+		if (m_csframe-- < 0) {
+			//ゲームシーンへ移行フラグをオンにする
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene, m_isRightFade);
+
+		}
+		return;
+	}
+	m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
+
+
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
+		m_isRightFade = false;
+		m_isFeedIn = false;
+		m_isChangeScene = true;
 		//ゲームシーンへ移行フラグをオンにする
-		Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
+		m_scene = E_SCENE::STAGESELECT;
+		m_fadeUI->Reset();
+		
 	}
 }
 

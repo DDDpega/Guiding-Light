@@ -1,27 +1,37 @@
 #include "Framework.h"
 
-FadeUI::FadeUI()
+FadeUI::FadeUI(bool isFirstTitle)
 	:UserInterface(true, true)
+	, m_isFirstTitle(isFirstTitle)
 {
+
 }
 
 FadeUI::~FadeUI()
 {
-	m_feedIn.reset();
-	m_feedOut.reset();
+	m_feedLeft.reset();
+	m_feedRight.reset();
 }
 
 void FadeUI::Initialize()
 {
 	UserInterface::Initialize();
 
+	m_isInitialize = false;
+
 	//Fadeイン
-	m_feedIn = std::shared_ptr<Picture>(new Picture(Point{ -5504,0 }, 1, &UI::FEED_LIST[UI::FEED_TYPE::FEEDIN], 0, E_PIVOT::LEFTUP, E_SORT::SORT_FADE));
-	Game::gameInstance->GetPictureMNG()->AddPicture(m_feedIn);
+	m_feedLeft = std::shared_ptr<Picture>(new Picture(Point{ -1000,0 }, 1, &UI::FEED_LIST[UI::FEED_TYPE::FADELEFT], 0, E_PIVOT::LEFTUP, E_SORT::SORT_FADE));
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_feedLeft);
 
 	//Fadeout
-	m_feedOut = std::shared_ptr<Picture>(new Picture(Point{ 5504,0 }, 1, &UI::FEED_LIST[UI::FEED_TYPE::FEEDOUT], 0, E_PIVOT::LEFTUP, E_SORT::SORT_FADE));
-	Game::gameInstance->GetPictureMNG()->AddPicture(m_feedOut);
+	m_feedRight = std::shared_ptr<Picture>(new Picture(Point{ 0,0 }, 1, &UI::FEED_LIST[UI::FEED_TYPE::FADERIGHT], 0, E_PIVOT::LEFTUP, E_SORT::SORT_FADE));
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_feedRight);
+
+	if (m_isFirstTitle) {
+		m_feedRight->SetisVisible(false);
+		m_feedLeft->SetisVisible(false);
+	}
+
 }
 
 void FadeUI::Update()
@@ -34,21 +44,73 @@ void FadeUI::Draw()
 	UserInterface::Draw();
 }
 
-void FadeUI::MoveFeed(bool IsFadeIn)
+void FadeUI::Reset()
+{
+	m_feedLeft->SetPos(Point{ -2000, 0 });
+	m_feedRight->SetPos(Point{ 0, 0 });
+
+	m_isInitialize = false;
+}
+
+void FadeUI::MoveFeed(bool IsFadeIn, bool IsRight)
 {
 	if (m_csframe < 0) {
 		m_csframe = 30;
 	}
+	if (!m_isInitialize) {
+		m_isInitialize = true;
+		m_feedLeft->SetPos(Point{ -2000, 0 });
+		m_feedRight->SetPos(Point{ 0, 0 });
+		//右にスライド(はじまり)
+		if (IsFadeIn&& IsRight) {
+			m_feedLeft->SetisVisible(true);
+			m_feedRight->SetisVisible(false);
+		}
+		//左にスライド(はじまり)
+		else if (IsFadeIn && !IsRight) {
+			m_feedLeft->SetisVisible(false);
+			m_feedRight->SetisVisible(true);
+		}
+		//右にスライド(終わり)
+		else if (!IsFadeIn && IsRight) {
+			m_feedRight->SetPos(Point{ -5504, 0 });
+			m_feedLeft->SetisVisible(false);
+			m_feedRight->SetisVisible(true);
+		}
+		//左にスライド(終わり)
+		else if (!IsFadeIn && !IsRight) {
 
-	if (IsFadeIn && m_csframe >= 0) {
-		auto pos = m_feedIn->GetPos();
-		pos.x += 100;
-		m_feedIn->SetPos(pos);
+
+			m_feedLeft->SetPos(Point{ 0, 0 });
+			m_feedLeft->SetisVisible(true);
+			m_feedRight->SetisVisible(false);
+		}
 	}
-	else if (m_csframe >= 0) {
-		auto pos = m_feedOut->GetPos();
-		pos.x -= 100;
-		m_feedOut->SetPos(pos);
+
+	if (IsRight) {
+		if (IsFadeIn && m_csframe >= 0) {
+			auto pos = m_feedLeft->GetPos();
+			pos.x += 100;
+			m_feedLeft->SetPos(pos);
+		}
+		else if (m_csframe >= 0) {
+			auto pos = m_feedRight->GetPos();
+			pos.x += 100;
+			m_feedRight->SetPos(pos);
+		}
+	}
+	else {
+		if (IsFadeIn && m_csframe >= 0) {
+			auto pos = m_feedRight->GetPos();
+			pos.x -= 100;
+			m_feedRight->SetPos(pos);
+		}
+		else if (m_csframe >= 0) {
+			auto pos = m_feedLeft->GetPos();
+			pos.x -= 100;
+			m_feedLeft->SetPos(pos);
+			
+		}
 	}
 	m_csframe--;
 }

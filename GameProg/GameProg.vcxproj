@@ -23,6 +23,7 @@
     <ClCompile Include="Game\Actor\ActorManager.cpp" />
     <ClCompile Include="Game\Actor\AroundGhost.cpp" />
     <ClCompile Include="Game\Actor\BackGround.cpp" />
+    <ClCompile Include="Game\Actor\Door.cpp" />
     <ClCompile Include="Game\Actor\GoalLight.cpp" />
     <ClCompile Include="Game\Actor\Ladder.cpp" />
     <ClCompile Include="Game\Actor\LuminousFigure.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="Game\Sound\Sound.cpp" />
     <ClCompile Include="Game\Sound\SoundManager.cpp" />
     <ClCompile Include="Game\UserInterface\CreditUI.cpp" />
+    <ClCompile Include="Game\UserInterface\FadeUI.cpp" />
     <ClCompile Include="Game\UserInterface\GameClearUI.cpp" />
     <ClCompile Include="Game\UserInterface\GameOverUI.cpp" />
     <ClCompile Include="Game\UserInterface\GamePauseUI.cpp" />
@@ -95,6 +97,7 @@
     <ClInclude Include="Game\Actor\ActorManager.h" />
     <ClInclude Include="Game\Actor\AroundGhost.h" />
     <ClInclude Include="Game\Actor\BackGround.h" />
+    <ClInclude Include="Game\Actor\Door.h" />
     <ClInclude Include="Game\Actor\GoalLight.h" />
     <ClInclude Include="Game\Actor\Ladder.h" />
     <ClInclude Include="Game\Actor\LuminousFigure.h" />
@@ -116,6 +119,7 @@
     <ClInclude Include="Game\Info\ActorInfo.h" />
     <ClInclude Include="Game\Info\EnumInfo.h" />
     <ClInclude Include="Game\Info\ForwardDeclaration.h" />
+    <ClInclude Include="Game\Info\MapChipInfo.h" />
     <ClInclude Include="Game\Info\PictureInfo.h" />
     <ClInclude Include="Game\Info\Point.h" />
     <ClInclude Include="Game\Info\SoundInfo.h" />
@@ -150,6 +154,7 @@
     <ClInclude Include="Game\Sound\Sound.h" />
     <ClInclude Include="Game\Sound\SoundManager.h" />
     <ClInclude Include="Game\UserInterface\CreditUI.h" />
+    <ClInclude Include="Game\UserInterface\FadeUI.h" />
     <ClInclude Include="Game\UserInterface\GameClearUI.h" />
     <ClInclude Include="Game\UserInterface\GameOverUI.h" />
     <ClInclude Include="Game\UserInterface\GamePauseUI.h" />

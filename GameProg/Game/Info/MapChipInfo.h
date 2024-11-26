@@ -22,6 +22,8 @@ namespace MAPCHIPINFO {
 	constexpr int LAUNCH = 11;
 	//‰Â“®°ON
 	constexpr int LAUNCH2 = 12;
+	//ƒhƒA
+	constexpr int DOOR = 13;
 
 	//Enemy
 	//’ÇÕ

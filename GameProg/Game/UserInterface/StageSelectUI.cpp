@@ -80,20 +80,30 @@ void StageSelectUI::Initialize()
 	m_menu[1] = std::shared_ptr<Picture>(new Picture(Point{ scrX-300 ,scrY / 2 + 150 }, 0.25, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::OPTION_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menu[1]);
 
+	//フェード
+	m_fadeUI = shared_ptr<FadeUI>(new FadeUI());
+	m_fadeUI->Initialize();
+
+	m_isRightFade = Game::gameInstance->GetSceneMNG()->GetNowScene()->m_isRightFade;
+
 }
 
 void StageSelectUI::Update()
 {
 	UserInterface::Update();
 
+	
+
 	if (m_isChangeScene) {
+		m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
 		if (m_csframe-- < 0) {
 			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene,m_isRightFade);
 
 		}
 		return;
 	}
+	m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
 
 	//メニューセレクト画面でキャンセルを押したとき
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
@@ -110,6 +120,10 @@ void StageSelectUI::Update()
 		else {
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
+			m_isFeedIn = false;
+			m_isRightFade = false;
+			m_fadeUI->Reset();
+			
 			m_scene = E_SCENE::TITLE;
 			//元に戻す
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -124,6 +138,9 @@ void StageSelectUI::Update()
 			{
 			case 0:
 				//ゲームシーンへ移行フラグをオンにする
+				m_isRightFade = true;
+				m_isFeedIn = false;
+				m_fadeUI->Reset();
 				m_isChangeScene = true;
 				m_scene = E_SCENE::GAME;
 				SceneManeger::gameScene->SetNumStage(m_nowcursor);
@@ -148,12 +165,18 @@ void StageSelectUI::Update()
 			case 0:
 				//ゲームシーンへ移行フラグをオンにする
 				m_isChangeScene = true;
+				m_isRightFade = true;
+				m_isFeedIn = false;
+				m_fadeUI->Reset();
 				m_scene = E_SCENE::CREDIT;
 				break;
 				//クレジット
 			case 1:
 				//ゲームシーンへ移行フラグをオンにする
 				m_isChangeScene = true;
+				m_isRightFade = true;
+				m_isFeedIn = false;
+				m_fadeUI->Reset();
 				m_scene = E_SCENE::OPTION;
 				break;
 			}

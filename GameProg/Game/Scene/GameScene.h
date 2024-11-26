@@ -81,6 +81,8 @@ public:
 	shared_ptr<SolarPanel> m_solarpanel;
 	shared_ptr<Door> m_door[2];
 
+	vector<GoalLight*> m_goalLightList;
+
 private:
 	std::shared_ptr<Player> m_player;	
 	int m_LightNum;	//c‚è‚Ìƒ‰ƒCƒg‚Ì”

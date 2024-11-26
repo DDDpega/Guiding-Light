@@ -77,6 +77,14 @@ namespace LUMINOUSFIGURE_INFO {
 }
 
 /// <summary>
+/// ƒhƒA‚Ìî•ñ
+/// </summary>
+namespace DOOR_INFO {
+	constexpr float SIZE = 2.5f;
+	constexpr Point COLLISION_SIZE = { 40,40 * 2 };
+}
+
+/// <summary>
 /// ‚Í‚µ‚²‚Ìî•ñ
 /// </summary>
 namespace LADDER_INFO {

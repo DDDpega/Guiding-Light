@@ -24,6 +24,7 @@ using namespace std;
 #include "ForwardDeclaration.h"
 #include "SoundInfo.h"
 #include "VideoInfo.h"
+#include "MapChipInfo.h"
 
 //システム
 #include"Fps.h"
@@ -53,6 +54,7 @@ using namespace std;
 #include "InGameUI.h"
 #include "GameClearUI.h"
 #include "GameOverUI.h"
+#include "FadeUI.h"
 
 
 //マップ
@@ -88,6 +90,7 @@ using namespace std;
 #include "MapChipActor.h"
 #include "RayCast.h"
 #include "Puddle.h"
+#include "Door.h"
 #include "ActorManager.h"
 
 

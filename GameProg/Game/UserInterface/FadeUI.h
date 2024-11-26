@@ -7,7 +7,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	FadeUI();
+	FadeUI(bool isFirstTitle = false);
 
 	/// <summary>
 	/// デストラクタ
@@ -30,13 +30,21 @@ public:
 	void Draw();
 
 	/// <summary>
+	/// ポジションとm_isMoveをリセットする
+	/// </summary>
+	void Reset();
+
+	/// <summary>
 	/// Fadeを動かす
 	/// </summary>
-	void MoveFeed(bool IsfeedIn);
+	void MoveFeed(bool IsfeedIn,bool IsLeft);
 
 private:
-	shared_ptr<Picture> m_feedIn;
-	shared_ptr<Picture> m_feedOut;
+	shared_ptr<Picture> m_feedLeft;
+	shared_ptr<Picture> m_feedRight;
 	bool m_isFeedIn;
+	bool m_isMove;
+	bool m_isFirstTitle;
+	bool m_isInitialize;
 };
 

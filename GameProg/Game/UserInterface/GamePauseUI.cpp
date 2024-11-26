@@ -82,6 +82,7 @@ void GamePauseUI::Update()
 		else if (m_nowcursor == 1) {
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
+			m_fadeUI->Reset();
 			m_scene = E_SCENE::GAME;
 
 
@@ -91,6 +92,8 @@ void GamePauseUI::Update()
 			Game::gameInstance->GetSoundMNG()->ClearSound();
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
+			m_isFeedIn = false;
+			
 			m_scene = E_SCENE::STAGESELECT;
 		}
 	}

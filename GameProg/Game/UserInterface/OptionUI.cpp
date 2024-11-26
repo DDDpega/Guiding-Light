@@ -29,20 +29,29 @@ void OptionUI::Initialize()
 	auto title = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 250 }, 0.6, &UI::OPTION_LIST[UI::OPTION_TYPE::OPTION], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(title);
 
+
+
 	auto gameSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2-150 }, 0.3, &UI::OPTION_LIST[UI::OPTION_TYPE::GAME_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(gameSetting);
 
 	auto windowSetting = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::SCREEN_RATIO], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(windowSetting);
 
+	m_arrow= std::shared_ptr<Picture>(new Picture(Point{ scrX - 170 ,scrY / 2 - 70 }, 0.1, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_arrow);
+
+
 	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 170 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_modeText);
+	m_selectPos[0] = m_modeText->GetPos();
 
 	auto saveDelate = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::DELETE_SAVE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(saveDelate);
+	
 
 	auto delateButton = std::shared_ptr<Picture>(new Picture(Point{ scrX-150 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(delateButton);
+	m_selectPos[1] = delateButton->GetPos();
 
 	auto soundSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2+80  }, 0.3, &UI::OPTION_LIST[UI::OPTION_TYPE::SOUND_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(soundSetting);
@@ -55,6 +64,7 @@ void OptionUI::Initialize()
 	m_allSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 140 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_allSound);
 	SetSlider(Sound::E_Sound::MASTER,MASTERVOL);
+	m_selectPos[2] = Point{ scrX - 250,scrY / 2 + 140 };
 
 	auto bgm = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 210 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_BGM], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(bgm);
@@ -62,6 +72,7 @@ void OptionUI::Initialize()
 	m_bgmSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 210 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_bgmSound);
 	SetSlider(Sound::E_Sound::BGM,BGMVOL);
+	m_selectPos[3] = Point{ scrX - 250,scrY / 2 + 210 };
 
 	auto se = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 + 280 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::VOLUME_SE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(se);
@@ -71,11 +82,17 @@ void OptionUI::Initialize()
 	m_seSound = shared_ptr<Slider>(new Slider(Point{ scrX - 250,scrY / 2 + 280 }, 100, 50, 0.2, 0.1));
 	UserInterface::AddPictureInUI(m_seSound);
 	SetSlider(Sound::E_Sound::SE,SEVOL);
+
+	m_selectPos[4] = Point{ scrX - 250,scrY / 2 + 280 };
 	
+	//フェード
 	m_fadeUI = shared_ptr<FadeUI>(new FadeUI());
 	m_fadeUI->Initialize();
 
+	m_isRightFade = Game::gameInstance->GetSceneMNG()->GetNowScene()->m_isRightFade;
+
 	m_nowcursor = 0;
+
 }
 
 void OptionUI::Update()
@@ -83,21 +100,25 @@ void OptionUI::Update()
 	UserInterface::Update();
 
 	if (m_isChangeScene) {
-		m_fadeUI->MoveFeed(m_isFeedIn);
+		m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
 		if (m_csframe-- < 0) {
 			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
-			
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene, m_isRightFade);
+
 		}
 		return;
 	}
+	m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
+
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
-		m_isChangeScene = true;
+		m_isRightFade = false;
 		m_isFeedIn = false;
+		m_isChangeScene = true;
 		//ゲームシーンへ移行フラグをオンにする
-		//Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
+		m_scene = E_SCENE::STAGESELECT;
+		m_fadeUI->Reset();
 	}
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
@@ -110,6 +131,8 @@ void OptionUI::Update()
 			m_nowcursor++;
 		}
 	}
+
+	m_arrow->SetPos(m_selectPos[m_nowcursor]);
 
 	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
 		switch (m_nowcursor)

@@ -58,4 +58,5 @@ protected:
 
 	shared_ptr<FadeUI> m_fadeUI;		//FadeUI
 	bool m_isFeedIn;					//フェードイン
+	bool m_isRightFade;					//左フェードstartかどうか
 };

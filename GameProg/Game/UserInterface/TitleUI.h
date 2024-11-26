@@ -7,7 +7,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleUI();
+	TitleUI(bool isFirst);
 
 	/// <summary>
 	/// デストラクタ
@@ -36,7 +36,7 @@ private:
 	shared_ptr<Picture> m_startText[3];
 	shared_ptr<Picture> m_gameExitText;
 	bool m_isMenuActive;	//メニュー画面
-	
+	bool m_isFirst;
 
 
 };

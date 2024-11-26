@@ -4,6 +4,7 @@
 TitleScene::TitleScene()
 	:Scene("タイトルシーン")
 	, m_nowcursor(0)
+	, m_isFirst(true)
 {
 	//Game::gameInstance->GetSoundMNG()->SetMasterVolume(100);
 }
@@ -28,11 +29,11 @@ void TitleScene::Initialize()
 	}
 
 	//UIを表示する
-	auto titleUI = shared_ptr<TitleUI>(new TitleUI());
+	auto titleUI = shared_ptr<TitleUI>(new TitleUI(m_isFirst));
 	Game::gameInstance->GetPictureMNG()->AddPicture(titleUI);
 
 	
-
+	m_isFirst = false;
 	
 	
 }

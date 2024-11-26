@@ -1,8 +1,9 @@
 #include "Framework.h"
 
-TitleUI::TitleUI()
+TitleUI::TitleUI(bool isFirst)
 	:UserInterface(true,true)
 	, m_isMenuActive(false)
+	, m_isFirst(isFirst)
 {
 
 }
@@ -71,17 +72,22 @@ void TitleUI::Initialize()
 	//フォントの描画
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 20, 1);
 
-	m_fadeUI = shared_ptr<FadeUI>(new FadeUI());
+	m_fadeUI = shared_ptr<FadeUI>(new FadeUI(m_isFirst));
 	m_fadeUI->Initialize();
+
 }
 
 void TitleUI::Update()
 {
 	UserInterface::Update();
 
+	
+
 	if (m_isChangeScene) {
-		m_fadeUI->MoveFeed(m_isFeedIn);
+
+		m_fadeUI->MoveFeed(m_isFeedIn, true);
 		if (m_csframe-- < 0) {
+			
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
 
@@ -89,11 +95,15 @@ void TitleUI::Update()
 		return;
 	}
 
+	if (!m_isFirst) {
+		m_fadeUI->MoveFeed(m_isFeedIn, false);
+	}
+
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
 		m_isMenuActive = true;
-		m_isFeedIn = false;
+		
 		m_nowcursor = 2;
 		for (int i = 1; i < 3; i++) {
 			m_startText[i]->SetisVisible(true);
@@ -108,10 +118,12 @@ void TitleUI::Update()
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 		m_isSoundPlay[0] = true;
-		m_isFeedIn = true;
+		
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
+			m_isFeedIn = false;
+			m_fadeUI->Reset();
 			m_scene = E_SCENE::STAGESELECT;
 			//元に戻す
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

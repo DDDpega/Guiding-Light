@@ -44,9 +44,7 @@ public:
 	/// シーン変更のフラグ
 	/// </summary>
 	/// <param name="scene"></param>
-	void ChangeSceneFlag(E_SCENE scene);
-
-
+	void ChangeSceneFlag(E_SCENE scene, bool isRight = true);
 
 	/// <summary>
 	/// 今のシーンを入手する
@@ -73,4 +71,6 @@ private:
 
 
 	bool m_isChange;
+
+	bool m_isRight;
 };

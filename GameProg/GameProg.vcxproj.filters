@@ -211,6 +211,12 @@
     <ClCompile Include="Game\Actor\PastimeGhost.cpp">
       <Filter>Game\Actor\Ghost</Filter>
     </ClCompile>
+    <ClCompile Include="Game\UserInterface\FadeUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor\Door.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -402,6 +408,15 @@
     </ClInclude>
     <ClInclude Include="Game\Actor\PastimeGhost.h">
       <Filter>Game\Actor\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UserInterface\FadeUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\Door.h">
+      <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Info\MapChipInfo.h">
+      <Filter>Game\Info</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

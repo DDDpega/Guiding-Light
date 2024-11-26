@@ -3,7 +3,8 @@
 
 Scene::Scene(const char* name)
 	:m_sceneName(name)
-	,m_isPause(false)
+	, m_isPause(false)
+	, m_isRightFade(false)
 {
 
 }

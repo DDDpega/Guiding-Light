@@ -23,6 +23,9 @@ void UserInterface::Initialize()
 
 	m_isChangeScene = false;
 
+
+	m_isFeedIn = true;
+
 	m_csframe = 30;
 
 	m_sound[0] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::DECISION], Sound::E_Sound::SE, 0));

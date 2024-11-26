@@ -52,7 +52,7 @@ private:
 	shared_ptr<Slider> m_seSound;
 	int m_nowCursorCol;
 	int handle;
-
+	Point m_selectPos[5];
 
 };
 

@@ -7,7 +7,7 @@ GameScene::GameScene()
 	, m_LightNum(0)
 	, m_mapInfo({
 		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
-		L"_=^56789abcde",
+		L"_=^56789abcdevwxyz",
 	})
 	, m_stages({
 	{
@@ -87,6 +87,7 @@ void GameScene::Initialize()
 	
 	auto ladderNum = 0;
 	auto doorNum = 0;
+	int arroundGhostNum = 0;
 	for (auto& actorPos : m_map->GetMapChipPosList()) {
 		//プレイヤーの生成
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PLAYER) {
@@ -122,13 +123,7 @@ void GameScene::Initialize()
 			figure->SpawnMove(1, 2);
 			Game::gameInstance->GetActorMNG()->AddActor(figure);
 		}
-		//ハエ
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 9) {
-			actorPos.m_isGet = true;
-			auto pisher = shared_ptr<Pisher>(new Pisher(actorPos.m_mapChipPos));
-			pisher->SpawnMove(1, 1);
-			Game::gameInstance->GetActorMNG()->AddActor(pisher);
-		}
+		
 
 		//ソーラーパネル
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SOLARPANEL) {
@@ -150,6 +145,31 @@ void GameScene::Initialize()
 			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
 		}
 
+		//追跡GOスと
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::CHASE) {
+			actorPos.m_isGet = true;
+			auto pisher = shared_ptr<ChaseGhost>(new ChaseGhost(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
+		}
+
+		//追跡GOスと
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PATROL) {
+			actorPos.m_isGet = true;
+			auto pisher = shared_ptr<AroundGhost>(new AroundGhost(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
+			pisher->CreateRoute(++arroundGhostNum);
+		}
+
+		//追跡GOスと
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TRICK) {
+			actorPos.m_isGet = true;
+			auto pisher = shared_ptr<PastimeGhost>(new PastimeGhost(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
+		}
+
 		////水たまり
 		//if (!actorPos.m_isGet && actorPos.m_mapChipNum == 12) {
 		//	actorPos.m_isGet = true;
@@ -157,14 +177,14 @@ void GameScene::Initialize()
 		//	Game::gameInstance->GetActorMNG()->AddActor(puddle);
 		//}
 
-		////ドア
-		//if (!actorPos.m_isGet && actorPos.m_mapChipNum == 13) {
-		//	actorPos.m_isGet = true;
-		//	m_door[doorNum] = shared_ptr<Door>(new Door(actorPos.m_mapChipPos));
-		//	m_door[doorNum]->SpawnMove(1, 2);
-		//	Game::gameInstance->GetActorMNG()->AddActor(m_door[doorNum]);
-		//	doorNum++;
-		//}
+		//ドア
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::DOOR) {
+			actorPos.m_isGet = true;
+			m_door[doorNum] = shared_ptr<Door>(new Door(actorPos.m_mapChipPos));
+			m_door[doorNum]->SpawnMove(1, 2);
+			Game::gameInstance->GetActorMNG()->AddActor(m_door[doorNum]);
+			doorNum++;
+		}
 
 	}
 

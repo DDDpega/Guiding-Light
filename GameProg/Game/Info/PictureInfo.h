@@ -301,6 +301,17 @@ namespace UI{
 
 
 }
+namespace UI {
+	enum FEED_TYPE {
+
+		FADERIGHT,
+		FADELEFT,
+	};
+	_declspec(selectany) vector<PICTURE_TYPE> FEED_LIST = {
+		{FADERIGHT , {"Picture/BoB_FadePattern_2.png"} },
+		{FADELEFT , {"Picture/BoB_FadePattern_1.png"}},
+	};
+}
 
 namespace ILLUST {
 
@@ -320,13 +331,14 @@ namespace ILLUST {
 		/*PISHER_EYE,*/
 		LADDER,
 		SOLARPANEL,
-		SOLARPANEL_BLOCK
+		SOLARPANEL_BLOCK,
+		DOOR,
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
 		{FIGUA , {
 			{"Picture/Illust/Gimmick/GL_Gimmick_Figures2.png"},
-			{"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"}			
+			{"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"}
 		}},
 		{GOALLIGHT ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Lamp2.png"},
 					 {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}
@@ -346,7 +358,11 @@ namespace ILLUST {
 		/*{PISHER_EYE,{"Picture/Illust/Gimmick/GL_Gimmick_Pisher3.png"}},*/
 		{LADDER , {"Picture/Illust/Gimmick/GL_Gimmick_Ladder.png"}},
 		{SOLARPANEL , {"Picture/Illust/Gimmick/GL_Gimmick_SolarPanel.png"}},
-		{SOLARPANEL_BLOCK , {"Picture/Illust/Gimmick/GL_Gimmick_Launch.png"}},
+		{SOLARPANEL_BLOCK , {
+			{"Picture/Illust/Gimmick/GL_Gimmick_Launch.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_Launch2.png"}
+		} },
+		{DOOR , {"Picture/Illust/Gimmick/GL_Gimmick_Door1.png"}},
 	};
 }
 

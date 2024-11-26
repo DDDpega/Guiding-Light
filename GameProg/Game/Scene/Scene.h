@@ -33,8 +33,10 @@ public:
 
 	bool m_isPause;			//ポーズ状態かどうか
 
+	bool m_isRightFade;		//左のフェードかどうか
 
 protected:
 	const char* m_sceneName;	//現在のシーンの名前
 	shared_ptr<Sound>m_bgm;		//BGM
+	
 };

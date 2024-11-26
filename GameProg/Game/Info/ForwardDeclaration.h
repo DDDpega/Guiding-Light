@@ -18,6 +18,7 @@ class LightCmp;
 class RayCast;
 class Actor;
 class Sound;
+class FadeUI;
 
 class RigidbodyCmp;
 class MapCollision;

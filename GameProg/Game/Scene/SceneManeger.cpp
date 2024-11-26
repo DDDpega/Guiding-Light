@@ -42,11 +42,13 @@ void SceneManeger::Draw()
 	nowScene->Draw();
 }
 
-void SceneManeger::ChangeSceneFlag(E_SCENE scene)
+void SceneManeger::ChangeSceneFlag(E_SCENE scene,bool isRight)
 {
 	e_NextScene = scene;
 	m_isChange = true;
+	m_isRight = isRight;
 }
+
 
 void SceneManeger::ChangeScene(E_SCENE nextScene)
 {
@@ -76,6 +78,8 @@ void SceneManeger::ChangeScene(E_SCENE nextScene)
 		break;
 	
 	}
+
+	nowScene->m_isRightFade = m_isRight;
 
 	Game::gameInstance->GetSoundMNG()->ClearSound();
 
