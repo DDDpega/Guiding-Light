@@ -11,7 +11,7 @@ class CreditScene;
 class Player;
 class Map;
 class Slider;
-class Pisher;
+class ChaseGhost;
 class SolarPanel;
 class Scene;
 class LightCmp;

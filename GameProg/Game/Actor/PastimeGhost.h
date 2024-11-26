@@ -1,17 +1,17 @@
 #pragma once
 
-class GoalLight : public Actor
+class PastimeGhost : public Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	GoalLight(Point pos);
+	PastimeGhost(Point pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~GoalLight();
+	virtual ~PastimeGhost();
 
 	/// <summary>
 	/// 初期化処理
@@ -41,23 +41,8 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
-	shared_ptr<LightCmp> m_lightCmp;
-	bool m_pastimeGhostTought;
-
-
 protected:
-	int m_pastimeToughtTime;
-	bool m_isLightOn;
-	shared_ptr<Sound>	m_goalLightSound;
-	bool m_isHit;
-
-	int m_fontHandle;	//フォントの情報
-
-	E_GOAL_LIGHT_MOVE m_moveType;
-
-	float m_minusRaySize;
-	int m_time;
-	int m_maxTime;
 
 };
+
 

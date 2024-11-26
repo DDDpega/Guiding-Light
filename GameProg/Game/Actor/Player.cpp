@@ -240,7 +240,7 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other, tag,selftag);
 
 	//Ž€–S
-	if (tag == E_TAG::PISHER && selftag== E_TAG::PLAYER && m_isActive) {
+	if (tag == E_TAG::GHOST && selftag== E_TAG::PLAYER && m_isActive) {
 		SceneManeger::gameScene->GameOver();
 		m_isActive = false;
 	}	

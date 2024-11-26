@@ -1,17 +1,17 @@
 #pragma once
 
-class GoalLight : public Actor
+class ChaseGhost : public Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	GoalLight(Point pos);
+	ChaseGhost(Point pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~GoalLight();
+	virtual ~ChaseGhost();
 
 	/// <summary>
 	/// 初期化処理
@@ -22,11 +22,6 @@ public:
 	/// 更新処理
 	/// </summary>
 	void Update();
-
-	/// <summary>
-	/// 描画処理
-	/// </summary>
-	void Draw();
 
 	/// <summary>
 	/// 衝突処理
@@ -41,23 +36,14 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
-	shared_ptr<LightCmp> m_lightCmp;
-	bool m_pastimeGhostTought;
+	Actor* m_target;
+	bool m_isFigure;			//フィギュアがターゲットかどうか
 
-
+	shared_ptr<Sound> m_sound;	//蠅の飛ぶ音
 protected:
-	int m_pastimeToughtTime;
-	bool m_isLightOn;
-	shared_ptr<Sound>	m_goalLightSound;
-	bool m_isHit;
-
-	int m_fontHandle;	//フォントの情報
-
-	E_GOAL_LIGHT_MOVE m_moveType;
-
-	float m_minusRaySize;
-	int m_time;
-	int m_maxTime;
-
+	Player* m_player;	//プレイヤー
+	float m_speed;		//蠅の移動速度
+	
+	int m_soundFrame;		//サウンドのフレーム数
 };
 

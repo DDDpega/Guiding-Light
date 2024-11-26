@@ -41,6 +41,9 @@
     <Filter Include="Game\Sound">
       <UniqueIdentifier>{9f0bfe38-9db8-4f2b-99c4-d658cd801b00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Actor\Ghost">
+      <UniqueIdentifier>{0008601a-4571-4c03-a045-0c002a8169f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main\Main.cpp">
@@ -117,9 +120,6 @@
     </ClCompile>
     <ClCompile Include="Game\UserInterface\GameClearUI.cpp">
       <Filter>Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Actor\Pisher.cpp">
-      <Filter>Game\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Game\Actor\LuminousFigure.cpp">
       <Filter>Game\Actor</Filter>
@@ -202,6 +202,15 @@
     <ClCompile Include="Game\UserInterface\OptionUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Actor\ChaseGhost.cpp">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor\AroundGhost.cpp">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor\PastimeGhost.cpp">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -279,9 +288,6 @@
     </ClInclude>
     <ClInclude Include="Game\UserInterface\GameClearUI.h">
       <Filter>Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Actor\Pisher.h">
-      <Filter>Game\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Game\Actor\LuminousFigure.h">
       <Filter>Game\Actor</Filter>
@@ -387,6 +393,15 @@
     </ClInclude>
     <ClInclude Include="Game\UserInterface\OptionUI.h">
       <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\ChaseGhost.h">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\AroundGhost.h">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\PastimeGhost.h">
+      <Filter>Game\Actor\Ghost</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

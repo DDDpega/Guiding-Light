@@ -17,7 +17,9 @@ void GoalLight::Initialize()
 	Actor::Initialize();
 
 	m_isLightOn = false;
-	
+	m_pastimeGhostTought = false;
+	m_pastimeToughtTime = 0;
+
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,E_TAG::RAY,ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHTRED]));
 	Actor::AddComponent(m_lightCmp);
 
@@ -97,6 +99,10 @@ void GoalLight::Update()
 
 			//プレイヤーの動作を許可する
 			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = false;
+
+			//リストに含む
+			SceneManeger::gameScene->m_goalLightList.push_back(this);
+
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::LIGHTNING:
@@ -107,6 +113,18 @@ void GoalLight::Update()
 		if (m_time >= m_maxTime) {
 			m_time = 0;
 			m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
+			m_pastimeToughtTime = 0;
+			m_pastimeGhostTought = false;
+			break;
+		}
+
+		if (m_pastimeGhostTought) {
+			++m_pastimeToughtTime;
+
+			if (m_pastimeToughtTime >= 300) {
+				m_time = 0;
+				m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
+			}
 		}
 
 		break;
@@ -149,6 +167,10 @@ void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	//Playerからライトを当てられたら
 	if (tag == E_TAG::PLAYER && SceneManeger::gameScene->GetPlayer()->GetLightOn()) {
 		m_isHit = true;
+	}
+
+	if (tag == E_TAG::PASTIME_GHOST) {
+		m_pastimeGhostTought = true;
 	}
 }
 

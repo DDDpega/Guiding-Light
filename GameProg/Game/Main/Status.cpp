@@ -71,6 +71,15 @@ bool Status::ReadStatus()
 		case 'A':
 			SOLARPANELBLOCK_MAXTIME = std::stof(line.substr(postion));
 			break;
+		case 'B':
+			AROUND_GHOST_ROUTE_SPEED = std::stof(line.substr(postion));
+			break;
+		case 'C':
+			AROUND_GHOST_TARGET_SPEED = std::stof(line.substr(postion));
+			break;
+		case 'D':
+			PASTIME_GHOST_SPEED = std::stof(line.substr(postion));
+			break;
 		}
 
 		rowNum++;
@@ -79,4 +88,45 @@ bool Status::ReadStatus()
 	//ファイルを閉じる
 	inFile.close();
 	return true;
+}
+
+S_AROUND_GOHOST Status::ReadAroundGhostStatus(int pathNum, int ghostNum)
+{
+	//ファイルのパス設定
+	char path = ghostNum + '0';
+	string filename = "Data/AroundGhostScope/Map" + to_string(pathNum);
+	filename += ".txt";
+
+	//ファイルを開く
+	wifstream inFile(filename);
+
+	//ファイルの読み込み失敗
+	if (!inFile) {
+		return S_AROUND_GOHOST{ Point{ 0,0},false };
+	}
+
+	//一行を取得する
+	wstring line;
+
+	int rowNum = 0;
+	S_AROUND_GOHOST returnData = {Point{ 0,0 }, true};
+
+	while (getline(inFile, line)) {
+
+		//「,」の位置を検索する
+		int postion = line.find(',') + 1;
+
+		if (line[0] ==path) {
+
+			wstring str = line.substr(postion + 4);
+			returnData.pos.x = std::stof(line.substr(postion-4,3));
+			returnData.pos.y = std::stof(line.substr(postion,3));
+			returnData.right= (line.substr(postion+4)) == L"R" ? true : false;
+			break;
+		}
+		else {
+			rowNum++;
+		}
+	}
+	return returnData;
 }

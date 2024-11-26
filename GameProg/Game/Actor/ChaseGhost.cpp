@@ -1,19 +1,19 @@
 #include "Framework.h"
 
 
-Pisher::Pisher(Point pos)
+ChaseGhost::ChaseGhost(Point pos)
 	:Actor(pos)
 	,m_target(nullptr)
 {
 
 }
 
-Pisher::~Pisher()
+ChaseGhost::~ChaseGhost()
 {
 
 }
 
-void Pisher::Initialize()
+void ChaseGhost::Initialize()
 {
 	Actor::Initialize();
 	m_soundFrame = 0;
@@ -22,11 +22,11 @@ void Pisher::Initialize()
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound);
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PISHER_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE],0, E_PIVOT::CENTER, E_SORT::SORT_PISHER));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, CHASE_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE],0, E_PIVOT::CENTER, E_SORT::SORT_PISHER));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 },PISHER_INFO::COLLISION_SIZE, E_TAG::PISHER));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, CHASE_INFO::COLLISION_SIZE, E_TAG::GHOST));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
@@ -43,12 +43,22 @@ void Pisher::Initialize()
 	SetIsPisher(true);
 }
 
-void Pisher::Update()
+void ChaseGhost::Update()
 {
 	Actor::Update();
 
 	//現在電気がついているもののリストを回す
 	auto figureList = SceneManeger::gameScene->m_figureList;
+
+
+	//蠅のターゲットをフィギュアから解除する
+	SceneManeger::gameScene->m_figureList.clear();
+	for (int i = 0; i < figureList.size(); i++) {
+		if (figureList[i]->m_lightOn) {
+			SceneManeger::gameScene->m_figureList.push_back(figureList[i]);
+		}
+	}
+
 	for (int i = 0; i < figureList.size(); i++) {
 		if (figureList[i]->m_lightOn) {
 			m_isFigure = true;
@@ -60,13 +70,7 @@ void Pisher::Update()
 		}
 	}
 
-	//蠅のターゲットをフィギュアから解除する
-	SceneManeger::gameScene->m_figureList.clear();
-	for (int i = 0; i < figureList.size(); i++) {
-		if (figureList[i]->m_lightOn) {
-			SceneManeger::gameScene->m_figureList.push_back(figureList[i]);
-		}
-	}
+
 
 	//フィギュアがターゲット先だったら
 	if (!m_isFigure) {
@@ -121,7 +125,6 @@ void Pisher::Update()
 	
 	if (m_soundFrame-- < 0) {
 		//m_sound->SoundStop();
-		m_soundFrame = PISHER_INFO::BUZZFRAME;
 		m_sound->SetPlaySoundVolume(distance);
 		m_sound->SoundPlay(Sound::BACK);
 	}
@@ -136,12 +139,12 @@ void Pisher::Update()
 	m_vx = 0;
 }
 
-void Pisher::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
+void ChaseGhost::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other,tag, selftag);
 }
 
-void Pisher::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
+void ChaseGhost::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	//暗い所に来た
 	if (tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY && m_isActive) {

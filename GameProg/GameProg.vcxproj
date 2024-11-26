@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClCompile Include="Game\Actor\Actor.cpp" />
     <ClCompile Include="Game\Actor\ActorManager.cpp" />
+    <ClCompile Include="Game\Actor\AroundGhost.cpp" />
     <ClCompile Include="Game\Actor\BackGround.cpp" />
     <ClCompile Include="Game\Actor\GoalLight.cpp" />
     <ClCompile Include="Game\Actor\Ladder.cpp" />
     <ClCompile Include="Game\Actor\LuminousFigure.cpp" />
-    <ClCompile Include="Game\Actor\Pisher.cpp" />
+    <ClCompile Include="Game\Actor\ChaseGhost.cpp" />
+    <ClCompile Include="Game\Actor\PastimeGhost.cpp" />
     <ClCompile Include="Game\Actor\Player.cpp" />
     <ClCompile Include="Game\Actor\Puddle.cpp" />
     <ClCompile Include="Game\Actor\SolarPanel.cpp" />
@@ -91,11 +93,13 @@
   <ItemGroup>
     <ClInclude Include="Game\Actor\Actor.h" />
     <ClInclude Include="Game\Actor\ActorManager.h" />
+    <ClInclude Include="Game\Actor\AroundGhost.h" />
     <ClInclude Include="Game\Actor\BackGround.h" />
     <ClInclude Include="Game\Actor\GoalLight.h" />
     <ClInclude Include="Game\Actor\Ladder.h" />
     <ClInclude Include="Game\Actor\LuminousFigure.h" />
-    <ClInclude Include="Game\Actor\Pisher.h" />
+    <ClInclude Include="Game\Actor\ChaseGhost.h" />
+    <ClInclude Include="Game\Actor\PastimeGhost.h" />
     <ClInclude Include="Game\Actor\Player.h" />
     <ClInclude Include="Game\Actor\Puddle.h" />
     <ClInclude Include="Game\Actor\SolarPanel.h" />

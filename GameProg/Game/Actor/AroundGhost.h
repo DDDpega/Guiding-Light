@@ -1,17 +1,19 @@
 #pragma once
 
-class Pisher : public Actor
+
+
+class AroundGhost : public Actor
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	Pisher(Point pos);
+	AroundGhost(Point pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~Pisher();
+	virtual ~AroundGhost();
 
 	/// <summary>
 	/// 初期化処理
@@ -19,9 +21,20 @@ public:
 	void Initialize();
 
 	/// <summary>
+	/// ルートを作成する
+	/// </summary>
+	/// <param name="number"></param>
+	void CreateRoute(int number);
+
+	/// <summary>
 	/// 更新処理
 	/// </summary>
 	void Update();
+
+	/// <summary>
+	/// 描画処理
+	/// </summary>
+	void Draw();
 
 	/// <summary>
 	/// 衝突処理
@@ -36,14 +49,14 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
-	Actor* m_target;
-	bool m_isFigure;			//フィギュアがターゲットかどうか
-
-	shared_ptr<Sound> m_sound;	//蠅の飛ぶ音
 protected:
-	Player* m_player;	//プレイヤー
-	float m_speed;		//蠅の移動速度
-	
-	int m_soundFrame;		//サウンドのフレーム数
+	BOX m_DrawBox;	//表示用の場所
+	vector<Point> m_movePos;	//動く先の四角の場所
+	int m_nowNumber;	//現在四角のどこにいるか
+	bool m_right;	//右動きかどうか
+	Point m_targetPos;	//ターゲットの場所
+	bool m_otherTarget;	//四角以外のターゲットが現れた場合
+	bool m_otherTargetOld;	//1F前がターゲットがどうか
+	int m_stopTime;
 };
 

@@ -312,15 +312,22 @@ namespace ILLUST {
 		GOALLIGHTRED,
 		GOAST_CHASE,
 		GOAST_CHASE_EYE,
-		PISHER,
-		PISHER_EYE,
+		GOAST_AROUND,
+		GOAST_AROUND_EYE,
+		GOAST_PASTIME,
+		GOAST_PASTIME_EYE,
+		/*PISHER,*/
+		/*PISHER_EYE,*/
 		LADDER,
 		SOLARPANEL,
 		SOLARPANEL_BLOCK
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
-		{FIGUA , {"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"} },
+		{FIGUA , {
+			{"Picture/Illust/Gimmick/GL_Gimmick_Figures2.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"}			
+		}},
 		{GOALLIGHT ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Lamp2.png"},
 					 {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}
 		}},
@@ -328,11 +335,15 @@ namespace ILLUST {
 		{GOALLIGHTRED , {"Picture/goalLampLight.png"}},
 		{GOAST_CHASE , {"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost.png"}},
 		{GOAST_CHASE_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost_Eye.png"}},
-		{PISHER ,{
-			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
-			{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
-		}},
-		{PISHER_EYE,{"Picture/Illust/Gimmick/GL_Gimmick_Pisher3.png"}},
+		{GOAST_AROUND , {"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost1.png"}},
+		{GOAST_AROUND_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost2.png"}},
+		{GOAST_PASTIME , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost1.png"}},
+		{GOAST_PASTIME_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost2.png"}},
+		//{PISHER ,{
+		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
+		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
+		//}},
+		/*{PISHER_EYE,{"Picture/Illust/Gimmick/GL_Gimmick_Pisher3.png"}},*/
 		{LADDER , {"Picture/Illust/Gimmick/GL_Gimmick_Ladder.png"}},
 		{SOLARPANEL , {"Picture/Illust/Gimmick/GL_Gimmick_SolarPanel.png"}},
 		{SOLARPANEL_BLOCK , {"Picture/Illust/Gimmick/GL_Gimmick_Launch.png"}},

@@ -47,7 +47,7 @@ public:
 
 protected:
 	int m_maxTime;		//光る最大秒数
-	int m_keepTime;		//光る秒数
+	int m_time;		//光る秒数
 	int m_fontHandle;	//フォントの情報
 	shared_ptr<LightCmp> m_lightCmp;	//ライトコンポーネント
 	bool m_shareNow;	//ライトを与えている最中かどうか

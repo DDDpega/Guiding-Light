@@ -35,13 +35,37 @@ namespace SOLARPANEL_INFO {
 	constexpr int PANELFRAME = 100;
 }
 
+///// <summary>
+///// ハエの情報
+///// </summary>
+//namespace PISHER_INFO {
+//	constexpr float SIZE = 2.5f;
+//	constexpr Point COLLISION_SIZE = { 40,40 };
+//	constexpr int BUZZFRAME = 30;
+//}
+
 /// <summary>
-/// ハエの情報
+/// チェイスの情報
 /// </summary>
-namespace PISHER_INFO {
+namespace CHASE_INFO {
 	constexpr float SIZE = 2.5f;
-	constexpr Point COLLISION_SIZE = { 40,40 };
-	constexpr int BUZZFRAME = 30;
+	constexpr Point COLLISION_SIZE = { 40*0.5f,40 * 0.5f };
+}
+
+/// <summary>
+/// 巡回の情報
+/// </summary>
+namespace AROUND_INFO {
+	constexpr float SIZE = 2.5f;
+	constexpr Point COLLISION_SIZE = { 40 * 0.5f,40 * 0.5f };
+}
+
+/// <summary>
+/// いたずらの情報
+/// </summary>
+namespace PASTIME_INFO {
+	constexpr float SIZE = 2.5f;
+	constexpr Point COLLISION_SIZE = { 40 * 0.5f,80*0.5f };
 }
 
 /// <summary>
