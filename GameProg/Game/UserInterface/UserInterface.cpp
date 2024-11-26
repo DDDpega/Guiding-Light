@@ -21,7 +21,10 @@ void UserInterface::Initialize()
 {
 	m_nowcursor = 0;
 
-	
+	m_isChangeScene = false;
+
+	m_csframe = 30;
+
 	m_sound[0] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::DECISION], Sound::E_Sound::SE, 0));
 	m_sound[1] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::CANCEL], Sound::E_Sound::SE, 0));
 	m_sound[2] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::CURSORCONTROL], Sound::E_Sound::SE, 0));

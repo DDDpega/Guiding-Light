@@ -1,18 +1,18 @@
 #pragma once
 
-
-class TitleUI : public UserInterface
+class FadeUI :
+    public UserInterface
 {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	TitleUI();
+	FadeUI();
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~TitleUI();
+	virtual ~FadeUI();
 
 	/// <summary>
 	/// 初期化処理
@@ -29,15 +29,14 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// Fadeを動かす
+	/// </summary>
+	void MoveFeed(bool IsfeedIn);
 
-	bool m_isVideo;			//動画が流すかどうか
-	bool m_isVideoPlay;		//動画が流れているかどうか
 private:
-	shared_ptr<Picture> m_startText[3];
-	shared_ptr<Picture> m_gameExitText;
-	bool m_isMenuActive;	//メニュー画面
-	
-
-
+	shared_ptr<Picture> m_feedIn;
+	shared_ptr<Picture> m_feedOut;
+	bool m_isFeedIn;
 };
 

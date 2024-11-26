@@ -48,19 +48,29 @@ void GameOverUI::Update()
 {
 	UserInterface::Update();
 
+	if (m_isChangeScene) {
+		if (m_csframe-- < 0) {
+			//ゲームシーンへ移行フラグをオンにする
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
+
+		}
+		return;
+	}
 
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 		m_isSoundPlay[0] = true;
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::GAME);
+			m_isChangeScene = true;
+			m_scene = E_SCENE::GAME;
 		}
 		else if (m_nowcursor == 1) {
 			//全てのサウンドを止める
 			Game::gameInstance->GetSoundMNG()->ClearSound();
 			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
+			m_isChangeScene = true;
+			m_scene = E_SCENE::STAGESELECT;
 		}
 	}
 

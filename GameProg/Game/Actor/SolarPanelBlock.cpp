@@ -20,14 +20,28 @@ void SolarPanelBlock::Initialize()
 	AddComponent(m_pictureCmp);
 
 
-	m_pictureCmp->m_picture->SetisVisible(m_isBlock);
+
+	//m_pictureCmp->m_picture->SetisVisible(m_isBlock);
 }
 
 void SolarPanelBlock::Update()
 {
 	Actor::Update();
-	m_isBlock = static_cast<GameScene*>(m_scene)->m_solarpanel->GetIsTrigger();
-	m_pictureCmp->m_picture ->SetisVisible(m_isBlock);
+	auto isblock = false;
+	if (m_isBlock) {
+		isblock = !static_cast<GameScene*>(m_scene)->m_solarpanel->GetIsTrigger();
+		
+	}
+	else {
+		isblock = static_cast<GameScene*>(m_scene)->m_solarpanel->GetIsTrigger();		
+	}
+
+	if (isblock) {
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SOLARPANEL_BLOCK], 0);
+	}
+	else {
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SOLARPANEL_BLOCK], 1);
+	}
 }
 
 void SolarPanelBlock::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)

@@ -86,10 +86,21 @@ void StageSelectUI::Update()
 {
 	UserInterface::Update();
 
+	if (m_isChangeScene) {
+		if (m_csframe-- < 0) {
+			//ゲームシーンへ移行フラグをオンにする
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
+
+		}
+		return;
+	}
+
 	//メニューセレクト画面でキャンセルを押したとき
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
+		m_isSoundPlay[1] = true;
 		if (m_isMenu) {
 			m_isMenu = false;
+
 			m_backGround->SetisVisible(false);
 			m_menuSelect->SetisVisible(false);
 			for (auto& menu : m_menu) {
@@ -98,7 +109,8 @@ void StageSelectUI::Update()
 		}
 		else {
 			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::TITLE);
+			m_isChangeScene = true;
+			m_scene = E_SCENE::TITLE;
 			//元に戻す
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
@@ -112,7 +124,8 @@ void StageSelectUI::Update()
 			{
 			case 0:
 				//ゲームシーンへ移行フラグをオンにする
-				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::GAME);
+				m_isChangeScene = true;
+				m_scene = E_SCENE::GAME;
 				SceneManeger::gameScene->SetNumStage(m_nowcursor);
 				//元に戻す
 				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -134,12 +147,14 @@ void StageSelectUI::Update()
 				//オプション
 			case 0:
 				//ゲームシーンへ移行フラグをオンにする
-				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::CREDIT);
+				m_isChangeScene = true;
+				m_scene = E_SCENE::CREDIT;
 				break;
 				//クレジット
 			case 1:
 				//ゲームシーンへ移行フラグをオンにする
-				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::OPTION);
+				m_isChangeScene = true;
+				m_scene = E_SCENE::OPTION;
 				break;
 			}
 		}

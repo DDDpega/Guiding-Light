@@ -45,20 +45,12 @@ void SolarPanel::Initialize()
 void SolarPanel::Update()
 {
 	Actor::Update();
+	
 
-	//‹Ÿ‹‹ŽžŠÔ‚ªŒo‰ß‚µ‚½‚ç
-	if (m_keepTime >= m_maxTime) {
-		if (!m_isTrigger) {
-			m_spanelSound->SoundStop();
-			m_floorSound->SoundPlay();
-		}
-		m_isTrigger = true;
-		
-	}
 
 	//‹Ÿ‹‹’†‚È‚ç
 	if (m_shareNow) {
-		m_keepTime++;
+		m_isTrigger = true;
 		if (m_soundFrame-- < 0&& !m_isTrigger) {
 			m_spanelSound->SoundStop();
 			m_soundFrame = SOLARPANEL_INFO::PANELFRAME;
@@ -67,24 +59,25 @@ void SolarPanel::Update()
 		
 	}
 	else {
+		m_isTrigger = false;
 		m_spanelSound->SoundStop();
 		m_soundFrame = 0;
 	}
+
+	m_shareNow = false;
 }
 
 void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn() &&
-		m_keepTime < m_maxTime) {
+	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn() ) {
 		m_shareNow = true;
 	}
 }
 
 void SolarPanel::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
-
 
 }
 

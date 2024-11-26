@@ -15,6 +15,8 @@ void OptionUI::Initialize()
 	UserInterface::Initialize();
 	m_nowCursorCol = 0;
 
+	
+
 	//画面の幅を取得
 	float scrX = WINDOW_INFO::GAME_WIDTH;
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
@@ -70,6 +72,8 @@ void OptionUI::Initialize()
 	UserInterface::AddPictureInUI(m_seSound);
 	SetSlider(Sound::E_Sound::SE,SEVOL);
 	
+	m_fadeUI = shared_ptr<FadeUI>(new FadeUI());
+	m_fadeUI->Initialize();
 
 	m_nowcursor = 0;
 }
@@ -78,10 +82,22 @@ void OptionUI::Update()
 {
 	UserInterface::Update();
 
+	if (m_isChangeScene) {
+		m_fadeUI->MoveFeed(m_isFeedIn);
+		if (m_csframe-- < 0) {
+			//ゲームシーンへ移行フラグをオンにする
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
+			
+		}
+		return;
+	}
+
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
+		m_isChangeScene = true;
+		m_isFeedIn = false;
 		//ゲームシーンへ移行フラグをオンにする
-		Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
+		//Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::STAGESELECT);
 	}
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {

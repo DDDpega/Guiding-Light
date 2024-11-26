@@ -79,6 +79,7 @@ public:
 	vector<shared_ptr<Picture>> m_darkPictureList;
 	shared_ptr<GamePauseUI> m_pauseUI;
 	shared_ptr<SolarPanel> m_solarpanel;
+	shared_ptr<Door> m_door[2];
 
 private:
 	std::shared_ptr<Player> m_player;	

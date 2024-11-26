@@ -51,4 +51,11 @@ protected:
 
 	bool m_isSoundPlay[3];				//UIのサウンドを出力するかどうか　0 = 決定　1 = キャンセル 2 = カーソル移動
 	
+	bool m_isChangeScene;				//シーンを変更するかどうか
+	int m_csframe;						//シーンを変更時の待ちframe
+
+	E_SCENE m_scene;					//変更するシーン
+
+	shared_ptr<FadeUI> m_fadeUI;		//FadeUI
+	bool m_isFeedIn;					//フェードイン
 };

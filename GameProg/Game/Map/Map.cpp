@@ -98,7 +98,7 @@ void Map::createMap()
 				m_actorPos.push_back(apos);
 				continue;
 			}
-			else if (chipNo == 2 && !m_isInitialize) {
+			else if (chipNo == MAPCHIPINFO::FLOOR2 && !m_isInitialize) {
 				//マップチップのアクターを生成する
 				auto mapChip = shared_ptr<MapChipActor>(new MapChipActor(Point{ position_x ,position_y }));
 				Game::gameInstance->GetActorMNG()->AddActor(mapChip);
@@ -106,7 +106,7 @@ void Map::createMap()
 				m_actorPos.push_back(apos);*/
 			}
 
-			if (chipNo == 2) {
+			if (chipNo == MAPCHIPINFO::FLOOR2) {
 				DrawExtendGraph(position_x, position_y, position_x + 40, position_y + 40, m_bitmap[1], TRUE);
 			}
 			else {
@@ -182,16 +182,19 @@ void Map::LoadFromFile(const wstring filePath, const wstring chipSet)
 				switch (chipSet[chipNo])
 				{
 				case 'a':
-					m_MapChipList[c][r] = 10;
+					m_MapChipList[c][r] = MAPCHIPINFO::SOLARPANEL;
 					break;
 				case 'b':
-					m_MapChipList[c][r] = 11;
+					m_MapChipList[c][r] = MAPCHIPINFO::LAUNCH;
 					break;
 				case 'c':
-					m_MapChipList[c][r] = 12;
+					m_MapChipList[c][r] = MAPCHIPINFO::LAUNCH2;
 					break;
 				case 'd':
 					m_MapChipList[c][r] = 13;
+					break;
+				case 'e':
+					m_MapChipList[c][r] = 14;
 					break;
 				default:
 					auto a = (int)(chipSet[chipNo]-'0');

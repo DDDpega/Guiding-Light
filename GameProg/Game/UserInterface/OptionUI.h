@@ -53,5 +53,6 @@ private:
 	int m_nowCursorCol;
 	int handle;
 
+
 };
 

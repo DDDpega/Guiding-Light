@@ -7,7 +7,7 @@ GameScene::GameScene()
 	, m_LightNum(0)
 	, m_mapInfo({
 		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
-		L"_=^56789abcd",
+		L"_=^56789abcde",
 	})
 	, m_stages({
 	{
@@ -85,17 +85,18 @@ void GameScene::Initialize()
 	m_player = std::shared_ptr<Player>(new Player(Point{-1000,-1000 }));
 	Game::gameInstance->GetActorMNG()->AddActor(m_player);
 	
-	auto num = 0;
+	auto ladderNum = 0;
+	auto doorNum = 0;
 	for (auto& actorPos : m_map->GetMapChipPosList()) {
 		//プレイヤーの生成
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 5) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PLAYER) {
 			actorPos.m_isGet = true;
 			m_player->SetPos(actorPos.m_mapChipPos);
 			m_player->SpawnMove(1,1);
 		}
 
 		//ランプ
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 6) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::LAMP) {
 			actorPos.m_isGet = true;
 			//ゴールライトの生成
 			auto light = shared_ptr<GoalLight>(new GoalLight(actorPos.m_mapChipPos));
@@ -105,17 +106,17 @@ void GameScene::Initialize()
 		}
 
 		//はしごの生成
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 7) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::LADDER) {
 			actorPos.m_isGet = true;
-			auto ladder = shared_ptr<Ladder>(new Ladder(actorPos.m_mapChipPos, num));
+			auto ladder = shared_ptr<Ladder>(new Ladder(actorPos.m_mapChipPos, ladderNum));
 			Game::gameInstance->GetActorMNG()->AddActor(ladder);
 		}
 		if (actorPos.m_mapChipNum == 7) {
-			num++;
+			ladderNum++;
 		}
 
 		//蓄光
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 8) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::FIGURE) {
 			actorPos.m_isGet = true;
 			auto figure = shared_ptr<LuminousFigure>(new LuminousFigure(actorPos.m_mapChipPos));
 			figure->SpawnMove(1, 2);
@@ -130,28 +131,55 @@ void GameScene::Initialize()
 		}
 
 		//ソーラーパネル
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 10) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SOLARPANEL) {
 			actorPos.m_isGet = true;
 			m_solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
 			Game::gameInstance->GetActorMNG()->AddActor(m_solarpanel);
 		}
 
 		//起動出現床
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 11) {
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::LAUNCH) {
 			actorPos.m_isGet = true;
 			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_mapChipPos, false, this));
 			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
 		}
-
-		//水たまり
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == 12) {
+		//起動出現床
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::LAUNCH2) {
 			actorPos.m_isGet = true;
-			auto puddle = shared_ptr<Puddle>(new Puddle(actorPos.m_mapChipPos));
-			Game::gameInstance->GetActorMNG()->AddActor(puddle);
+			auto solarpanelblock = shared_ptr<SolarPanelBlock>(new SolarPanelBlock(actorPos.m_mapChipPos, true, this));
+			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
 		}
+
+		////水たまり
+		//if (!actorPos.m_isGet && actorPos.m_mapChipNum == 12) {
+		//	actorPos.m_isGet = true;
+		//	auto puddle = shared_ptr<Puddle>(new Puddle(actorPos.m_mapChipPos));
+		//	Game::gameInstance->GetActorMNG()->AddActor(puddle);
+		//}
+
+		////ドア
+		//if (!actorPos.m_isGet && actorPos.m_mapChipNum == 13) {
+		//	actorPos.m_isGet = true;
+		//	m_door[doorNum] = shared_ptr<Door>(new Door(actorPos.m_mapChipPos));
+		//	m_door[doorNum]->SpawnMove(1, 2);
+		//	Game::gameInstance->GetActorMNG()->AddActor(m_door[doorNum]);
+		//	doorNum++;
+		//}
 
 	}
 
+	auto isDoorCheek = false;
+	doorNum = size(m_door);
+	for (int i = 0; i < doorNum; i++) {
+		if (m_door[i] == nullptr) {
+			isDoorCheek = true;
+			break;
+		}
+	}
+	if (!isDoorCheek) {
+		m_door[0]->SetTeleportPos(m_door[1]->GetPos());
+		m_door[1]->SetTeleportPos(m_door[0]->GetPos());
+	}
 	//UIを表示する
 	m_pauseUI = shared_ptr<GamePauseUI>(new GamePauseUI(false));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_pauseUI);

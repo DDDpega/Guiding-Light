@@ -55,7 +55,7 @@ void SceneManeger::ChangeScene(E_SCENE nextScene)
 	{
 	case GAME:
 		nowScene = gameScene;
-		Game::gameInstance->GetSoundMNG()->SoundStopAll();
+		
 		break;
 	case E_SCENE::TITLE:
 		nowScene = titleScene;
@@ -76,6 +76,8 @@ void SceneManeger::ChangeScene(E_SCENE nextScene)
 		break;
 	
 	}
+
+	Game::gameInstance->GetSoundMNG()->ClearSound();
 
 	//Œ»İ‚ÌƒV[ƒ“‚Ìó‘Ô‚ğ•ÏX‚·‚é
 	e_NowScene = e_NextScene;

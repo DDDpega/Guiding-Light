@@ -12,13 +12,13 @@ bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 {
 	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
 	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
-	if (chipNo == 7 && isFly) {
+	if (chipNo == MAPCHIPINFO::LADDER && isFly) {
 		return true;
 	}
 	else if (isFly) {
 		return false;
 	}
-	if (chipNo==-1||chipNo==2 ||chipNo ==1||chipNo==12 || (chipNo == 11 && solarpanel->GetIsTrigger())) {
+	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2 ||chipNo == MAPCHIPINFO::FLOOR ||(chipNo == MAPCHIPINFO::LAUNCH && solarpanel->GetIsTrigger())|| (chipNo == MAPCHIPINFO::LAUNCH2 && !solarpanel->GetIsTrigger())) {
 		return true;
 	}
 	else {

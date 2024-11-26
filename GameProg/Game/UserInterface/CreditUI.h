@@ -34,5 +34,7 @@ private:
 	shared_ptr<Picture> m_jobText[3];
 	shared_ptr<Picture> m_creditTitle;
 
+
+
 };
 
