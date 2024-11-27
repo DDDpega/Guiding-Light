@@ -18,7 +18,7 @@ void ChaseGhost::Initialize()
 	Actor::Initialize();
 	m_soundFrame = 0;
 
-	m_sound= shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::PISHER], Sound::E_Sound::SE, 0));
+	m_sound= shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::GHOST], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound);
 
 	//画像コンポーネント
@@ -124,9 +124,10 @@ void ChaseGhost::Update()
 	}
 	
 	if (m_soundFrame-- < 0) {
-		//m_sound->SoundStop();
+		m_sound->SoundStop();
 		m_sound->SetPlaySoundVolume(distance);
 		m_sound->SoundPlay(Sound::BACK);
+		m_soundFrame = GHOSTSOUNDSEC;
 	}
 
 

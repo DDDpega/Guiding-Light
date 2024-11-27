@@ -2,6 +2,7 @@
 
 class Picture;
 class Game;
+class SaveDataControl;
 class GameScene;
 class TitleScene;
 class TitleVideoScene;

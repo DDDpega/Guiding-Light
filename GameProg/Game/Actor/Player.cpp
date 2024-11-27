@@ -81,8 +81,8 @@ void Player::Update()
 	auto isNowLadder = false;
 	//’òŽq‚Ìæ‚èŽn‚ß‚ÆI‚í‚è
 	for (auto& ladder : m_isLadder) {
-		if (ladder.isLadder && (m_rigidBody->m_state==STATE::WALK || m_rigidBody->m_state == STATE::STAND )) {
-			m_rigidBody->ChangeState(STATE::FLY);
+		if (ladder.isLadder && (m_rigidBody->m_state==STATE::WALK || m_rigidBody->m_state == STATE::STAND||m_rigidBody->m_state==STATE::FLYOK )) {
+			m_rigidBody->ChangeState(STATE::FLYOK);
 			isNowLadder = true;
 			break;
 		}
@@ -90,12 +90,10 @@ void Player::Update()
 			isNowLadder = true;
 			break;
 		}
-		//‚Í‚µ‚²ã‚èØ‚Á‚½Œã
-		else if(m_rigidBody->m_state==FLY&& !ladder.isLadder){
-			m_rigidBody->ChangeState(STATE::STAND);
-		}
 	}
-
+	if (m_rigidBody->m_state == FLY && !isNowLadder) {
+		m_rigidBody->ChangeState(STATE::STAND);
+	}
 
 	bool isClick_x = false;
 	bool isClick_y = false;
@@ -135,19 +133,23 @@ void Player::Update()
 
 	m_isNowLadder = (!isNowLadder && !m_isLadderTop);
 
+	auto isfly = (m_rigidBody->m_state == STATE::FLYOK || m_rigidBody->m_state == STATE::FLY);
+
 	//‚Í‚µ‚²’†‚Ì“®ì
-	if (m_rigidBody->m_state == STATE::FLY) {
+	if (isfly) {
 		m_isLadderTop = false;
 		if (Game::gameInstance->GetInputMNG()->Down(L"UP")) {
+			m_rigidBody->ChangeState(STATE::FLY);
 			m_vy = -Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
 			m_pos.x = isRideLadderPos.x;
 			isClick_y = true;
 
 			m_isLadderTop = true;
 		}
-		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
+		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")&& m_rigidBody->m_state == STATE::FLY) {
 			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
-			if(isRideLadderNum<=1)m_pos.x = isRideLadderPos.x;
+			if(isRideLadderNum==1)
+				m_pos.x = isRideLadderPos.x;
 			isClick_y = true;
 			
 		}
@@ -156,7 +158,7 @@ void Player::Update()
 	//‚Í‚µ‚²‚Ìã‚Å~‚è‚é‚Æ‚«
 	if ((m_mapCollision->CheckLadder(E_TAG::PLAYER, m_pos) && (m_rigidBody->m_state == STATE::STAND || m_rigidBody->m_state == STATE::WALK))) {
 		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
-			
+			m_rigidBody->ChangeState(STATE::FLY);
 			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
 			isClick_y = true;
 		}
@@ -203,6 +205,7 @@ void Player::Update()
 				m_ascendPictureNum = 0;
 		}
 		break;
+	case FLYOK:
 	case WALK:
 		if (Game::gameInstance->m_framecnt % 5 == 0) {
 			m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_movePictureNum);

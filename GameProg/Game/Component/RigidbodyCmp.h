@@ -2,7 +2,7 @@
 
 
 enum STATE {
-	FLY, WALK, JUMP, STAND,FALL,JUMPSTT
+	FLY,FLYOK, WALK, JUMP, STAND,FALL,JUMPSTT
 };
 
 class RigidbodyCmp : public Component

@@ -27,6 +27,16 @@ GameScene::GameScene()
 		L"Data/stage3.txt",
 	},
 
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage4.txt",
+	},
+
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage5.txt",
+	},
+
 
 	})
 {
@@ -53,6 +63,7 @@ void GameScene::Initialize()
 	isGameOver = false;
 	isGameClear = false;
 	m_darkPictureList.clear();
+	m_solarpanel.clear();
 	
 	//TODO Œã‚Å–³ŒÀ‚É•\Ž¦‚Å‚«‚é‚æ‚¤‚É‚·‚é
 	for (int i = 0; i < 5; i++) {

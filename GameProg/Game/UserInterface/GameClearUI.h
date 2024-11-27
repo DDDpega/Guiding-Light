@@ -30,6 +30,6 @@ public:
 
 protected:
 	int sentence1;
-	bool m_stage[20];
+	
 };
 

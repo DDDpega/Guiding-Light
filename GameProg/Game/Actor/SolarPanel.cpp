@@ -71,7 +71,7 @@ void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if ((tag == E_TAG::PLAYER_RAY||tag==E_TAG::RAY) ) {
+	if ((tag == E_TAG::PLAYER_RAY||tag==E_TAG::FIGURERAY) ) {
 		m_shareNow = true;
 	}
 }

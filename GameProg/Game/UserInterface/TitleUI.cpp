@@ -17,6 +17,10 @@ void TitleUI::Initialize()
 {
 	UserInterface::Initialize();
 
+	if (!Game::gameInstance->GetStatus()->GAME_NORMAL) {
+		SaveDataControl::saveData->SaveDeleteData();
+	}
+
 	m_isVideo = false;
 	m_isVideoPlay = false;
 

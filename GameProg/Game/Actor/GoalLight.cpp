@@ -20,7 +20,7 @@ void GoalLight::Initialize()
 	m_pastimeGhostTought = false;
 	m_pastimeToughtTime = 0;
 
-	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,E_TAG::RAY,ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHTRED]));
+	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,E_TAG::GOALLIGHTRAY,ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHTRED]));
 	Actor::AddComponent(m_lightCmp);
 
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, GOALLIGHT_INFO::COLLISION_SIZE, E_TAG::OTHER));
@@ -54,8 +54,8 @@ void GoalLight::Update()
 
 
 		//ライトを溜める
-		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"ENTER")) {
-	
+		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"ENTER") && (SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::STAND|| SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::WALK)) {
+
 			//プレイヤーの操作を止める
 			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = true;
 

@@ -133,6 +133,15 @@ void OptionUI::Update()
 	}
 
 	m_arrow->SetPos(m_selectPos[m_nowcursor]);
+	if (Game::gameInstance->GetInputMNG()->Down(L"OK")) {
+		switch (m_nowcursor)
+		{
+		case SAVEDELETE:
+			m_isSoundPlay[0] = true;
+			SaveDataControl::saveData->SaveDeleteData();
+			break;
+		}
+	}
 
 	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
 		switch (m_nowcursor)

@@ -11,6 +11,7 @@ struct SOUND_TYPE
 constexpr int MAXVOLUME = 255;
 constexpr float VOLUMERATE = 1.0f;
 constexpr float SETTINGVOLRATE = 2.55f;
+constexpr int GHOSTSOUNDSEC = 80;
 
 namespace SOUND {
 
@@ -76,7 +77,7 @@ namespace SOUND {
 		LAMP,
 		LADDER,
 		FIGURE,
-		PISHER,
+		GHOST,
 		SOLARPANEL,
 		LAUNCH,
 		PUDDLE,
@@ -89,7 +90,7 @@ namespace SOUND {
 		{ LAMP ,		{"Sound/SE/GimmickSE/GL_SE_Lamp.wav"}},
 		{ LADDER ,		{"Sound/SE/GimmickSE/GL_SE_Ladder.wav"}},
 		{ FIGURE ,		{"Sound/SE/GimmickSE/GL_SE_Figure.wav"}},
-		{ PISHER ,		{"Sound/SE/GimmickSE/GL_SE_Pisher.wav"}},
+		{ GHOST ,		{"Sound/SE/GimmickSE/GL_SE_Ghost.wav"}},
 		{ SOLARPANEL ,	{"Sound/SE/GimmickSE/GL_SE_Solarpanel.wav"}},
 		{ LAUNCH ,		{"Sound/SE/GimmickSE/GL_SE_Launch.wav"}},
 		{ PUDDLE ,		{"Sound/SE/GimmickSE/GL_SE_Puddle.wav"}},

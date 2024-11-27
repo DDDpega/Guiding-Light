@@ -32,6 +32,7 @@ using namespace std;
 #include "Status.h"
 #include "InputManager.h"
 #include "Game.h"
+#include "SaveDataControl.h"
 
 //ƒTƒEƒ“ƒh
 #include "Sound.h"

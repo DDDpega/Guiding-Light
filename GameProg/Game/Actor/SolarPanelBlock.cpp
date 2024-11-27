@@ -30,7 +30,7 @@ void SolarPanelBlock::Update()
 	auto isblock = false;
 	bool isTrigger = false;
 
-	for (auto s : static_cast<GameScene*>(m_scene)->m_solarpanel) {
+	for (auto s : SceneManeger::gameScene->m_solarpanel) {
 		isTrigger = s->GetIsTrigger();
 		if (isTrigger) {
 			break;
