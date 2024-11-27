@@ -37,7 +37,7 @@ void RigidbodyCmp::Update()
 		}
 	}
 
-	auto isTopBottom = (m_state != JUMP && m_state != FALL);
+	auto isTopBottom = (m_state != JUMP && m_state != FALL&&m_state!=FLY);
 	auto pos3 = m_actor->GetPos();
 	if (m_actor->m_mapCollision->CheckMapCollide(m_tag,m_actor->GetPos(), m_actor->m_vx, 0.0f, true, isTopBottom)) {
 		m_actor->m_vx = 0;
@@ -51,8 +51,9 @@ void RigidbodyCmp::Update()
 		//m_ay = 0.0f;    //d—Í
 		m_actor->m_vy = 0.0f;
 		m_actor->m_vx = 0.0f;
-		
-		m_state = STAND;
+		if (m_state != FLY) {
+			m_state = STAND;
+		}
 		//printfDx("‚¶‚ß‚ñ”»’è%d\n",m_actor->GetPos().y);
 	}
 	
@@ -81,7 +82,7 @@ void RigidbodyCmp::Update()
 	}
 	
 	
-	
+	isFly = ((m_state == STAND || m_state == WALK || m_state == FALL) && !m_actor->GetIsLadder());
 	auto pos = m_actor->GetPos();
 	pos.y += 1.0f;
 	if ((m_state!=JUMP && m_state != FALL && m_state != FLY) && !m_actor->m_mapCollision->CheckMapCollide(m_tag, pos, 0.0f, 1.0f, false, true,isFly)) {

@@ -128,8 +128,9 @@ void GameScene::Initialize()
 		//ソーラーパネル
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SOLARPANEL) {
 			actorPos.m_isGet = true;
-			m_solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
-			Game::gameInstance->GetActorMNG()->AddActor(m_solarpanel);
+			auto solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
+			m_solarpanel.push_back(solarpanel);
+			Game::gameInstance->GetActorMNG()->AddActor(solarpanel);
 		}
 
 		//起動出現床

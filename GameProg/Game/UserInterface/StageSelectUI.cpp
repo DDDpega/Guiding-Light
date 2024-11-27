@@ -189,7 +189,7 @@ void StageSelectUI::Update()
 		//横カーソルの変更
 		if (m_colSelectNum == 0) {
 			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
-				if (m_nowcursor <= 2) {
+				if (m_nowcursor != 5) {
 					m_isSoundPlay[2] = true;
 					//カーソルを下にずらす
 					m_nowcursor++;
@@ -276,7 +276,7 @@ void StageSelectUI::Draw()
 		
 	}
 	//選択されているステージが20なら
-	else if(m_nowcursor == 3){
+	else if(m_nowcursor == 5){
 		//右を消す
 		m_stageArray[2]->SetisVisible(false);
 		

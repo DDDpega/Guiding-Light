@@ -81,15 +81,21 @@ void Player::Update()
 	auto isNowLadder = false;
 	//梯子の乗り始めと終わり
 	for (auto& ladder : m_isLadder) {
-		if (ladder.isLadder && (m_rigidBody->m_state==STATE::WALK || m_rigidBody->m_state == STATE::STAND)) {
+		if (ladder.isLadder && (m_rigidBody->m_state==STATE::WALK || m_rigidBody->m_state == STATE::STAND )) {
 			m_rigidBody->ChangeState(STATE::FLY);
 			isNowLadder = true;
 			break;
 		}
-		else if(m_rigidBody->m_state!=JUMP && m_rigidBody->m_state!=FALL&& m_rigidBody->m_state != STAND){
+		else if (m_rigidBody->m_state == FLY && ladder.isLadder) {
+			isNowLadder = true;
+			break;
+		}
+		//はしご上り切った後
+		else if(m_rigidBody->m_state==FLY&& !ladder.isLadder){
 			m_rigidBody->ChangeState(STATE::STAND);
 		}
 	}
+
 
 	bool isClick_x = false;
 	bool isClick_y = false;
@@ -112,12 +118,18 @@ void Player::Update()
 
 	}
 
+	//左右の操作がされ、ジャンプ・梯子状態ではない時
+	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL && m_rigidBody->m_state != STATE::FLY) {
+		m_rigidBody->ChangeState(STATE::WALK);
+	}
+
 	auto isRideLadderPos = Point{ 0,0 };
+	auto isRideLadderNum = 0;
 	//梯子の乗り始めと終わり
 	for (auto& ladder : m_isLadder) {
 		if (ladder.isLadder) {
 			isRideLadderPos = ladder.ladderPos;
-			break;
+			isRideLadderNum++;
 		}
 	}
 
@@ -135,6 +147,7 @@ void Player::Update()
 		}
 		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
 			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
+			if(isRideLadderNum<=1)m_pos.x = isRideLadderPos.x;
 			isClick_y = true;
 			
 		}
@@ -143,6 +156,7 @@ void Player::Update()
 	//はしごの上で降りるとき
 	if ((m_mapCollision->CheckLadder(E_TAG::PLAYER, m_pos) && (m_rigidBody->m_state == STATE::STAND || m_rigidBody->m_state == STATE::WALK))) {
 		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
+			
 			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
 			isClick_y = true;
 		}
@@ -151,7 +165,7 @@ void Player::Update()
 	
 
 	//移動時の音声を出力
-	if ((isClick_y|| isClick_x) && m_rigidBody->m_state == STATE::FLY) {
+	if ((isClick_y) && m_rigidBody->m_state == STATE::FLY) {
 		if (m_soundFrame[2]-- < 0) {
 			m_sound[3]->SoundPlay(Sound::BACK);
 			m_soundFrame[2] = PLAYER_INFO::LADDERFRAME;
@@ -162,10 +176,7 @@ void Player::Update()
 		m_soundFrame[2] = 0;
 	}
 
-	//左右の操作がされ、ジャンプ・梯子状態ではない時
-	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL&& m_rigidBody->m_state != STATE::FLY) {
-		m_rigidBody->ChangeState(STATE::WALK);
-	}
+	
 	
 	//ジャンプ
  	if (m_rigidBody->m_state == STATE::STAND ||

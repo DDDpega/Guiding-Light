@@ -69,7 +69,6 @@ void GameClearUI::Update()
 				SceneManeger::gameScene->SetNumStage(SceneManeger::gameScene->GetNumStage() + 1);
 				//ゲームシーンへ移行フラグをオンにする
 				m_isRightFade = false;
-				m_fadeUI->Reset();
 				m_isFeedIn = false;
 				m_isChangeScene = true;
 				m_scene = E_SCENE::GAME;

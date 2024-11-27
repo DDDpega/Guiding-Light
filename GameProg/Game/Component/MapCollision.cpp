@@ -12,13 +12,22 @@ bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 {
 	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
 	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
+	bool isTrigger = false;
+
+	for (auto s : solarpanel) {
+		isTrigger = s->GetIsTrigger();
+		if (isTrigger) {
+			break;
+		}
+	}
+
 	if (chipNo == MAPCHIPINFO::LADDER && isFly) {
 		return true;
 	}
 	else if (isFly) {
 		return false;
 	}
-	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2 ||chipNo == MAPCHIPINFO::FLOOR ||(chipNo == MAPCHIPINFO::LAUNCH && solarpanel->GetIsTrigger())|| (chipNo == MAPCHIPINFO::LAUNCH2 && !solarpanel->GetIsTrigger())) {
+	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2 ||chipNo == MAPCHIPINFO::FLOOR ||(chipNo == MAPCHIPINFO::LAUNCH && isTrigger)|| (chipNo == MAPCHIPINFO::LAUNCH2 && !isTrigger)) {
 		return true;
 	}
 	else {
@@ -35,10 +44,25 @@ bool MapCollision::CheckLadder(E_TAG tag,Point pos)
 	const int bottom = ((rect.bottom - 1) / mapChipSize)+1;
 	const int middle_x = pos2.x / mapChipSize;
 
+	int left;
+	//チップ単位の四隅の位置
+	if (rect.left < 0) {
+		left = -1;
+	}
+	else {
+		left = rect.left / mapChipSize;
+	}
+	const int right = (rect.right - 1) / mapChipSize;
 	auto middleBottom = CheckMapChip(middle_x, bottom, true);
+	auto rightBottom = CheckMapChip(right, bottom, true);
+	auto leftBottom = CheckMapChip(left, bottom, true);
 
+	auto isladder = false;
+	if (middleBottom) {
+		isladder = true;
+	}
 
-	return middleBottom;
+	return isladder;
 }
 
 /// <summary>
@@ -141,7 +165,7 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 			
 		}
 	}
-	//下方向をチェック
+	//下方向をチェックs
 	//TODO定数に変更したい+プレイヤーの方ではしごに当たった数を取得する
 	//はしご
 	else if (dy > 0 && (rightBottom || middleBottom || leftBottom)/* || (bottmLadder && m_actor->m_rigidBody->m_state == FLY)*/) {

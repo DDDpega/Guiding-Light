@@ -28,15 +28,24 @@ void SolarPanelBlock::Update()
 {
 	Actor::Update();
 	auto isblock = false;
+	bool isTrigger = false;
+
+	for (auto s : static_cast<GameScene*>(m_scene)->m_solarpanel) {
+		isTrigger = s->GetIsTrigger();
+		if (isTrigger) {
+			break;
+		}
+	}
+
 	//Å‰‚ÉƒuƒƒbƒN‚ª‚ ‚é‚©‚Ç‚¤‚©
 	if (m_isBlock) {
 		//“–‚½‚Á‚Ä‚¢‚¢‚È‚¢
-		isblock = !static_cast<GameScene*>(m_scene)->m_solarpanel->GetIsTrigger();
+		isblock = !isTrigger;
 		
 	}
 	else {
 		//“–‚½‚Á‚Ä‚¢‚é‚Æ‚«
-		isblock = static_cast<GameScene*>(m_scene)->m_solarpanel->GetIsTrigger();		
+		isblock = isTrigger;
 	}
 
 	if (isblock) {

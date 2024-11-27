@@ -82,7 +82,6 @@ void GamePauseUI::Update()
 		else if (m_nowcursor == 1) {
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
-			m_fadeUI->Reset();
 			m_scene = E_SCENE::GAME;
 
 
