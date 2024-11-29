@@ -43,12 +43,14 @@ public:
 		m_waitList.clear();
 	}
 
+	vector<shared_ptr<Actor>> m_actorList;
+
 private:
 
 	/// <summary>
 	/// 自分のアクターリスト
 	/// </summary>
-	vector<shared_ptr<Actor>> m_actorList;
+	
 	vector<shared_ptr<Actor>> m_waitList;
 };
 

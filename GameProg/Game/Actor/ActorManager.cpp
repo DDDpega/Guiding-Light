@@ -30,6 +30,11 @@ void ActorManager::Update()
 	if (SceneManeger::gameScene->m_isPause)
 		return;
 
+	for (auto& actor : m_actorList) {
+		if (actor->m_darkPictureCmp != nullptr) {
+			actor->m_darkPictureCmp->m_darkPicture->SetisVisible(true);
+		}
+	}
 
 	//アクターリストの更新処理
 	for (auto& actor : m_actorList) {

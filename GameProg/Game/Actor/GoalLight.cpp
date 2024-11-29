@@ -54,7 +54,7 @@ void GoalLight::Update()
 
 
 		//ライトを溜める
-		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"ENTER") && (SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::STAND|| SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::WALK)) {
+		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"UP") && (SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::STAND|| SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::WALK)) {
 
 			//プレイヤーの操作を止める
 			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = true;
@@ -103,6 +103,8 @@ void GoalLight::Update()
 			//リストに含む
 			SceneManeger::gameScene->m_goalLightList.push_back(this);
 
+			m_pastimeToughtTime = 0;
+			m_pastimeGhostTought = false;
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::LIGHTNING:
@@ -113,8 +115,6 @@ void GoalLight::Update()
 		if (m_time >= m_maxTime) {
 			m_time = 0;
 			m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
-			m_pastimeToughtTime = 0;
-			m_pastimeGhostTought = false;
 			break;
 		}
 

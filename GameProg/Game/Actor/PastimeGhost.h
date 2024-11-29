@@ -43,6 +43,7 @@ public:
 
 protected:
 
+	bool m_hitMaxLight;
 };
 
 

@@ -29,6 +29,7 @@ void ChaseGhost::Initialize()
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, CHASE_INFO::COLLISION_SIZE, E_TAG::GHOST));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 
 	//ˆÃˆÅ’†‚ÉŒ©‚¦‚é‰æ‘œ‚Ì¶¬
 	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE_EYE], 0));
@@ -138,11 +139,17 @@ void ChaseGhost::Update()
 	//•Ï”‚Ì‰Šú‰»
 	m_vy = 0;
 	m_vx = 0;
+
+
 }
 
 void ChaseGhost::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other,tag, selftag);
+
+	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag == E_TAG::FIGURERAY || tag == E_TAG::GOALLIGHTRAY) && m_isActive) {
+		m_darkPictureCmp->m_darkPicture->SetisVisible(false);
+	}
 }
 
 void ChaseGhost::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)

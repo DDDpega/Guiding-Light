@@ -50,9 +50,9 @@ void LightCmp::Update()
 	m_lightPicture->SetPos(actorPos);
 
 	//ˆÃ‚¢‚ÉŒ©‚¦‚é‰æ‘œ‚ğ‘S‚ÄŒ©‚¦‚é‚æ‚¤‚É‚·‚é
-	if (m_actor->m_darkPictureCmp != nullptr) {
+	/*if (m_actor->m_darkPictureCmp != nullptr) {
 		m_actor->m_darkPictureCmp->m_darkPicture->SetisVisible(true);
-	}
+	}*/
 
 	//–ˆ•bƒŒƒC‚ğ”ò‚Î‚·
 	if (m_lightOn) {

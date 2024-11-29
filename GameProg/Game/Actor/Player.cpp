@@ -162,9 +162,7 @@ void Player::Update()
 			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
 			isClick_y = true;
 		}
-	}
-
-	
+	}	
 
 	//ˆÚ“®Žž‚Ì‰¹º‚ðo—Í
 	if ((isClick_y) && m_rigidBody->m_state == STATE::FLY) {
@@ -178,8 +176,6 @@ void Player::Update()
 		m_soundFrame[2] = 0;
 	}
 
-	
-	
 	//ƒWƒƒƒ“ƒv
  	if (m_rigidBody->m_state == STATE::STAND ||
 			 m_rigidBody->m_state==STATE::WALK) {
@@ -188,6 +184,10 @@ void Player::Update()
 			m_sound[0]->SoundPlay(Sound::BACK);
 			isClick_y = true;
 		}
+	}
+
+	if (!isClick_x && (m_rigidBody->m_state == STATE::WALK || m_rigidBody->m_state == STATE::FLYOK)) {
+		m_rigidBody->m_state = STAND;
 	}
 
 	//‰æ‘œØ‚è‘Ö‚¦
@@ -254,13 +254,13 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other, tag,selftag);
 
 	//Ž€–S
-	if (tag == E_TAG::GHOST && selftag== E_TAG::PLAYER && m_isActive) {
+	/*if (tag == E_TAG::GHOST && selftag== E_TAG::PLAYER && m_isActive) {
 		SceneManeger::gameScene->GameOver();
 		m_isActive = false;
-	}	
+	}*/	
 
 	//–¾‚é‚¢Š‚É—ˆ‚½
-	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY) && m_isActive && selftag == E_TAG::PLAYER) {
+	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag==E_TAG::FIGURERAY || tag== E_TAG::GOALLIGHTRAY) && m_isActive && selftag == E_TAG::PLAYER) {
 		m_darkPictureCmp->m_darkPicture->SetisVisible(false);
 	}
 }

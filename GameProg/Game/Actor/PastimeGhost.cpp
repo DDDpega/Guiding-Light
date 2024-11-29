@@ -2,6 +2,7 @@
 
 PastimeGhost::PastimeGhost(Point pos)
 	:Actor(pos)
+	, m_hitMaxLight(false)
 {
 }
 
@@ -20,6 +21,7 @@ void PastimeGhost::Initialize()
 	//ìñÇΩÇËîªíËÇÃçÏê¨
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, PASTIME_INFO::COLLISION_SIZE, E_TAG::PASTIME_GHOST));
 	Actor::AddComponent(collision);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//à√à≈íÜÇ…å©Ç¶ÇÈâÊëúÇÃê∂ê¨
@@ -51,8 +53,6 @@ void PastimeGhost::Update()
 		}
 	}
 
-
-
 	if (target == nullptr) {
 		return;
 	}
@@ -68,11 +68,18 @@ void PastimeGhost::Update()
 		m_darkPictureCmp->m_darkPicture->m_reverse = (m_vx > 0);
 	}
 
+	if (m_hitMaxLight) {
+		m_vx = m_vy = 0;
+	}
+
 	Actor::Move();
 
 	//ïœêîÇÃèâä˙âª
 	m_vy = 0;
 	m_vx = 0;
+
+	m_hitMaxLight = false;
+
 }
 
 void PastimeGhost::Draw()
@@ -83,6 +90,14 @@ void PastimeGhost::Draw()
 void PastimeGhost::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other,tag,selftag);
+
+	if (tag == E_TAG::FIGURERAY || tag == E_TAG::PLAYER_RAY) {
+		m_hitMaxLight = true;
+	}
+
+	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag == E_TAG::FIGURERAY || tag == E_TAG::GOALLIGHTRAY) && m_isActive) {
+		m_darkPictureCmp->m_darkPicture->SetisVisible(false);
+	}
 }
 
 void PastimeGhost::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
