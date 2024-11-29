@@ -16,7 +16,7 @@ void StageSelectScene::Initialize()
 	int a = Game::gameInstance->GetSoundMNG()->GetSoundLength();
 	if (Game::gameInstance->GetSoundMNG()->GetSoundLength()==0)
 	{
-		m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::TITLE], Sound::E_Sound::BGM, 0));
+		m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::STAGESELECT], Sound::E_Sound::BGM, 0));
 		Game::gameInstance->GetSoundMNG()->AddSoundList(m_bgm);
 		m_bgm->SoundPlay(Sound::LOOP);
 	}

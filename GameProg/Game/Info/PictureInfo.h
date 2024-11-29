@@ -8,6 +8,8 @@ struct PICTURE_TYPE
 	vector<int> handle;
 };
 
+constexpr int FADEFRAME = 50;
+
 namespace UI {
 	enum ALL_TYPE {
 		BACKGROUND,
@@ -17,7 +19,11 @@ namespace UI {
 	//オプションのリスト
 	_declspec(selectany)  vector<PICTURE_TYPE> ALLTYPE_LIST = {
 		// 背景
-		{ BACKGROUND,{"Picture/AllBlack.png"}},
+		{ BACKGROUND,{
+						{"Picture/AllBlack.png"},
+						{"Picture/BlackBackGround.png"}
+		}},
+
 		{ SELECT,{"Picture/stageSelectPoint1.png"}},
 	};
 }

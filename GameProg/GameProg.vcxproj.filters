@@ -395,9 +395,6 @@
     <ClInclude Include="Game\Scene\OptionScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UserInterface\CreditUI.h">
-      <Filter>Game\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Game\UserInterface\OptionUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
@@ -420,6 +417,9 @@
       <Filter>Game\Info</Filter>
     </ClInclude>
     <ClInclude Include="Game\Main\SaveDataControl.h" />
+    <ClInclude Include="Game\UserInterface\CreditUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameProg.rc">

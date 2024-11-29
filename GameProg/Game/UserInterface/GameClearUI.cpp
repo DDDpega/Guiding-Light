@@ -54,7 +54,7 @@ void GameClearUI::Update()
 	if (m_isChangeScene) {
 		if (m_csframe-- < 0) {
 			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene, m_isRightFade);
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
 
 		}
 		return;
@@ -64,7 +64,7 @@ void GameClearUI::Update()
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
 		m_isSoundPlay[0] = true;
 		if (m_nowcursor == 0) {
-			if (SceneManeger::gameScene->GetNumStage() != 3) {
+			if (SceneManeger::gameScene->GetNumStage() != 5) {
 				//ステージ番号を1つ上げる
 				SceneManeger::gameScene->SetNumStage(SceneManeger::gameScene->GetNumStage() + 1);
 				//ゲームシーンへ移行フラグをオンにする

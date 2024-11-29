@@ -18,7 +18,7 @@ void TitleVideoUI::Initialize()
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
 
 	//デモ中の画像
-	m_demoText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,100 }, 0.3, &UI::TITLE_LIST[UI::TITLE_TYPE::DEMO], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, true, true));
+	m_demoText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,100 }, 0.3, &UI::TITLE_LIST[UI::TITLE_TYPE::DEMO], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, true, false));
 	UserInterface::AddPictureInUI(m_demoText);
 
 	//ゲームスタート画像

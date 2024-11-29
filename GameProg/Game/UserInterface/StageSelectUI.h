@@ -39,10 +39,17 @@ public:
 	/// </summary>
 	/// <param name="num">ステージ番号</param>
 	void ChangeStageTitle(int num);
-private:
-	bool m_stage[20];	//ステージクリア状態
 
-	shared_ptr<Picture> m_stageArray[3];	//ステージ選択の画像
+	/// <summary>
+	/// ステージ選択時のプレイヤーのanimation管理
+	/// </summary>
+	void ArrowAnim();
+private:
+	bool m_isStageClear[20];	//ステージクリア状態
+	bool m_isStageImplement[21];	//ステージクリア状態
+
+	shared_ptr<Picture> m_stageArray[20];	//ステージ選択の画像
+	shared_ptr<Picture> m_stageLampArray[20];	//ステージ選択の画像
 	Point m_stageMarkers[3];	//ステージ選択の位置
 	shared_ptr<Picture> m_menu[2];	//メニューセレクト時の選択画像
 	shared_ptr<Picture> m_menuSelect;	//メニューセレクトの画像
@@ -52,5 +59,11 @@ private:
 	shared_ptr<Picture> m_menuIcon;		//メニューセレクトウィンドウアイコンの画像
 	shared_ptr<Picture> m_stageNum;		//ステージ番号の画像
 	shared_ptr<Picture> m_stageTitle;	//ステージのタイトルの画像
+	float m_stageDifference;			//ステージ選択画像の位置の差
+	bool m_isRight;						//ステージ選択時に右に移動するなら
+	bool m_isLeft;						//ステージ選択時に右に移動するなら
+	int m_frame;						//frame
+	int m_animCnt;						//animationの画像切り替え
+	bool m_animMax;						//animationの画像の最大になるかどうか
 };
 

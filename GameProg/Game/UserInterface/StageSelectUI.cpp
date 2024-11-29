@@ -2,7 +2,7 @@
 
 StageSelectUI::StageSelectUI()
 	:UserInterface(true, true)
-	, m_stage()
+	, m_isStageClear()
 	, m_stageArray()
 	, m_stageMarkers()
 	, m_colSelectNum(0)
@@ -20,15 +20,26 @@ void StageSelectUI::Initialize()
 {
 	UserInterface::Initialize();
 	LordFile();
+	m_isRight = false;
+	m_isLeft = false;
 
 	m_nowcursor = 1;
+	m_isStageImplement[21] = {false};
+
+	auto stageSize = SceneManeger::gameScene->GetStageSize();
+	
+
+	for (int i = 0; i < stageSize; i++) {
+		m_isStageImplement[i] = true;
+	}
+	m_isStageImplement[0] = false;
 
 	//画面の幅を取得
 	float scrX = WINDOW_INFO::GAME_WIDTH;
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
 	
 	//ステージ左
-	m_stageArray[0] = std::shared_ptr<Picture>(new Picture(Point{250,scrY / 2 + 200}, 0.4, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,false,false));
+	m_stageArray[0] = std::shared_ptr<Picture>(new Picture(Point{250,scrY / 2 + 200}, 0.4, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,true,false));
 	m_stageMarkers[0] = m_stageArray[0]->GetPos();
 	UserInterface::AddPictureInUI(m_stageArray[0]);
 
@@ -42,8 +53,28 @@ void StageSelectUI::Initialize()
 	m_stageMarkers[2] = m_stageArray[2]->GetPos();
 	UserInterface::AddPictureInUI(m_stageArray[2]);
 
+	//左右の差
+	m_stageDifference = m_stageMarkers[2].x - m_stageMarkers[1].x;
+
+	/*auto x = (scrX - 250) + m_stageDifference * (3 - 2);
+	m_stageArray[3] = std::shared_ptr<Picture>(new Picture(Point{ x  ,scrY / 2 + 200 }, 0.4, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+
+	UserInterface::AddPictureInUI(m_stageArray[3]);*/
+
+	for (int i = 3; i < size(m_stageArray); i++) {
+		m_stageArray[i]= std::shared_ptr<Picture>(new Picture(Point{ (scrX - 250)+m_stageDifference*(i-2) ,scrY / 2 + 200 }, 0.4, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+		
+		UserInterface::AddPictureInUI(m_stageArray[i]);
+	}
+
+	for (int i = 0; i < size(m_stageLampArray); i++) {
+		m_stageLampArray[i] = std::shared_ptr<Picture>(new Picture(Point{ 250 + m_stageDifference * i ,scrY / 2 + 100 }, 5, &ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+
+		UserInterface::AddPictureInUI(m_stageLampArray[i]);
+	}
+
 	//位置の調整
-	for (int i = 0; i <= 2; i++) {
+	for (int i = 0; i < 3; i++) {
 		m_stageMarkers[i].y -= 100;
 	}
 
@@ -60,7 +91,7 @@ void StageSelectUI::Initialize()
 	UserInterface::AddPictureInUI(m_menuIcon);
 
 	//キャラ
-	m_arrow = std::shared_ptr<Picture>(new Picture(m_stageMarkers[1], 6, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_PLAYER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_arrow = std::shared_ptr<Picture>(new Picture(Point{-100, m_stageMarkers[1].y }, 6, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_PLAYER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_arrow);
 
 	//黒背景
@@ -85,25 +116,92 @@ void StageSelectUI::Initialize()
 	m_fadeUI->Initialize();
 
 	m_isRightFade = Game::gameInstance->GetSceneMNG()->GetNowScene()->m_isRightFade;
-
+	m_frame = 0;
+	m_animCnt = 0;
+	m_animMax = false;
 }
 
 void StageSelectUI::Update()
 {
 	UserInterface::Update();
+	if (m_isRight) {
+		if (m_frame < 20) {
+			for (int j = 0; j < size(m_stageArray); j++) {
+				auto pos = m_stageArray[j]->GetPos();
+				pos.x -= m_stageDifference / 20;
+				m_stageArray[j]->SetPos(pos);
+				//ランプ
+				auto pos2 = m_stageLampArray[j]->GetPos();
+				pos2.x -= m_stageDifference / 20;
+				m_stageLampArray[j]->SetPos(pos2);
+			}
+			if (m_frame % 3 == 0)ArrowAnim();
+			m_frame++;
+			
+			return;
+			
+		}
+		else {
 
+			m_isRight = false;
+			m_frame = 0;
+			return;
+		}
+	}
+	else if (m_isLeft) {
+		if (m_frame < 20) {
+			for (int j = 0; j < size(m_stageArray); j++) {
+				auto pos = m_stageArray[j]->GetPos();
+				pos.x += m_stageDifference / 20;
+				m_stageArray[j]->SetPos(pos);
+				//ランプ
+				auto pos2 = m_stageLampArray[j]->GetPos();
+				pos2.x += m_stageDifference / 20;
+				m_stageLampArray[j]->SetPos(pos2);
+			}
+			if (m_frame % 3 == 0)ArrowAnim();
+			m_frame++;
+			return;
+		}
+		else {
+
+			m_isLeft = false;
+			m_frame = 0;
+			return;
+		}
+	}
 	
-
+	
+	//フェード
 	if (m_isChangeScene) {
 		m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
 		if (m_csframe-- < 0) {
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene,m_isRightFade);
-
 		}
 		return;
 	}
-	m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
+	if (!m_firstFade&&m_csframe-- >= 0) {
+		m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
+	}
+	else if(!m_firstFade){
+		m_firstFade = true;
+		m_csframe = FADEFRAME;
+	}
+	
+	//プレイヤー移動
+	if (m_arrow->GetPos().x < m_stageMarkers[1].x) {
+		if (m_frame % 3 == 0)ArrowAnim();
+		m_frame++;
+		auto pos = m_arrow->GetPos();
+		pos.x += 10;
+		m_arrow->SetPos(pos);
+		return;
+	}
+	else {
+		m_frame = 0;
+		m_arrow->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 0);
+	}
 
 	//メニューセレクト画面でキャンセルを押したとき
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
@@ -193,6 +291,8 @@ void StageSelectUI::Update()
 					m_isSoundPlay[2] = true;
 					//カーソルを下にずらす
 					m_nowcursor++;
+					m_isRight = true;
+					m_arrow->m_reverse = false;
 				}
 			}
 			if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
@@ -200,6 +300,8 @@ void StageSelectUI::Update()
 					m_isSoundPlay[2] = true;
 					//カーソルを上にずらす
 					m_nowcursor--;
+					m_isLeft = true;
+					m_arrow->m_reverse = true;
 				}
 			}
 		}
@@ -257,37 +359,48 @@ void StageSelectUI::Draw()
 
 	//-1している理由は1つ右に描画しているため
 	//+2している理由は右に二つステージ選択画像を用意するため
-	auto j = 0;
 	for (int i = m_nowcursor-1; i < m_nowcursor + 2; i++) {
 		//カーソルの位置を光らす
-		if (m_stage[i] == true) {
-			m_stageArray[j]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
+		if (m_isStageClear[i] == true) {
+			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
+			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT],1);
 		}
 		else {
-			m_stageArray[j]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
+			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
+			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
 		}
-		j++;
 	}
 
-	//選択されているステージが0なら
-	if (m_nowcursor == 1) {
-		//左を消す
-		m_stageArray[0]->SetisVisible(false);
-		
+	if (!m_isStageImplement[m_nowcursor - 1]) {
+		m_stageArray[m_nowcursor - 1]->SetisVisible(false);
+		m_stageLampArray[m_nowcursor - 1]->SetisVisible(false);
 	}
-	//選択されているステージが20なら
-	else if(m_nowcursor == 5){
-		//右を消す
-		m_stageArray[2]->SetisVisible(false);
-		
+	for (int i = m_nowcursor+1;i< size(m_stageArray); i++) {
+		if (!m_isStageImplement[i] && m_nowcursor != 20) {
+			m_stageArray[i]->SetisVisible(false);
+			m_stageLampArray[i]->SetisVisible(false);
+		}
 	}
+
+	////選択されているステージが1なら
+	//if (m_nowcursor == 1) {
+	//	//左を消す
+	//	m_stageArray[0]->SetisVisible(false);
+	//	
+	//}
+	////選択されているステージが20なら
+	//else if(m_nowcursor == 5){
+	//	//右を消す
+	//	m_stageArray[2]->SetisVisible(false);
+	//	
+	//}
 	//それ以外の時は全てを表示する
-	else {
+	/*else {
 		for (auto& array : m_stageArray) {
 			array->SetisVisible(true);
 		
 		}
-	}
+	}*/
 
 }
 
@@ -342,7 +455,7 @@ void StageSelectUI::LordFile()
 			}
 		}
 		//代入する
-		m_stage[r] = stageClear;
+		m_isStageClear[r] = stageClear;
 	}
 	//もしも読み込める行がないならば終了
 	if (ifs.eof()) {
@@ -421,5 +534,23 @@ void StageSelectUI::ChangeStageTitle(int num)
 
 	default:
 		break;
+	}
+}
+
+void StageSelectUI::ArrowAnim()
+{
+	m_arrow->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_animCnt);
+	
+	if (m_animCnt + 2 > 5) {
+		m_animMax = true;
+	}
+	else if (m_animCnt - 2 < 0) {
+		m_animMax = false;
+	}
+	if (m_animMax) {
+		m_animCnt -= 2;
+	}
+	else {
+		m_animCnt += 2;
 	}
 }

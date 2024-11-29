@@ -26,7 +26,7 @@ namespace SOUND {
 
 		//‰æ–Ê”ä—¦
 		{ TITLE,		{"Sound/BGM/GL_BGM_Title.wav"}},
-		{ STAGESELECT,	{"Sound/BGM/GL_BGM_Title.wav" }},
+		{ STAGESELECT,	{"Sound/BGM/GL_BGM_StageSelect.wav" }},
 		{ STAGE,		{"Sound/BGM/GL_BGM_Stage.wav" }},
 
 	};

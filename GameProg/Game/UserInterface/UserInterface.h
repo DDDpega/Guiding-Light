@@ -53,6 +53,7 @@ protected:
 	
 	bool m_isChangeScene;				//シーンを変更するかどうか
 	int m_csframe;						//シーンを変更時の待ちframe
+	bool m_firstFade;					//シーンが切り替わったときのフェードが終わったかどうか
 
 	E_SCENE m_scene;					//変更するシーン
 

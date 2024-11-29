@@ -50,6 +50,12 @@ public:
 	const Map::Info m_mapInfo;    //ステージのマップ情報配列
 
 	/// <summary>
+	/// 実装中のステージ数の取得
+	/// </summary>
+	/// <returns></returns>
+	int GetStageSize() { return size(m_stages); }
+
+	/// <summary>
 	/// MapInfoのゲッター
 	/// </summary>
 	/// <param name="num">配列の数字</param>

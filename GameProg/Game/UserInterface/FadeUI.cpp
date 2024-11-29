@@ -55,12 +55,12 @@ void FadeUI::Reset()
 void FadeUI::MoveFeed(bool IsFadeIn, bool IsRight)
 {
 	if (m_csframe < 0) {
-		m_csframe = 30;
+		m_csframe = FADEFRAME;
 	}
 	if (!m_isInitialize) {
 		m_isInitialize = true;
 		m_feedLeft->SetPos(Point{ -2000, 0 });
-		m_feedRight->SetPos(Point{ 0, 0 });
+		m_feedRight->SetPos(Point{ -500, 0 });
 		//右にスライド(はじまり)
 		if (IsFadeIn&& IsRight) {
 			m_feedLeft->SetisVisible(true);
@@ -81,7 +81,7 @@ void FadeUI::MoveFeed(bool IsFadeIn, bool IsRight)
 		else if (!IsFadeIn && !IsRight) {
 
 
-			m_feedLeft->SetPos(Point{ 0, 0 });
+			m_feedLeft->SetPos(Point{ 1280, 0 });
 			m_feedLeft->SetisVisible(true);
 			m_feedRight->SetisVisible(false);
 		}

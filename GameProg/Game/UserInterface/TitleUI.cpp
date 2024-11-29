@@ -3,7 +3,7 @@
 TitleUI::TitleUI(bool isFirst)
 	:UserInterface(true,true)
 	, m_isMenuActive(false)
-	, m_isFirst(isFirst)
+	
 {
 
 }
@@ -16,6 +16,7 @@ TitleUI::~TitleUI()
 void TitleUI::Initialize()
 {
 	UserInterface::Initialize();
+	m_isFirst = true;
 
 	if (!Game::gameInstance->GetStatus()->GAME_NORMAL) {
 		SaveDataControl::saveData->SaveDeleteData();
@@ -76,9 +77,9 @@ void TitleUI::Initialize()
 	//フォントの描画
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 20, 1);
 
-	m_fadeUI = shared_ptr<FadeUI>(new FadeUI(m_isFirst));
-	m_fadeUI->Initialize();
-
+	m_fadeUI = std::shared_ptr<Picture>(new Picture(Point{ 0,0 }, 5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 1, E_PIVOT::LEFTUP, E_SORT::SORT_UI,true,true));
+	UserInterface::AddPictureInUI(m_fadeUI);
+	m_fadeUI->SetAlpha(255);
 }
 
 void TitleUI::Update()
@@ -89,8 +90,8 @@ void TitleUI::Update()
 
 	if (m_isChangeScene) {
 
-		m_fadeUI->MoveFeed(m_isFeedIn, true);
-		if (m_csframe-- < 0) {
+		FadeInOut(false);
+		if (m_isFirst) {
 			
 			//ゲームシーンへ移行フラグをオンにする
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
@@ -99,8 +100,8 @@ void TitleUI::Update()
 		return;
 	}
 
-	if (!m_isFirst) {
-		m_fadeUI->MoveFeed(m_isFeedIn, false);
+	if (m_isFirst) {
+		FadeInOut(true);
 	}
 
 
@@ -127,7 +128,7 @@ void TitleUI::Update()
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
 			m_isFeedIn = false;
-			m_fadeUI->Reset();
+		
 			m_scene = E_SCENE::STAGESELECT;
 			//元に戻す
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -193,5 +194,38 @@ void TitleUI::Draw()
 	if (m_startText[0]->m_alpha <= 0 || m_startText[0]->m_alpha >= 255) {
 		m_add *= -1;
 	}
-	m_startText[0]->SetAlpha(m_startText[0]->m_alpha);
+	//m_startText[0]->SetAlpha(m_startText[0]->m_alpha);
+}
+
+void TitleUI::FadeInOut(bool isFadeIn) 
+{
+	auto alpha = 255 / 30;
+	if (m_csframe <= -1) {
+		m_csframe = FADEFRAME;
+	}
+	
+	if (isFadeIn) {
+		if (m_csframe >= 0)
+		{
+			m_fadeUI->m_alpha = alpha * m_csframe;
+		}
+		if (m_csframe <= 0) {
+			m_isFirst = false;
+			m_csframe = FADEFRAME;
+			return;
+		}
+	}
+	else {
+		if (m_csframe >= 0)
+		{
+			m_fadeUI->m_alpha = alpha * (50 -m_csframe);
+		}
+		if (m_csframe <= 0) {
+			m_isFirst = true;
+			m_csframe = FADEFRAME;
+			return;
+		}
+	}
+	
+	m_csframe--;
 }
