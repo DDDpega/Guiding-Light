@@ -39,12 +39,13 @@ void PastimeGhost::Update()
 	auto goalLightList = SceneManeger::gameScene->m_goalLightList;
 
 	SceneManeger::gameScene->m_goalLightList.clear();
-	for (int i = 0; i < goalLightList.size(); i++) {
-		if (goalLightList[i]->m_lightCmp->m_lightOn) {
-			SceneManeger::gameScene->m_goalLightList.push_back(goalLightList[i]);
+	if (!goalLightList.empty()) {
+		for (int i = 0; i < goalLightList.size(); i++) {
+			if (goalLightList[i]->m_lightCmp->m_lightOn) {
+				SceneManeger::gameScene->m_goalLightList.push_back(goalLightList[i]);
+			}
 		}
 	}
-
 	//現在電気がついているもののリストを回す
 	for (int i = 0; i < goalLightList.size(); i++) {
 		if (goalLightList[i]->m_lightCmp->m_lightOn) {
