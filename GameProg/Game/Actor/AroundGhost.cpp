@@ -84,6 +84,8 @@ void AroundGhost::Update()
 		if (figureList[i]->m_lightOn) {
 			m_otherTarget = true;
 			m_targetPos = figureList[i]->GetPos();
+			m_targetPos.y -= 80;
+
 			speed = Game::gameInstance->GetStatus()->AROUND_GHOST_TARGET_SPEED;
 			break;
 		}

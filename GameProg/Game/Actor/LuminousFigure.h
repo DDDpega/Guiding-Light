@@ -53,5 +53,6 @@ protected:
 	bool m_shareNow;	//ƒ‰ƒCƒg‚ğ—^‚¦‚Ä‚¢‚éÅ’†‚©‚Ç‚¤‚©
 	shared_ptr<Sound>	m_figureSound;
 	E_FIGUA_MOVE m_figuaMove;
+	bool m_isChargeStop;
 };
 

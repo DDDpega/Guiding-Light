@@ -254,10 +254,10 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other, tag,selftag);
 
 	//éÄñS
-	/*if (tag == E_TAG::GHOST && selftag== E_TAG::PLAYER && m_isActive) {
+	if (tag == E_TAG::GHOST && selftag== E_TAG::PLAYER && m_isActive) {
 		SceneManeger::gameScene->GameOver();
 		m_isActive = false;
-	}*/	
+	}	
 
 	//ñæÇÈÇ¢èäÇ…óàÇΩ
 	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag==E_TAG::FIGURERAY || tag== E_TAG::GOALLIGHTRAY) && m_isActive && selftag == E_TAG::PLAYER) {

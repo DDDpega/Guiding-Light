@@ -23,7 +23,7 @@ void LuminousFigure::Initialize()
 	//当たり判定の作成
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, LUMINOUSFIGURE_INFO::COLLISION_SIZE, E_TAG::LUMINOUSFIGURE));
 	Actor::AddComponent(collision);
-	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 
 	//ライトコンポーネントの作成
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->FIGURE_LIGHT,E_TAG::FIGURERAY));
@@ -52,32 +52,42 @@ void LuminousFigure::Update()
 		//供給されたら
 		if (m_shareNow) {
 			m_time = 0;
-			m_figuaMove = E_FIGUA_MOVE::SLOWLY_UP;
-			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::FIGUA], 1);
-
+			m_isChargeStop = false;
+			m_figuaMove = E_FIGUA_MOVE::CHARGE;
 		}
 		break;
-	case E_FIGUA_MOVE::SLOWLY_UP:
+	case E_FIGUA_MOVE::CHARGE:
 		
-		//タイムを増やす
-		++m_time;
-		m_lightCmp->m_nowLightSize += ((float)m_lightCmp->m_lightSize / 60.0f);
+		if (m_shareNow) {
 
-		//1秒経ったら
-		if (m_time >= 60) {
+			//タイムを増やす
+			++m_time;
+			m_lightCmp->m_nowLightSize += ((float)m_lightCmp->m_lightSize / 30.0f);
 
-			//ライトをつける
-			m_lightCmp->ChangeLightONOFF();
-			m_lightOn = true;
+			//1秒経ったら
+			if (m_time >= 30) {
 
-			//リストに含む
-			SceneManeger::gameScene->m_figureList.push_back(this);
-			m_figureSound->SoundPlay();
+				//ライトをつける
+				m_lightCmp->ChangeLightONOFF();
+				m_lightOn = true;
 
-			m_time = 0;
-			m_figuaMove = E_FIGUA_MOVE::LIGHTNING;
+				m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::FIGUA], 1);
 
+				//リストに含む
+				SceneManeger::gameScene->m_figureList.push_back(this);
+				m_figureSound->SoundPlay();
+
+				m_time = 0;
+				m_figuaMove = E_FIGUA_MOVE::LIGHTNING;
+
+			}
 		}
+		else {
+			m_time = 30 - m_time-1;
+			m_figuaMove=E_FIGUA_MOVE::SLOWLY_DOWN;
+			m_isChargeStop = true;
+		}
+
 		break;
 	case E_FIGUA_MOVE::LIGHTNING:
 
@@ -95,14 +105,17 @@ void LuminousFigure::Update()
 
 		//タイムを増やす
 		++m_time;
-		m_lightCmp->m_nowLightSize -= ((float)m_lightCmp->m_lightSize / 60.0f);
+		m_lightCmp->m_nowLightSize -= ((float)m_lightCmp->m_lightSize / 30.0f);
+		
 
 		//ライトを消す
-		if (m_time >= 60) {
+		if (m_time >= 30) {
 			m_lightOn = false;
 			m_lightCmp->m_nowLightSize = 0;
 
-			m_lightCmp->ChangeLightONOFF();
+			if (!m_isChargeStop) {
+				m_lightCmp->ChangeLightONOFF();
+			}
 		
 			m_time = 0;
 			m_figuaMove = E_FIGUA_MOVE::NONE;
@@ -111,6 +124,8 @@ void LuminousFigure::Update()
 		break;
 
 	}
+
+	m_shareNow = false;
 }
 
 void LuminousFigure::Draw()
@@ -125,14 +140,12 @@ void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::PLAYER && SceneManeger::gameScene->GetPlayer()->GetLightOn()) {
+	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn()) {
 		m_shareNow = true;
 	}
 }
 
 void LuminousFigure::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
-	if (tag == E_TAG::PLAYER) {
-		m_shareNow = false;
-	}
+
 }
