@@ -43,6 +43,7 @@ public:
 
 	shared_ptr<LightCmp> m_lightCmp;
 	bool m_pastimeGhostTought;
+	bool m_pastimeGhostFirshIndex;
 
 
 protected:

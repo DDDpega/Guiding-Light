@@ -18,6 +18,7 @@ void GoalLight::Initialize()
 
 	m_isLightOn = false;
 	m_pastimeGhostTought = false;
+	m_pastimeGhostFirshIndex = false;
 	m_pastimeToughtTime = 0;
 
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,E_TAG::GOALLIGHTRAY,ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHTRED]));
@@ -109,14 +110,14 @@ void GoalLight::Update()
 		break;
 	case E_GOAL_LIGHT_MOVE::LIGHTNING:
 
-		++m_time;
+		//++m_time;
 
-		//タイムがマックスになったら
-		if (m_time >= m_maxTime) {
-			m_time = 0;
-			m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
-			break;
-		}
+		////タイムがマックスになったら
+		//if (m_time >= m_maxTime) {
+		//	m_time = 0;
+		//	m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
+		//	break;
+		//}
 
 		if (m_pastimeGhostTought) {
 			++m_pastimeToughtTime;
@@ -141,6 +142,8 @@ void GoalLight::Update()
 			m_lightCmp->ChangeLightONOFF();
 			SceneManeger::gameScene->LightNumChange(1);
 			m_moveType = E_GOAL_LIGHT_MOVE::NONE;
+
+			m_pastimeGhostFirshIndex = false;
 
 			//画像を変更する
 			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 0);
@@ -169,7 +172,7 @@ void GoalLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 		m_isHit = true;
 	}
 
-	if (tag == E_TAG::PASTIME_GHOST) {
+	if (tag == E_TAG::PASTIME_GHOST && m_pastimeGhostFirshIndex) {
 		m_pastimeGhostTought = true;
 	}
 }

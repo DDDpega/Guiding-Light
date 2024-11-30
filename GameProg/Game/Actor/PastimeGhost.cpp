@@ -50,6 +50,7 @@ void PastimeGhost::Update()
 	for (int i = 0; i < goalLightList.size(); i++) {
 		if (goalLightList[i]->m_lightCmp->m_lightOn) {
 			target = goalLightList[i];
+			goalLightList[i]->m_pastimeGhostFirshIndex = true;
 			break;
 		}
 	}

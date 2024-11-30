@@ -91,8 +91,17 @@ void LuminousFigure::Update()
 		break;
 	case E_FIGUA_MOVE::LIGHTNING:
 
-		//タイムを増やす
-		++m_time;
+
+		if (m_shareNow) {
+			if (m_time != 0) {
+				--m_time;
+			}
+
+		}
+		else{
+			//タイムを増やす
+			++m_time;
+		}
 
 		//タイムがマックスタイムまで到達したら
 		if (m_time >= m_maxTime) {
