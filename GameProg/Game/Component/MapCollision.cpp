@@ -7,6 +7,20 @@ MapCollision::MapCollision(Actor* actor, E_TAG tag)
 {}
 
 //マップチップが移動可能かチェックするメソッド
+void MapCollision::CheckPuddle(int col, int row, E_TAG tag)
+{
+	if (tag != E_TAG::PLAYER)return;
+	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
+	if (chipNo == MAPCHIPINFO::PUDDLE) {
+		SceneManeger::gameScene->GetPlayer()->SetChangePuddleSound(true);
+	}
+	else {
+		SceneManeger::gameScene->GetPlayer()->SetChangePuddleSound(false);
+	}
+
+}
+
+//マップチップが移動可能かチェックするメソッド
 // ture = 移動不可能
 bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 {
@@ -27,7 +41,7 @@ bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 	else if (isFly) {
 		return false;
 	}
-	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2 ||chipNo == MAPCHIPINFO::FLOOR ||(chipNo == MAPCHIPINFO::LAUNCH && isTrigger)|| (chipNo == MAPCHIPINFO::LAUNCH2 && !isTrigger)) {
+	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2 ||chipNo == MAPCHIPINFO::FLOOR||chipNo==MAPCHIPINFO::PUDDLE ||(chipNo == MAPCHIPINFO::LAUNCH && isTrigger)|| (chipNo == MAPCHIPINFO::LAUNCH2 && !isTrigger)) {
 		return true;
 	}
 	else {
@@ -102,11 +116,11 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 	else {
 		left = rect.left / mapChipSize;
 	}
-	const int top = rect.top / mapChipSize;
-	const int right = (rect.right - 1) / mapChipSize;
-	const int bottom = (rect.bottom - 1) / mapChipSize;
-	const int middle_x = pos2.x / mapChipSize;
-	const int middle_y = pos2.y / mapChipSize;
+	int top = rect.top / mapChipSize;
+	int right = (rect.right - 1) / mapChipSize;
+	int bottom = (rect.bottom - 1) / mapChipSize;
+	int middle_x = pos2.x / mapChipSize;
+	int middle_y = pos2.y / mapChipSize;
 
 
 	auto middleBottomNum = SceneManeger::gameScene->m_map->getChipNo(middle_x, bottom);
@@ -122,6 +136,8 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 	auto rightBottom = CheckMapChip(right, bottom);
 	auto middleTop = CheckMapChip(middle_x, top);
 	auto middleBottom = CheckMapChip(middle_x, bottom,isFlayChk);
+
+	
 
 	auto bottmLadder = false;
 	if (middleBottomNum == 7 || rightBottomNum == 7 || leftBottomNum == 7)
@@ -179,10 +195,31 @@ bool MapCollision::CheckMapCollide(E_TAG tag, Point pos, float dx, float dy, con
 
 	}
 
+	rect = Game::gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->GetChangeCollision(pos2);
+
+	//チップ単位の四隅の位置
+	if (rect.left < 0) {
+		left = -1;
+	}
+	else {
+		left = rect.left / mapChipSize;
+	}
+	right = (rect.right - 1) / mapChipSize;
+	bottom = (rect.bottom - 1) / mapChipSize;
+	middle_x = pos2.x / mapChipSize;
+	
+
 	if (result) {
 		m_actor->SetPos(pos2);
 		Game::gameInstance->GetCollisionMNG()->GetCollisionActor(tag)->ChangeCollision();
+		bottom++;
 	}
+
+	
+	//水たまりチェック
+	CheckPuddle(middle_x, bottom, tag);
+	CheckPuddle(right, bottom, tag);
+	CheckPuddle(left, bottom, tag);
 
 	return result;
 }

@@ -15,7 +15,7 @@ void Puddle::Initialize()
 	Actor::Initialize();
 
 	//画像コンポーネント
-	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PUDDLE_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::FIGUA], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, PUDDLE_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::PUDDLE], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
 	//当たり判定の作成
@@ -40,10 +40,7 @@ void Puddle::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	//プレイヤーが光らせていたら
-	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn()){
-		SceneManeger::gameScene->GameOver();
-	}
+
 }
 
 void Puddle::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)

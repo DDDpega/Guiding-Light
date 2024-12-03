@@ -64,7 +64,9 @@ namespace SOUND {
 	_declspec(selectany) vector<SOUND_TYPE> PLAYERSE_LIST = {
 
 		//–¼‘O
-		{ MOVE ,	{"Sound/SE/PlayerSE/GL_SE_Move.wav"}},
+		{ MOVE ,	{{"Sound/SE/PlayerSE/GL_SE_Move.wav"},
+					{"Sound/SE/PlayerSE/GL_SE_Jump.wav"}
+					}},
 		{ JUMP ,	{"Sound/SE/PlayerSE/GL_SE_Jump.wav"}},
 		{ LIGHT ,	{"Sound/SE/PlayerSE/GL_SE_Lights.wav"}},
 

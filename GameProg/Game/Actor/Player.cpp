@@ -116,6 +116,18 @@ void Player::Update()
 
 	}
 
+	//移動時の音声を出力
+	if ((isClick_x) && m_rigidBody->m_state == STATE::WALK) {
+		if (m_soundFrame[1]-- < 0) {
+			m_sound[2]->SoundPlay(Sound::BACK);
+			m_soundFrame[1] = PLAYER_INFO::MOVEFRAME;
+		}
+	}
+	else {
+		m_sound[2]->SoundStop();
+		m_soundFrame[1] = 0;
+	}
+
 	//左右の操作がされ、ジャンプ・梯子状態ではない時
 	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL && m_rigidBody->m_state != STATE::FLY) {
 		m_rigidBody->ChangeState(STATE::WALK);
@@ -286,5 +298,15 @@ void Player::SetisLadder(int num, bool isladder)
 		if (ladder.num == num) {
 			ladder.isLadder = isladder;
 		}
+	}
+}
+
+void Player::SetChangePuddleSound(bool isPuddle)
+{
+	if (isPuddle) {
+		m_sound[2]->ChangeSound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE],1);
+	}
+	else {
+		m_sound[2]->ChangeSound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE], 0);
 	}
 }

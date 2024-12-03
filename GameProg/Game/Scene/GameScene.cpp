@@ -184,12 +184,13 @@ void GameScene::Initialize()
 			Game::gameInstance->GetActorMNG()->AddActor(pisher);
 		}
 
-		////êÖÇΩÇ‹ÇË
-		//if (!actorPos.m_isGet && actorPos.m_mapChipNum == 12) {
-		//	actorPos.m_isGet = true;
-		//	auto puddle = shared_ptr<Puddle>(new Puddle(actorPos.m_mapChipPos));
-		//	Game::gameInstance->GetActorMNG()->AddActor(puddle);
-		//}
+		//êÖÇΩÇ‹ÇË
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PUDDLE) {
+			actorPos.m_isGet = true;
+			auto puddle = shared_ptr<Puddle>(new Puddle(actorPos.m_mapChipPos));
+			puddle->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(puddle);
+		}
 
 		//ÉhÉA
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::DOOR) {

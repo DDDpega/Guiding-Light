@@ -66,6 +66,12 @@ public:
 
 	void SetisLadder(int num, bool isladder);
 
+	/// <summary>
+	/// …‚½‚Ü‚è‚Ì‰¹‚ğ•Ï‚¦‚é
+	/// </summary>
+	/// <param name="isPuddle"></param>
+	void SetChangePuddleSound(bool isPuddle);
+
 
 	bool m_isGoalLight_Tought;	//ƒS[ƒ‹ƒ‰ƒCƒg‚Ìì‹Æ’†‚©‚Ç‚¤‚©
 

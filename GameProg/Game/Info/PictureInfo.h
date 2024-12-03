@@ -333,6 +333,7 @@ namespace ILLUST {
 		GOAST_AROUND_EYE,
 		GOAST_PASTIME,
 		GOAST_PASTIME_EYE,
+		PUDDLE,
 		/*PISHER,*/
 		/*PISHER_EYE,*/
 		LADDER,
@@ -362,6 +363,7 @@ namespace ILLUST {
 		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
 		//}},
 		/*{PISHER_EYE,{"Picture/Illust/Gimmick/GL_Gimmick_Pisher3.png"}},*/
+		{PUDDLE , {"Picture/Illust/Gimmick/GL_Gimmick_Puddle.png"}},
 		{LADDER , {"Picture/Illust/Gimmick/GL_Gimmick_Ladder.png"}},
 		{SOLARPANEL , {"Picture/Illust/Gimmick/GL_Gimmick_SolarPanel.png"}},
 		{SOLARPANEL_BLOCK , {
