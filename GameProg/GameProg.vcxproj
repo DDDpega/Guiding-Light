@@ -23,6 +23,7 @@
     <ClCompile Include="Game\Actor\ActorManager.cpp" />
     <ClCompile Include="Game\Actor\AroundGhost.cpp" />
     <ClCompile Include="Game\Actor\BackGround.cpp" />
+    <ClCompile Include="Game\Actor\Curtains.cpp" />
     <ClCompile Include="Game\Actor\Door.cpp" />
     <ClCompile Include="Game\Actor\GoalLight.cpp" />
     <ClCompile Include="Game\Actor\Ladder.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="Game\Actor\ActorManager.h" />
     <ClInclude Include="Game\Actor\AroundGhost.h" />
     <ClInclude Include="Game\Actor\BackGround.h" />
+    <ClInclude Include="Game\Actor\Curtains.h" />
     <ClInclude Include="Game\Actor\Door.h" />
     <ClInclude Include="Game\Actor\GoalLight.h" />
     <ClInclude Include="Game\Actor\Ladder.h" />

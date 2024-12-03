@@ -218,6 +218,9 @@
       <Filter>Game\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Game\Main\SaveDataControl.cpp" />
+    <ClCompile Include="Game\Actor\Curtains.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -419,6 +422,9 @@
     <ClInclude Include="Game\Main\SaveDataControl.h" />
     <ClInclude Include="Game\UserInterface\CreditUI.h">
       <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\Curtains.h">
+      <Filter>Game\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -92,6 +92,7 @@ using namespace std;
 #include "RayCast.h"
 #include "Puddle.h"
 #include "Door.h"
+#include "Curtains.h"
 #include "ActorManager.h"
 
 
