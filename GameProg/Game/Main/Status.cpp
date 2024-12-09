@@ -80,6 +80,9 @@ bool Status::ReadStatus()
 		case 'D':
 			PASTIME_GHOST_SPEED = std::stof(line.substr(postion));
 			break;
+		case 'E':
+			SENSITIVE_GHOST_SPEED = std::stof(line.substr(postion));
+			break;
 		}
 
 		rowNum++;

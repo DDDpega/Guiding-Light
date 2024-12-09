@@ -22,6 +22,7 @@ void LightCmp::Initialize()
 {
 	Component::Initialize();
 
+
 	//Œõ‚Ì•`‰æ
 	m_lightPicture = shared_ptr<Picture>(new Picture(m_actor->GetPos(), m_lightSize*0.004, &m_pictureType, 0, E_PIVOT::CENTER, E_SORT::SORT_LIGHT, true));
 	m_lightPicture->Initialize();
@@ -34,7 +35,7 @@ void LightCmp::Initialize()
 	//Œõ‚ðÁ‚µ‚Ä‚¨‚­
 	m_lightOn = false;
 	m_nowLightSize = 0;
-	m_ray->Run(m_actor->GetPos(), 0);
+	m_ray->RunCircle(m_actor->GetPos(), 0);
 
 }
 
@@ -67,7 +68,7 @@ void LightCmp::Update()
 
 		
 		//ƒŒƒC‚ð”ò‚Î‚·
-		m_ray->Run( actorPos, m_nowLightSize);
+		m_ray->RunCircle( actorPos, m_nowLightSize);
 	}
 	else {
 		for (int i = 0; i < 20; i++) {
@@ -80,7 +81,7 @@ void LightCmp::Update()
 		}
 
 		//ƒŒƒC‚ð”ò‚Î‚·
-		m_ray->Run(actorPos, m_nowLightSize);
+		m_ray->RunCircle(actorPos, m_nowLightSize);
 	}
 }
 
@@ -92,6 +93,7 @@ void LightCmp::Draw()
 
 		if (GAME_INFO::DEBUG && m_ray->m_isRayStart) {
 			DrawLine(m_actor->GetPos().x, m_actor->GetPos().y, m_ray->rayPos[i].x, m_ray->rayPos[i].y, GetColor(100, 100, 100));
+	
 		}
 	}
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-class RayCast : public Actor
+class LineRayCast : public Actor
 {
 public:
 
@@ -8,12 +8,12 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	/// <param name="pos"></param>
-	RayCast(Point pos,E_TAG tag);
+	LineRayCast(Point pos, E_TAG tag);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~RayCast();
+	virtual ~LineRayCast();
 
 	/// <summary>
 	/// 初期化処理
@@ -30,17 +30,14 @@ public:
 	/// </summary>
 	void Draw();
 
-	void RunCircle(Point pos, int radius);
-	void RunLine(Point pos,int size);
+	void Run(Point pos, int radius);
 
 	/// <summary>
 	/// れいをとばす
 	/// </summary>
 	/// <returns></returns>
-	static void RayStartCircle(Point pos, int radius,RayCast& ray);
-	static void RayStartLine(Point pos, int size, RayCast& ray);
+	static void RayStart(Point pos, int radius, RayCast& ray);
 
-	void SetParamLine(E_LINE_KIND lineKind);
 
 	/// <summary>
 	/// 衝突処理
@@ -54,20 +51,5 @@ public:
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
-
-	E_TAG m_tag;
-	bool m_isRayStart;
-	bool m_isNowRayCast;
-
-	vector<Point> rayPos;
-	Point linePos;
-	vector<bool> m_ismapHit;
-
-private:
-	Point m_targetPos;
-	int frame;
-	int m_moveradius;
-	float m_rad;
-	E_LINE_KIND m_lineKind;
-
 };
+

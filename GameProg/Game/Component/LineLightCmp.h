@@ -1,14 +1,11 @@
 #pragma once
 
-
-class LightCmp : public Component
+class LineLightCmp : public Component
 {
 public:
-	LightCmp(Actor* actor, bool lightOn,float lightSize,E_TAG tag=E_TAG::RAY, PICTURE_TYPE pictureType= ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::LIGHT]);
+	LineLightCmp(Actor* actor, bool lightOn, E_LINE_KIND lineKind, E_TAG tag = E_TAG::RAY, PICTURE_TYPE pictureType = ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::LINELIGHT]);
 
-
-
-	virtual ~LightCmp();
+	virtual ~LineLightCmp();
 
 	/// <summary>
 	/// èâä˙âªèàóù
@@ -30,19 +27,13 @@ public:
 	/// </summary>
 	void ChangeLightONOFF();
 
-
-	bool m_changeNow = false;
-
 	bool m_lightOn;
 	shared_ptr<RayCast> m_ray;
 	shared_ptr<Picture> m_lightPicture;
 	int m_lightSize;
 	float m_nowLightSize;
-
-protected:
-	Point targetPos;
-	int m_framecnt;
-	E_TAG m_rayTag;
 	PICTURE_TYPE m_pictureType;
+	bool m_changeNow = false;
+	E_LINE_KIND m_lineKind;
 };
 

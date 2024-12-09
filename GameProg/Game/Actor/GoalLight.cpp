@@ -91,6 +91,10 @@ void GoalLight::Update()
 			m_isLightOn = true;
 			m_goalLightSound->SoundPlay();
 
+			//リストに含む
+			SceneManeger::gameScene->m_goalLightList.push_back(this);
+
+
 			//ゲームシーンに通知を送る
 			SceneManeger::gameScene->LightNumChange(-1);
 
@@ -100,9 +104,6 @@ void GoalLight::Update()
 
 			//プレイヤーの動作を許可する
 			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = false;
-
-			//リストに含む
-			SceneManeger::gameScene->m_goalLightList.push_back(this);
 
 			m_pastimeToughtTime = 0;
 			m_pastimeGhostTought = false;
@@ -158,6 +159,9 @@ void GoalLight::Update()
 
 void GoalLight::Draw()
 {
+	Actor::Draw();
+
+
 	if (GAME_INFO::DEBUG) {
 		DrawFormatStringFToHandle(m_pos.x - 70, m_pos.y - 50, GetColor(255, 255, 255), m_fontHandle, "%d:%d",m_moveType,m_time);
 	}

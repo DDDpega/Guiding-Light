@@ -221,6 +221,24 @@
     <ClCompile Include="Game\Actor\Curtains.cpp">
       <Filter>Game\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Actor\SpotLight.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Main\LineRayCast.cpp">
+      <Filter>Game\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\LineLightCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Actor\SensitiveGhost.cpp">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\OnSoundCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\ClearLightCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -425,6 +443,24 @@
     </ClInclude>
     <ClInclude Include="Game\Actor\Curtains.h">
       <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\SpotLight.h">
+      <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Main\LineRayCast.h">
+      <Filter>Game\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\LineLightCmp.h">
+      <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\SensitiveGhost.h">
+      <Filter>Game\Actor\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\OnSoundCmp.h">
+      <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\ClearLightCmp.h">
+      <Filter>Game\Component\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

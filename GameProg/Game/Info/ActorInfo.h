@@ -52,6 +52,11 @@ namespace CHASE_INFO {
 	constexpr Point COLLISION_SIZE = { 40*0.5f,40 * 0.5f };
 }
 
+namespace SPOTLIGHT_INFO {
+	constexpr float SIZE = 2.5;
+	constexpr Point COLLISION_SIZE = { 40 * 1.0f,40 * 1.0f };
+}
+
 /// <summary>
 /// èÑâÒÇÃèÓïÒ
 /// </summary>
@@ -65,7 +70,15 @@ namespace AROUND_INFO {
 /// </summary>
 namespace PASTIME_INFO {
 	constexpr float SIZE = 2.5f;
-	constexpr Point COLLISION_SIZE = { 40 * 0.5f,80*0.5f };
+	constexpr Point COLLISION_SIZE = { 40 * 0.5f,40*1.0f };
+}
+
+/// <summary>
+/// ïqä¥ÇÃèÓïÒ
+/// </summary>
+namespace SENSITIVE_INFO {
+	constexpr float SIZE = 2.5f;
+	constexpr Point COLLISION_SIZE = { 40 * 0.5f,40 * 1.0f };
 }
 
 /// <summary>

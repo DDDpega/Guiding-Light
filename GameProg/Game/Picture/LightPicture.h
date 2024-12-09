@@ -33,11 +33,15 @@ public:
 	/// ƒ‰ƒCƒg‚ð’Ç‰Á‚·‚é
 	/// </summary>
 	void AddLightList(LightCmp* lightCmp);
+	void AddLineLightList(LineLightCmp* lightCmp);
+	void AddClearLightList(ClearLightCmp* lightCmp);
 
 protected:
 
 
 	list<LightCmp*> lightCmpList;
+	list<LineLightCmp*> lineLightCmpList;
+	vector<ClearLightCmp*> clearLightCmpList;
 
 	int x;
 	int y;

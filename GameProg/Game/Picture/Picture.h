@@ -119,6 +119,8 @@ public:
 	bool m_isPauseStop;	//停止中に止まるかどうか
 	int m_alpha;			//アルファ値
 
+
+
 protected:
 	E_SORT m_sort;			//描画順番
 	Point m_pos;			//位置

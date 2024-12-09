@@ -72,6 +72,9 @@ using namespace std;
 #include "LightCmp.h"
 #include "DarkPictureCmp.h"
 #include "PictureCmp.h"
+#include "LineLightCmp.h"
+#include "OnSoundCmp.h"
+#include "ClearLightCmp.h"
 
 
 
@@ -92,6 +95,10 @@ using namespace std;
 #include "RayCast.h"
 #include "Puddle.h"
 #include "Door.h"
+#include "SpotLight.h"
+#include "LineRayCast.h"
+#include "SensitiveGhost.h"
+
 #include "Curtains.h"
 #include "ActorManager.h"
 

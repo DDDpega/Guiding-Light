@@ -333,6 +333,8 @@ namespace ILLUST {
 		GOAST_AROUND_EYE,
 		GOAST_PASTIME,
 		GOAST_PASTIME_EYE,
+		GOAST_SENSITIVE,
+		GOAST_SENSITIVE_EYE,
 		PUDDLE,
 		/*PISHER,*/
 		/*PISHER_EYE,*/
@@ -340,6 +342,9 @@ namespace ILLUST {
 		SOLARPANEL,
 		SOLARPANEL_BLOCK,
 		DOOR,
+		SPOT_LIGHT_OFF,
+		SPOT_LIGHT_ON,
+		LINELIGHT,
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
@@ -358,6 +363,8 @@ namespace ILLUST {
 		{GOAST_AROUND_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost2.png"}},
 		{GOAST_PASTIME , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost1.png"}},
 		{GOAST_PASTIME_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost2.png"}},
+		{GOAST_SENSITIVE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost1.png"}},
+		{GOAST_SENSITIVE_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost2.png"}},
 		//{PISHER ,{
 		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
 		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
@@ -371,6 +378,9 @@ namespace ILLUST {
 			{"Picture/Illust/Gimmick/GL_Gimmick_Launch2.png"}
 		} },
 		{DOOR , {"Picture/Illust/Gimmick/GL_Gimmick_Door1.png"}},
+		{SPOT_LIGHT_OFF , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight1.png"}},
+		{SPOT_LIGHT_ON , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight2.png"}},
+		{LINELIGHT , {"Picture/LineLight.png"}},
 	};
 }
 

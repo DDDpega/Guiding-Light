@@ -17,8 +17,7 @@ public:
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
-	/// <param name="gameInstance_">ゲームインスタンス</param>
-	/// <param name="scene">シーンのポインタ</param>
+
 	void Initialize();
 
 	/// <summary>

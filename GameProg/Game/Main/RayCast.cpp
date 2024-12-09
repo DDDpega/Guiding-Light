@@ -49,13 +49,14 @@ void RayCast::Draw()
 				DrawPixel(rayPos[i].x, rayPos[i].y, GetColor(255, 0, 0));
 			}
 		}
+
 	}
 }
 
-void RayCast::Run(Point pos, int radius)
+void RayCast::RunCircle(Point pos, int radius)
 {
 
-	async(launch::async, RayCast::RayStart, pos, radius , ref(*this));
+	async(launch::async, RayCast::RayStartCircle, pos, radius , ref(*this));
 
 	/*for (int i = 0; i < GAME_INFO::RAYNUM; i++) {
 
@@ -70,7 +71,12 @@ void RayCast::Run(Point pos, int radius)
 	}*/
 }
 
-void RayCast::RayStart(Point pos,int radius, RayCast& ray)
+void RayCast::RunLine(Point pos,int size)
+{
+	async(launch::async, RayCast::RayStartLine, pos,size, ref(*this));
+}
+
+void RayCast::RayStartCircle(Point pos,int radius, RayCast& ray)
 {
 
 	vector<Point>& m_pos = ray.rayPos;
@@ -145,6 +151,78 @@ void RayCast::RayStart(Point pos,int radius, RayCast& ray)
 			}
 		}
 	}
+}
+
+void RayCast::RayStartLine(Point pos,int size, RayCast& ray)
+{
+
+	Point& m_pos = ray.linePos;
+	bool& isRayStart = ray.m_isRayStart;
+
+	//レイを消す
+	if (size == 0) {
+		m_pos.x = -10.0f;
+		m_pos.y = -10.0f;
+		isRayStart = false;
+		return;
+	}
+	else {
+		m_pos = pos;
+	}
+
+	isRayStart = true;
+	auto m_moveradius = 0;
+
+	//レイを外側に向かって消す
+	while (true) {
+
+		++m_moveradius;
+
+		//レイとぶつかるオブジェクトの判定チェック
+		Game::gameInstance->GetCollisionMNG()->RayToHitObjectCheckLine(&ray);
+
+		switch (ray.m_lineKind)
+		{
+		case RIGHT:
+			m_pos.x += 0.5;
+			break;
+		case LEFT:
+			m_pos.x -= 0.5;
+			break;
+
+		}
+		//m_pos.y += 1;
+
+		if (m_moveradius >= size*100) {
+			break;
+		}
+
+		//以下重いので回数を絞る
+		if (m_moveradius % 2 != 0)
+			continue;
+
+		//当たり判定のチェック
+		if (Game::gameInstance->GetCollisionMNG()->RayHitCheck(m_pos)) {
+
+			//x+
+			if (pos.x <= m_pos.x) {
+				m_pos.x += 10;
+			}
+			//x-
+			else if (pos.x > m_pos.x) {
+				m_pos.x -= 10;
+			}
+
+
+			return;
+		}
+		
+	}
+}
+
+void RayCast::SetParamLine(E_LINE_KIND lineKind)
+{
+	m_lineKind = lineKind;
 }
 
 
