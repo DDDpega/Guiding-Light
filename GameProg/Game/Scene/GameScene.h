@@ -35,6 +35,9 @@ public:
 	/// </summary>
 	Player* GetPlayer();
 
+
+	void GameClear();
+
 	/// <summary>
 	/// ゲームオーバー
 	/// </summary>
@@ -89,6 +92,11 @@ public:
 	shared_ptr<Door> m_door[2];
 
 	vector<GoalLight*> m_goalLightList;
+
+
+	vector<Actor*> m_onSoundObj;
+
+	bool isOnceGameClearUI;
 
 private:
 	std::shared_ptr<Player> m_player;	

@@ -132,6 +132,9 @@ public:
 	/// <returns></returns>
 	bool RayToHitObjectCheck(RayCast* ray, int number);
 
+
+	bool RayToHitObjectCheckLine(RayCast* ray);
+
 	/// <summary>
 	/// ƒŠƒXƒg‚Ìíœ
 	/// </summary>

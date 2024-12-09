@@ -66,7 +66,8 @@ void GameScene::Initialize()
 	isGameClear = false;
 	m_darkPictureList.clear();
 	m_solarpanel.clear();
-	
+	m_onSoundObj.clear();
+	isOnceGameClearUI = false;
 	//TODO 後で無限に表示できるようにする
 	for (int i = 0; i < 5; i++) {
 		//xの位置
@@ -275,6 +276,16 @@ Player* GameScene::GetPlayer()
 	return m_player->Getthis();
 }
 
+void GameScene::GameClear()
+{
+	if (isOnceGameClearUI) return;
+
+	isOnceGameClearUI = true;
+
+	auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());
+	Game::gameInstance->GetPictureMNG()->AddPicture(gameClear);
+}
+
 void GameScene::GameOver()
 {
 	//現在がゲームオーバーならばreturn
@@ -294,7 +305,7 @@ void GameScene::GameOver()
 void GameScene::LightNumChange(int change)
 {
 	//ライトを1引く
-	m_LightNum+=change;
+	m_LightNum += change;
 
 	m_gameUI->ChangeLight(m_LightNum);
 
@@ -304,8 +315,9 @@ void GameScene::LightNumChange(int change)
 		m_isPause = true;
 		isGameClear = true;
 
-		//ゲームクリアのUI
-		auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());
-		Game::gameInstance->GetPictureMNG()->AddPicture(gameClear);
+		//クリアライトコンポーネントを入れる
+		for (int i = 0; i < m_goalLightList.size(); i++) {
+			m_goalLightList[i]->AddComponent(shared_ptr<ClearLightCmp>(new ClearLightCmp(m_goalLightList[i])));
+		}
 	}
 }

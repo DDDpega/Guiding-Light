@@ -324,3 +324,26 @@ bool CollisionManeger::RayToHitObjectCheck(RayCast* ray, int number)
 	return false;
 }
 
+bool CollisionManeger::RayToHitObjectCheckLine(RayCast* ray)
+{
+	BOX collObj_i;
+	Point collObj_j = ray->linePos;
+
+	int size = m_rayToHitObject.size();
+	for (int i = 0; i < size; i++) {
+
+		auto obj = m_rayToHitObject[i];
+		collObj_i = m_rayToHitObject[i]->m_collision;
+
+		if ((collObj_i.left <= collObj_j.x) && (collObj_i.right >= collObj_j.x))
+		{
+			if ((collObj_i.top <= collObj_j.y) && (collObj_i.bottom >= collObj_j.y))
+			{
+				obj->GetActor()->HitCollision(ray, ray->m_tag, obj->m_tag);
+			}
+		}
+
+		obj->GetActor()->NoHitCollision(ray, ray->m_tag, obj->m_tag);
+	}
+	return false;
+}
