@@ -345,6 +345,8 @@ namespace ILLUST {
 		SPOT_LIGHT_OFF,
 		SPOT_LIGHT_ON,
 		LINELIGHT,
+		CUTAINSR,
+		CUTAINSL,
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GIMMICK_LIST = {
@@ -381,6 +383,12 @@ namespace ILLUST {
 		{SPOT_LIGHT_OFF , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight1.png"}},
 		{SPOT_LIGHT_ON , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight2.png"}},
 		{LINELIGHT , {"Picture/LineLight.png"}},
+		{CUTAINSR ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Curtain1_A.png"},
+					 {"Picture/Illust/Gimmick/GL_Gimmick_Curtain1_B.png"}
+		}},
+		{CUTAINSL ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Curtain2_A.png"},
+					 {"Picture/Illust/Gimmick/GL_Gimmick_Curtain2_B.png"}
+		}},
 	};
 }
 

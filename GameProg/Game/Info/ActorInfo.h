@@ -35,6 +35,15 @@ namespace SOLARPANEL_INFO {
 	constexpr int PANELFRAME = 100;
 }
 
+/// <summary>
+/// カーテンの情報
+/// </summary>
+namespace CURTAINS_INFO {
+	constexpr float SIZE = 2.5f;
+	constexpr Point COLLISION_SIZE = { 40,120 };
+}
+
+
 ///// <summary>
 ///// ハエの情報
 ///// </summary>
