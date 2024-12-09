@@ -8,7 +8,7 @@ public:
 	/// </summary>
 	/// <param name="x">x座標</param>
 	/// <param name="y">y座標</param>
-	Curtains(Point pos);
+	Curtains(Point pos, bool isleft);
 
 	/// <summary>
 	/// デストラクタ
@@ -38,5 +38,14 @@ public:
 	/// <param name="other"></param>
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
+
+	/// <summary>
+	/// m_isTriggerのゲッター
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsTrigger();
+private:
+	bool m_isLeft;
+	shared_ptr<BoxCollisionCmp> m_collision2;
 };
 

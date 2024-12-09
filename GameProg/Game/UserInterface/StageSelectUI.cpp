@@ -135,7 +135,7 @@ void StageSelectUI::Update()
 				pos2.x -= m_stageDifference / 20;
 				m_stageLampArray[j]->SetPos(pos2);
 			}
-			if (m_frame % 3 == 0)ArrowAnim();
+			if (m_frame % 3 == 0)PlayerAnim();
 			m_frame++;
 			
 			return;
@@ -159,7 +159,7 @@ void StageSelectUI::Update()
 				pos2.x += m_stageDifference / 20;
 				m_stageLampArray[j]->SetPos(pos2);
 			}
-			if (m_frame % 3 == 0)ArrowAnim();
+			if (m_frame % 3 == 0)PlayerAnim();
 			m_frame++;
 			return;
 		}
@@ -191,7 +191,7 @@ void StageSelectUI::Update()
 	
 	//ƒvƒŒƒCƒ„[ˆÚ“®
 	if (m_arrow->GetPos().x < m_stageMarkers[1].x) {
-		if (m_frame % 3 == 0)ArrowAnim();
+		if (m_frame % 3 == 0)PlayerAnim();
 		m_frame++;
 		auto pos = m_arrow->GetPos();
 		pos.x += 10;
@@ -537,7 +537,7 @@ void StageSelectUI::ChangeStageTitle(int num)
 	}
 }
 
-void StageSelectUI::ArrowAnim()
+void StageSelectUI::PlayerAnim()
 {
 	m_arrow->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_animCnt);
 	

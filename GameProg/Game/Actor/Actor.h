@@ -3,6 +3,7 @@
 
 
 
+
 class Actor
 {
 public:
@@ -107,6 +108,12 @@ public:
 	/// <returns></returns>
 	bool GetIsLadder() { return m_isNowLadder; }
 
+	/// <summary>
+	/// Trigger‚ª‚«‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsTrigger(){return m_isTrigger;}
+
 	float m_vx, m_vy;
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
@@ -121,4 +128,6 @@ protected:
 	Point m_pos;	//ˆÊ’u
 
 	bool m_isNowLadder;	//‚Í‚µ‚²‚É“–‚½‚Á‚Ä‚¢‚é‚©
+
+	bool m_isTrigger;		//‰½‚ç‚©‚ÌTrigger‚ª“­‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
 };

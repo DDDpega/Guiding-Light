@@ -194,19 +194,22 @@ void Map::LoadFromFile(const wstring filePath, const wstring chipSet)
 					m_MapChipList[c][r] = MAPCHIPINFO::DOOR;
 					break;
 				case 'e':
-					m_MapChipList[c][r] = 14;
+					m_MapChipList[c][r] = MAPCHIPINFO::CURTAINSR;
 					break;
-
+				case 'f':
+					m_MapChipList[c][r] = MAPCHIPINFO::CURTAINSL;
+					break;
 				case 'v':
 					m_MapChipList[c][r] = MAPCHIPINFO::CHASE;
 					break;
-
 				case 'w':
 					m_MapChipList[c][r] = MAPCHIPINFO::PATROL;
 					break;
-
 				case 'x':
 					m_MapChipList[c][r] = MAPCHIPINFO::TRICK;
+					break;
+				case '!':
+					m_MapChipList[c][r] = MAPCHIPINFO::CLEANNESSBLOCK;
 					break;
 				default:
 					auto a = (int)(chipSet[chipNo]-'0');

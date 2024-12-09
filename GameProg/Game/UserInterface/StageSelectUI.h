@@ -43,7 +43,7 @@ public:
 	/// <summary>
 	/// ステージ選択時のプレイヤーのanimation管理
 	/// </summary>
-	void ArrowAnim();
+	void PlayerAnim();
 private:
 	bool m_isStageClear[20];	//ステージクリア状態
 	bool m_isStageImplement[21];	//ステージクリア状態

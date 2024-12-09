@@ -38,13 +38,7 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
-	/// <summary>
-	/// IsTriggerのゲッター
-	/// </summary>
-	/// <returns></returns>
-	bool GetIsTrigger();
 private:
-	bool m_isTrigger;	//光に当たっているかどうか
 	int m_maxTime;		//起動する最大秒数
 	int m_keepTime;		//残り起動秒数
 	bool m_shareNow;	//光に当たっているか

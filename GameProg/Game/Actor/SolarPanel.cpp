@@ -2,7 +2,7 @@
 
 SolarPanel::SolarPanel(Point pos)
 	:Actor(pos)
-	, m_isTrigger(false)
+	
 {
 }
 
@@ -81,7 +81,4 @@ void SolarPanel::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 
 }
 
-bool SolarPanel::GetIsTrigger()
-{
-	return m_isTrigger;
-}
+

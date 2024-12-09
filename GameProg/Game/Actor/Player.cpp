@@ -74,6 +74,7 @@ void Player::Update()
 		return;
 	}
 
+
 	auto playerPos = SceneManeger::gameScene->GetPlayer()->GetPos();
 	auto scroll = Point{ playerPos.x - WINDOW_INFO::GAME_WIDTH_HALF, playerPos.x - WINDOW_INFO::GAME_HEIGHT_HALF };
 	Game::gameInstance->GetSceneMNG()->gameScene->m_map->SetScroll(scroll);
@@ -115,6 +116,7 @@ void Player::Update()
 		m_darkPictureCmp->m_darkPicture->m_reverse = true;
 
 	}
+	
 
 	//移動時の音声を出力
 	if ((isClick_x) && m_rigidBody->m_state == STATE::WALK) {
@@ -272,9 +274,16 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}	
 
 	//明るい所に来た
-	if ((tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag==E_TAG::FIGURERAY || tag== E_TAG::GOALLIGHTRAY) && m_isActive && selftag == E_TAG::PLAYER) {
+	if ((tag == E_TAG::SPOT_LIGHT_RAY || tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag == E_TAG::FIGURERAY || tag == E_TAG::GOALLIGHTRAY) && m_isActive && selftag == E_TAG::PLAYER) {
 		m_darkPictureCmp->m_darkPicture->SetisVisible(false);
 	}
+
+	//カーテンに当たったとき
+	if (tag == E_TAG::CURTAINS) {
+		m_isTrigger = other->GetIsTrigger();
+	}
+
+
 }
 
 void Player::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
@@ -310,3 +319,4 @@ void Player::SetChangePuddleSound(bool isPuddle)
 		m_sound[2]->ChangeSound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE], 0);
 	}
 }
+

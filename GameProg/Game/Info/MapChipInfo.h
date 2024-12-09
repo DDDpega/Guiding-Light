@@ -24,6 +24,10 @@ namespace MAPCHIPINFO {
 	constexpr int LAUNCH2 = 12;
 	//ドア
 	constexpr int DOOR = 13;
+	//カーテン右
+	constexpr int CURTAINSR = 14;
+	//カーテン左
+	constexpr int CURTAINSL = 15;
 
 	//Enemy
 	//追跡
@@ -36,5 +40,10 @@ namespace MAPCHIPINFO {
 	constexpr int SENSITIVE = 34;
 	//恥ずかしがり
 	constexpr int SHY = 35;
+
+
+
+	//透明なブロック
+	constexpr int CLEANNESSBLOCK = 999;
 
 }

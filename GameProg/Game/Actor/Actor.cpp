@@ -18,6 +18,7 @@ Actor::~Actor()
 void Actor::Initialize()
  {
 	m_isActive = true;
+	m_isTrigger = false;
 }
 
 void Actor::Update()

@@ -7,7 +7,7 @@ GameScene::GameScene()
 	, m_LightNum(0)
 	, m_mapInfo({
 		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
-		L"_=^56789abcdevwxyz",
+		L"_=^56789abcdefgvwxyz!",
 	})
 	, m_stages({
 	{
@@ -199,6 +199,23 @@ void GameScene::Initialize()
 			m_door[doorNum]->SpawnMove(1, 2);
 			Game::gameInstance->GetActorMNG()->AddActor(m_door[doorNum]);
 			doorNum++;
+		}
+
+		//カーテン右
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::CURTAINSR) {
+			actorPos.m_isGet = true;
+			auto curtains = shared_ptr<Curtains>(new Curtains(actorPos.m_mapChipPos,false));
+			m_curtains.push_back(curtains);
+			curtains->SpawnMove(1, 3);
+			Game::gameInstance->GetActorMNG()->AddActor(curtains);
+		}
+		//カーテン左
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::CURTAINSL) {
+			actorPos.m_isGet = true;
+			auto curtains = shared_ptr<Curtains>(new Curtains(actorPos.m_mapChipPos, true));
+			m_curtains.push_back(curtains);
+			curtains->SpawnMove(1, 3);
+			Game::gameInstance->GetActorMNG()->AddActor(curtains);
 		}
 
 	}

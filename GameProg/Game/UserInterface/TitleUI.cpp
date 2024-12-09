@@ -43,6 +43,9 @@ void TitleUI::Initialize()
 	m_nowpostion[0] = m_startText[0]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[0]);
 	
+	//プレイヤー
+	m_player = std::shared_ptr<Picture>(new Picture(Point{ 0, scrY-100 }, 6, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_PLAYER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_player);
 
 	//黒背景
 	m_backGround = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2  }, 5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
@@ -80,12 +83,18 @@ void TitleUI::Initialize()
 	m_fadeUI = std::shared_ptr<Picture>(new Picture(Point{ 0,0 }, 5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 1, E_PIVOT::LEFTUP, E_SORT::SORT_UI,true,true));
 	UserInterface::AddPictureInUI(m_fadeUI);
 	m_fadeUI->SetAlpha(255);
+
+	m_frame = 0;
+	m_animCnt = 0;
+	m_animMax = false;
+	m_waittime = VideoInfo::WAIT_TIME;
 }
 
 void TitleUI::Update()
 {
 	UserInterface::Update();
 
+	
 	
 
 	if (m_isChangeScene) {
@@ -173,6 +182,20 @@ void TitleUI::Update()
 			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
+
+	if (m_nowcursor == 0) {
+		//時間経過でデモムービーを流すシーンへ
+		if (m_waittime-- < 0) {
+			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::TITLEVIDEO);
+		}
+		auto pos = m_player->GetPos();
+		pos.x += 2;
+		m_player->SetPos(pos);
+		if (m_frame++ % 10 == 9) {
+			PlayerAnim();
+			m_frame = 0;
+		}
+	}
 }
 
 
@@ -228,4 +251,22 @@ void TitleUI::FadeInOut(bool isFadeIn)
 	}
 	
 	m_csframe--;
+}
+
+void TitleUI::PlayerAnim()
+{
+	m_player->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::MOVE], m_animCnt);
+
+	if (m_animCnt + 2 > 5) {
+		m_animMax = true;
+	}
+	else if (m_animCnt - 2 < 0) {
+		m_animMax = false;
+	}
+	if (m_animMax) {
+		m_animCnt -= 2;
+	}
+	else {
+		m_animCnt += 2;
+	}
 }

@@ -85,6 +85,7 @@ public:
 	vector<shared_ptr<Picture>> m_darkPictureList;
 	shared_ptr<GamePauseUI> m_pauseUI;
 	vector<shared_ptr<SolarPanel>> m_solarpanel;
+	vector<shared_ptr<Curtains>> m_curtains;
 	shared_ptr<Door> m_door[2];
 
 	vector<GoalLight*> m_goalLightList;

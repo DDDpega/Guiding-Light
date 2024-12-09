@@ -46,6 +46,22 @@ public:
 	/// <summary>
 	/// リストに追加する
 	/// </summary>
+	void RemoveMapCollisionList(std::shared_ptr<BoxCollisionCmp> collision) {
+		auto i = m_mapCollision.begin();
+		for (auto c : m_mapCollision) {
+			if (c == collision) {
+				//リストから消す
+				m_mapCollision.erase(i);
+				return;
+			}
+			i++;
+		}
+		
+	}
+
+	/// <summary>
+	/// リストに追加する
+	/// </summary>
 	void AddCIRCLECollisionList(std::shared_ptr<CircleCollisionCmp> collision);
 
 	/// <summary>

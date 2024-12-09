@@ -27,13 +27,15 @@ bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 	auto chipNo = SceneManeger::gameScene->m_map->getChipNo(col, row);
 	auto solarpanel = SceneManeger::gameScene->m_solarpanel;
 	bool isTrigger = false;
-
+	bool isTrigger2 = false;
+	
 	for (auto s : solarpanel) {
 		isTrigger = s->GetIsTrigger();
 		if (isTrigger) {
 			break;
 		}
 	}
+	isTrigger2 = SceneManeger::gameScene->GetPlayer()->GetIsTrigger();
 
 	if (chipNo == MAPCHIPINFO::LADDER && isFly) {
 		return true;
@@ -41,12 +43,18 @@ bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 	else if (isFly) {
 		return false;
 	}
-	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2 ||chipNo == MAPCHIPINFO::FLOOR||chipNo==MAPCHIPINFO::PUDDLE ||(chipNo == MAPCHIPINFO::LAUNCH && isTrigger)|| (chipNo == MAPCHIPINFO::LAUNCH2 && !isTrigger)) {
+	if (chipNo==-1||chipNo==MAPCHIPINFO::FLOOR2
+		||chipNo == MAPCHIPINFO::FLOOR||chipNo==MAPCHIPINFO::PUDDLE
+		||(chipNo == MAPCHIPINFO::LAUNCH && isTrigger)|| 
+		(chipNo == MAPCHIPINFO::LAUNCH2 && !isTrigger)||
+		((chipNo == MAPCHIPINFO::CURTAINSR || chipNo == MAPCHIPINFO::CLEANNESSBLOCK) && !isTrigger2)||
+		((chipNo == MAPCHIPINFO::CURTAINSL || chipNo == MAPCHIPINFO::CLEANNESSBLOCK) && !isTrigger2)
+		) {
 		return true;
 	}
-	else {
-		return false;
-	}
+
+	
+	return false;
 }
 
 bool MapCollision::CheckLadder(E_TAG tag,Point pos)

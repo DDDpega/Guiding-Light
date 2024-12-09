@@ -35,6 +35,11 @@ public:
 	/// <param name="frame"></param>
 	void FadeInOut(bool isFadeIn);
 
+	/// <summary>
+	/// プレイヤーのanimation
+	/// </summary>
+	void PlayerAnim();
+
 
 	bool m_isVideo;			//動画が流すかどうか
 	bool m_isVideoPlay;		//動画が流れているかどうか
@@ -44,6 +49,10 @@ private:
 	bool m_isMenuActive;	//メニュー画面
 	bool m_isFirst;
 	shared_ptr<Picture> m_fadeUI;
-
+	shared_ptr<Picture> m_player;
+	int m_waittime;
+	int m_frame;
+	int m_animCnt;						//animationの画像切り替え
+	bool m_animMax;						//animationの画像の最大になるかどうか
 };
 

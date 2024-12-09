@@ -19,7 +19,7 @@ void TitleScene::Initialize()
 	
 	
 
-	m_waittime = VideoInfo::WAIT_TIME;
+	
 	
 	if (Game::gameInstance->GetSoundMNG()->GetSoundLength() == 0)
 	{
@@ -42,10 +42,7 @@ void TitleScene::Update()
 {
 	Scene::Update();
 	
-	//時間経過でデモムービーを流すシーンへ
-	if (m_waittime-- < 0) {
-		Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::TITLEVIDEO);
-	}
+	
 
 }
 
