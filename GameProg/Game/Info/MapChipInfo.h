@@ -28,6 +28,17 @@ namespace MAPCHIPINFO {
 	constexpr int CURTAINSR = 14;
 	//カーテン左
 	constexpr int CURTAINSL = 15;
+	//スポットライト右
+	constexpr int SPOTLIGHTR = 16;
+	//スポットライト左
+	constexpr int SPOTLIGHTL = 17;
+	//何か
+	constexpr int TODOITEM1 = 18;
+	//何か
+	constexpr int TODOITEM2 = 19;
+	//何か
+	constexpr int TODOITEM3 = 20;
+
 
 	//Enemy
 	//追跡

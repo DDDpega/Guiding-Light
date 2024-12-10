@@ -7,7 +7,7 @@ GameScene::GameScene()
 	, m_LightNum(0)
 	, m_mapInfo({
 		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
-		L"_=^56789abcdefgvwxyz!",
+		L"_=^56789abcdefghijkvwxyz!",
 	})
 	, m_stages({
 	{
@@ -160,30 +160,7 @@ void GameScene::Initialize()
 			Game::gameInstance->GetActorMNG()->AddActor(solarpanelblock);
 		}
 
-		//追跡GOスと
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::CHASE) {
-			actorPos.m_isGet = true;
-			auto pisher = shared_ptr<ChaseGhost>(new ChaseGhost(actorPos.m_mapChipPos));
-			pisher->SpawnMove(1, 1);
-			Game::gameInstance->GetActorMNG()->AddActor(pisher);
-		}
-
-		//追跡GOスと
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PATROL) {
-			actorPos.m_isGet = true;
-			auto pisher = shared_ptr<AroundGhost>(new AroundGhost(actorPos.m_mapChipPos));
-			pisher->SpawnMove(1, 1);
-			Game::gameInstance->GetActorMNG()->AddActor(pisher);
-			pisher->CreateRoute(++arroundGhostNum);
-		}
-
-		//追跡GOスと
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TRICK) {
-			actorPos.m_isGet = true;
-			auto pisher = shared_ptr<PastimeGhost>(new PastimeGhost(actorPos.m_mapChipPos));
-			pisher->SpawnMove(1, 1);
-			Game::gameInstance->GetActorMNG()->AddActor(pisher);
-		}
+		
 
 		//水たまり
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PUDDLE) {
@@ -217,6 +194,79 @@ void GameScene::Initialize()
 			m_curtains.push_back(curtains);
 			curtains->SpawnMove(1, 3);
 			Game::gameInstance->GetActorMNG()->AddActor(curtains);
+		}
+
+		//スポットライト右
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SPOTLIGHTR) {
+			actorPos.m_isGet = true;
+			auto spot = shared_ptr<SpotLight>(new SpotLight(actorPos.m_mapChipPos));
+			spot->SpawnMove(1, 1);
+			spot->SetParam(E_LINE_KIND::RIGHT);
+			Game::gameInstance->GetActorMNG()->AddActor(spot);
+		}
+		//スポットライト左
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SPOTLIGHTL) {
+			actorPos.m_isGet = true;
+			auto spot = shared_ptr<SpotLight>(new SpotLight(actorPos.m_mapChipPos));
+			spot->SpawnMove(1, 1);
+			spot->SetParam(E_LINE_KIND::LEFT);
+			Game::gameInstance->GetActorMNG()->AddActor(spot);
+		}
+
+		//追加予定１
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TODOITEM1) {
+			actorPos.m_isGet = true;
+			
+		}
+		//追加予定2
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TODOITEM2) {
+			actorPos.m_isGet = true;
+
+		}
+		//追加予定3
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TODOITEM3) {
+			actorPos.m_isGet = true;
+
+		}
+
+
+		//追跡幽霊
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::CHASE) {
+			actorPos.m_isGet = true;
+			auto pisher = shared_ptr<ChaseGhost>(new ChaseGhost(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
+		}
+
+		//パトロール幽霊
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::PATROL) {
+			actorPos.m_isGet = true;
+			auto pisher = shared_ptr<AroundGhost>(new AroundGhost(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
+			pisher->CreateRoute(++arroundGhostNum);
+		}
+
+		//いたずら幽霊
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TRICK) {
+			actorPos.m_isGet = true;
+			auto pisher = shared_ptr<PastimeGhost>(new PastimeGhost(actorPos.m_mapChipPos));
+			pisher->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(pisher);
+		}
+
+		//敏感な幽霊
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SENSITIVE) {
+			actorPos.m_isGet = true;
+			auto sensitive = shared_ptr<SensitiveGhost>(new SensitiveGhost(actorPos.m_mapChipPos));
+			sensitive->SpawnMove(1, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(sensitive);
+		}
+
+		//恥ずかしがり屋幽霊
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SHY) {
+			actorPos.m_isGet = true;
+			
 		}
 
 	}

@@ -199,6 +199,21 @@ void Map::LoadFromFile(const wstring filePath, const wstring chipSet)
 				case 'f':
 					m_MapChipList[c][r] = MAPCHIPINFO::CURTAINSL;
 					break;
+				case 'g':
+					m_MapChipList[c][r] = MAPCHIPINFO::SPOTLIGHTR;
+					break;
+				case 'h':
+					m_MapChipList[c][r] = MAPCHIPINFO::SPOTLIGHTL;
+					break;
+				case 'i':
+					m_MapChipList[c][r] = MAPCHIPINFO::TODOITEM1;
+					break;
+				case 'j':
+					m_MapChipList[c][r] = MAPCHIPINFO::TODOITEM2;
+					break;
+				case 'k':
+					m_MapChipList[c][r] = MAPCHIPINFO::TODOITEM3;
+					break;
 				case 'v':
 					m_MapChipList[c][r] = MAPCHIPINFO::CHASE;
 					break;
