@@ -22,6 +22,13 @@ void SolarPanel::Initialize()
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, SOLARPANEL_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SOLARPANEL],0, E_PIVOT::LEFTUP, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
 
+	auto pos = m_pictureCmp->m_picture->GetPos();
+	pos.y -= 10;
+
+	m_pictureCmp2 = shared_ptr<Picture>(new Picture(pos, SOLARPANEL_INFO::SIZE, &UI::GAME_LIST[UI::GAME_TYPE::THUNDER], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
+	Game::gameInstance->GetPictureMNG()->AddPicture(m_pictureCmp2);
+
+
 	//‰æ‘œƒTƒCƒY
 	LONG x = (m_pictureCmp->m_picture ->m_pictureSizeX * m_pictureCmp->m_picture->m_size) / 2;
 	LONG y = (m_pictureCmp->m_picture->m_pictureSizeY * m_pictureCmp->m_picture->m_size) / 2;
@@ -51,6 +58,7 @@ void SolarPanel::Update()
 	//‹Ÿ‹‹’†‚È‚ç
 	if (m_shareNow) {
 		m_isTrigger = true;
+		m_pictureCmp2->SetisVisible(true);
 		if (m_soundFrame-- < 0&& !m_isTrigger) {
 			m_spanelSound->SoundStop();
 			m_soundFrame = SOLARPANEL_INFO::PANELFRAME;
@@ -62,9 +70,11 @@ void SolarPanel::Update()
 		m_isTrigger = false;
 		m_spanelSound->SoundStop();
 		m_soundFrame = 0;
+		m_pictureCmp2->SetisVisible(false);
 	}
 
 	m_shareNow = false;
+	
 }
 
 void SolarPanel::SetParam(E_SOLARPANEL_KIND kind)
@@ -78,6 +88,7 @@ void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 
 	if ((tag == E_TAG::PLAYER_RAY||tag==E_TAG::FIGURERAY) ) {
 		m_shareNow = true;
+		
 	}
 }
 

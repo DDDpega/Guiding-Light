@@ -23,7 +23,7 @@ void StageSelectUI::Initialize()
 	m_isRight = false;
 	m_isLeft = false;
 
-	m_nowcursor = 1;
+	m_nowcursor = 0;
 	m_isStageImplement[21] = {false};
 
 	auto stageSize = SceneManeger::gameScene->GetStageSize();
@@ -356,24 +356,28 @@ void StageSelectUI::Draw()
 	}
 		
 		//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
+	if (m_nowcursor == 0) {
 
-	//-1している理由は1つ右に描画しているため
-	//+2している理由は右に二つステージ選択画像を用意するため
-	for (int i = m_nowcursor-1; i < m_nowcursor + 2; i++) {
-		//カーソルの位置を光らす
-		if (m_isStageClear[i] == true) {
-			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
-			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT],1);
-		}
-		else {
-			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
-			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
-		}
 	}
+	else {
+		//-1している理由は1つ右に描画しているため
+		//+2している理由は右に二つステージ選択画像を用意するため
+		for (int i = m_nowcursor - 1; i < m_nowcursor + 2; i++) {
+			//カーソルの位置を光らす
+			if (m_isStageClear[i] == true) {
+				m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
+				m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
+			}
+			else {
+				m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
+				m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
+			}
+		}
 
-	if (!m_isStageImplement[m_nowcursor - 1]) {
-		m_stageArray[m_nowcursor - 1]->SetisVisible(false);
-		m_stageLampArray[m_nowcursor - 1]->SetisVisible(false);
+		if (!m_isStageImplement[m_nowcursor - 1]) {
+			m_stageArray[m_nowcursor - 1]->SetisVisible(false);
+			m_stageLampArray[m_nowcursor - 1]->SetisVisible(false);
+		}
 	}
 	for (int i = m_nowcursor+1;i< size(m_stageArray); i++) {
 		if (!m_isStageImplement[i] && m_nowcursor != 20) {

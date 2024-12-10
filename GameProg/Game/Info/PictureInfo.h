@@ -122,6 +122,7 @@ namespace UI {
 		G_STAGE,
 		LAMP,
 		LAMP_1,
+		THUNDER,
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GAME_LIST = {
@@ -135,6 +136,7 @@ namespace UI {
 		{STAGESELECT,  {"Picture/UI/Game/GL_UI_StageSelect.png"}},
 		{GAMECLEAR,  {"Picture/UI/Game/GL_UI_GameClear.png"}},
 		{GAMEOVER , {"Picture/UI/Game/GL_UI_GameOver.png"}},
+		{THUNDER , {"Picture/UI/Game/GL_UI_Thunder.png"}},
 
 		//ステージ数
 		{G_STAGE , {

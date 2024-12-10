@@ -118,6 +118,7 @@ public:
 	std::shared_ptr<MapCollision> m_mapCollision;
 	std::shared_ptr<RigidbodyCmp> m_rigidBody;
 	shared_ptr<PictureCmp> m_pictureCmp;
+	shared_ptr<Picture> m_pictureCmp2;
 	shared_ptr<DarkPictureCmp> m_darkPictureCmp;
 	bool m_isActive;			//ê∂ë∂Ç∑ÇÈÇ©Ç«Ç§Ç©
 	bool m_isPisher;			//Â¢Ç©Ç«Ç§Ç©
