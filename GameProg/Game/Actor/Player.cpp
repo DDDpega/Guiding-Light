@@ -16,6 +16,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	Actor::Initialize();
+	m_isDoorTouch = false;
 	m_isNowLadder = false;
 	m_movePictureNum = 0;
 	m_ascendPictureNum = 0;
@@ -68,6 +69,11 @@ void Player::Initialize()
 void Player::Update()
 {
 	Actor::Update();
+
+	if (m_isDoorTouch) {
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::STAND], 0);
+		return;
+	}
 
 	if (m_isGoalLight_Tought) {
 		m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SUPPLY], 0);

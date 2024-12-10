@@ -16,6 +16,10 @@ void Door::Initialize()
 
 	//m_soundFrame = 0;
 
+	m_isDoor = false;
+
+	m_doorFrame = 0;
+
 	//画像コンポーネント
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, DOOR_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	AddComponent(m_pictureCmp);
@@ -25,14 +29,44 @@ void Door::Initialize()
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
-	//チャージ音
-	/*m_spanelSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::SOLARPANEL], Sound::E_Sound::SE, 0));
-	Game::gameInstance->GetSoundMNG()->AddSoundList(m_spanelSound);*/
 }
 
 void Door::Update()
 {
 	Actor::Update();
+
+	if (m_isDoor) {
+		SceneManeger::gameScene->GetPlayer()->m_isDoorTouch = true;
+		switch (m_doorFrame++)
+		{
+		case 10:
+			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 1);
+			break;
+		case 20:
+			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 2);
+			break;
+		case 25:
+			SceneManeger::gameScene->GetPlayer()->m_lightCmp->ChangeLightONOFF();
+			break;
+		case 30:
+			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 0);
+			
+			
+			//teleport
+			SceneManeger::gameScene->GetPlayer()->SetPos(m_teleportPos);
+			
+
+			break;
+		case 40:
+			SceneManeger::gameScene->GetPlayer()->m_isDoorTouch = false;
+			m_isDoor = false;
+			m_doorFrame = 0;
+			SceneManeger::gameScene->GetPlayer()->m_lightCmp->ChangeLightONOFF();
+			break;
+		}
+		
+	}
+	//m_isDoor = false;
 }
 
 void Door::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
@@ -40,8 +74,7 @@ void Door::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	Actor::HitCollision(other, tag, selftag);
 
 	if (tag == E_TAG::PLAYER && Game::gameInstance->GetInputMNG()->Click(L"UP")) {
-		//teleport
-		SceneManeger::gameScene->GetPlayer()->SetPos(m_teleportPos);
+		m_isDoor = true;
 		
 	}
 }

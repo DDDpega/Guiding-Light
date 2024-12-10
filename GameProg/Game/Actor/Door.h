@@ -47,6 +47,7 @@ public:
 
 private:
 	Point m_teleportPos;	//テレポート先のポジション
-
+	bool m_isDoor;			//ドアを開いたかどうか
+	int m_doorFrame;		//ドアのアニメーションフレーム
 };
 

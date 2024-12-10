@@ -379,7 +379,11 @@ namespace ILLUST {
 			{"Picture/Illust/Gimmick/GL_Gimmick_Launch.png"},
 			{"Picture/Illust/Gimmick/GL_Gimmick_Launch2.png"}
 		} },
-		{DOOR , {"Picture/Illust/Gimmick/GL_Gimmick_Door1.png"}},
+		{DOOR , {
+			{"Picture/Illust/Gimmick/GL_Gimmick_Door1.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_Door2.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_Door3.png"},
+		}},
 		{SPOT_LIGHT_OFF , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight1.png"}},
 		{SPOT_LIGHT_ON , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight2.png"}},
 		{LINELIGHT , {"Picture/LineLight.png"}},
@@ -398,7 +402,8 @@ namespace ILLUST {
 		IDOL,
 		JUMP,
 		MOVE,
-		SUPPLY
+		SUPPLY,
+		STAND
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> PLAYER_LIST = {
@@ -427,6 +432,7 @@ namespace ILLUST {
 		{SUPPLY,{
 			{"Picture/Illust/Player/GL_Player_Supply.png"}
 		}},
+		{STAND,{"Picture/Illust/Player/GL_Player_Stand2.png"}},
 	};
 }
 

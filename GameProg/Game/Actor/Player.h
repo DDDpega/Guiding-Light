@@ -74,10 +74,12 @@ public:
 
 
 	bool m_isGoalLight_Tought;	//ゴールライトの作業中かどうか
+	bool m_isDoorTouch;	//ドアを開いたかどうか
+	std::shared_ptr<LightCmp> m_lightCmp;
 
 private:
 	bool m_firstShot;
-	std::shared_ptr<LightCmp> m_lightCmp;
+	
 	list <LadderCol> m_isLadder;
 	bool m_isRightdir;
 
