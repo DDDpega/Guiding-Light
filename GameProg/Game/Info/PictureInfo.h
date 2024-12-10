@@ -366,8 +366,8 @@ namespace ILLUST {
 		{GOAST_AROUND_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost2.png"}},
 		{GOAST_PASTIME , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost1.png"}},
 		{GOAST_PASTIME_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost2.png"}},
-		{GOAST_SENSITIVE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost1.png"}},
-		{GOAST_SENSITIVE_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost2.png"}},
+		{GOAST_SENSITIVE , {"Picture/Illust/Gimmick/GL_Gimmick_SensitiveGhost1.png"}},
+		{GOAST_SENSITIVE_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_SensitiveGhost2.png"}},
 		//{PISHER ,{
 		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher1.png"},
 		//	{"Picture/Illust/Gimmick/GL_Gimmick_Pisher2.png"},
