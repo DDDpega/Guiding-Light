@@ -66,6 +66,12 @@ namespace SPOTLIGHT_INFO {
 	constexpr Point COLLISION_SIZE = { 40 * 1.0f,40 * 1.0f };
 }
 
+namespace BOOMBOX_INFO {
+	constexpr float SIZE = 2.5;
+	constexpr Point COLLISION_SIZE = { 40 * 1.0f,40 * 2.0f };
+
+}
+
 /// <summary>
 /// èÑâÒÇÃèÓïÒ
 /// </summary>

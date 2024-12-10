@@ -206,13 +206,19 @@ void Map::LoadFromFile(const wstring filePath, const wstring chipSet)
 					m_MapChipList[c][r] = MAPCHIPINFO::SPOTLIGHTL;
 					break;
 				case 'i':
-					m_MapChipList[c][r] = MAPCHIPINFO::TODOITEM1;
+					m_MapChipList[c][r] = MAPCHIPINFO::SPOTLIGHTR_OFF;
 					break;
 				case 'j':
-					m_MapChipList[c][r] = MAPCHIPINFO::TODOITEM2;
+					m_MapChipList[c][r] = MAPCHIPINFO::SPOTLIGHTL_OFF;
 					break;
 				case 'k':
-					m_MapChipList[c][r] = MAPCHIPINFO::TODOITEM3;
+					m_MapChipList[c][r] = MAPCHIPINFO::SOLARPAEL_SPOT;
+					break;
+				case 'l':
+					m_MapChipList[c][r] = MAPCHIPINFO::SOLARPANEL_BOOMBOX;
+					break;
+				case 'm':
+					m_MapChipList[c][r] = MAPCHIPINFO::BOOMBOX;
 					break;
 				case 'v':
 					m_MapChipList[c][r] = MAPCHIPINFO::CHASE;

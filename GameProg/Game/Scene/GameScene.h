@@ -94,7 +94,7 @@ public:
 	vector<GoalLight*> m_goalLightList;
 
 
-	vector<Actor*> m_onSoundObj;
+	vector<OnSoundCmp*> m_onSoundCmp;
 
 	bool isOnceGameClearUI;
 

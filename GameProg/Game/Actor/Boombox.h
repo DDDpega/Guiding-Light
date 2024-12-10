@@ -1,19 +1,20 @@
 #pragma once
 
-class SpotLight : public Actor
+
+class Boombox : public Actor
 {
 public:
-
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	/// <param name="pos"></param>
-	SpotLight(Point pos);
+	/// <param name="x">x座標</param>
+	/// <param name="y">y座標</param>
+	Boombox(Point pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~SpotLight();
+	virtual ~Boombox();
 
 	/// <summary>
 	/// 初期化処理
@@ -25,10 +26,6 @@ public:
 	/// </summary>
 	void Update();
 
-	/// <summary>
-	/// 描画処理
-	/// </summary>
-	void Draw();
 
 	/// <summary>
 	/// 衝突処理
@@ -43,16 +40,12 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
-	/// <summary>
-	/// パラメーター設定
-	/// </summary>
-	/// <param name="lineKind"></param>
-	void SetParam(E_LINE_KIND lineKind, bool isOn);
+
 
 private:
-	E_SPOTLIGHT_MOVE m_moveType;
-	shared_ptr<LineLightCmp> m_lightCmp;	//ライトコンポーネント
-	int m_time;
-	E_LINE_KIND m_lineKind;
-};
 
+	E_BOOMBOX_MOVE m_boomBoxKind;
+	bool m_shareNow;
+	shared_ptr<OnSoundCmp> m_sounndCmp;
+
+};

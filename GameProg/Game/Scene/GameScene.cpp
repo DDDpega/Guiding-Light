@@ -7,7 +7,7 @@ GameScene::GameScene()
 	, m_LightNum(0)
 	, m_mapInfo({
 		MAPCHIP_HEIGHT, MAPCHIP_WIDTH,
-		L"_=^56789abcdefghijkvwxyz!",
+		L"_=^56789abcdefghijklmvwxyz!",
 	})
 	, m_stages({
 	{
@@ -66,7 +66,7 @@ void GameScene::Initialize()
 	isGameClear = false;
 	m_darkPictureList.clear();
 	m_solarpanel.clear();
-	m_onSoundObj.clear();
+	m_onSoundCmp.clear();
 	isOnceGameClearUI = false;
 	//TODO 後で無限に表示できるようにする
 	for (int i = 0; i < 5; i++) {
@@ -143,6 +143,7 @@ void GameScene::Initialize()
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SOLARPANEL) {
 			actorPos.m_isGet = true;
 			auto solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
+			solarpanel->SetParam(E_SOLARPANEL_KIND::BLOCK);
 			m_solarpanel.push_back(solarpanel);
 			Game::gameInstance->GetActorMNG()->AddActor(solarpanel);
 		}
@@ -201,7 +202,7 @@ void GameScene::Initialize()
 			actorPos.m_isGet = true;
 			auto spot = shared_ptr<SpotLight>(new SpotLight(actorPos.m_mapChipPos));
 			spot->SpawnMove(1, 1);
-			spot->SetParam(E_LINE_KIND::RIGHT);
+			spot->SetParam(E_LINE_KIND::RIGHT,true);
 			Game::gameInstance->GetActorMNG()->AddActor(spot);
 		}
 		//スポットライト左
@@ -209,26 +210,50 @@ void GameScene::Initialize()
 			actorPos.m_isGet = true;
 			auto spot = shared_ptr<SpotLight>(new SpotLight(actorPos.m_mapChipPos));
 			spot->SpawnMove(1, 1);
-			spot->SetParam(E_LINE_KIND::LEFT);
+			spot->SetParam(E_LINE_KIND::LEFT, true);
 			Game::gameInstance->GetActorMNG()->AddActor(spot);
 		}
 
-		//追加予定１
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TODOITEM1) {
+		//スポットライトOFF右
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SPOTLIGHTR_OFF) {
 			actorPos.m_isGet = true;
-			
+			auto spot = shared_ptr<SpotLight>(new SpotLight(actorPos.m_mapChipPos));
+			spot->SpawnMove(1, 1);
+			spot->SetParam(E_LINE_KIND::RIGHT, false);
+			Game::gameInstance->GetActorMNG()->AddActor(spot);
 		}
-		//追加予定2
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TODOITEM2) {
+		//スポットライトOFF左
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SPOTLIGHTL_OFF) {
 			actorPos.m_isGet = true;
-
+			auto spot = shared_ptr<SpotLight>(new SpotLight(actorPos.m_mapChipPos));
+			spot->SpawnMove(1, 1);
+			spot->SetParam(E_LINE_KIND::LEFT, false);
+			Game::gameInstance->GetActorMNG()->AddActor(spot);
 		}
-		//追加予定3
-		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::TODOITEM3) {
+		//ソーラーパネルスポットライト
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SOLARPAEL_SPOT) {
 			actorPos.m_isGet = true;
-
+			auto solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
+			solarpanel->SetParam(E_SOLARPANEL_KIND::SPOT_LIGHT);
+			m_solarpanel.push_back(solarpanel);
+			Game::gameInstance->GetActorMNG()->AddActor(solarpanel);
+		}
+		//ソーラーパネルラジカセ
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::SOLARPANEL_BOOMBOX) {
+			actorPos.m_isGet = true;
+			auto solarpanel = shared_ptr<SolarPanel>(new SolarPanel(actorPos.m_mapChipPos));
+			solarpanel->SetParam(E_SOLARPANEL_KIND::BOOM_BOX);
+			m_solarpanel.push_back(solarpanel);
+			Game::gameInstance->GetActorMNG()->AddActor(solarpanel);
 		}
 
+		//ラジカセ
+		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::BOOMBOX) {
+			actorPos.m_isGet = true;
+			auto boomBox = shared_ptr<Boombox>(new Boombox(actorPos.m_mapChipPos));
+			boomBox->SpawnMove(2, 1);
+			Game::gameInstance->GetActorMNG()->AddActor(boomBox);
+		}
 
 		//追跡幽霊
 		if (!actorPos.m_isGet && actorPos.m_mapChipNum == MAPCHIPINFO::CHASE) {

@@ -31,9 +31,11 @@ void SolarPanelBlock::Update()
 	bool isTrigger = false;
 
 	for (auto s : SceneManeger::gameScene->m_solarpanel) {
-		isTrigger = s->GetIsTrigger();
-		if (isTrigger) {
-			break;
+		if (s->GetParam() == E_SOLARPANEL_KIND::BLOCK) {
+			isTrigger = s->GetIsTrigger();
+			if (isTrigger) {
+				break;
+			}
 		}
 	}
 

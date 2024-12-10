@@ -83,6 +83,9 @@ bool Status::ReadStatus()
 		case 'E':
 			SENSITIVE_GHOST_SPEED = std::stof(line.substr(postion));
 			break;
+		case 'F':
+			BOOM_BOX_TIME = std::stof(line.substr(postion));
+			break;
 		}
 
 		rowNum++;

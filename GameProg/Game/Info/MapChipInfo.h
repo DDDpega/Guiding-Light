@@ -32,12 +32,16 @@ namespace MAPCHIPINFO {
 	constexpr int SPOTLIGHTR = 16;
 	//スポットライト左
 	constexpr int SPOTLIGHTL = 17;
+	//スポットライト右OFF
+	constexpr int SPOTLIGHTR_OFF = 18;
+	//スポットライト左OFF
+	constexpr int SPOTLIGHTL_OFF = 19;
 	//何か
-	constexpr int TODOITEM1 = 18;
+	constexpr int SOLARPAEL_SPOT = 20;
 	//何か
-	constexpr int TODOITEM2 = 19;
-	//何か
-	constexpr int TODOITEM3 = 20;
+	constexpr int SOLARPANEL_BOOMBOX = 21;
+
+	constexpr int BOOMBOX = 22;
 
 
 	//Enemy

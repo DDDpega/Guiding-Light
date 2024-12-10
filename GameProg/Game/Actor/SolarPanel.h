@@ -24,6 +24,11 @@ public:
 	/// </summary>
 	void Update();
 
+	void SetParam(E_SOLARPANEL_KIND kind);
+
+	E_SOLARPANEL_KIND GetParam() {
+		return m_Kind;
+	}
 
 	/// <summary>
 	/// Õ“Ëˆ—
@@ -45,5 +50,6 @@ private:
 	shared_ptr<Sound>	m_spanelSound;
 	shared_ptr<Sound>	m_floorSound;
 	int m_soundFrame;
+	E_SOLARPANEL_KIND m_Kind;
 };
 

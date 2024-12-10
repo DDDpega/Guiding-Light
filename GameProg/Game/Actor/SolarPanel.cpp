@@ -67,6 +67,11 @@ void SolarPanel::Update()
 	m_shareNow = false;
 }
 
+void SolarPanel::SetParam(E_SOLARPANEL_KIND kind)
+{
+	m_Kind = kind;
+}
+
 void SolarPanel::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);

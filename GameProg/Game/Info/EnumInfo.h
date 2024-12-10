@@ -80,3 +80,18 @@ enum class E_SPOTLIGHT_MOVE
 	LIGHTNING,
 	SLOWLY_DOWN
 };
+
+enum class E_BOOMBOX_MOVE
+{
+	NONE,
+	SLOWLY_UP,
+	ON_SOUND,
+	SLOWLY_DOWN
+};
+
+enum class E_SOLARPANEL_KIND
+{
+	BLOCK,
+	SPOT_LIGHT,
+	BOOM_BOX
+};

@@ -98,7 +98,7 @@ using namespace std;
 #include "SpotLight.h"
 #include "LineRayCast.h"
 #include "SensitiveGhost.h"
-
+#include "Boombox.h"
 #include "Curtains.h"
 #include "ActorManager.h"
 

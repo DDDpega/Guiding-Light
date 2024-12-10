@@ -2,7 +2,6 @@
 
 SpotLight::SpotLight(Point pos)
 	:Actor(pos)
-	,m_shareNow(false)
 	, m_moveType(E_SPOTLIGHT_MOVE::NONE)
 	, m_time(0)
 {
@@ -25,7 +24,6 @@ void SpotLight::Initialize()
 		m_pictureCmp->m_picture->m_reverse = true;
 	}
 
-
 	//当たり判定の作成
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, SPOTLIGHT_INFO::COLLISION_SIZE, E_TAG::SPOT_LIGHT));
 	Actor::AddComponent(collision);
@@ -44,12 +42,12 @@ void SpotLight::Update()
 	{
 	case E_SPOTLIGHT_MOVE::NONE:
 
-
-		//供給されていたら
-		if (m_shareNow) {
-			m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_UP;
-			//m_lightCmp->m_nowLightSize = (float)m_lightCmp->m_lightSize;
-			m_time = 0;
+		//ソーラーパネルが供給されていたら
+		for (auto s : SceneManeger::gameScene->m_solarpanel) {
+			if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && s->GetIsTrigger()) {
+				m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_UP;
+				m_time = 0;
+			}
 		}
 		break;
 	case E_SPOTLIGHT_MOVE::SLOWLY_UP:
@@ -63,18 +61,13 @@ void SpotLight::Update()
 			m_time = 0;
 			m_lightCmp->ChangeLightONOFF();
 			m_lightCmp->m_lightOn = true;
-
 		}
 		break;
 	case E_SPOTLIGHT_MOVE::LIGHTNING:
 
-
-		//供給されていたら
-		if (!m_shareNow) {
-			++m_time;
-
-			//1秒経ったら
-			if (m_time >= 60) {
+		//供給されていなかったら
+		for (auto s : SceneManeger::gameScene->m_solarpanel) {
+			if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && !s->GetIsTrigger()) {
 				m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_DOWN;
 				m_time = 0;
 			}
@@ -95,11 +88,6 @@ void SpotLight::Update()
 
 		break;
 	}
-
-
-
-
-	m_shareNow = false;
 }
 
 void SpotLight::Draw()
@@ -110,17 +98,16 @@ void SpotLight::Draw()
 void SpotLight::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
-
-	if ((tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn()) || tag==E_TAG::FIGURERAY) {
-		m_shareNow = true;
-	}
 }
 
 void SpotLight::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 }
 
-void SpotLight::SetParam(E_LINE_KIND lineKind)
+void SpotLight::SetParam(E_LINE_KIND lineKind,bool isOn)
 {
 	m_lineKind = lineKind;
+
+	if (isOn) m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_UP;
+	else m_moveType = E_SPOTLIGHT_MOVE::NONE;
 }

@@ -239,6 +239,9 @@
     <ClCompile Include="Game\Component\ClearLightCmp.cpp">
       <Filter>Game\Component\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Actor\Boombox.cpp">
+      <Filter>Game\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -461,6 +464,9 @@
     </ClInclude>
     <ClInclude Include="Game\Component\ClearLightCmp.h">
       <Filter>Game\Component\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Actor\Boombox.h">
+      <Filter>Game\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

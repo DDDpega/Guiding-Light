@@ -344,6 +344,7 @@ namespace ILLUST {
 		DOOR,
 		SPOT_LIGHT_OFF,
 		SPOT_LIGHT_ON,
+		BOOM_BOX,
 		LINELIGHT,
 		CUTAINSR,
 		CUTAINSL,
@@ -386,6 +387,7 @@ namespace ILLUST {
 		}},
 		{SPOT_LIGHT_OFF , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight1.png"}},
 		{SPOT_LIGHT_ON , {"Picture/Illust/Gimmick/GL_Gimmick_Spotlight2.png"}},
+		{BOOM_BOX , {"Picture/Illust/Gimmick/GL_Gimmick_Boombox.png"}},
 		{LINELIGHT , {"Picture/LineLight.png"}},
 		{CUTAINSR ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Curtain1_A.png"},
 					 {"Picture/Illust/Gimmick/GL_Gimmick_Curtain1_B.png"}
