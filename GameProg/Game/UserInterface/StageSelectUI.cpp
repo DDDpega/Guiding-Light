@@ -29,7 +29,7 @@ void StageSelectUI::Initialize()
 	auto stageSize = SceneManeger::gameScene->GetStageSize();
 	
 
-	for (int i = 0; i < stageSize; i++) {
+	for (int i = 0; i <= stageSize; i++) {
 		m_isStageImplement[i] = true;
 	}
 	m_isStageImplement[0] = false;
@@ -287,7 +287,7 @@ void StageSelectUI::Update()
 		//横カーソルの変更
 		if (m_colSelectNum == 0) {
 			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
-				if (m_nowcursor != 5) {
+				if (m_nowcursor != 7) {
 					m_isSoundPlay[2] = true;
 					//カーソルを下にずらす
 					m_nowcursor++;
@@ -296,7 +296,7 @@ void StageSelectUI::Update()
 				}
 			}
 			if (Game::gameInstance->GetInputMNG()->Click(L"LEFT")) {
-				if (m_nowcursor != 1) {
+				if (m_nowcursor != 0) {
 					m_isSoundPlay[2] = true;
 					//カーソルを上にずらす
 					m_nowcursor--;
@@ -354,33 +354,29 @@ void StageSelectUI::Draw()
 		m_stageNum->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], m_nowcursor);
 		//m_stageTitle->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::T_STAGE_1], m_nowcursor);
 	}
-		
-		//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
-	if (m_nowcursor == 0) {
 
-	}
-	else {
-		//-1している理由は1つ右に描画しているため
-		//+2している理由は右に二つステージ選択画像を用意するため
-		for (int i = m_nowcursor - 1; i < m_nowcursor + 2; i++) {
-			//カーソルの位置を光らす
-			if (m_isStageClear[i] == true) {
-				m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
-				m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
-			}
-			else {
-				m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
-				m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
-			}
+	//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
+	//-1している理由は1つ右に描画しているため
+	//+2している理由は右に二つステージ選択画像を用意するため
+	for (int i = m_nowcursor ; i < m_nowcursor + 2; i++) {
+		//カーソルの位置を光らす
+		if (m_isStageClear[i] == true) {
+			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
+			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
 		}
-
-		if (!m_isStageImplement[m_nowcursor - 1]) {
-			m_stageArray[m_nowcursor - 1]->SetisVisible(false);
-			m_stageLampArray[m_nowcursor - 1]->SetisVisible(false);
+		else {
+			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
+			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
 		}
 	}
-	for (int i = m_nowcursor+1;i< size(m_stageArray); i++) {
-		if (!m_isStageImplement[i] && m_nowcursor != 20) {
+
+	if (!m_isStageImplement[m_nowcursor]) {
+		m_stageArray[m_nowcursor]->SetisVisible(false);
+		m_stageLampArray[m_nowcursor]->SetisVisible(false);
+	}
+
+	for (int i = m_nowcursor; i < size(m_stageArray); i++) {
+		if (!m_isStageImplement[i] && m_nowcursor != 21) {
 			m_stageArray[i]->SetisVisible(false);
 			m_stageLampArray[i]->SetisVisible(false);
 		}
@@ -402,7 +398,7 @@ void StageSelectUI::Draw()
 	/*else {
 		for (auto& array : m_stageArray) {
 			array->SetisVisible(true);
-		
+
 		}
 	}*/
 
