@@ -45,11 +45,11 @@ public:
 	/// </summary>
 	void PlayerAnim();
 private:
-	bool m_isStageClear[20];	//ステージクリア状態
+	bool m_isStageClear[21];	//ステージクリア状態
 	bool m_isStageImplement[21];	//ステージクリア状態
 
-	shared_ptr<Picture> m_stageArray[20];	//ステージ選択の画像
-	shared_ptr<Picture> m_stageLampArray[20];	//ステージ選択の画像
+	shared_ptr<Picture> m_stageArray[22];	//ステージ選択の画像
+	shared_ptr<Picture> m_stageLampArray[22];	//ステージ選択の画像
 	Point m_stageMarkers[3];	//ステージ選択の位置
 	shared_ptr<Picture> m_menu[2];	//メニューセレクト時の選択画像
 	shared_ptr<Picture> m_menuSelect;	//メニューセレクトの画像

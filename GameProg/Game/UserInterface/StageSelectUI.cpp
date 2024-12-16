@@ -358,15 +358,15 @@ void StageSelectUI::Draw()
 	//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
 	//-1している理由は1つ右に描画しているため
 	//+2している理由は右に二つステージ選択画像を用意するため
-	for (int i = m_nowcursor ; i < m_nowcursor + 2; i++) {
+	for (int i = m_nowcursor ; i < m_nowcursor + 3; i++) {
 		//カーソルの位置を光らす
 		if (m_isStageClear[i] == true) {
-			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
-			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
+			m_stageArray[i+1]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
+			m_stageLampArray[i+1]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
 		}
 		else {
-			m_stageArray[i]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
-			m_stageLampArray[i]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
+			m_stageArray[i + 1]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_N_CLEAR]);
+			m_stageLampArray[i + 1]->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT]);
 		}
 	}
 
@@ -433,7 +433,7 @@ void StageSelectUI::LordFile()
 
 	
 
-	for (int r = 0; r < 20; r++) {
+	for (int r = 0; r < 21; r++) {
 		//列が文字数を超えていたら-1
 		if (r >= col.length()) {
 			checkNo = 0;
