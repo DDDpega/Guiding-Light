@@ -46,13 +46,16 @@ public:
 private:
 	shared_ptr<Picture> m_startText[3];
 	shared_ptr<Picture> m_gameExitText;
+	shared_ptr<Picture> m_lamp;
 	bool m_isMenuActive;	//メニュー画面
 	bool m_isFirst;
 	shared_ptr<Picture> m_fadeUI;
 	shared_ptr<Picture> m_player;
 	int m_waittime;
 	int m_frame;
+	int m_lampFrame;
 	int m_animCnt;						//animationの画像切り替え
 	bool m_animMax;						//animationの画像の最大になるかどうか
+	shared_ptr<Sound> m_startSound;		//スタート時のSE
 };
 

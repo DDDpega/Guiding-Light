@@ -39,6 +39,7 @@ namespace SOUND {
 		CANCEL,
 		CURSORCONTROL,
 		POSE,
+		STARTGAME,
 	};
 
 	//クレジットのリスト
@@ -49,6 +50,7 @@ namespace SOUND {
 		{ CANCEL ,			{"Sound/SE/GameSE/GL_SE_Cancel.wav"}},
 		{ CURSORCONTROL ,	{"Sound/SE/GameSE/GL_SE_CursorControl.wav"}},
 		{ POSE ,			{"Sound/SE/GameSE/GL_SE_Pose.wav"}},
+		{ STARTGAME ,			{"Sound/SE/GameSE/GL_SE_GameStart.wav"}},
 	};
 }
 

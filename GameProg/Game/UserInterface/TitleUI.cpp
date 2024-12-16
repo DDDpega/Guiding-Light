@@ -43,9 +43,15 @@ void TitleUI::Initialize()
 	m_nowpostion[0] = m_startText[0]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[0]);
 	
-	//プレイヤー
-	m_player = std::shared_ptr<Picture>(new Picture(Point{ 0, scrY-100 }, 6, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_PLAYER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(m_player);
+	////プレイヤー
+	//m_player = std::shared_ptr<Picture>(new Picture(Point{ 0, scrY-100 }, 6, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_PLAYER], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	//UserInterface::AddPictureInUI(m_player);
+
+	auto lampPos = 180;
+
+	//ランプ画像
+	m_lamp = std::shared_ptr<Picture>(new Picture(Point{ scrX - lampPos ,scrY - lampPos }, 7, &ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_lamp);
 
 	//黒背景
 	m_backGround = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2  }, 5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false, true));
@@ -70,7 +76,15 @@ void TitleUI::Initialize()
 	//ゲーム終了画像
 	m_gameExitText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 0.7, &UI::TITLE_LIST[UI::TITLE_TYPE::GAMEEND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_gameExitText);
+
+	
+
 	//----------------------------------------------------------------------------------
+
+
+
+	m_startSound = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::STARTGAME], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_startSound);
 
 	//位置の調整
 	for (int i = 0; i <= 2; i++) {
@@ -83,7 +97,7 @@ void TitleUI::Initialize()
 	m_fadeUI = std::shared_ptr<Picture>(new Picture(Point{ 0,0 }, 5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::BACKGROUND], 1, E_PIVOT::LEFTUP, E_SORT::SORT_UI,true,true));
 	UserInterface::AddPictureInUI(m_fadeUI);
 	m_fadeUI->SetAlpha(255);
-
+	m_lampFrame = 0;
 	m_frame = 0;
 	m_animCnt = 0;
 	m_animMax = false;
@@ -98,13 +112,18 @@ void TitleUI::Update()
 	
 
 	if (m_isChangeScene) {
+		//ランプ点灯
+		m_lamp->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
+		if (m_lampFrame++ > 60) {
 
-		FadeInOut(false);
-		if (m_isFirst) {
+			FadeInOut(false);
+			if (m_isFirst) {
+
+				//ゲームシーンへ移行フラグをオンにする
+				Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
+
+			}
 			
-			//ゲームシーンへ移行フラグをオンにする
-			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(m_scene);
-
 		}
 		return;
 	}
@@ -131,13 +150,13 @@ void TitleUI::Update()
 
 	//決定
 	if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
-		m_isSoundPlay[0] = true;
+		
 		
 		if (m_nowcursor == 0) {
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
 			m_isFeedIn = false;
-		
+			m_startSound->SoundPlay();
 			m_scene = E_SCENE::STAGESELECT;
 			//元に戻す
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
@@ -150,6 +169,7 @@ void TitleUI::Update()
 
 		}
 		else if (m_nowcursor == 2) {
+			m_isSoundPlay[0] = true;
 			m_isMenuActive = false;
 			m_nowcursor = 0;
 			for (int i = 1; i < 3; i++) {
@@ -188,13 +208,13 @@ void TitleUI::Update()
 		if (m_waittime-- < 0) {
 			Game::gameInstance->GetSceneMNG()->ChangeSceneFlag(E_SCENE::TITLEVIDEO);
 		}
-		auto pos = m_player->GetPos();
+		/*auto pos = m_player->GetPos();
 		pos.x += 2;
 		m_player->SetPos(pos);
 		if (m_frame++ % 10 == 9) {
 			PlayerAnim();
 			m_frame = 0;
-		}
+		}*/
 	}
 }
 
