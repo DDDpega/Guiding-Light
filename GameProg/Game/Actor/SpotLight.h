@@ -54,5 +54,6 @@ private:
 	shared_ptr<LineLightCmp> m_lightCmp;	//ライトコンポーネント
 	int m_time;
 	E_LINE_KIND m_lineKind;
+	bool m_firstOn;
 };
 
