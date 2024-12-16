@@ -17,7 +17,6 @@ using namespace std;
 
 //íËêî
 #include "Point.h"
-#include "ActorInfo.h"
 #include "EnumInfo.h"
 #include "SystemInfo.h"
 #include "PictureInfo.h"
@@ -25,6 +24,7 @@ using namespace std;
 #include "SoundInfo.h"
 #include "VideoInfo.h"
 #include "MapChipInfo.h"
+#include "ActorInfo.h"
 
 //ÉVÉXÉeÉÄ
 #include"Fps.h"
@@ -100,6 +100,8 @@ using namespace std;
 #include "SensitiveGhost.h"
 #include "Boombox.h"
 #include "Curtains.h"
+#include "TutorialBox.h"
+
 #include "ActorManager.h"
 
 

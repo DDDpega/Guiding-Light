@@ -308,6 +308,11 @@ void GameScene::Initialize()
 		m_door[0]->SetTeleportPos(m_door[1]->GetPos());
 		m_door[1]->SetTeleportPos(m_door[0]->GetPos());
 	}
+
+	if (m_nowStageNum == 0) {
+		TutorialBox::SpawnTutorialBox();
+	}
+
 	//UI‚ð•\Ž¦‚·‚é
 	m_pauseUI = shared_ptr<GamePauseUI>(new GamePauseUI(false));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_pauseUI);
@@ -355,10 +360,18 @@ void GameScene::GameClear()
 {
 	if (isOnceGameClearUI) return;
 
-	isOnceGameClearUI = true;
 
-	auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());
-	Game::gameInstance->GetPictureMNG()->AddPicture(gameClear);
+	if (GetNumStage() == 0) {
+		m_isPause = false;
+		GetPlayer()->m_tutorialAllStop = true;
+		m_tutorialBoxClear->SetPos(GetPlayer()->GetPos());
+	}
+	else {
+		isOnceGameClearUI = true;
+
+		auto gameClear = shared_ptr<GameClearUI>(new GameClearUI());
+		Game::gameInstance->GetPictureMNG()->AddPicture(gameClear);
+	}
 }
 
 void GameScene::GameOver()

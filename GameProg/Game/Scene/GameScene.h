@@ -90,7 +90,7 @@ public:
 	vector<shared_ptr<SolarPanel>> m_solarpanel;
 	vector<shared_ptr<Curtains>> m_curtains;
 	shared_ptr<Door> m_door[2];
-
+	shared_ptr<TutorialBox> m_tutorialBoxClear;
 	vector<GoalLight*> m_goalLightList;
 
 

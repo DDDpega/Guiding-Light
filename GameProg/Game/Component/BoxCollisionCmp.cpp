@@ -45,7 +45,15 @@ void BoxCollisionCmp::Draw()
 		DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(255, 0, 0));
 		DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(255, 0, 0));
 	}
-	else {
+	else if (m_tag == E_TAG::TUTORIAL_BOX) {
+		//“–‚½‚è”»’è‚Ì•\Ž¦
+		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom
+			, GetColor(0, 255, 0), false);
+
+		DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(0, 255, 0));
+		DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(0, 255, 0));
+	}
+	else{
 		//“–‚½‚è”»’è‚Ì•\Ž¦
 		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom
 			, GetColor(255, 255, 255), false);

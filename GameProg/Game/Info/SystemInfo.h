@@ -46,4 +46,5 @@ namespace GAME_INFO {
 	constexpr int RAYNUM = 100;
 	constexpr int RAYPLUS = 15;
 	constexpr bool DEBUG = true;
+	constexpr int TUTORIAL_BOX_NUM = 9;
 }

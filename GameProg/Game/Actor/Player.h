@@ -77,6 +77,11 @@ public:
 	bool m_isDoorTouch;	//ƒhƒA‚ðŠJ‚¢‚½‚©‚Ç‚¤‚©
 	std::shared_ptr<LightCmp> m_lightCmp;
 
+	bool m_tutorialLight;
+	bool m_tutorialMove_X;
+	bool m_tutorialJump;
+	bool m_tutorialAllStop;
+
 private:
 	bool m_firstShot;
 	

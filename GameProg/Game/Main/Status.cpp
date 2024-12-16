@@ -96,6 +96,49 @@ bool Status::ReadStatus()
 	return true;
 }
 
+float* Status::ReadTutorial()
+{
+	float* boxPos=new float[GAME_INFO::TUTORIAL_BOX_NUM*3];
+	float debug[GAME_INFO::TUTORIAL_BOX_NUM*3];
+
+	//ファイルのパス設定
+	std::string filename = "Data/Tutorial/Tutorial.txt";
+
+	//ファイルを開く
+	wifstream inFile(filename);
+
+	//ファイルの読み込み失敗
+	if (!inFile) {
+		return nullptr;
+	}
+
+	//一行を取得する
+	wstring line;
+
+	int rowNum = 0;
+	while (getline(inFile, line)) {
+
+		//「,」の位置を検索する
+		int postion = line.find(',') + 1;
+		int postion2 = line.find(':') + 1;
+		int lengthY = postion - postion2;
+
+		boxPos[rowNum] = std::stoi(line.substr(0,postion));
+		boxPos[rowNum+1] = std::stoi(line.substr(postion, lengthY));
+		boxPos[rowNum+2] = std::stoi(line.substr(postion2));
+
+		debug[rowNum] = std::stoi(line.substr(0, postion));
+		debug[rowNum + 1] = std::stoi(line.substr(postion, lengthY));
+		debug[rowNum + 2] = std::stoi(line.substr(postion2));
+		
+		rowNum+=3;
+	}
+
+	debug;
+	return boxPos;
+}
+
+
 S_AROUND_GOHOST Status::ReadAroundGhostStatus(int pathNum, int ghostNum)
 {
 	//ファイルのパス設定

@@ -321,6 +321,56 @@ namespace UI {
 	};
 }
 
+namespace UI {
+	enum TUTORIAL_TYPE {
+
+		SENTENCE,
+		INTERACT_KEY_B,
+		INTERACT_KEY_MOVE,
+		INTERACT_KEY_JUMP,
+		INTERACT_KEY_ON_LIGHT,
+	};
+	_declspec(selectany) vector<PICTURE_TYPE> TUTORIAL_LIST = {
+		{ SENTENCE,  {
+			{ "Picture/UI/Tutorial/Tutorial_Sentence1.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence2.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence3.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence4.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence5.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence6.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence7.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence8.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence9.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence10.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence11.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence12.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence13.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence14.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence15.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence16.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence17.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence18.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence19.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence20.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence21.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence22.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence23.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence24.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence25.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence26.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence27.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence28.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence29.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence30.png" },
+		}},	
+		{INTERACT_KEY_B , {"Picture/UI/Tutorial/interactkeyB.png"} },
+		{INTERACT_KEY_MOVE , {"Picture/UI/Tutorial/interactkeyMove.png"}},
+		{INTERACT_KEY_JUMP , {"Picture/UI/Tutorial/interactkeyJump.png"}},
+		{INTERACT_KEY_ON_LIGHT , {"Picture/UI/Tutorial/interactkeyOnLight.png"}},
+	};
+}
+
+
 namespace ILLUST {
 
 

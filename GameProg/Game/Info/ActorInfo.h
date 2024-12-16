@@ -135,3 +135,8 @@ namespace PUDDLE_INFO {
 	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40 ,40 };
 }
+
+namespace TUTORIAL_INFO {
+	constexpr float SIZE = 0.2f;
+	const Point POS = Point{WINDOW_INFO::GAME_WIDTH_HALF,100};
+}

@@ -25,6 +25,8 @@ public:
 	/// <returns></returns>
 	bool ReadStatus();
 
+	static float* ReadTutorial();
+
 	/// <summary>
 	/// 巡回オバケの移動マス
 	/// </summary>

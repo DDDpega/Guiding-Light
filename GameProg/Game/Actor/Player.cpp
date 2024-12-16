@@ -4,6 +4,7 @@ Player::Player(Point pos)
 	:Actor(pos)
 	,m_firstShot(false)
 	,m_isGoalLight_Tought(false)
+	,m_tutorialAllStop(false)
 {
 
 }
@@ -70,6 +71,8 @@ void Player::Update()
 {
 	Actor::Update();
 
+	if (m_tutorialAllStop)return;
+
 	if (m_isDoorTouch) {
 		m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::STAND], 0);
 		return;
@@ -80,13 +83,16 @@ void Player::Update()
 		return;
 	}
 
+	bool isClick_x = false;
+	bool isClick_y = false;
 
+	//スクロール
 	auto playerPos = SceneManeger::gameScene->GetPlayer()->GetPos();
 	auto scroll = Point{ playerPos.x - WINDOW_INFO::GAME_WIDTH_HALF, playerPos.x - WINDOW_INFO::GAME_HEIGHT_HALF };
 	Game::gameInstance->GetSceneMNG()->gameScene->m_map->SetScroll(scroll);
 	
+	//当たっている梯子のポジションを取得
 	auto isNowLadder = false;
-	//梯子の乗り始めと終わり
 	for (auto& ladder : m_isLadder) {
 		if (ladder.isLadder && (m_rigidBody->m_state==STATE::WALK || m_rigidBody->m_state == STATE::STAND||m_rigidBody->m_state==STATE::FLYOK )) {
 			m_rigidBody->ChangeState(STATE::FLYOK);
@@ -102,60 +108,19 @@ void Player::Update()
 		m_rigidBody->ChangeState(STATE::STAND);
 	}
 
-	bool isClick_x = false;
-	bool isClick_y = false;
-
-	
-
-	//移動
-	if (Game::gameInstance->GetInputMNG()->Down(L"RIGHT")) {
-		m_vx = Game::gameInstance->GetStatus()->PLAYER_SPEED;
-		isClick_x = true;
-		m_pictureCmp->m_picture->m_reverse = false;
-		m_darkPictureCmp->m_darkPicture->m_reverse = false;
-	}
-	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
-		m_vx = -Game::gameInstance->GetStatus()->PLAYER_SPEED;
-		//printfDx("Player\n");
-		isClick_x = true;
-		m_pictureCmp->m_picture->m_reverse = true;
-		m_darkPictureCmp->m_darkPicture->m_reverse = true;
-
-	}
-	
-
-	//移動時の音声を出力
-	if ((isClick_x) && m_rigidBody->m_state == STATE::WALK) {
-		if (m_soundFrame[1]-- < 0) {
-			m_sound[2]->SoundPlay(Sound::BACK);
-			m_soundFrame[1] = PLAYER_INFO::MOVEFRAME;
-		}
-	}
-	else {
-		m_sound[2]->SoundStop();
-		m_soundFrame[1] = 0;
-	}
-
-	//左右の操作がされ、ジャンプ・梯子状態ではない時
-	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL && m_rigidBody->m_state != STATE::FLY) {
-		m_rigidBody->ChangeState(STATE::WALK);
-	}
-
+	//梯子の乗り始めと終わり
 	auto isRideLadderPos = Point{ 0,0 };
 	auto isRideLadderNum = 0;
-	//梯子の乗り始めと終わり
 	for (auto& ladder : m_isLadder) {
 		if (ladder.isLadder) {
 			isRideLadderPos = ladder.ladderPos;
 			isRideLadderNum++;
 		}
 	}
-
 	m_isNowLadder = (!isNowLadder && !m_isLadderTop);
 
-	auto isfly = (m_rigidBody->m_state == STATE::FLYOK || m_rigidBody->m_state == STATE::FLY);
-
 	//はしご中の動作
+	auto isfly = (m_rigidBody->m_state == STATE::FLYOK || m_rigidBody->m_state == STATE::FLY);
 	if (isfly) {
 		m_isLadderTop = false;
 		if (Game::gameInstance->GetInputMNG()->Down(L"UP")) {
@@ -184,6 +149,49 @@ void Player::Update()
 		}
 	}	
 
+	
+	//移動
+	if (Game::gameInstance->GetInputMNG()->Down(L"RIGHT")) {
+
+		if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialMove_X) {
+			m_vx = Game::gameInstance->GetStatus()->PLAYER_SPEED;
+			isClick_x = true;
+			m_pictureCmp->m_picture->m_reverse = false;
+			m_darkPictureCmp->m_darkPicture->m_reverse = false;
+		}
+	}
+	if (Game::gameInstance->GetInputMNG()->Down(L"LEFT")) {
+
+		if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialMove_X) {
+			m_vx = -Game::gameInstance->GetStatus()->PLAYER_SPEED;
+			//printfDx("Player\n");
+			isClick_x = true;
+			m_pictureCmp->m_picture->m_reverse = true;
+			m_darkPictureCmp->m_darkPicture->m_reverse = true;
+		}
+	}
+
+
+	
+
+	//移動時の音声を出力
+	if ((isClick_x) && m_rigidBody->m_state == STATE::WALK) {
+		if (m_soundFrame[1]-- < 0) {
+			m_sound[2]->SoundPlay(Sound::BACK);
+			m_soundFrame[1] = PLAYER_INFO::MOVEFRAME;
+		}
+	}
+	else {
+		m_sound[2]->SoundStop();
+		m_soundFrame[1] = 0;
+	}
+
+	//左右の操作がされ、ジャンプ・梯子状態ではない時
+	if (isClick_x && m_rigidBody->m_state != STATE::JUMP && m_rigidBody->m_state != STATE::FALL && m_rigidBody->m_state != STATE::FLY) {
+		m_rigidBody->ChangeState(STATE::WALK);
+	}
+
+
 	//移動時の音声を出力
 	if ((isClick_y) && m_rigidBody->m_state == STATE::FLY) {
 		if (m_soundFrame[2]-- < 0) {
@@ -200,12 +208,17 @@ void Player::Update()
  	if (m_rigidBody->m_state == STATE::STAND ||
 			 m_rigidBody->m_state==STATE::WALK) {
 		if (Game::gameInstance->GetInputMNG()->Click(L"OK")) {
-			m_rigidBody->ChangeState(STATE::JUMPSTT);
-			m_sound[0]->SoundPlay(Sound::BACK);
-			isClick_y = true;
+
+			if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialJump) {
+				m_rigidBody->ChangeState(STATE::JUMPSTT);
+				m_sound[0]->SoundPlay(Sound::BACK);
+				isClick_y = true;
+
+			}
 		}
 	}
 
+	//立ちモーションに変更する
 	if (!isClick_x && (m_rigidBody->m_state == STATE::WALK || m_rigidBody->m_state == STATE::FLYOK)) {
 		m_rigidBody->m_state = STAND;
 	}
@@ -258,8 +271,9 @@ void Player::Update()
 	}
 
 	//ライトのON、OFF
-	if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
-		if (!m_lightCmp->m_changeNow) {
+	if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {	
+		
+		if ((SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialLight) && !m_lightCmp->m_changeNow) {
 			m_lightCmp->ChangeLightONOFF();
 			m_sound[1]->SoundPlay(Sound::BACK);
 		}

@@ -120,6 +120,11 @@ void PictureManeger::Initialize()
 			ILLUST::STAGE_LIST[list.type].handle.push_back(LoadGraph(path));
 		}
 	}
+	for (auto& list : UI::TUTORIAL_LIST) {
+		for (auto& path : list.path) {
+			UI::TUTORIAL_LIST[list.type].handle.push_back(LoadGraph(path));
+		}
+	}
 }
 
 
