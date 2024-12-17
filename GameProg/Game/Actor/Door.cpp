@@ -29,11 +29,14 @@ void Door::Initialize()
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
+	m_isLightOn = false;
+
 }
 
 void Door::Update()
 {
 	Actor::Update();
+
 
 	if (m_isDoor) {
 		SceneManeger::gameScene->GetPlayer()->m_isDoorTouch = true;
@@ -44,9 +47,10 @@ void Door::Update()
 			break;
 		case 20:
 			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 2);
+			m_isLightOn = SceneManeger::gameScene->GetPlayer()->GetLightOn();
 			break;
 		case 25:
-			SceneManeger::gameScene->GetPlayer()->m_lightCmp->ChangeLightONOFF();
+			if(m_isLightOn)SceneManeger::gameScene->GetPlayer()->m_lightCmp->ChangeLightONOFF();
 			break;
 		case 30:
 			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::DOOR], 0);
@@ -61,7 +65,7 @@ void Door::Update()
 			SceneManeger::gameScene->GetPlayer()->m_isDoorTouch = false;
 			m_isDoor = false;
 			m_doorFrame = 0;
-			SceneManeger::gameScene->GetPlayer()->m_lightCmp->ChangeLightONOFF();
+			if (m_isLightOn)SceneManeger::gameScene->GetPlayer()->m_lightCmp->ChangeLightONOFF();
 			break;
 		}
 		

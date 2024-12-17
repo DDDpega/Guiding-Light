@@ -96,7 +96,10 @@ void Map::createMap()
 			if (chipNo >= 5&&!m_isInitialize) {
 				auto apos = MapPos{ chipNo, Point{position_x ,position_y},false };
 				m_actorPos.push_back(apos);
-				continue;
+				if (chipNo != MAPCHIPINFO::PATROL) {
+					continue;
+				}
+				
 			}
 			else if (chipNo == MAPCHIPINFO::FLOOR2 && !m_isInitialize) {
 				//マップチップのアクターを生成する
@@ -106,7 +109,7 @@ void Map::createMap()
 				m_actorPos.push_back(apos);*/
 			}
 
-			if (chipNo == MAPCHIPINFO::FLOOR2) {
+			if (chipNo == MAPCHIPINFO::FLOOR2|| chipNo == MAPCHIPINFO::PATROL) {
 				DrawExtendGraph(position_x, position_y, position_x + 40, position_y + 40, m_bitmap[1], TRUE);
 			}
 			else {
