@@ -71,6 +71,10 @@ void ChaseGhost::Update()
 		}
 	}
 
+	if (figureList.empty()) {
+		m_isFigure = false;
+	}
+
 
 
 	//フィギュアがターゲット先だったら

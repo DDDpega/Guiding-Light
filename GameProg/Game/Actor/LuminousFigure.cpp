@@ -149,7 +149,7 @@ void LuminousFigure::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn()) {
+	if ((tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn()) || tag==E_TAG::SPOT_LIGHT_RAY) {
 		m_shareNow = true;
 	}
 }
