@@ -23,6 +23,7 @@ void StageSelectScene::Initialize()
 
 	//UI‚ð•\Ž¦‚·‚é
 	auto stageSelectUI = shared_ptr<StageSelectUI>(new StageSelectUI());
+	stageSelectUI->SetStageNum(m_stageNum);
 	Game::gameInstance->GetPictureMNG()->AddPicture(stageSelectUI);
 }
 

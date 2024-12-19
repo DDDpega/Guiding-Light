@@ -24,6 +24,7 @@ void SolarPanel::Initialize()
 
 	auto pos = m_pictureCmp->m_picture->GetPos();
 	pos.y -= 10;
+	pos.x += 40;
 
 	m_pictureCmp2 = shared_ptr<Picture>(new Picture(pos, SOLARPANEL_INFO::SIZE, &UI::GAME_LIST[UI::GAME_TYPE::THUNDER], 0, E_PIVOT::CENTER, E_SORT::SORT_ACTOR));
 	Game::gameInstance->GetPictureMNG()->AddPicture(m_pictureCmp2);

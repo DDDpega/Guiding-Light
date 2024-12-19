@@ -32,7 +32,7 @@ namespace SOLARPANELBLOCK_INFO {
 /// </summary>
 namespace SOLARPANEL_INFO {
 	constexpr float SIZE = 2.5f;
-	constexpr Point COLLISION_SIZE = { 40,40 };
+	constexpr Point COLLISION_SIZE = { 80,80 };
 	constexpr int PANELFRAME = 100;
 }
 

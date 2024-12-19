@@ -18,6 +18,7 @@ public:
 	/// </summary>
 	void Initialize();
 
+
 	/// <summary>
 	/// 更新処理
 	/// </summary>
@@ -33,6 +34,10 @@ public:
 	/// </summary>
 	void LordFile();
 
+	/// <summary>
+	/// ステージ移動
+	/// </summary>
+	void MovePosStage(int framenum = 1, bool isRight = true);
 
 	/// <summary>
 	/// ステージ番号とタイトルの画像を変更するメソッド
@@ -44,6 +49,14 @@ public:
 	/// ステージ選択時のプレイヤーのanimation管理
 	/// </summary>
 	void PlayerAnim();
+
+
+	/// <summary>
+	/// 初めに来るステージをせっとする
+	/// </summary>
+	void SetStageNum(int num) { m_nowcursor = num; }
+
+
 private:
 	bool m_isStageClear[21];	//ステージクリア状態
 	bool m_isStageImplement[21];	//ステージクリア状態
@@ -65,5 +78,6 @@ private:
 	int m_frame;						//frame
 	int m_animCnt;						//animationの画像切り替え
 	bool m_animMax;						//animationの画像の最大になるかどうか
+	
 };
 

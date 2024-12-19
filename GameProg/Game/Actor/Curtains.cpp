@@ -50,7 +50,14 @@ void Curtains::Update()
 void Curtains::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
-	if (tag == E_TAG::PLAYER && Game::gameInstance->GetInputMNG()->Click(L"UP")&&!m_isTrigger) {
+
+	auto isChack = false;
+
+	if ((!m_isLeft && Game::gameInstance->GetInputMNG()->Down(L"RIGHT"))|| (m_isLeft && Game::gameInstance->GetInputMNG()->Down(L"LEFT"))) {
+		isChack = true;
+	}
+
+	if (tag == E_TAG::PLAYER &&!m_isTrigger&&isChack) {
 		m_isTrigger = true;
 		auto type = ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::CUTAINSR];
 		if (m_isLeft) {

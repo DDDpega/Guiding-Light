@@ -55,13 +55,14 @@ public:
 	}
 
 	static GameScene* gameScene;
+	static StageSelectScene* ssScene;
 
 
 private:
 	//ÉVÅ[Éì
 	Scene* nowScene;
 	TitleScene* titleScene;
-	StageSelectScene* ssScene;
+	
 	OptionScene* optionScene;
 	CreditScene* creditScene;
 	TitleVideoScene* tvScene;

@@ -29,6 +29,11 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 最後のステージ番号を取得
+	/// </summary>
+	void SetStageNum(int num) { m_stageNum = num; }
+
 protected:
 	int m_stageNum;
 };

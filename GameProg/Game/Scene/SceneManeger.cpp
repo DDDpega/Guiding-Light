@@ -1,6 +1,7 @@
 #include "Framework.h"
 
 GameScene* SceneManeger::gameScene = nullptr;
+StageSelectScene* SceneManeger::ssScene = nullptr;
 
 SceneManeger::SceneManeger()
 {
