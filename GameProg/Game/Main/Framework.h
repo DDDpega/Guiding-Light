@@ -75,6 +75,7 @@ using namespace std;
 #include "LineLightCmp.h"
 #include "OnSoundCmp.h"
 #include "ClearLightCmp.h"
+#include "InteractKeyCmp.h"
 
 
 

@@ -92,7 +92,7 @@ public:
 	shared_ptr<Door> m_door[2];
 	shared_ptr<TutorialBox> m_tutorialBoxClear;
 	vector<GoalLight*> m_goalLightList;
-
+	vector<shared_ptr<TutorialBox>> m_tutorialBox;
 
 	vector<OnSoundCmp*> m_onSoundCmp;
 

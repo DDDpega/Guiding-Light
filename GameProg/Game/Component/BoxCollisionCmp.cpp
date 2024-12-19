@@ -53,6 +53,14 @@ void BoxCollisionCmp::Draw()
 		DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(0, 255, 0));
 		DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(0, 255, 0));
 	}
+	else if (m_tag == E_TAG::PLAYER_BLACK) {
+		//“–‚½‚è”»’è‚Ì•\Ž¦
+		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom
+			, GetColor(0, 0, 255), false);
+
+		DrawLine(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom, GetColor(0, 0, 255));
+		DrawLine(m_collision.right, m_collision.top, m_collision.left, m_collision.bottom, GetColor(0, 0, 255));
+	}
 	else{
 		//“–‚½‚è”»’è‚Ì•\Ž¦
 		DrawBox(m_collision.left, m_collision.top, m_collision.right, m_collision.bottom

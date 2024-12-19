@@ -47,8 +47,11 @@ void Player::Initialize()
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, PLAYER_INFO::COLLISION_SIZE, E_TAG::PLAYER));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
-	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 
+	//ライト用当たり判定
+	auto collision1= std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, PLAYER_INFO::BLACK_COLLISION_SIZE, E_TAG::PLAYER_BLACK));
+	Actor::AddComponent(collision1);
+	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision1);
 
 	//マップとの当たり判定
 	m_mapCollision = std::shared_ptr<MapCollision>(new MapCollision(this, E_TAG::MAP));
@@ -294,7 +297,7 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	}	
 
 	//明るい所に来た
-	if ((tag == E_TAG::SPOT_LIGHT_RAY || tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag == E_TAG::FIGURERAY || tag == E_TAG::GOALLIGHTRAY) && m_isActive && selftag == E_TAG::PLAYER) {
+	if ((tag == E_TAG::SPOT_LIGHT_RAY || tag == E_TAG::RAY || tag == E_TAG::PLAYER_RAY || tag == E_TAG::FIGURERAY || tag == E_TAG::GOALLIGHTRAY) && m_isActive && selftag == E_TAG::PLAYER_BLACK) {
 		m_darkPictureCmp->m_darkPicture->SetisVisible(false);
 	}
 
@@ -338,5 +341,19 @@ void Player::SetChangePuddleSound(bool isPuddle)
 	else {
 		m_sound[2]->ChangeSound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE], 0);
 	}
+}
+
+void Player::GameOver()
+{
+	//if (Game::gameInstance->m_framecnt % 10 == 0) {
+	//	m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE], m_gameOverPictureNum);
+	//	m_darkPictureCmp->m_darkPicture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE], m_gameOverPictureNum + 1);
+
+	//	//次の画像を変える
+	//	if ((m_gameOverPictureNum + 2) < ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE].path.size())
+	//		m_gameOverPictureNum += 2;
+	//	else
+	//		m_gameOverPictureNum = 0;
+	//}
 }
 

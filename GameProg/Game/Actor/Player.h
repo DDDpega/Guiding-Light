@@ -72,6 +72,8 @@ public:
 	/// <param name="isPuddle"></param>
 	void SetChangePuddleSound(bool isPuddle);
 
+	void GameOver();
+
 
 	bool m_isGoalLight_Tought;	//ゴールライトの作業中かどうか
 	bool m_isDoorTouch;	//ドアを開いたかどうか
@@ -91,6 +93,7 @@ private:
 	int m_movePictureNum;	//動いている際のプレイヤーの画像
 	int m_movePictureUp;	//動いている際のプレイヤーの画像
 	int m_ascendPictureNum;	//登っている際のプレイヤーの画像
+	int m_gameOverPictureNum;	//ゲームオーバー際のプレイヤーの画像
 
 	shared_ptr<Sound> m_sound[4];//0=jump1=light2=move
 

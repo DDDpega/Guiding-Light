@@ -349,7 +349,9 @@ void GameScene::Update()
 			//UI‚ÌŒ©‚½–Ú‚ð•t‚¯‚é
 			m_pauseUI->SetisVisible(true);
 		}
-	}		
+	}
+
+	if (isGameOver) GetPlayer()->GameOver();
 }
 
 void GameScene::Draw()
@@ -371,7 +373,6 @@ void GameScene::GameClear()
 
 	if (GetNumStage() == 0) {
 		m_isPause = false;
-		GetPlayer()->m_tutorialAllStop = true;
 		m_tutorialBoxClear->SetPos(GetPlayer()->GetPos());
 	}
 	else {

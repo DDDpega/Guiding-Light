@@ -336,6 +336,8 @@ namespace UI {
 			{ "Picture/UI/Tutorial/Tutorial_Sentence2.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence3.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence4.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence5B.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence6B.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence5.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence6.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence7.png" },
@@ -457,7 +459,8 @@ namespace ILLUST {
 		JUMP,
 		MOVE,
 		SUPPLY,
-		STAND
+		STAND,
+		SURPRISE
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> PLAYER_LIST = {
@@ -487,6 +490,10 @@ namespace ILLUST {
 			{"Picture/Illust/Player/GL_Player_Supply.png"}
 		}},
 		{STAND,{"Picture/Illust/Player/GL_Player_Stand2.png"}},
+		{SURPRISE,{
+			{"Picture/Illust/Player/GL_Player_Surprise1.png"},
+			{"Picture/Illust/Player/GL_Player_Surprise2.png"},
+		}},
 	};
 }
 

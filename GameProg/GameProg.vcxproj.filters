@@ -245,6 +245,9 @@
     <ClCompile Include="Game\Actor\TutorialBox.cpp">
       <Filter>Game\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Component\InteractKeyCmp.cpp">
+      <Filter>Game\Component\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Actor\Player.h">
@@ -473,6 +476,9 @@
     </ClInclude>
     <ClInclude Include="Game\Actor\TutorialBox.h">
       <Filter>Game\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\InteractKeyCmp.h">
+      <Filter>Game\Component\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

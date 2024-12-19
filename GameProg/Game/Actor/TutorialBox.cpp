@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-constexpr int VISIBLE_TIME = 120;
+constexpr int VISIBLE_TIME = 90;
 
 TutorialBox::TutorialBox(Point pos)
 	:Actor(pos)
@@ -94,8 +94,13 @@ void TutorialBox::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 		if (m_number != 5 || !isTrigger) {
 			m_isPlayerHit = true;
 			m_numText = 0;
+
+			for (auto a : SceneManeger::gameScene->m_tutorialBox) {
+				if (a->m_picture != nullptr) a->m_picture->m_isActive = false;
+			}
+
 			//描画
-			m_picture = shared_ptr<Picture>(new Picture(TUTORIAL_INFO::POS, TUTORIAL_INFO::SIZE, &UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::SENTENCE], m_sentenceFirstNum, E_PIVOT::CENTER, E_SORT::SORT_TUTORIAL_SENTENCE));
+			m_picture = shared_ptr<Picture>(new Picture(Point{ WINDOW_INFO::GAME_WIDTH_HALF,150 }, TUTORIAL_INFO::SIZE, &UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::SENTENCE], m_sentenceFirstNum, E_PIVOT::CENTER, E_SORT::SORT_TUTORIAL_SENTENCE));
 			Game::gameInstance->GetPictureMNG()->AddPicture(m_picture);
 		}
 	}
@@ -109,7 +114,7 @@ bool TutorialBox::Function1()
 {
 
 	//プレイヤーの動きとを止める
-	if (m_numText < 4) {
+	if (m_numText < 6) {
 		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
 	}
@@ -120,22 +125,43 @@ bool TutorialBox::Function1()
 
 	}
 
-	//ライトの操作を止める
-	if (m_numText < 3) {
-		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
-	}
-	//止めない
-	else {
-		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
-	}
 
 	//3の場合テキストを止める
 	if (m_numText == 3) {
 		m_isTextStop = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
+
 
 		if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
 			m_isTextStop = false;
 			m_frameCnt = VISIBLE_TIME-1;
+			SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
+
+		}
+	}
+	//3の場合テキストを止める
+	if (m_numText == 4) {
+		m_isTextStop = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
+
+
+		if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
+			m_isTextStop = false;
+			m_frameCnt = VISIBLE_TIME - 1;
+			SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
+
+		}
+	}
+	if (m_numText == 5) {
+		m_isTextStop = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
+
+
+		if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
+			m_isTextStop = false;
+			m_frameCnt = VISIBLE_TIME - 1;
+			SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
+
 		}
 	}
 
@@ -144,8 +170,18 @@ bool TutorialBox::Function1()
 		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0);
 		m_interactKey->SetisVisible(true);
 	}
+	//ライトのインタラクトキーを表示
+	if (m_numText == 4) {
+		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0);
+		m_interactKey->SetisVisible(true);
+	}
+	//ライトのインタラクトキーを表示
+	if (m_numText == 5) {
+		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0);
+		m_interactKey->SetisVisible(true);
+	}
 	//移動キーを表示
-	else if (m_numText == 4) {
+	else if (m_numText == 6) {
 		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_MOVE], 0);
 		m_interactKey->SetisVisible(true);
 	}
@@ -155,9 +191,17 @@ bool TutorialBox::Function1()
 
 bool TutorialBox::Function2()
 {
-	//ジャンプキーを常時表示
-	m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_JUMP], 0);
-	m_interactKey->SetisVisible(true);
+	if (m_numText == 0) {
+		SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = true;
+	}
+
+	if (m_numText == 1) {
+		//ジャンプキーを常時表示
+		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_JUMP], 0);
+		m_interactKey->SetisVisible(true);
+		SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = false;
+
+	}
 	return true;
 
 }
@@ -245,6 +289,8 @@ bool TutorialBox::Function8()
 }
 bool TutorialBox::Function9()
 {
+	SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = true;
+
 	if (m_numText == 1 && m_frameCnt==VISIBLE_TIME - 1) {
 		m_isTextStop = true;
 		//ゲームシーンへ移行フラグをオンにする
@@ -275,7 +321,7 @@ void TutorialBox::SpawnTutorialBox()
 		++number;
 		pictureNum += tutorialInfo[i + 2];
 
-
+		SceneManeger::gameScene->m_tutorialBox.push_back(tutorialBox);
 		Game::gameInstance->GetActorMNG()->AddActor(tutorialBox);
 	}
 

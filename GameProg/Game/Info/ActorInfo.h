@@ -14,6 +14,7 @@ namespace PLAYER_INFO {
 
 	constexpr float SIZE = 2.5f;
 	constexpr Point COLLISION_SIZE = { 40 * 1,40 * 2 };
+	constexpr Point BLACK_COLLISION_SIZE = { 8,8 };
 	constexpr int MOVEFRAME = 20;
 	constexpr int LADDERFRAME = 10;
 	constexpr int LIGHTFRAME = 10;
