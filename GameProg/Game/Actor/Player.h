@@ -74,6 +74,11 @@ public:
 
 	void GameOver();
 
+	/// <summary>
+	/// 外部からライトを強制的につける
+	/// </summary>
+	void OnLight();
+
 
 	bool m_isGoalLight_Tought;	//ゴールライトの作業中かどうか
 	bool m_isDoorTouch;	//ドアを開いたかどうか
@@ -81,6 +86,7 @@ public:
 
 	bool m_tutorialLight;
 	bool m_tutorialMove_X;
+	bool m_tutorialMove_Y;
 	bool m_tutorialJump;
 	bool m_tutorialAllStop;
 

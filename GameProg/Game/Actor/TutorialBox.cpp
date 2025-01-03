@@ -25,10 +25,8 @@ void TutorialBox::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//インタラクトキー描画
-	m_interactKey = shared_ptr<Picture>(new Picture(Point{m_pos.x,m_pos.y-40.0f}, 0.1f, &UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0, E_PIVOT::CENTER, E_SORT::SORT_TUTORIAL_SENTENCE));
-	m_interactKey->SetisVisible(false);
-	Game::gameInstance->GetPictureMNG()->AddPicture(m_interactKey);
-
+	m_interactKey = shared_ptr<InteractKeyCmp>(new InteractKeyCmp(this,E_INTERACT_KIND::NONE));
+	AddComponent(m_interactKey);
 
 	m_functionArray.push_back(bind(&TutorialBox::Function1,this));
 	m_functionArray.push_back(bind(&TutorialBox::Function2,this));
@@ -57,13 +55,13 @@ void TutorialBox::Update()
 			if (m_numText + m_sentenceFirstNum >m_sentenceMaxNum) {
 
 				m_picture->m_isActive = false;
-				m_interactKey->m_isActive = false;
 			}
 			else {
 				m_picture->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::SENTENCE], m_numText+m_sentenceFirstNum);
+				m_interactKey->SetParam(E_INTERACT_KIND::NONE);
+				m_interactKey->DeletePicture();
 			}
 
-			m_interactKey->SetisVisible(false);
 			m_frameCnt = 0;
 		}
 	}
@@ -114,7 +112,7 @@ bool TutorialBox::Function1()
 {
 
 	//プレイヤーの動きとを止める
-	if (m_numText < 6) {
+	if (m_numText < 8) {
 		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
 	}
@@ -122,7 +120,6 @@ bool TutorialBox::Function1()
 	else {
 		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = true;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = true;
-
 	}
 
 
@@ -140,10 +137,9 @@ bool TutorialBox::Function1()
 		}
 	}
 	//3の場合テキストを止める
-	if (m_numText == 4) {
+	if (m_numText == 5) {
 		m_isTextStop = true;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
-
 
 		if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
 			m_isTextStop = false;
@@ -152,38 +148,24 @@ bool TutorialBox::Function1()
 
 		}
 	}
-	if (m_numText == 5) {
-		m_isTextStop = true;
-		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
 
-
-		if (Game::gameInstance->GetInputMNG()->Click(L"LIGHT_CHANGE")) {
-			m_isTextStop = false;
-			m_frameCnt = VISIBLE_TIME - 1;
-			SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
-
-		}
+	//自動でつける
+	if (m_numText == 7 && m_frameCnt==0) {
+		SceneManeger::gameScene->GetPlayer()->OnLight();
 	}
 
 	//ライトのインタラクトキーを表示
 	if (m_numText == 3) {
-		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0);
-		m_interactKey->SetisVisible(true);
+		m_interactKey->SetParam(E_INTERACT_KIND::LIGHT);
 	}
-	//ライトのインタラクトキーを表示
-	if (m_numText == 4) {
-		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0);
-		m_interactKey->SetisVisible(true);
-	}
+
 	//ライトのインタラクトキーを表示
 	if (m_numText == 5) {
-		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_B], 0);
-		m_interactKey->SetisVisible(true);
+		m_interactKey->SetParam(E_INTERACT_KIND::LIGHT);
 	}
 	//移動キーを表示
-	else if (m_numText == 6) {
-		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_MOVE], 0);
-		m_interactKey->SetisVisible(true);
+	if (m_numText == 8) {
+		m_interactKey->SetParam(E_INTERACT_KIND::MOVE);
 	}
 	return true;
 
@@ -192,15 +174,16 @@ bool TutorialBox::Function1()
 bool TutorialBox::Function2()
 {
 	if (m_numText == 0) {
-		SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
 	}
 
 	if (m_numText == 1) {
 		//ジャンプキーを常時表示
-		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_JUMP], 0);
-		m_interactKey->SetisVisible(true);
-		SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = false;
+		m_interactKey->SetParam(E_INTERACT_KIND::JUMP);
 
+		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = true;
 	}
 	return true;
 
@@ -210,13 +193,11 @@ bool TutorialBox::Function3()
 {
 	//プレイヤーの動きと点灯を止める
 	if (m_numText < 3) {
-		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
 	}
 	//動きを止めない
 	else {
-		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = true;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = true;
 	}
@@ -233,8 +214,7 @@ bool TutorialBox::Function3()
 
 	//ランプ点灯キーを表示
 	if (m_numText == 1) {
-		m_interactKey->ChangePicture(&UI::TUTORIAL_LIST[UI::TUTORIAL_TYPE::INTERACT_KEY_ON_LIGHT], 0);
-		m_interactKey->SetisVisible(true);
+		m_interactKey->SetParam(E_INTERACT_KIND::INTERACT);
 	}
 
 	return true;
@@ -243,10 +223,23 @@ bool TutorialBox::Function3()
 
 bool TutorialBox::Function4()
 {
-	//プレイヤーの上下移動以外させない
-	SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
-	SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
-	SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
+	if (m_numText == 0) {
+		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_Y = false;
+
+	}
+	else {
+		//プレイヤーの上下移動以外させない
+
+		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_Y = true;
+	}
+
+	if (m_numText == 1) {
+		m_interactKey->SetParam(E_INTERACT_KIND::INTERACT);
+	}
 
 	return true;
 
@@ -257,13 +250,15 @@ bool TutorialBox::Function5()
 	//プレイヤーのすべての動きを許可する
 	if (m_numText >= 1) {
 		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
-		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = true;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = true;
 		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = true;
-		SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_Y = true;
 	}
 	else {
-		SceneManeger::gameScene->GetPlayer()->m_tutorialAllStop = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialLight = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialJump = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_X = false;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialMove_Y = false;
 	}
 
 	return true;

@@ -61,7 +61,7 @@ public:
 protected:
 	int m_fontHandle;	//ƒtƒHƒ“ƒg‚Ìî•ñ
 	shared_ptr<Picture> m_picture;
-	shared_ptr<Picture> m_interactKey;
+	shared_ptr<InteractKeyCmp> m_interactKey;
 	bool m_isPlayerHit;
 	vector<function<bool()>> m_functionArray;
 	int m_frameCnt;

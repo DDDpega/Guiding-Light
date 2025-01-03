@@ -127,18 +127,24 @@ void Player::Update()
 	if (isfly) {
 		m_isLadderTop = false;
 		if (Game::gameInstance->GetInputMNG()->Down(L"UP")) {
-			m_rigidBody->ChangeState(STATE::FLY);
-			m_vy = -Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
-			m_pos.x = isRideLadderPos.x;
-			isClick_y = true;
 
+			if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialMove_Y) {
+				m_rigidBody->ChangeState(STATE::FLY);
+				m_vy = -Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
+				m_pos.x = isRideLadderPos.x;
+				isClick_y = true;
+
+			}
 			m_isLadderTop = true;
 		}
-		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")&& m_rigidBody->m_state == STATE::FLY) {
-			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED/2;
-			if(isRideLadderNum==1)
-				m_pos.x = isRideLadderPos.x;
-			isClick_y = true;
+		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN") && m_rigidBody->m_state == STATE::FLY) {
+
+			if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialMove_Y) {
+				m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
+				if (isRideLadderNum == 1)
+					m_pos.x = isRideLadderPos.x;
+				isClick_y = true;
+			}
 			
 		}
 	}
@@ -146,9 +152,12 @@ void Player::Update()
 	//‚Í‚µ‚²‚Ìã‚Å~‚è‚é‚Æ‚«
 	if ((m_mapCollision->CheckLadder(E_TAG::PLAYER, m_pos) && (m_rigidBody->m_state == STATE::STAND || m_rigidBody->m_state == STATE::WALK))) {
 		if (Game::gameInstance->GetInputMNG()->Down(L"DOWN")) {
-			m_rigidBody->ChangeState(STATE::FLY);
-			m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
-			isClick_y = true;
+
+			if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialMove_Y) {
+				m_rigidBody->ChangeState(STATE::FLY);
+				m_vy = Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
+				isClick_y = true;
+			}
 		}
 	}	
 
@@ -357,3 +366,8 @@ void Player::GameOver()
 	//}
 }
 
+void Player::OnLight()
+{
+	m_lightCmp->ChangeLightONOFF();
+	m_sound[1]->SoundPlay(Sound::BACK);
+}

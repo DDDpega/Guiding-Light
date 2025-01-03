@@ -99,6 +99,7 @@ enum class E_SOLARPANEL_KIND
 
 enum class E_INTERACT_KIND
 {
+	NONE,
 	LIGHT,
 	MOVE,
 	INTERACT,

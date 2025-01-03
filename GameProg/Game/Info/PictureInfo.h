@@ -325,10 +325,10 @@ namespace UI {
 	enum TUTORIAL_TYPE {
 
 		SENTENCE,
-		INTERACT_KEY_B,
+		INTERACT_KEY_MYLGIHT_ON,
 		INTERACT_KEY_MOVE,
 		INTERACT_KEY_JUMP,
-		INTERACT_KEY_ON_LIGHT,
+		INTERACT_KEY_INTERACT,
 	};
 	_declspec(selectany) vector<PICTURE_TYPE> TUTORIAL_LIST = {
 		{ SENTENCE,  {
@@ -337,6 +337,8 @@ namespace UI {
 			{ "Picture/UI/Tutorial/Tutorial_Sentence3.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence4.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence5B.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence5_1B.png" },
+			{ "Picture/UI/Tutorial/Tutorial_Sentence5_2B.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence6B.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence5.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence6.png" },
@@ -364,11 +366,23 @@ namespace UI {
 			{ "Picture/UI/Tutorial/Tutorial_Sentence28.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence29.png" },
 			{ "Picture/UI/Tutorial/Tutorial_Sentence30.png" },
-		}},	
-		{INTERACT_KEY_B , {"Picture/UI/Tutorial/interactkeyB.png"} },
-		{INTERACT_KEY_MOVE , {"Picture/UI/Tutorial/interactkeyMove.png"}},
-		{INTERACT_KEY_JUMP , {"Picture/UI/Tutorial/interactkeyJump.png"}},
-		{INTERACT_KEY_ON_LIGHT , {"Picture/UI/Tutorial/interactkeyOnLight.png"}},
+		}},
+		{INTERACT_KEY_MYLGIHT_ON , {
+			{"Picture/UI/Game/GL_UI_B1.png"},
+			{"Picture/UI/Game/GL_UI_B2.png"},
+		}},
+		{INTERACT_KEY_MOVE , {
+			{"Picture/UI/Game/GL_UI_LS_N.png"},
+			{"Picture/UI/Game/GL_UI_LS_Right.png"},
+		}},
+		{INTERACT_KEY_JUMP , {
+			{"Picture/UI/Game/GL_UI_A1.png"},
+			{"Picture/UI/Game/GL_UI_A2.png"},
+		}},
+		{INTERACT_KEY_INTERACT , {
+			{"Picture/UI/Game/GL_UI_LS_N.png"},
+			{"Picture/UI/Game/GL_UI_LS_Top.png"},
+		}},
 	};
 }
 
