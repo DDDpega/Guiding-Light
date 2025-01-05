@@ -302,7 +302,6 @@ void Player::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 	//死亡
 	if (tag == E_TAG::GHOST && selftag== E_TAG::PLAYER && m_isActive) {
 		SceneManeger::gameScene->GameOver();
-		m_isActive = false;
 	}	
 
 	//明るい所に来た
@@ -354,16 +353,22 @@ void Player::SetChangePuddleSound(bool isPuddle)
 
 void Player::GameOver()
 {
-	//if (Game::gameInstance->m_framecnt % 10 == 0) {
-	//	m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE], m_gameOverPictureNum);
-	//	m_darkPictureCmp->m_darkPicture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE], m_gameOverPictureNum + 1);
+	if (Game::gameInstance->m_framecnt % 10 == 0) {
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE], m_gameOverPictureNum);
+		m_darkPictureCmp->m_darkPicture->ChangePicture(&ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE], m_gameOverPictureNum + 1);
 
-	//	//次の画像を変える
-	//	if ((m_gameOverPictureNum + 2) < ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE].path.size())
-	//		m_gameOverPictureNum += 2;
-	//	else
-	//		m_gameOverPictureNum = 0;
-	//}
+		//次の画像を変える
+		if ((m_gameOverPictureNum + 2) < ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::SURPRISE].path.size())
+			m_gameOverPictureNum += 2;
+		else
+			m_gameOverPictureNum = 0;
+	}
+
+	if (++m_gameOverCount == 60) {
+		//ゲームオーバーのUI
+		auto gameOver = shared_ptr<GameOverUI>(new GameOverUI());
+		Game::gameInstance->GetPictureMNG()->AddPicture(gameOver);
+	}
 }
 
 void Player::OnLight()

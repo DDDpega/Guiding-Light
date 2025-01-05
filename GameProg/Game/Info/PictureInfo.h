@@ -506,7 +506,9 @@ namespace ILLUST {
 		{STAND,{"Picture/Illust/Player/GL_Player_Stand2.png"}},
 		{SURPRISE,{
 			{"Picture/Illust/Player/GL_Player_Surprise1.png"},
+			{"Picture/Illust/Player/GL_Player_Surprise1_B.png"},
 			{"Picture/Illust/Player/GL_Player_Surprise2.png"},
+			{"Picture/Illust/Player/GL_Player_Surprise2_B.png"},
 		}},
 	};
 }

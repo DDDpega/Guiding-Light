@@ -351,7 +351,8 @@ void GameScene::Update()
 		}
 	}
 
-	if (isGameOver) GetPlayer()->GameOver();
+	if (isGameOver) 
+		GetPlayer()->GameOver();
 }
 
 void GameScene::Draw()
@@ -392,10 +393,6 @@ void GameScene::GameOver()
 	//各種フラグを変更
 	m_isPause = true;
 	isGameOver = true;
-
-	//ゲームオーバーのUI
-	auto gameOver = shared_ptr<GameOverUI>(new GameOverUI());
-	Game::gameInstance->GetPictureMNG()->AddPicture(gameOver);
 
 }
 

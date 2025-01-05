@@ -33,7 +33,7 @@ namespace WINDOW_INFO {
 	/// <summary>
 	/// ç≈ëÂâÊñ 
 	/// </summary>
-	constexpr bool FULL_SCREEN = true;
+	constexpr bool FULL_SCREEN = false;
 }
 
 namespace GAME_INFO {

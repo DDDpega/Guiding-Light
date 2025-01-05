@@ -101,6 +101,8 @@ private:
 	int m_ascendPictureNum;	//登っている際のプレイヤーの画像
 	int m_gameOverPictureNum;	//ゲームオーバー際のプレイヤーの画像
 
+	int m_gameOverCount;
+
 	shared_ptr<Sound> m_sound[4];//0=jump1=light2=move
 
 	int m_soundFrame[3];
