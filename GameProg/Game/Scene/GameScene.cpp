@@ -370,11 +370,12 @@ Player* GameScene::GetPlayer()
 void GameScene::GameClear()
 {
 	if (isOnceGameClearUI) return;
-
+	
 
 	if (GetNumStage() == 0) {
 		m_isPause = false;
 		m_tutorialBoxClear->SetPos(GetPlayer()->GetPos());
+		SaveDataControl::saveData->SaveClearData(SceneManeger::gameScene->GetNumStage(), true);
 	}
 	else {
 		isOnceGameClearUI = true;

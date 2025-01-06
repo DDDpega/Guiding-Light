@@ -133,9 +133,10 @@ void StageSelectUI::Initialize()
 
 	if (m_nowcursor != 0) {
 		for (int i = m_nowcursor; i>=0; i--) {
-			MovePosStage();
+			MovePosStage(true,1,true);
 		}
 	}
+
 
 }
 
@@ -148,7 +149,7 @@ void StageSelectUI::Update()
 	UserInterface::Update();
 	if (m_isRight) {
 		if (m_frame < frameNum) {
-			MovePosStage(frameNum, m_isRight);
+			MovePosStage(false,frameNum, m_isRight);
 			if (m_frame % 3 == 0)PlayerAnim();
 			m_frame++;
 			
@@ -164,7 +165,7 @@ void StageSelectUI::Update()
 	}
 	else if (m_isLeft) {
 		if (m_frame < frameNum) {
-			MovePosStage(frameNum, false);
+			MovePosStage(false, frameNum, false);
 			if (m_frame % 3 == 0)PlayerAnim();
 			m_frame++;
 			return;
@@ -363,8 +364,7 @@ void StageSelectUI::Draw()
 	}
 
 	//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
-	//-1している理由は1つ右に描画しているため
-	//+2している理由は右に二つステージ選択画像を用意するため
+	//+1している理由は右に二つステージ選択画像を用意するため
 	for (int i = m_nowcursor ; i < m_nowcursor + 3; i++) {
 		//カーソルの位置を光らす
 		if (m_isStageClear[i] == true) {
@@ -391,7 +391,7 @@ void StageSelectUI::Draw()
 
 }
 
-void StageSelectUI::MovePosStage(int framenum, bool isRight)
+void StageSelectUI::MovePosStage(bool isFrast,int framenum, bool isRight)
 {
 	auto num = 1;
 	if (!isRight)num *= -1;
@@ -399,7 +399,7 @@ void StageSelectUI::MovePosStage(int framenum, bool isRight)
 	for (int j = 0; j < size(m_stageArray); j++) {
 		auto pos = m_stageArray[j]->GetPos();
 		auto pos2 = m_stageLampArray[j]->GetPos();
-		if ((m_nowcursor == 1 && isRight) || (m_nowcursor == 0 && !isRight)) {
+		if ((m_nowcursor == 1 && isRight&& isFrast==false) || (m_nowcursor == 0 && !isRight)) {
 			pos.x -= ((m_stageDifference * 2) / framenum) * num;
 			//ランプ
 

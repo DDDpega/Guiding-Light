@@ -37,7 +37,7 @@ public:
 	/// <summary>
 	/// ステージ移動
 	/// </summary>
-	void MovePosStage(int framenum = 1, bool isRight = true);
+	void MovePosStage(bool isFrast =false,int framenum = 1, bool isRight = true);
 
 	/// <summary>
 	/// ステージ番号とタイトルの画像を変更するメソッド
