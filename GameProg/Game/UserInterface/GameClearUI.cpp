@@ -20,10 +20,6 @@ void GameClearUI::Initialize()
 	float scrX = WINDOW_INFO::GAME_WIDTH;
 	float scrY = WINDOW_INFO::GAME_HEIGHT;
 
-	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.4f, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(m_arrow);
-
 	//ロゴ
 	auto picture = shared_ptr<Picture>(new Picture({ scrX / 2,200 }, 1, &UI::GAME_LIST[UI::GAME_TYPE::GAMECLEAR], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
@@ -31,19 +27,14 @@ void GameClearUI::Initialize()
 	//次のステージへ
 	picture = shared_ptr<Picture>(new Picture({ scrX / 2,400 }, 0.4f, &UI::GAME_LIST[UI::GAME_TYPE::NEXT_STAGE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
-	m_nowpostion[0] = picture->GetPos();
+	m_picture.push_back(picture);
 
 	//ステージセレクトへ
 	picture = shared_ptr<Picture>(new Picture({ scrX / 2,600 }, 0.4f, &UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
-	m_nowpostion[1] = picture->GetPos();
+	m_picture.push_back(picture);
 
-	for (int i = 0; i <= 1; i++) {
-		m_nowpostion[i].y += 50;
-	}
-
-	m_arrow->SetPos(m_nowpostion[0]);
-
+	ChangeImage(0);
 	SaveDataControl::saveData->SaveClearData(SceneManeger::gameScene->GetNumStage(), true);
 }
 
@@ -90,10 +81,7 @@ void GameClearUI::Update()
 		if (m_nowcursor != 1) {
 			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
-			m_nowcursor++;
-
-			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			ChangeImage(++m_nowcursor);
 		}
 	}
 	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
@@ -101,10 +89,7 @@ void GameClearUI::Update()
 		if (m_nowcursor != 0) {
 			m_isSoundPlay[2] = true;
 			//カーソルを上にずらす
-			m_nowcursor--;
-
-			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			ChangeImage(--m_nowcursor);
 		}
 	}
 
@@ -115,5 +100,17 @@ void GameClearUI::Draw()
 	UserInterface::Draw();
 
 
+}
+
+void GameClearUI::ChangeImage(int nowcursor)
+{
+	if (nowcursor == 0) {
+		m_picture[0]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::NEXT_STAGE], 1);
+		m_picture[1]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0);
+	}
+	else if (nowcursor == 1) {
+		m_picture[0]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::NEXT_STAGE], 0);
+		m_picture[1]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 1);
+	}
 }
 

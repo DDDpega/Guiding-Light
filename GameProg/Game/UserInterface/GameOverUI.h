@@ -22,6 +22,10 @@ public:
 	/// </summary>
 	void Draw();
 
+	void ChangeImage(int nowcursor);
+	vector<shared_ptr<Picture>> m_picture;
+
+
 protected:
 
 };

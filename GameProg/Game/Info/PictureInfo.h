@@ -123,21 +123,35 @@ namespace UI {
 		LAMP,
 		LAMP_1,
 		THUNDER,
+		BATTERY,
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GAME_LIST = {
 
 		//選択関係
-		{CONTINUE_GAME , {"Picture/UI/Game/GL_UI_ContinueGame.png"}},
-		{NEXT_STAGE , {"Picture/UI/Game/GL_UI_NextStage.png"}},
-		{ONCEMORE , {"Picture/UI/Game/GL_UI_OnceMore.png"}},
+		{CONTINUE_GAME , {
+			{"Picture/UI/Game/GL_UI_ContinueGame.png"},
+			{"Picture/UI/Game/GL_UI_ContinueGame_2.png"},
+		}},
+		{NEXT_STAGE , {
+			{"Picture/UI/Game/GL_UI_NextStage.png"},
+			{"Picture/UI/Game/GL_UI_NextStage_2.png"}
+		}},
+		{ONCEMORE , {
+			{"Picture/UI/Game/GL_UI_OnceMore.png"},
+			{"Picture/UI/Game/GL_UI_OnceMore_2.png"},
+		}},
 		{PAUSE , {"Picture/UI/Game/GL_UI_Pause.png"}},
-		{REPLAY , {"Picture/UI/Game/GL_UI_Replay.png"}},
-		{STAGESELECT,  {"Picture/UI/Game/GL_UI_StageSelect.png"}},
+		{REPLAY , {
+			{"Picture/UI/Game/GL_UI_Replay.png"},
+			{"Picture/UI/Game/GL_UI_Replay_2.png"},
+		}},
+		{STAGESELECT,  {
+			{"Picture/UI/Game/GL_UI_StageSelect.png"},
+			{"Picture/UI/Game/GL_UI_StageSelect_2.png"},
+		}},
 		{GAMECLEAR,  {"Picture/UI/Game/GL_UI_GameClear.png"}},
 		{GAMEOVER , {"Picture/UI/Game/GL_UI_GameOver.png"}},
-		{THUNDER , {"Picture/UI/Game/GL_UI_Thunder.png"}},
-
 		//ステージ数
 		{G_STAGE , {
 			{"Picture/UI/Game/GL_UI_G_Stage0.png"},
@@ -163,7 +177,6 @@ namespace UI {
 			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
 			{ "Picture/UI/Credit/GL_UI_C_Takada.png"},
 		}},
-
 		//残りランプ数
 		{LAMP , { "Picture/UI/Game/GL_UI_Lamp.png"}},
 		{LAMP_1 , {
@@ -177,10 +190,14 @@ namespace UI {
 			{ "Picture/UI/Game/GL_UI_Lamp8.png" },
 			{ "Picture/UI/Game/GL_UI_Lamp9.png" },
 			{ "Picture/UI/Game/GL_UI_Lamp10.png" },
-
-
 		}},
-
+		{THUNDER , {"Picture/UI/Game/GL_UI_Thunder.png"}},
+		{BATTERY , {
+			{ "Picture/UI/Game/GL_UI_Gauge1.png"},
+			{ "Picture/UI/Game/GL_UI_Gauge2.png" },
+			{ "Picture/UI/Game/GL_UI_Gauge3.png" },
+			{ "Picture/UI/Game/GL_UI_Gauge4.png" },
+		}},
 	};
 }
 

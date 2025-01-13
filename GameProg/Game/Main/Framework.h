@@ -76,6 +76,7 @@ using namespace std;
 #include "OnSoundCmp.h"
 #include "ClearLightCmp.h"
 #include "InteractKeyCmp.h"
+#include "BatteryPictureCmp.h"
 
 
 

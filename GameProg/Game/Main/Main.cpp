@@ -9,6 +9,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//アイコンの設定
 	SetWindowIconID(101);
 
+	//Windowタイトルの変更
+	SetMainWindowText("Guiding Light");
+
 	//背景の設定
 	SetBackgroundColor(25, 25, 25);
 

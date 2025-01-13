@@ -21,36 +21,26 @@ void GamePauseUI::Initialize()
 
 	//----------------------------------------------------------------
 	//ロゴ
-
-	//矢印
-	m_arrow = std::shared_ptr<Picture>(new Picture({0,0}, 0.4f, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(m_arrow);
-
 	auto pauseLogo = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 200 }, 1, &UI::GAME_LIST[UI::GAME_TYPE::PAUSE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(pauseLogo);
 
 	//ゲームを続ける
 	auto picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 , 400 }, 0.4f, &UI::GAME_LIST[UI::GAME_TYPE::CONTINUE_GAME], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
-	m_nowpostion[0] = picture->GetPos();
+	m_picture.push_back(picture);
 
 	//最初からプレイする
 	picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2,500 }, 0.4f, &UI::GAME_LIST[UI::GAME_TYPE::REPLAY], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
-	m_nowpostion[1] = picture->GetPos();
+	m_picture.push_back(picture);
 
 	//ステージセレクトへ
 	picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2,600 }, 0.4f, &UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
-	m_nowpostion[2] = picture->GetPos();
+	m_picture.push_back(picture);
 
 	//----------------------------------------------------------------
-
-	//位置の調整
-	for (int i = 0; i <= 2; i++) {
-		m_nowpostion[i].y += 50;
-	}
-	m_arrow->SetPos(m_nowpostion[0]);
+	ChangeImage(0);
 }
 
 void GamePauseUI::Update()
@@ -104,20 +94,14 @@ void GamePauseUI::Update()
 		if (m_nowcursor != 2) {
 			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
-			m_nowcursor++;
-
-			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			ChangeImage(++m_nowcursor);
 		}
 	}
 	if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
 		if (m_nowcursor != 0) {
 			m_isSoundPlay[2] = true;
 			//カーソルを上にずらす
-			m_nowcursor--;
-
-			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			ChangeImage(--m_nowcursor);
 		}
 	}
 
@@ -127,4 +111,22 @@ void GamePauseUI::Update()
 void GamePauseUI::Draw()
 {
 	UserInterface::Draw();
+}
+
+void GamePauseUI::ChangeImage(int nowcursor)
+{
+	if (nowcursor == 0) {
+		m_picture[0]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::CONTINUE_GAME], 1);
+		m_picture[1]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::REPLAY], 0);
+		m_picture[2]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0);
+	}else if (nowcursor == 1) {
+		m_picture[0]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::CONTINUE_GAME], 0);
+		m_picture[1]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::REPLAY], 1);
+		m_picture[2]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 0);
+	}else if (nowcursor == 2) {
+		m_picture[0]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::CONTINUE_GAME], 0);
+		m_picture[1]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::REPLAY], 0);
+		m_picture[2]->ChangePicture(&UI::GAME_LIST[UI::GAME_TYPE::STAGESELECT], 1);
+		
+	}
 }

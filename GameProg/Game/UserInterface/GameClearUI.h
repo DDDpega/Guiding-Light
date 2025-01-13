@@ -22,6 +22,10 @@ public:
 	/// </summary>
 	void Draw();
 
+	void ChangeImage(int nowcursor);
+	vector<shared_ptr<Picture>> m_picture;
+
+
 	/// <summary>
 	/// ステージのクリアデータをテキストに書き込む
 	/// </summary>
@@ -30,6 +34,5 @@ public:
 
 protected:
 	int sentence1;
-	
 };
 
