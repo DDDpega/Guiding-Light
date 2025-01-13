@@ -90,12 +90,12 @@ void StageSelectUI::Initialize()
 	}
 
 	//ステージ番号
-	m_stageNum = std::shared_ptr<Picture>(new Picture(Point{ scrX/2-200,  100 }, 0.5, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	m_stageNum = std::shared_ptr<Picture>(new Picture(Point{100,  100 }, 0.5, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_stageNum);
 
-	////ステージタイトル
-	/*m_stageTitle = std::shared_ptr<Picture>(new Picture(Point{ 600,  100 }, 0.5, UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(m_stageTitle);*/
+	//ステージタイトル
+	m_stageTitle = std::shared_ptr<Picture>(new Picture(Point{ 600,  100 }, 0.5, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_stageTitle);
 
 	//メニューセレクトアイコン
 	m_menuIcon = std::shared_ptr<Picture>(new Picture(Point{ scrX - 50,  50 }, 0.2, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
@@ -271,7 +271,7 @@ void StageSelectUI::Update()
 			case 0:
 				//ゲームシーンへ移行フラグをオンにする
 				m_isChangeScene = true;
-				m_isRightFade = true;
+				m_isRightFade = false;
 				m_isFeedIn = false;
 				m_fadeUI->Reset();
 				m_scene = E_SCENE::CREDIT;
@@ -280,7 +280,7 @@ void StageSelectUI::Update()
 			case 1:
 				//ゲームシーンへ移行フラグをオンにする
 				m_isChangeScene = true;
-				m_isRightFade = true;
+				m_isRightFade = false;
 				m_isFeedIn = false;
 				m_fadeUI->Reset();
 				m_scene = E_SCENE::OPTION;
@@ -293,8 +293,8 @@ void StageSelectUI::Update()
 	//メニューセレクトではない時
 	if (!m_isMenu) {
 		//横カーソルの変更
-		if (m_colSelectNum == 0) {
-			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT")) {
+		if (m_colSelectNum == 0 ) {
+			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT") && m_isStageClear[m_nowcursor]) {
 				if (m_nowcursor != 7) {
 					m_isSoundPlay[2] = true;
 					//カーソルを下にずらす
@@ -360,12 +360,18 @@ void StageSelectUI::Draw()
 	if (!m_isMenu)
 	{
 		m_stageNum->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::S_STAGE_1], m_nowcursor);
-		//m_stageTitle->ChangePicture(UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::T_STAGE_1], m_nowcursor);
+		m_stageTitle->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::T_STAGE_1], m_nowcursor);
 	}
+
+	bool isfirst = false;
 
 	//DrawFormatStringFToHandle(m_stageTitlePos.x, m_stageTitlePos.y, GetColor(255, 255, 255), m_fontHandle,"ステージ%d　%s", m_nowcursor,m_stageTitle[m_nowcursor].c_str());
 	//+1している理由は右に二つステージ選択画像を用意するため
 	for (int i = m_nowcursor ; i < m_nowcursor + 3; i++) {
+		if (i>0&&isfirst == false) {
+			isfirst = true;
+			i--;
+		}
 		//カーソルの位置を光らす
 		if (m_isStageClear[i] == true) {
 			m_stageArray[i+1]->ChangePicture(&UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::SELECT_CLEAR]);
@@ -377,6 +383,12 @@ void StageSelectUI::Draw()
 		}
 	}
 
+	if (!m_isStageClear[m_nowcursor]) {
+		m_stageArray[m_nowcursor+2]->SetisVisible(false);
+		m_stageLampArray[m_nowcursor+2]->SetisVisible(false);
+	}
+
+	//実装済みのやつ以外を消す
 	if (!m_isStageImplement[m_nowcursor]) {
 		m_stageArray[m_nowcursor]->SetisVisible(false);
 		m_stageLampArray[m_nowcursor]->SetisVisible(false);

@@ -94,7 +94,7 @@ void CreditUI::Update()
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;
-		m_isRightFade = false;
+		m_isRightFade = true;
 		m_isFeedIn = false;
 		m_isChangeScene = true;
 		//ゲームシーンへ移行フラグをオンにする

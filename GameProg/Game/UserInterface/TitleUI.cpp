@@ -224,13 +224,15 @@ void TitleUI::Draw()
 	UserInterface::Draw();
 
 	//’Êí”Å‚©“WŽ¦”Å‚ðØ‚è‘Ö‚¦‚é
-	Point pos = Point{ WINDOW_INFO::GAME_WIDTH - 70,WINDOW_INFO::GAME_HEIGHT -70};
+	Point pos = Point{ 70,WINDOW_INFO::GAME_HEIGHT - 70 };
 	if (Game::gameInstance->GetStatus()->GAME_NORMAL) {
 		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "’Êí”Å");
 	}
 	else {
 		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "“WŽ¦”Å");
 	}
+	Point pos2 = Point{ WINDOW_INFO::GAME_WIDTH - 150,WINDOW_INFO::GAME_HEIGHT - 70 };
+	DrawFormatStringFToHandle(pos2.x, pos2.y, GetColor(255, 255, 255), m_fontHandle, "ver3.0.0");
 
 	m_startText[0]->m_alpha += m_add;
 	
