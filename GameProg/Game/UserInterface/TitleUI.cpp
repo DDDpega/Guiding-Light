@@ -102,13 +102,20 @@ void TitleUI::Initialize()
 	m_animCnt = 0;
 	m_animMax = false;
 	m_waittime = VideoInfo::WAIT_TIME;
+
+
+
 }
 
 void TitleUI::Update()
 {
 	UserInterface::Update();
 
-	
+	if (Game::gameInstance->GetInputMNG()->Click(L"CLEAR")) {
+		for (int i = 0; i < 10; i++) {
+			SaveDataControl::saveData->SaveClearData(i, true);
+		}
+	}
 	
 
 	if (m_isChangeScene) {

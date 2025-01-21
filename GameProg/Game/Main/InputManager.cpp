@@ -12,6 +12,7 @@ InputManager::InputManager()
 	inputActionMap_[L"CANCEL"] = { {InputType::keyboard,KEY_INPUT_ESCAPE}, {InputType::gamepad,PAD_INPUT_B}};
 	inputActionMap_[L"PAUSE"] = { {InputType::keyboard,KEY_INPUT_ESCAPE}, {InputType::gamepad,PAD_INPUT_R} };//R‚ªXboxƒRƒ“‚Ìstart‚É‚ ‚½‚é
 	inputActionMap_[L"ENTER"] = { {InputType::keyboard,KEY_INPUT_RETURN}, {InputType::gamepad,PAD_INPUT_X} };//XƒRƒ“Y
+	inputActionMap_[L"CLEAR"] = { {InputType::keyboard,KEY_INPUT_C} };
 
 	//inputActionMap_[L"change"] = { {InputType::keyboard,KEY_INPUT_C}, {InputType::gamepad,PAD_INPUT_X} };
 }
