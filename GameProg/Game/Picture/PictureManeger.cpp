@@ -65,6 +65,11 @@ void PictureManeger::Initialize()
 			ILLUST::STAGE_LIST[list.type].handle.clear();
 		}
 	}
+	for (auto& list : UI::TUTORIAL_LIST) {
+		for (auto& path : list.path) {
+			UI::TUTORIAL_LIST[list.type].handle.clear();
+		}
+	}
 	
 
 

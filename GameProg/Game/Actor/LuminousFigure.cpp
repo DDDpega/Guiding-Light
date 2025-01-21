@@ -38,6 +38,10 @@ void LuminousFigure::Initialize()
 	m_figureSound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::FIGURE], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_figureSound);
 
+	m_batteryCmp = shared_ptr<BatteryPictureCmp>(new BatteryPictureCmp(this));
+	m_batteryCmp->SetParam(0, 0);
+
+
 	m_figuaMove = E_FIGUA_MOVE::NONE;
 }
 
@@ -54,6 +58,8 @@ void LuminousFigure::Update()
 			m_time = 0;
 			m_isChargeStop = false;
 			m_figuaMove = E_FIGUA_MOVE::CHARGE;
+
+			m_batteryCmp->SetParam(30, 0);
 		}
 		break;
 	case E_FIGUA_MOVE::CHARGE:
@@ -62,6 +68,7 @@ void LuminousFigure::Update()
 
 			//タイムを増やす
 			++m_time;
+			m_batteryCmp->NowFrame(m_time);
 			m_lightCmp->m_nowLightSize += ((float)m_lightCmp->m_lightSize / 30.0f);
 
 			//1秒経ったら
@@ -80,10 +87,14 @@ void LuminousFigure::Update()
 				m_time = 0;
 				m_figuaMove = E_FIGUA_MOVE::LIGHTNING;
 
+				m_batteryCmp->SetParam(m_maxTime, 3);
+
 			}
 		}
 		else {
 			m_time = 30 - m_time-1;
+			m_batteryCmp->NowFrame(m_time);
+
 			m_figuaMove=E_FIGUA_MOVE::SLOWLY_DOWN;
 			m_isChargeStop = true;
 		}
@@ -96,12 +107,13 @@ void LuminousFigure::Update()
 			if (m_time != 0) {
 				--m_time;
 			}
-
 		}
 		else{
 			//タイムを増やす
 			++m_time;
 		}
+
+		m_batteryCmp->NowFrame(m_maxTime-m_time);
 
 		//タイムがマックスタイムまで到達したら
 		if (m_time >= m_maxTime) {
@@ -115,7 +127,6 @@ void LuminousFigure::Update()
 		//タイムを増やす
 		++m_time;
 		m_lightCmp->m_nowLightSize -= ((float)m_lightCmp->m_lightSize / 30.0f);
-		
 
 		//ライトを消す
 		if (m_time >= 30) {

@@ -42,6 +42,7 @@ public:
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 	shared_ptr<LightCmp> m_lightCmp;
+	shared_ptr<BatteryPictureCmp> m_batteryCmp;
 	bool m_pastimeGhostTought;
 	bool m_pastimeGhostFirshIndex;
 

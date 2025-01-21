@@ -67,14 +67,11 @@ void GamePauseUI::Update()
 			//ゲームシーンへ移行フラグをオンにする
 			SceneManeger::gameScene->m_pauseUI->SetisVisible(false);
 			SceneManeger::gameScene->m_isPause = false;
-			m_arrow->SetPos(m_nowpostion[0]);
 		}
 		else if (m_nowcursor == 1) {
 			//ゲームシーンへ移行フラグをオンにする
 			m_isChangeScene = true;
 			m_scene = E_SCENE::GAME;
-
-
 		}
 		else if (m_nowcursor == 2) {
 			//全てのサウンドを止める

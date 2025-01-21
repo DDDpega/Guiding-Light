@@ -38,6 +38,10 @@ void GoalLight::Initialize()
 	m_maxTime = Game::gameInstance->GetStatus()->GOAL_LIGHT_DELETE_TIME;
 	m_minusRaySize=(float)m_lightCmp->m_lightSize/ (float)m_maxTime;
 
+	m_batteryCmp = shared_ptr<BatteryPictureCmp>(new BatteryPictureCmp(this));
+	m_batteryCmp->SetParam(0, 0);
+
+
 	//フォントの描画
 	m_fontHandle = CreateFontToHandle("MS ゴシック", 20, 1);
 
@@ -62,12 +66,15 @@ void GoalLight::Update()
 
 			//次のステートに移動する
 			m_moveType = E_GOAL_LIGHT_MOVE::CHARGE;
+
+			m_batteryCmp->SetParam(60, 0);
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::CHARGE:
 
 		//タイムを増やす
 		++m_time;
+		m_batteryCmp->NowFrame(m_time);
 
 		//1秒後に次のステートに移動し、タイムを戻す
 		if (m_time >= 60) {
@@ -107,6 +114,8 @@ void GoalLight::Update()
 
 			m_pastimeToughtTime = 0;
 			m_pastimeGhostTought = false;
+
+			m_batteryCmp->SetParam(300, 3);
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::LIGHTNING:
@@ -122,6 +131,7 @@ void GoalLight::Update()
 
 		if (m_pastimeGhostTought) {
 			++m_pastimeToughtTime;
+			m_batteryCmp->NowFrame(300 - m_pastimeToughtTime);
 
 			if (m_pastimeToughtTime >= 300) {
 				m_time = 0;
