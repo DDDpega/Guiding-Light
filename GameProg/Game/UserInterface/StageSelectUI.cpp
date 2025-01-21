@@ -98,7 +98,7 @@ void StageSelectUI::Initialize()
 	UserInterface::AddPictureInUI(m_stageTitle);
 
 	//メニューセレクトアイコン
-	m_menuIcon = std::shared_ptr<Picture>(new Picture(Point{ scrX - 50,  50 }, 0.2, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_menuIcon = std::shared_ptr<Picture>(new Picture(Point{ scrX - 50,  50 }, 2, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENU_N_LIGHT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_menuIcon);
 
 	//キャラ
@@ -111,7 +111,7 @@ void StageSelectUI::Initialize()
 	m_backGround->SetAlpha(225);
 
 	//メニューセレクト
-	m_menuSelect= std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2-200 }, 1, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENUSELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_menuSelect= std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2-200 }, 0.8, &UI::STAGESELECT_LIST[UI::STAGESELECT_TYPE::MENUSELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_menuSelect);
 
 	//クレジット

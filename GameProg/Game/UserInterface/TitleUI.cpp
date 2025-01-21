@@ -59,9 +59,9 @@ void TitleUI::Initialize()
 	m_backGround->SetAlpha(180);
 
 	//選択状態が光る画像
-	m_arrow = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 + 200 ,scrY / 2 + 250 }, 0.5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,false,true));
-	UserInterface::AddPictureInUI(m_arrow);
-	m_arrow->SetAlpha(180);
+	//m_arrow = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 + 200 ,scrY / 2 + 250 }, 0.5, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::CENTER, E_SORT::SORT_UI,false,true));
+	//UserInterface::AddPictureInUI(m_arrow);
+	//m_arrow->SetAlpha(180);
 
 	//はい画像
 	m_startText[1] = std::shared_ptr<Picture>(new Picture(Point{ 300, scrY / 2 + 200 }, 0.5, &UI::TITLE_LIST[UI::TITLE_TYPE::YES], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
@@ -69,7 +69,7 @@ void TitleUI::Initialize()
 	UserInterface::AddPictureInUI(m_startText[1]);
 
 	//いいえ画像
-	m_startText[2] = std::shared_ptr<Picture>(new Picture(Point{ scrX -300 ,scrY / 2 + 200 }, 0.5, &UI::TITLE_LIST[UI::TITLE_TYPE::NO], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_startText[2] = std::shared_ptr<Picture>(new Picture(Point{ scrX -300 ,scrY / 2 + 200 }, 0.5, &UI::TITLE_LIST[UI::TITLE_TYPE::NO], 1, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	m_nowpostion[2] = m_startText[2]->GetPos();
 	UserInterface::AddPictureInUI(m_startText[2]);
 
@@ -138,13 +138,15 @@ void TitleUI::Update()
 		m_isMenuActive = true;
 		
 		m_nowcursor = 2;
+		m_startText[1]->ChangePicture(&UI::TITLE_LIST[UI::TITLE_TYPE::YES], 0);
+		m_startText[2]->ChangePicture(&UI::TITLE_LIST[UI::TITLE_TYPE::NO], 1);
 		for (int i = 1; i < 3; i++) {
 			m_startText[i]->SetisVisible(true);
 		}
 		//カーソル位置の変更
-		m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+		//m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		m_gameExitText->SetisVisible(true);
-		m_arrow->SetisVisible(true);
+		//m_arrow->SetisVisible(true);
 		m_backGround->SetisVisible(true);
 	}
 
@@ -176,7 +178,7 @@ void TitleUI::Update()
 				m_startText[i]->SetisVisible(false);
 			}
 			m_gameExitText->SetisVisible(false);
-			m_arrow->SetisVisible(false);
+			//m_arrow->SetisVisible(false);
 			m_backGround->SetisVisible(false);
 		}
 	}
@@ -187,9 +189,10 @@ void TitleUI::Update()
 			m_isSoundPlay[2] = true;
 			//カーソルを下にずらす
 			m_nowcursor++;
-
+			m_startText[1]->ChangePicture(&UI::TITLE_LIST[UI::TITLE_TYPE::YES], 0);
+			m_startText[2]->ChangePicture(&UI::TITLE_LIST[UI::TITLE_TYPE::NO], 1);
 			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			//m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
 	if (Game::gameInstance->GetInputMNG()->Click(L"LEFT") && m_isMenuActive) {
@@ -197,9 +200,10 @@ void TitleUI::Update()
 			m_isSoundPlay[2] = true;
 			//カーソルを上にずらす
 			m_nowcursor--;
-
+			m_startText[1]->ChangePicture(&UI::TITLE_LIST[UI::TITLE_TYPE::YES], 1);
+			m_startText[2]->ChangePicture(&UI::TITLE_LIST[UI::TITLE_TYPE::NO], 0);
 			//カーソル位置の変更
-			m_arrow->SetPos(m_nowpostion[m_nowcursor]);
+			//m_arrow->SetPos(m_nowpostion[m_nowcursor]);
 		}
 	}
 

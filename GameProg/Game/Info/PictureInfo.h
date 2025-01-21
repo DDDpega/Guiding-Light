@@ -283,8 +283,8 @@ namespace UI {
 		{ SELECT_N_CLEAR, {"Picture/stageSelectPoint2.png" }},
 
 		//メニューアイコン
-		{ MENU_LIGHT, {"Picture/MenuIcon_On.png" }},
-		{ MENU_N_LIGHT, {"Picture/MenuIcon_Off.png" }},
+		{ MENU_LIGHT, {"Picture/UI/StageSelect/GL_UI_MenuWindow_2.png" }},
+		{ MENU_N_LIGHT, {"Picture/UI/StageSelect/GL_UI_MenuWindow.png" }},
 
 		//メニューセレクト
 		{ CREDIT_LIGHT, {"Picture/MS_Credit_off.png" }},
@@ -320,8 +320,14 @@ namespace UI{
 		{GAMEEND , {"Picture/UI/Title/GL_UI_GameEnd.png"}},
 		{GAMESTART , {"Picture/UI/Title/GL_UI_GameStart.png"}},
 		{DEMO , {"Picture/UI/Title/GL_UI_DemoMovie.png"}},
-		{NO , {"Picture/UI/Title/GL_UI_No.png"}},
-		{YES ,{"Picture/UI/Title/GL_UI_Yes.png"}},
+		{NO , {
+			{"Picture/UI/Title/GL_UI_No.png"},
+			{ "Picture/UI/Title/GL_UI_No_2.png" }
+	}},
+		{YES ,{
+		{"Picture/UI/Title/GL_UI_Yes.png"},
+		{ "Picture/UI/Title/GL_UI_Yes_2.png" }
+	} },
 	};
 
 

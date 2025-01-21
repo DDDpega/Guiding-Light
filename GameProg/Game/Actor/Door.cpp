@@ -77,7 +77,7 @@ void Door::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
 
-	if (tag == E_TAG::PLAYER && Game::gameInstance->GetInputMNG()->Click(L"UP")) {
+	if (tag == E_TAG::PLAYER && Game::gameInstance->GetInputMNG()->Click(L"UP")&&(SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::STAND || SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::WALK)) {
 		m_isDoor = true;
 		
 	}
