@@ -303,6 +303,15 @@ void GameScene::Initialize()
 		}
 
 	}
+	//pause‚ÌSE
+	m_pause[0] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::POSE], Sound::E_Sound::SE, 0));
+	m_pause[1] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::CANCEL], Sound::E_Sound::SE, 0));
+	m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::STAGE], Sound::E_Sound::BGM, 0));
+
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_bgm);
+	m_bgm->SoundPlay(Sound::LOOP);
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_pause[0]);
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_pause[1]);
 
 	auto isDoorCheek = false;
 	doorNum = size(m_door);
@@ -339,15 +348,19 @@ void GameScene::Update()
 	if (Game::gameInstance->GetInputMNG()->Click(L"PAUSE") && !isGameClear && !isGameOver) {
 		if (m_isPause) {
 			m_isPause = false;
-
+			m_pause[1]->SoundPlay();
 			//UI‚ÌŒ©‚½–Ú‚ð•t‚¯‚é
 			m_pauseUI->SetisVisible(false);
+
+			m_gameUI->SetisVisible(true);
 		}
 		else {
 			m_isPause = true;
-
+			m_pause[0]->SoundPlay();
 			//UI‚ÌŒ©‚½–Ú‚ð•t‚¯‚é
 			m_pauseUI->SetisVisible(true);
+
+			m_gameUI->SetisVisible(false);
 		}
 	}
 

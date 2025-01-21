@@ -131,6 +131,7 @@ void Player::Update()
 			if (SceneManeger::gameScene->GetNumStage() != 0 || m_tutorialMove_Y) {
 				m_rigidBody->ChangeState(STATE::FLY);
 				m_vy = -Game::gameInstance->GetStatus()->PLAYER_SPEED / 2;
+				m_pictureCmp->m_picture->m_reverse = false;
 				m_pos.x = isRideLadderPos.x;
 				isClick_y = true;
 

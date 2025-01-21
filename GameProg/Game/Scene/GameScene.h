@@ -98,13 +98,18 @@ public:
 
 	bool isOnceGameClearUI;
 
+	//各種UI
+	shared_ptr<InGameUI> m_gameUI;
+
 private:
+	shared_ptr<Sound> m_pause[2];
+	shared_ptr<Sound> m_bgm;
+
 	std::shared_ptr<Player> m_player;	
 	int m_LightNum;	//残りのライトの数
 	bool isGameOver, isGameClear;
 
-	//各種UI
-	shared_ptr<InGameUI> m_gameUI;
+
 
 	int m_nowStageNum;
 };
