@@ -17,6 +17,7 @@ void ChaseGhost::Initialize()
 {
 	Actor::Initialize();
 	m_soundFrame = 0;
+	m_pictureNumber = 0;
 
 	m_sound= shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::GHOST], Sound::E_Sound::SE, 0));
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_sound);
@@ -51,6 +52,12 @@ void ChaseGhost::Update()
 	//現在電気がついているもののリストを回す
 	auto figureList = SceneManeger::gameScene->m_figureList;
 
+	//画像の変更
+	if (++m_frame % 30 == 0) {
+		m_pictureNumber = m_pictureNumber == 0 ? 1 : 0;
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE], m_pictureNumber);
+		m_darkPictureCmp->m_darkPicture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_CHASE_EYE], m_pictureNumber);
+	}
 
 	//蠅のターゲットをフィギュアから解除する
 	SceneManeger::gameScene->m_figureList.clear();

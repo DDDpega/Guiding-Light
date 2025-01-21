@@ -45,5 +45,7 @@ protected:
 	float m_speed;		//蠅の移動速度
 	
 	int m_soundFrame;		//サウンドのフレーム数
+	int m_pictureNumber;
+	int m_frame;
 };
 

@@ -224,9 +224,6 @@
     <ClCompile Include="Game\Actor\SpotLight.cpp">
       <Filter>Game\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Main\LineRayCast.cpp">
-      <Filter>Game\Main</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Component\LineLightCmp.cpp">
       <Filter>Game\Component\Actor</Filter>
     </ClCompile>
@@ -458,9 +455,6 @@
     </ClInclude>
     <ClInclude Include="Game\Actor\SpotLight.h">
       <Filter>Game\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Main\LineRayCast.h">
-      <Filter>Game\Main</Filter>
     </ClInclude>
     <ClInclude Include="Game\Component\LineLightCmp.h">
       <Filter>Game\Component\Actor</Filter>

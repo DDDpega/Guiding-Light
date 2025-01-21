@@ -447,14 +447,29 @@ namespace ILLUST {
 			{"Picture/Illust/Gimmick/GL_Gimmick_Figures.png"}
 		}},
 		{GOALLIGHT ,{ {"Picture/Illust/Gimmick/GL_Gimmick_Lamp2.png"},
-					 {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"}
+					 {"Picture/Illust/Gimmick/GL_Gimmick_Lamp.png"},
+					 {"Picture/Illust/Gimmick/GL_Gimmick_Lamp3.png"}
 		}},
 		{LIGHT , {"Picture/light.png"}},
 		{GOALLIGHTRED , {"Picture/goalLampLight.png"}},
-		{GOAST_CHASE , {"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost.png"}},
-		{GOAST_CHASE_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost_Eye.png"}},
-		{GOAST_AROUND , {"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost1.png"}},
-		{GOAST_AROUND_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost2.png"}},
+
+		{GOAST_CHASE , {
+			{"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost3.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost4.png"},
+		}},
+		{GOAST_CHASE_EYE , {
+			{"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost1.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_ChaseGhost2.png"},
+		}},
+		{GOAST_AROUND , {
+			{ "Picture/Illust/Gimmick/GL_Gimmick_AroundGhost3.png" },
+			{ "Picture/Illust/Gimmick/GL_Gimmick_AroundGhost4.png" },
+		} },
+		{GOAST_AROUND_EYE , {
+			{"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost1.png"},
+			{"Picture/Illust/Gimmick/GL_Gimmick_AroundGhost2.png"},
+		}},
+
 		{GOAST_PASTIME , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost1.png"}},
 		{GOAST_PASTIME_EYE , {"Picture/Illust/Gimmick/GL_Gimmick_PastimeGhost2.png"}},
 		{GOAST_SENSITIVE , {"Picture/Illust/Gimmick/GL_Gimmick_SensitiveGhost1.png"}},

@@ -27,7 +27,7 @@ void AroundGhost::Initialize()
 	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_AROUND_EYE], 0));
 	Actor::AddComponent(m_darkPictureCmp);
 
-
+	m_pictureNumber = 0;
 }
 
 void AroundGhost::CreateRoute(int number)
@@ -66,6 +66,12 @@ void AroundGhost::Update()
 
 	m_targetPos = m_movePos[m_nowNumber];
 
+	//画像の変更
+	if (++m_frame % 30 == 0) {
+		m_pictureNumber = m_pictureNumber == 0 ? 1 : 0;
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_AROUND], m_pictureNumber);
+		m_darkPictureCmp->m_darkPicture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_AROUND_EYE], m_pictureNumber);
+	}
 
 	//現在電気がついているもののリストを回す
 	auto figureList = SceneManeger::gameScene->m_figureList;

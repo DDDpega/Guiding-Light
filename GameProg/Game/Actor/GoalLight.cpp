@@ -20,6 +20,7 @@ void GoalLight::Initialize()
 	m_pastimeGhostTought = false;
 	m_pastimeGhostFirshIndex = false;
 	m_pastimeToughtTime = 0;
+	m_pictureNumber = 0;
 
 	m_lightCmp = std::shared_ptr<LightCmp>(new LightCmp(this, false, Game::gameInstance->GetStatus()->GOAL_LIGHT_RADIUS,E_TAG::GOALLIGHTRAY,ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHTRED]));
 	Actor::AddComponent(m_lightCmp);
@@ -67,7 +68,7 @@ void GoalLight::Update()
 			//次のステートに移動する
 			m_moveType = E_GOAL_LIGHT_MOVE::CHARGE;
 
-			m_batteryCmp->SetParam(60, 0);
+			m_batteryCmp->SetParam(180, 0);
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::CHARGE:
@@ -77,7 +78,7 @@ void GoalLight::Update()
 		m_batteryCmp->NowFrame(m_time);
 
 		//1秒後に次のステートに移動し、タイムを戻す
-		if (m_time >= 60) {
+		if (m_time >= 180) {
 			m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_UP;
 			m_time = 0;
 		}
@@ -87,9 +88,6 @@ void GoalLight::Update()
 		//タイムを増やし、ライトのレイを広げる
 		++m_time;
 		m_lightCmp->m_nowLightSize += ((float)m_lightCmp->m_lightSize / 60.0f);
-		//画像を変更する
-		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], 1);
-
 
 
 		//1秒経ったらレイが完成する
@@ -120,7 +118,7 @@ void GoalLight::Update()
 		break;
 	case E_GOAL_LIGHT_MOVE::LIGHTNING:
 
-		//++m_time;
+		++m_time;
 
 		////タイムがマックスになったら
 		//if (m_time >= m_maxTime) {
@@ -128,6 +126,13 @@ void GoalLight::Update()
 		//	m_moveType = E_GOAL_LIGHT_MOVE::SLOWLY_DOWN;
 		//	break;
 		//}
+
+				//画像を変更する
+		if (m_time % 30 == 0) {
+			m_pictureNumber = m_pictureNumber == 1 ? 2 : 1;
+			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], m_pictureNumber);
+		}
+
 
 		if (m_pastimeGhostTought) {
 			++m_pastimeToughtTime;

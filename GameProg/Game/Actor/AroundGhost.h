@@ -58,5 +58,7 @@ protected:
 	bool m_otherTarget;	//四角以外のターゲットが現れた場合
 	bool m_otherTargetOld;	//1F前がターゲットがどうか
 	int m_stopTime;
+	int m_pictureNumber;
+	int m_frame;
 };
 

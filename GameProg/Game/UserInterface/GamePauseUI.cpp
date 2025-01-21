@@ -67,6 +67,7 @@ void GamePauseUI::Update()
 			//ゲームシーンへ移行フラグをオンにする
 			SceneManeger::gameScene->m_pauseUI->SetisVisible(false);
 			SceneManeger::gameScene->m_isPause = false;
+			SceneManeger::gameScene->m_gameUI->SetisVisible(true);
 		}
 		else if (m_nowcursor == 1) {
 			//ゲームシーンへ移行フラグをオンにする

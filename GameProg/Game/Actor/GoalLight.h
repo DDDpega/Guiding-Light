@@ -61,5 +61,7 @@ protected:
 	int m_time;
 	int m_maxTime;
 
+	int m_pictureNumber;
+
 };
 
