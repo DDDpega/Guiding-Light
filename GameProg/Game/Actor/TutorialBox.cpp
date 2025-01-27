@@ -110,6 +110,9 @@ void TutorialBox::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 
 bool TutorialBox::Function1()
 {
+	if (m_numText == 0) {
+		SceneManeger::gameScene->GetPlayer()->m_tutorialGoalLight = false;
+	}
 
 	//プレイヤーの動きとを止める
 	if (m_numText < 8) {
@@ -205,6 +208,7 @@ bool TutorialBox::Function3()
 	//ランプが点灯されるまでテキストを止める
 	if (m_numText == 1) {
 		m_isTextStop = true;
+		SceneManeger::gameScene->GetPlayer()->m_tutorialGoalLight = true;
 
 		if (Game::gameInstance->GetInputMNG()->Click(L"UP")) {
 			m_isTextStop = false;

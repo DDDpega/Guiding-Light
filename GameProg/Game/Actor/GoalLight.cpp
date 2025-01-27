@@ -60,15 +60,21 @@ void GoalLight::Update()
 
 
 		//ライトを溜める
-		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"UP") && (SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::STAND|| SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::WALK)) {
+		if (m_isHit && Game::gameInstance->GetInputMNG()->Click(L"UP") &&
+			(SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::STAND ||
+			 SceneManeger::gameScene->GetPlayer()->m_rigidBody->m_state == STATE::WALK)) {
 
-			//プレイヤーの操作を止める
-			SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = true;
+			if (SceneManeger::gameScene->GetNumStage() != 0 ||
+				SceneManeger::gameScene->GetPlayer()->m_tutorialGoalLight) {
 
-			//次のステートに移動する
-			m_moveType = E_GOAL_LIGHT_MOVE::CHARGE;
+				//プレイヤーの操作を止める
+				SceneManeger::gameScene->GetPlayer()->m_isGoalLight_Tought = true;
 
-			m_batteryCmp->SetParam(180, 0);
+				//次のステートに移動する
+				m_moveType = E_GOAL_LIGHT_MOVE::CHARGE;
+
+				m_batteryCmp->SetParam(180, 0);
+			}
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::CHARGE:

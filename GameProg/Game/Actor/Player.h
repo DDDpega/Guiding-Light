@@ -89,6 +89,8 @@ public:
 	bool m_tutorialMove_Y;
 	bool m_tutorialJump;
 	bool m_tutorialAllStop;
+	bool m_tutorialGoalLight;
+
 
 private:
 	bool m_firstShot;
@@ -104,9 +106,11 @@ private:
 	int m_gameOverCount;
 
 	shared_ptr<Sound> m_sound[4];//0=jump1=light2=move
+	shared_ptr<OnSoundCmp> m_soundCmp;
 
 	int m_soundFrame[3];
 
+	bool m_isPuddle;
 	bool m_isLadderTop;		//‚Í‚µ‚²‚ğ“o‚èØ‚Á‚½‚©
 
 

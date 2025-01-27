@@ -32,6 +32,7 @@ void SensitiveGhost::Update()
 {
 	Actor::Update();
 
+	m_target = nullptr;
 	if (!SceneManeger::gameScene->m_onSoundCmp.empty()) {
 		m_target=SceneManeger::gameScene->m_onSoundCmp[0]->GetActor();
 	}

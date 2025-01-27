@@ -5,6 +5,7 @@ Player::Player(Point pos)
 	,m_firstShot(false)
 	,m_isGoalLight_Tought(false)
 	,m_tutorialAllStop(false)
+	,m_tutorialGoalLight(false)
 {
 
 }
@@ -68,6 +69,11 @@ void Player::Initialize()
 	//暗闇中に見える画像の生成
 	m_darkPictureCmp = shared_ptr<DarkPictureCmp>(new DarkPictureCmp(this, ILLUST::PLAYER_LIST[ILLUST::PLAYER_TYPE::IDOL], 1));
 	Actor::AddComponent(m_darkPictureCmp);
+
+	//サウンドコンポーネント
+	m_soundCmp = shared_ptr<OnSoundCmp>(new OnSoundCmp(this));
+	Actor::AddComponent(m_soundCmp);
+
 }
 
 void Player::Update()
@@ -184,19 +190,19 @@ void Player::Update()
 		}
 	}
 
-
-	
-
 	//移動時の音声を出力
 	if ((isClick_x) && m_rigidBody->m_state == STATE::WALK) {
 		if (m_soundFrame[1]-- < 0) {
 			m_sound[2]->SoundPlay(Sound::BACK);
 			m_soundFrame[1] = PLAYER_INFO::MOVEFRAME;
 		}
+		if (!m_soundCmp->m_isSoundOn && m_isPuddle)
+			m_soundCmp->OnSound();
 	}
 	else {
 		m_sound[2]->SoundStop();
 		m_soundFrame[1] = 0;
+		m_soundCmp->OffSound();
 	}
 
 	//左右の操作がされ、ジャンプ・梯子状態ではない時
@@ -349,7 +355,10 @@ void Player::SetChangePuddleSound(bool isPuddle)
 	}
 	else {
 		m_sound[2]->ChangeSound(SOUND::PLAYERSE_LIST[SOUND::PLAYERSE_TYPE::MOVE], 0);
+		m_soundCmp->OffSound();
 	}
+
+	m_isPuddle = isPuddle;
 }
 
 void Player::GameOver()

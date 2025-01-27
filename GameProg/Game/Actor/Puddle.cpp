@@ -24,7 +24,7 @@ void Puddle::Initialize()
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//マップチップの当たり判定作成
-	auto mapCollision = shared_ptr<MapChipActor>(new MapChipActor(m_pos));
+	auto mapCollision = shared_ptr<MapChipActor>(new MapChipActor(Point{ m_pos.x-20,m_pos.y-20 }));
 	Game::gameInstance->GetActorMNG()->AddActor(mapCollision);
 
 	//DrawExtendGraph(m_pos.x, m_pos.y, poon_x + 40, position_y + 40, m_bitmap[1], TRUE);

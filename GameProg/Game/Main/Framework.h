@@ -98,7 +98,6 @@ using namespace std;
 #include "Puddle.h"
 #include "Door.h"
 #include "SpotLight.h"
-#include "LineRayCast.h"
 #include "SensitiveGhost.h"
 #include "Boombox.h"
 #include "Curtains.h"

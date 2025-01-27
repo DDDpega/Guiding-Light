@@ -46,7 +46,6 @@ public:
 	bool m_pastimeGhostTought;
 	bool m_pastimeGhostFirshIndex;
 
-
 protected:
 	int m_pastimeToughtTime;
 	bool m_isLightOn;

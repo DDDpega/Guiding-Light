@@ -24,5 +24,6 @@ public:
 
 	void OffSound();
 
+	bool m_isSoundOn;
 };
 

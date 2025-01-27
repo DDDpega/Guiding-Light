@@ -2,6 +2,8 @@
 
 OnSoundCmp::OnSoundCmp(Actor* actor)
 	:Component(actor)
+	, m_isSoundOn(false)
+
 {
 }
 
@@ -18,15 +20,20 @@ void OnSoundCmp::OnSound()
 {
 	//自分の親をなってるリストに送る
 	SceneManeger::gameScene->m_onSoundCmp.push_back(this);
+	m_isSoundOn = true;
 }
 
 void OnSoundCmp::OffSound()
 {
 	//なってるリストから自分を削除
-	auto soundList = SceneManeger::gameScene->m_onSoundCmp;
-	for (int i = 0; i < soundList.size(); i++) {
-		if (soundList[i] == this) {
-			SceneManeger::gameScene->m_onSoundCmp.erase(soundList.begin()+i);
+	auto list = SceneManeger::gameScene->m_onSoundCmp;
+	for (int i = 0; i < list.size(); i++) {
+		if (list[i] == this) {
+			list.erase(list.begin()+i);
+			m_isSoundOn = false;
+
+			break;
 		}
 	}
+	SceneManeger::gameScene->m_onSoundCmp = list;
 }

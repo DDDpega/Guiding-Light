@@ -243,7 +243,7 @@ void TitleUI::Draw()
 		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "“WŽ¦”Å");
 	}
 	Point pos2 = Point{ WINDOW_INFO::GAME_WIDTH - 150,WINDOW_INFO::GAME_HEIGHT - 70 };
-	DrawFormatStringFToHandle(pos2.x, pos2.y, GetColor(255, 255, 255), m_fontHandle, "ver3.0.0");
+	DrawFormatStringFToHandle(pos2.x, pos2.y, GetColor(255, 255, 255), m_fontHandle, "ver3.0.2");
 
 	m_startText[0]->m_alpha += m_add;
 	

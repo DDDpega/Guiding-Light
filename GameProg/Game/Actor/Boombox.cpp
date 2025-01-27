@@ -18,56 +18,38 @@ void Boombox::Initialize()
 	m_pictureCmp = shared_ptr<PictureCmp>(new PictureCmp(this, BOOMBOX_INFO::SIZE, ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::BOOM_BOX], 0, E_PIVOT::CENTER, E_SORT::SORT_SPOTLIGHT));
 	AddComponent(m_pictureCmp);
 
-
 	//当たり判定の作成
 	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 0,0 }, BOOMBOX_INFO::COLLISION_SIZE, E_TAG::SPOT_LIGHT));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
 	//サウンドコンポーネント
-	m_sounndCmp = shared_ptr<OnSoundCmp>(new OnSoundCmp(this));
-	Actor::AddComponent(m_sounndCmp);
+	m_soundCmp = shared_ptr<OnSoundCmp>(new OnSoundCmp(this));
+	Actor::AddComponent(m_soundCmp);
 }
 
 void Boombox::Update()
 {
 	Actor::Update();
+	auto isTrigger = false;
 
-	switch (m_boomBoxKind)
-	{
-	case E_BOOMBOX_MOVE::NONE:
-
-		//ソーラーパネルが供給されていたら
-		for (auto s : SceneManeger::gameScene->m_solarpanel) {
-			if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && s->GetIsTrigger()) {
-				m_boomBoxKind = E_BOOMBOX_MOVE::ON_SOUND;
-				m_sounndCmp->OnSound();
+	for (auto s : SceneManeger::gameScene->m_solarpanel) {
+		if (s->GetParam() == E_SOLARPANEL_KIND::BOOM_BOX) {
+			isTrigger = s->GetIsTrigger();
+			if (isTrigger) {
+				if(!m_soundCmp->m_isSoundOn)
+					m_soundCmp->OnSound();
+				return;
 			}
 		}
-		break;
-	case E_BOOMBOX_MOVE::SLOWLY_UP:
-		break;
-	case E_BOOMBOX_MOVE::ON_SOUND:
-		//ソーラーパネルが供給されていなかったら
-		for (auto s : SceneManeger::gameScene->m_solarpanel) {
-			if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && !s->GetIsTrigger()) {
-				m_boomBoxKind = E_BOOMBOX_MOVE::NONE;
-				m_sounndCmp->OffSound();
-			}
-		}
-		break;
-	case E_BOOMBOX_MOVE::SLOWLY_DOWN:
-		break;
 	}
+
+	m_soundCmp->OffSound();
 }
 
 void Boombox::HitCollision(Actor* other, E_TAG tag, E_TAG selftag)
 {
 	Actor::HitCollision(other, tag, selftag);
-
-	if ((tag == E_TAG::PLAYER_RAY && SceneManeger::gameScene->GetPlayer()->GetLightOn()) || tag == E_TAG::FIGURERAY) {
-		m_shareNow = true;
-	}
 }
 
 void Boombox::NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag)

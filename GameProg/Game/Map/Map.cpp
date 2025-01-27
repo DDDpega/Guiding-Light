@@ -232,6 +232,9 @@ void Map::LoadFromFile(const wstring filePath, const wstring chipSet)
 				case 'x':
 					m_MapChipList[c][r] = MAPCHIPINFO::TRICK;
 					break;
+				case 'y':
+					m_MapChipList[c][r] = MAPCHIPINFO::SENSITIVE;
+					break;
 				case '!':
 					m_MapChipList[c][r] = MAPCHIPINFO::CLEANNESSBLOCK;
 					break;

@@ -67,7 +67,7 @@ namespace SOUND {
 
 		//名前
 		{ MOVE ,	{{"Sound/SE/PlayerSE/GL_SE_Move.wav"},
-					{"Sound/SE/PlayerSE/GL_SE_Jump.wav"}
+					{"Sound/SE/GimmickSE/GL_SE_Puddle.wav"}
 					}},
 		{ JUMP ,	{"Sound/SE/PlayerSE/GL_SE_Jump.wav"}},
 		{ LIGHT ,	{"Sound/SE/PlayerSE/GL_SE_Lights.wav"}},
@@ -84,7 +84,6 @@ namespace SOUND {
 		GHOST,
 		SOLARPANEL,
 		LAUNCH,
-		PUDDLE,
 	};
 
 	//クレジットのリスト
@@ -97,7 +96,6 @@ namespace SOUND {
 		{ GHOST ,		{"Sound/SE/GimmickSE/GL_SE_Ghost.wav"}},
 		{ SOLARPANEL ,	{"Sound/SE/GimmickSE/GL_SE_Solarpanel.wav"}},
 		{ LAUNCH ,		{"Sound/SE/GimmickSE/GL_SE_Launch.wav"}},
-		{ PUDDLE ,		{"Sound/SE/GimmickSE/GL_SE_Puddle.wav"}},
 
 	};
 }
