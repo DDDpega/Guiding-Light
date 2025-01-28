@@ -41,7 +41,7 @@ void OptionUI::Initialize()
 	UserInterface::AddPictureInUI(m_arrow);*/
 
 
-	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 170 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 1, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 200 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 1, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_modeText);
 	m_selectPos[0] = m_modeText->GetPos();
 

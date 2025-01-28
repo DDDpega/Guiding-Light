@@ -74,7 +74,7 @@ void TitleUI::Initialize()
 	UserInterface::AddPictureInUI(m_startText[2]);
 
 	//ÉQÅ[ÉÄèIóπâÊëú
-	m_gameExitText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 0.7, &UI::TITLE_LIST[UI::TITLE_TYPE::GAMEEND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
+	m_gameExitText = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 0.6, &UI::TITLE_LIST[UI::TITLE_TYPE::GAMEEND], 0, E_PIVOT::CENTER, E_SORT::SORT_UI, false));
 	UserInterface::AddPictureInUI(m_gameExitText);
 
 	
