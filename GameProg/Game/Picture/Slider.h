@@ -43,12 +43,12 @@ public:
 	/// <returns></returns>
 	int LeftMove();
 
-
+	shared_ptr<Picture> m_pinch;
 	bool m_isOperation;
 protected:
 	shared_ptr<Picture> m_bar;
 	shared_ptr<Picture> m_bar2;
-	shared_ptr<Picture> m_pinch;
+	//shared_ptr<Picture> m_pinch;
 
 	Point m_barCenter;
 	int m_max;

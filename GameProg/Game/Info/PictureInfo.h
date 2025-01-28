@@ -51,8 +51,14 @@ namespace UI {
 	_declspec(selectany)  vector<PICTURE_TYPE> OPTION_LIST = {
 
 		//‰æ–Ê”ä—¦
-		{ RATION16_9,{"Picture/UI/Option/GL_UI_16_9.png"}},
-		{ RATION16_10,{"Picture/UI/Option/GL_UI_16_10.png" }},
+		{ RATION16_9,{
+				{"Picture/UI/Option/GL_UI_16_9.png"},
+				{ "Picture/UI/Option/GL_UI_16_9_2.png" }
+		}},
+		{ RATION16_10,{
+				{"Picture/UI/Option/GL_UI_16_10.png"},
+				{ "Picture/UI/Option/GL_UI_16_10_2.png" }
+		}},
 		{ SCREEN_RATIO,{"Picture/UI/Option/GL_UI_ScreenRatio.png" }},
 
 		//‰¹ŠyŒn
@@ -63,14 +69,20 @@ namespace UI {
 
 		//‚»‚Ì‘¼
 		{DELETE_SAVE,{"Picture/UI/Option/GL_UI_DeleteSave.png"}},
-		{EXECUTE, {"Picture/UI/Option/GL_UI_Execute.png"}},
+		{EXECUTE,{
+				{"Picture/UI/Option/GL_UI_Execute.png"},
+				{ "Picture/UI/Option/GL_UI_Execute_2.png" }
+		}},
 		{GAME_SETTINGS,{"Picture/UI/Option/GL_UI_GameSettings.png"}},
 		{OPTION,{"Picture/UI/Option/GL_UI_Option.png"}},
 		{BAR,{
 				{"Picture/UI/Option/bar.png"},
 				{ "Picture/UI/Option/bar2.png" }
 		}},
-		{PINCH,{"Picture/UI/Option/pinch.png"}},
+		{PINCH,{
+				{"Picture/UI/Option/pinch_1.png"},
+				{ "Picture/UI/Option/pinch_2.png" }
+		}},
 	};
 }
 

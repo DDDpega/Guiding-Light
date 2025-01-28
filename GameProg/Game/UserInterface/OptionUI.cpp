@@ -37,11 +37,11 @@ void OptionUI::Initialize()
 	auto windowSetting = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::SCREEN_RATIO], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(windowSetting);
 
-	m_arrow= std::shared_ptr<Picture>(new Picture(Point{ scrX - 170 ,scrY / 2 - 70 }, 0.1, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(m_arrow);
+	/*m_arrow= std::shared_ptr<Picture>(new Picture(Point{ scrX - 170 ,scrY / 2 - 70 }, 0.1, &UI::ALLTYPE_LIST[UI::ALL_TYPE::SELECT], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_arrow);*/
 
 
-	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 170 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 170 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 1, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_modeText);
 	m_selectPos[0] = m_modeText->GetPos();
 
@@ -49,9 +49,9 @@ void OptionUI::Initialize()
 	UserInterface::AddPictureInUI(saveDelate);
 	
 
-	auto delateButton = std::shared_ptr<Picture>(new Picture(Point{ scrX-150 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
-	UserInterface::AddPictureInUI(delateButton);
-	m_selectPos[1] = delateButton->GetPos();
+	m_execute = std::shared_ptr<Picture>(new Picture(Point{ scrX-150 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
+	UserInterface::AddPictureInUI(m_execute);
+	m_selectPos[1] = m_execute->GetPos();
 
 	auto soundSetting = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2+80  }, 0.3, &UI::OPTION_LIST[UI::OPTION_TYPE::SOUND_SETTINGS], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(soundSetting);
@@ -92,12 +92,17 @@ void OptionUI::Initialize()
 	m_isRightFade = Game::gameInstance->GetSceneMNG()->GetNowScene()->m_isRightFade;
 
 	m_nowcursor = 0;
+	m_mode = 0;
 
 }
 
 void OptionUI::Update()
 {
 	UserInterface::Update();
+	auto image = &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10];
+	if (m_mode==1) {
+		image= &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9];
+	}
 
 	if (m_isChangeScene) {
 		m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
@@ -109,6 +114,31 @@ void OptionUI::Update()
 		return;
 	}
 	m_fadeUI->MoveFeed(m_isFeedIn, m_isRightFade);
+
+	switch (m_nowcursor)
+	{
+	case WINDOWMODE:
+		m_modeText->ChangePicture(image, 1);
+		m_execute->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0);
+		break;
+	case SAVEDELETE:
+		m_execute->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 1);
+		m_modeText->ChangePicture(image, 0);
+		break;
+	case MASTERVOL:
+		m_allSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
+		break;
+	case BGMVOL:
+		m_bgmSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
+		break;
+	case SEVOL:
+		m_seSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
+		break;
+	default:
+		m_execute->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0);
+		m_modeText->ChangePicture(image, 0);
+		break;
+	}
 
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
@@ -132,7 +162,7 @@ void OptionUI::Update()
 		}
 	}
 
-	m_arrow->SetPos(m_selectPos[m_nowcursor]);
+	//m_arrow->SetPos(m_selectPos[m_nowcursor]);
 	if (Game::gameInstance->GetInputMNG()->Down(L"OK")) {
 		switch (m_nowcursor)
 		{
@@ -152,9 +182,10 @@ void OptionUI::Update()
 			ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
 			Game::gameInstance->GetPictureMNG()->Initialize();
 			RereadUIList();
-			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
-			
+			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10],1);
+			m_mode = 0;
 			break;
+
 		case MASTERVOL:
 			Game::gameInstance->GetSoundMNG()->SetMasterVolume(m_allSound->LeftMove());
 			break;
@@ -180,7 +211,7 @@ void OptionUI::Update()
 			Game::gameInstance->GetPictureMNG()->Initialize();
 			RereadUIList();
 			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
-			
+			m_mode = 1;
 			
 
 			break;
