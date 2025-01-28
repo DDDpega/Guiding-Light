@@ -27,9 +27,6 @@ void MusicalNote::Initialize()
 
 	m_randomPos.x *= rand() % 2 == 0 ? -1 : 1;
 	m_randomPos.y *= rand() % 2 == 0 ? -1 : 1;
-
-	printfDx("x : %.f\n", m_randomPos.x);
-	printfDx("y : %.f\n", m_randomPos.y);
 }
 
 void MusicalNote::Update()

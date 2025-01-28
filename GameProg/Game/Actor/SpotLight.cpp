@@ -54,6 +54,7 @@ void SpotLight::Update()
 		m_lightCmp->m_nowLightSize -= (float)m_lightCmp->m_lightSize;
 		m_lightCmp->m_nowLightSize = 0;
 		m_lightCmp->ChangeLightONOFF();
+		m_lightCmp->m_lightOn = false;
 	}
 	else if (isTrigger && !m_firstOn && !m_lightCmp->m_lightOn) {
 		m_lightCmp->m_nowLightSize += (float)m_lightCmp->m_lightSize;
@@ -72,6 +73,7 @@ void SpotLight::Update()
 		m_lightCmp->m_nowLightSize -= (float)m_lightCmp->m_lightSize;
 		m_lightCmp->m_nowLightSize = 0;
 		m_lightCmp->ChangeLightONOFF();
+		m_lightCmp->m_lightOn = false;
 	}
 }
 

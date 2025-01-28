@@ -145,6 +145,6 @@ namespace PUDDLE_INFO {
 }
 
 namespace TUTORIAL_INFO {
-	constexpr float SIZE = 0.2f;
+	constexpr float SIZE = 0.5f;
 	const Point POS = Point{WINDOW_INFO::GAME_WIDTH_HALF,100};
 }

@@ -45,5 +45,8 @@ public:
 private:
 	Actor* m_target;
 	bool m_hitLight;
+	int m_frame;
+	int m_pictureNumber;
+
 };
 

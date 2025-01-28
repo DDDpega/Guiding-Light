@@ -42,6 +42,8 @@ public:
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
 protected:
+	int m_frame;
+	int m_pictureNumber;
 
 	bool m_hitMaxLight;
 };

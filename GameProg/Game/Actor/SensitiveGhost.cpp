@@ -2,6 +2,8 @@
 
 SensitiveGhost::SensitiveGhost(Point pos)
 	:Actor(pos)
+	, m_frame(0)
+
 {
 }
 
@@ -31,6 +33,13 @@ void SensitiveGhost::Initialize()
 void SensitiveGhost::Update()
 {
 	Actor::Update();
+
+	//‰æ‘œ‚Ì•ÏX
+	if (++m_frame % 30 == 0) {
+		m_pictureNumber = m_pictureNumber == 0 ? 1 : 0;
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_SENSITIVE], m_pictureNumber);
+		m_darkPictureCmp->m_darkPicture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOAST_SENSITIVE_EYE], m_pictureNumber);
+	}
 
 	m_target = nullptr;
 	if (!SceneManeger::gameScene->m_onSoundCmp.empty()) {
