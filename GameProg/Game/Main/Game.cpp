@@ -7,6 +7,7 @@ Game::Game()
 {
 	//ゲームインスタンスの初期化
 	gameInstance = this;
+	m_isFullScreenMode = WINDOW_INFO::FULL_SCREEN;
 }
 
 Game::~Game()

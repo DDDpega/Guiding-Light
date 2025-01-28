@@ -98,6 +98,9 @@ public:
 	//フレーム
 	int m_framecnt;
 
+	//screenモード
+	bool m_isFullScreenMode;
+
 private:
 	//マネージャーの宣言
 	CollisionManeger* m_collisionMNG;

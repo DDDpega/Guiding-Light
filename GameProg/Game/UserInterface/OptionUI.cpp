@@ -13,8 +13,6 @@ OptionUI::~OptionUI()
 void OptionUI::Initialize()
 {
 	UserInterface::Initialize();
-	m_nowCursorCol = 0;
-
 	
 
 	//âÊñ ÇÃïùÇéÊìæ
@@ -44,6 +42,15 @@ void OptionUI::Initialize()
 	m_modeText = std::shared_ptr<Picture>(new Picture(Point{scrX - 130 ,scrY / 2 - 70 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10], 1, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_modeText);
 	m_selectPos[0] = m_modeText->GetPos();
+
+	m_nowCursorCol = 1;
+	m_mode = 0;
+	if (Game::gameInstance->m_isFullScreenMode) {
+		m_nowCursorCol = 0;
+		m_mode = 1;
+		m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9], 1);
+	}
+
 
 	auto saveDelate = std::shared_ptr<Picture>(new Picture(Point{ 50 ,scrY / 2 }, 0.2, &UI::OPTION_LIST[UI::OPTION_TYPE::DELETE_SAVE], 0, E_PIVOT::LEFTUP, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(saveDelate);
@@ -92,7 +99,7 @@ void OptionUI::Initialize()
 	m_isRightFade = Game::gameInstance->GetSceneMNG()->GetNowScene()->m_isRightFade;
 
 	m_nowcursor = 0;
-	m_mode = 0;
+	
 
 }
 
@@ -200,8 +207,9 @@ void OptionUI::Update()
 			ChangeWindowMode(!WINDOW_INFO::FULL_SCREEN);
 			Game::gameInstance->GetPictureMNG()->Initialize();
 			RereadUIList();
-			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10],1);
-			m_mode = 0;
+			Game::gameInstance->m_isFullScreenMode = false;
+			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9],1);
+			m_mode = 1;
 			break;
 
 		case MASTERVOL:
@@ -228,8 +236,9 @@ void OptionUI::Update()
 			ChangeWindowMode(WINDOW_INFO::FULL_SCREEN);
 			Game::gameInstance->GetPictureMNG()->Initialize();
 			RereadUIList();
-			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_9]);
-			m_mode = 1;
+			Game::gameInstance->m_isFullScreenMode = true;
+			m_modeText->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::RATION16_10]);
+			m_mode = 0;
 			
 
 			break;
