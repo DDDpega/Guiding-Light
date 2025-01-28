@@ -102,6 +102,7 @@ using namespace std;
 #include "Boombox.h"
 #include "Curtains.h"
 #include "TutorialBox.h"
+#include "MusicalNote.h"
 
 #include "ActorManager.h"
 

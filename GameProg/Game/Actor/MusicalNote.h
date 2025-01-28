@@ -1,20 +1,19 @@
 #pragma once
 
-
-class Boombox : public Actor
+class MusicalNote : public Actor
 {
 public:
+
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	/// <param name="x">x座標</param>
-	/// <param name="y">y座標</param>
-	Boombox(Point pos);
+	/// <param name="pos"></param>
+	MusicalNote(Point pos);
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	virtual ~Boombox();
+	~MusicalNote();
 
 	/// <summary>
 	/// 初期化処理
@@ -26,6 +25,10 @@ public:
 	/// </summary>
 	void Update();
 
+	/// <summary>
+	/// 描画処理
+	/// </summary>
+	void Draw();
 
 	/// <summary>
 	/// 衝突処理
@@ -40,14 +43,16 @@ public:
 	/// <param name="tag"></param>
 	void NoHitCollision(Actor* other, E_TAG tag, E_TAG selftag);
 
-
-
 private:
 
-	E_BOOMBOX_MOVE m_boomBoxKind;
-	bool m_shareNow;
-	shared_ptr<OnSoundCmp> m_soundCmp;
-	shared_ptr<Sound> m_SEsound;
-	int m_soundNoteFrame;
+	/// <summary>
+	/// ランダム向き
+	/// </summary>
+	Point m_randomPos;
 
+	/// <summary>
+	/// 生存時間
+	/// </summary>
+	int m_frameCnt;
 };
+

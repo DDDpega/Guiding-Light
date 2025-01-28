@@ -39,81 +39,39 @@ void SpotLight::Update()
 {
 	Actor::Update();
 
-	switch (m_moveType)
-	{
-	case E_SPOTLIGHT_MOVE::NONE:
+	auto isTrigger = false;
 
-		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SPOT_LIGHT_OFF], 0);
-
-		if (m_firstOn) {
-			//ソーラーパネルが供給されていたら
-			for (auto s : SceneManeger::gameScene->m_solarpanel) {
-				if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && !s->GetIsTrigger()) {
-					m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_UP;
-					m_time = 0;
-				}
+	for (auto s : SceneManeger::gameScene->m_solarpanel) {
+		if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT) {
+			isTrigger = s->GetIsTrigger();
+			if (isTrigger) {
+				break;
 			}
 		}
-		else {
-			//ソーラーパネルが供給されていたら
-			for (auto s : SceneManeger::gameScene->m_solarpanel) {
-				if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && s->GetIsTrigger()) {
-					m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_UP;
-					m_time = 0;
-				}
-			}
-		}
-		break;
-	case E_SPOTLIGHT_MOVE::SLOWLY_UP:
+	}
 
-		++m_time;
-		m_lightCmp->m_nowLightSize += ((float)m_lightCmp->m_lightSize / 1.0f);
+	if (isTrigger && m_firstOn && m_lightCmp->m_lightOn) {
+		m_lightCmp->m_nowLightSize -= (float)m_lightCmp->m_lightSize;
+		m_lightCmp->m_nowLightSize = 0;
+		m_lightCmp->ChangeLightONOFF();
+	}
+	else if (isTrigger && !m_firstOn && !m_lightCmp->m_lightOn) {
+		m_lightCmp->m_nowLightSize += (float)m_lightCmp->m_lightSize;
+		m_lightCmp->ChangeLightONOFF();
+		m_lightCmp->m_lightOn = true;
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SPOT_LIGHT_ON], 0);
+	}
+	else if (!isTrigger && m_firstOn && !m_lightCmp->m_lightOn) {
+		m_lightCmp->m_nowLightSize += (float)m_lightCmp->m_lightSize;
+		m_lightCmp->ChangeLightONOFF();
+		m_lightCmp->m_lightOn = true;
+		m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SPOT_LIGHT_ON], 0);
 
-		//1秒経ったら
-		if (m_time >= 1) {
-			m_moveType = E_SPOTLIGHT_MOVE::LIGHTNING;
-			m_time = 0;
-			m_lightCmp->ChangeLightONOFF();
-			m_lightCmp->m_lightOn = true;
-			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::SPOT_LIGHT_ON], 0);
-		}
-		break;
-	case E_SPOTLIGHT_MOVE::LIGHTNING:
-
-
-		if (m_firstOn) {
-			//供給されて
-			for (auto s : SceneManeger::gameScene->m_solarpanel) {
-				if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && s->GetIsTrigger()) {
-					m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_DOWN;
-					m_time = 0;
-				}
-			}
-		}
-		else {
-			//供給されて
-			for (auto s : SceneManeger::gameScene->m_solarpanel) {
-				if (s->GetParam() == E_SOLARPANEL_KIND::SPOT_LIGHT && !s->GetIsTrigger()) {
-					m_moveType = E_SPOTLIGHT_MOVE::SLOWLY_DOWN;
-					m_time = 0;
-				}
-			}
-		}
-		break;
-	case E_SPOTLIGHT_MOVE::SLOWLY_DOWN:
-
-		++m_time;
-		m_lightCmp->m_nowLightSize -= ((float)m_lightCmp->m_lightSize / 1);
-
-		//1秒経ったら
-		if (m_time >= 1) {
-			m_moveType = E_SPOTLIGHT_MOVE::NONE;
-			m_time = 0;
-			m_lightCmp->m_nowLightSize = 0;
-			m_lightCmp->ChangeLightONOFF();
-		}
-
-		break;
+	}
+	else if (!isTrigger && !m_firstOn && m_lightCmp->m_lightOn) {
+		m_lightCmp->m_nowLightSize -= (float)m_lightCmp->m_lightSize;
+		m_lightCmp->m_nowLightSize = 0;
+		m_lightCmp->ChangeLightONOFF();
 	}
 }
 

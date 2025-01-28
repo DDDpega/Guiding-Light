@@ -30,6 +30,7 @@
     <ClCompile Include="Game\Actor\Ladder.cpp" />
     <ClCompile Include="Game\Actor\LuminousFigure.cpp" />
     <ClCompile Include="Game\Actor\ChaseGhost.cpp" />
+    <ClCompile Include="Game\Actor\MusicalNote.cpp" />
     <ClCompile Include="Game\Actor\PastimeGhost.cpp" />
     <ClCompile Include="Game\Actor\Player.cpp" />
     <ClCompile Include="Game\Actor\Puddle.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="Game\Actor\Ladder.h" />
     <ClInclude Include="Game\Actor\LuminousFigure.h" />
     <ClInclude Include="Game\Actor\ChaseGhost.h" />
+    <ClInclude Include="Game\Actor\MusicalNote.h" />
     <ClInclude Include="Game\Actor\PastimeGhost.h" />
     <ClInclude Include="Game\Actor\Player.h" />
     <ClInclude Include="Game\Actor\Puddle.h" />

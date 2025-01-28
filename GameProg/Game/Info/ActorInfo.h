@@ -98,6 +98,13 @@ namespace SENSITIVE_INFO {
 }
 
 /// <summary>
+/// ‰¹•„‚Ìî•ñ
+/// </summary>
+namespace MUSICAL_NOTE_INFO {
+	constexpr float SIZE = 1.0f;
+}
+
+/// <summary>
 /// ’~ŒõƒtƒBƒMƒ…ƒA‚Ìî•ñ
 /// </summary>
 namespace LUMINOUSFIGURE_INFO {

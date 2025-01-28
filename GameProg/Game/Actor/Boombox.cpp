@@ -3,6 +3,7 @@
 Boombox::Boombox(Point pos)
 	:Actor(pos)
 	,m_shareNow(false)
+	,m_soundNoteFrame(0)
 {
 }
 
@@ -35,16 +36,20 @@ void Boombox::Update()
 	Actor::Update();
 	auto isTrigger = false;
 
-	
-
 	for (auto s : SceneManeger::gameScene->m_solarpanel) {
 		if (s->GetParam() == E_SOLARPANEL_KIND::BOOM_BOX) {
 			isTrigger = s->GetIsTrigger();
 			if (isTrigger) {
+
 				if (!m_soundCmp->m_isSoundOn) 
 					m_soundCmp->OnSound();
+
 				if(CheckSoundMem(m_SEsound->GetSound())==0)
-				m_SEsound->SoundPlay(Sound::BACK);
+					m_SEsound->SoundPlay(Sound::BACK);
+
+				if (++m_soundNoteFrame % 20 == 0)
+					Game::gameInstance->GetActorMNG()->AddActor(shared_ptr<MusicalNote>(new MusicalNote(m_pos)));
+
 				return;
 			}
 		}

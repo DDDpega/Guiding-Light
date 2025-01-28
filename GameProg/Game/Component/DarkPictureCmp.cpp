@@ -9,6 +9,7 @@ DarkPictureCmp::DarkPictureCmp(Actor* actor, PICTURE_TYPE picture,int number)
 
 DarkPictureCmp::~DarkPictureCmp()
 {
+	m_darkPicture->m_isActive = false;
 }
 
 void DarkPictureCmp::Initialize()

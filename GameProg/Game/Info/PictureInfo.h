@@ -136,6 +136,7 @@ namespace UI {
 		LAMP_1,
 		THUNDER,
 		BATTERY,
+		MUSICAL_NOTE
 	};
 
 	_declspec(selectany) vector<PICTURE_TYPE> GAME_LIST = {
@@ -209,6 +210,11 @@ namespace UI {
 			{ "Picture/UI/Game/GL_UI_Gauge2.png" },
 			{ "Picture/UI/Game/GL_UI_Gauge3.png" },
 			{ "Picture/UI/Game/GL_UI_Gauge4.png" },
+		}},
+		{MUSICAL_NOTE , {
+			{},
+			{ "Picture/UI/Game/GL_UI_Note1.png"},
+			{ "Picture/UI/Game/GL_UI_Note2.png" },
 		}},
 	};
 }
