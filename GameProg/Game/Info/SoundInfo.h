@@ -40,6 +40,8 @@ namespace SOUND {
 		CURSORCONTROL,
 		POSE,
 		STARTGAME,
+		GAMEOVER,
+		GAMECLEAR,
 	};
 
 	//クレジットのリスト
@@ -51,6 +53,8 @@ namespace SOUND {
 		{ CURSORCONTROL ,	{"Sound/SE/GameSE/GL_SE_CursorControl.wav"}},
 		{ POSE ,			{"Sound/SE/GameSE/GL_SE_Pose.wav"}},
 		{ STARTGAME ,			{"Sound/SE/GameSE/GL_SE_GameStart.wav"}},
+		{ GAMEOVER ,			{"Sound/SE/GameSE/GL_SE_GameOver.wav"}},
+		{ GAMECLEAR ,			{"Sound/SE/GameSE/GL_SE_GameClear.wav"}},
 	};
 }
 
@@ -84,6 +88,7 @@ namespace SOUND {
 		GHOST,
 		SOLARPANEL,
 		LAUNCH,
+		RADIO,
 	};
 
 	//クレジットのリスト
@@ -96,6 +101,7 @@ namespace SOUND {
 		{ GHOST ,		{"Sound/SE/GimmickSE/GL_SE_Ghost.wav"}},
 		{ SOLARPANEL ,	{"Sound/SE/GimmickSE/GL_SE_Solarpanel.wav"}},
 		{ LAUNCH ,		{"Sound/SE/GimmickSE/GL_SE_Launch.wav"}},
+		{ RADIO ,		{"Sound/SE/GimmickSE/GL_SE_Radio.wav"}},
 
 	};
 }

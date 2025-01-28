@@ -105,6 +105,8 @@ private:
 	shared_ptr<Sound> m_pause[2];
 	shared_ptr<Sound> m_bgm;
 
+	shared_ptr<Sound> m_result[2];	//0...over,1...clear
+
 	std::shared_ptr<Player> m_player;	
 	int m_LightNum;	//c‚è‚Ìƒ‰ƒCƒg‚Ì”
 	bool isGameOver, isGameClear;

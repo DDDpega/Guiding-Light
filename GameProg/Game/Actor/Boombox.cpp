@@ -23,6 +23,8 @@ void Boombox::Initialize()
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddBOXCollisionList(collision);
 
+	m_SEsound = shared_ptr<Sound>(new Sound(SOUND::GIMMICK_LIST[SOUND::GIMMICK_TYPE::RADIO], Sound::E_Sound::SE, 0));
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_SEsound);
 	//サウンドコンポーネント
 	m_soundCmp = shared_ptr<OnSoundCmp>(new OnSoundCmp(this));
 	Actor::AddComponent(m_soundCmp);
@@ -33,17 +35,22 @@ void Boombox::Update()
 	Actor::Update();
 	auto isTrigger = false;
 
+	
+
 	for (auto s : SceneManeger::gameScene->m_solarpanel) {
 		if (s->GetParam() == E_SOLARPANEL_KIND::BOOM_BOX) {
 			isTrigger = s->GetIsTrigger();
 			if (isTrigger) {
-				if(!m_soundCmp->m_isSoundOn)
+				if (!m_soundCmp->m_isSoundOn) 
 					m_soundCmp->OnSound();
+				if(CheckSoundMem(m_SEsound->GetSound())==0)
+				m_SEsound->SoundPlay(Sound::BACK);
 				return;
 			}
 		}
 	}
 
+	m_SEsound->SoundStop();
 	m_soundCmp->OffSound();
 }
 

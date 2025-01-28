@@ -306,12 +306,18 @@ void GameScene::Initialize()
 	//pauseのSE
 	m_pause[0] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::POSE], Sound::E_Sound::SE, 0));
 	m_pause[1] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::CANCEL], Sound::E_Sound::SE, 0));
+	m_result[0] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::GAMEOVER], Sound::E_Sound::SE, 0));
+	m_result[1] = shared_ptr<Sound>(new Sound(SOUND::GAMESE_LIST[SOUND::GAMESE_TYPE::GAMECLEAR], Sound::E_Sound::SE, 0));
+	
+
 	m_bgm = shared_ptr<Sound>(new Sound(SOUND::BGM_LIST[SOUND::BGM_TYPE::STAGE], Sound::E_Sound::BGM, 0));
 
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_bgm);
 	m_bgm->SoundPlay(Sound::LOOP);
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_pause[0]);
 	Game::gameInstance->GetSoundMNG()->AddSoundList(m_pause[1]);
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_result[0]);
+	Game::gameInstance->GetSoundMNG()->AddSoundList(m_result[1]);
 
 	auto isDoorCheek = false;
 	doorNum = size(m_door);
@@ -384,6 +390,7 @@ void GameScene::GameClear()
 {
 	if (isOnceGameClearUI) return;
 	
+	m_result[1]->SoundPlay();
 
 	if (GetNumStage() == 0) {
 		m_isPause = false;
@@ -403,6 +410,8 @@ void GameScene::GameOver()
 	//現在がゲームオーバーならばreturn
 	if (isGameOver)
 		return;
+
+	m_result[0]->SoundPlay();
 
 	//各種フラグを変更
 	m_isPause = true;

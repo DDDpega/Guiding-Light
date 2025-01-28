@@ -34,7 +34,7 @@ void SolarPanel::Initialize()
 	LONG x = (m_pictureCmp->m_picture ->m_pictureSizeX * m_pictureCmp->m_picture->m_size) / 2;
 	LONG y = (m_pictureCmp->m_picture->m_pictureSizeY * m_pictureCmp->m_picture->m_size) / 2;
 
-	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 20,20 }, SOLARPANEL_INFO::COLLISION_SIZE, E_TAG::SOLARPANEL));
+	auto collision = std::shared_ptr<BoxCollisionCmp>(new BoxCollisionCmp(this, { 40,40 }, SOLARPANEL_INFO::COLLISION_SIZE, E_TAG::SOLARPANEL));
 	Actor::AddComponent(collision);
 	Game::gameInstance->GetCollisionMNG()->AddRayToHitObjectList(collision);
 

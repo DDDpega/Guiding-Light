@@ -47,5 +47,6 @@ private:
 	E_BOOMBOX_MOVE m_boomBoxKind;
 	bool m_shareNow;
 	shared_ptr<OnSoundCmp> m_soundCmp;
+	shared_ptr<Sound> m_SEsound;
 
 };
