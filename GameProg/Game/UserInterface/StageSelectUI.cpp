@@ -147,6 +147,14 @@ void StageSelectUI::Update()
 	if ((m_nowcursor == 0 && m_isLeft)|| (m_nowcursor == 1 && m_isRight))
 		frameNum = 60;
 	UserInterface::Update();
+	float scrX = WINDOW_INFO::GAME_WIDTH;
+	if (m_nowcursor != 0) {
+		m_stageNum->SetPos(Point{ scrX / 2,  100 });
+	}
+	else {
+		m_stageNum->SetPos(Point{ scrX / 2,  150 });
+	}
+
 	if (m_isRight) {
 		if (m_frame < frameNum) {
 			MovePosStage(false,frameNum, m_isRight);

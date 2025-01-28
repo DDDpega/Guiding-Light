@@ -295,17 +295,17 @@ namespace UI {
 		{ MENU_N_LIGHT, {"Picture/UI/StageSelect/GL_UI_MenuWindow.png" }},
 
 		//メニューセレクト
-		{ CREDIT_LIGHT, {"Picture/MS_Credit_off.png" }},
-		{ CREDIT_N_LIGHT, {"Picture/MS_Credit_on.png" }},
-		{ OPTION_LIGHT, {"Picture/MS_Option_off.png" }},
-		{ OPTION_N_LIGHT, {"Picture/MS_Option_on.png" }},
+		{ CREDIT_LIGHT, {"Picture/UI/StageSelect/GL_UI_CreditButton.png" }},
+		{ CREDIT_N_LIGHT, {"Picture/UI/StageSelect/GL_UI_CreditButton2.png" }},
+		{ OPTION_LIGHT, {"Picture/UI/StageSelect/GL_UI_OptionButton.png" }},
+		{ OPTION_N_LIGHT,{"Picture/UI/StageSelect/GL_UI_OptionButton2.png" }},
 
 		//キャラのアイコン
 		{S_PLAYER,{"Picture/Illust/Player/GL_Player_Idol_A.png"}},
 
 
 
-	} ;
+	};
 }
 
 namespace UI{

@@ -34,7 +34,7 @@ void TitleUI::Initialize()
 	UserInterface::AddPictureInUI(background);
 
 	//ÉçÉS
-	auto picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 1, &UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	auto picture = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 ,scrY / 2 - 100 }, 0.7, &UI::TITLE_LIST[UI::TITLE_TYPE::TITLE], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(picture);
 
 	//----------------------------------------------------------------------------------
@@ -243,7 +243,7 @@ void TitleUI::Draw()
 		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "ìWé¶î≈");
 	}
 	Point pos2 = Point{ WINDOW_INFO::GAME_WIDTH - 150,WINDOW_INFO::GAME_HEIGHT - 70 };
-	DrawFormatStringFToHandle(pos2.x, pos2.y, GetColor(255, 255, 255), m_fontHandle, "ver3.0.2");
+	DrawFormatStringFToHandle(pos2.x, pos2.y, GetColor(255, 255, 255), m_fontHandle, "ver3.2.3");
 
 	m_startText[0]->m_alpha += m_add;
 	
