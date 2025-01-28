@@ -295,7 +295,7 @@ void StageSelectUI::Update()
 		//横カーソルの変更
 		if (m_colSelectNum == 0 ) {
 			if (Game::gameInstance->GetInputMNG()->Click(L"RIGHT") && m_isStageClear[m_nowcursor]) {
-				if (m_nowcursor != 7) {
+				if (m_nowcursor != 10) {
 					m_isSoundPlay[2] = true;
 					//カーソルを下にずらす
 					m_nowcursor++;

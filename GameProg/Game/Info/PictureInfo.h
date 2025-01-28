@@ -80,7 +80,7 @@ namespace UI {
 				{ "Picture/UI/Option/bar2.png" }
 		}},
 		{PINCH,{
-				{"Picture/UI/Option/pinch_1.png"},
+				{"Picture/UI/Option/pinch.png"},
 				{ "Picture/UI/Option/pinch_2.png" }
 		}},
 	};

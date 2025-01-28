@@ -48,7 +48,7 @@ public:
 protected:
 	shared_ptr<Picture> m_bar;
 	shared_ptr<Picture> m_bar2;
-	//shared_ptr<Picture> m_pinch;
+
 
 	Point m_barCenter;
 	int m_max;

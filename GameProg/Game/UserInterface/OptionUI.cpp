@@ -120,26 +120,44 @@ void OptionUI::Update()
 	case WINDOWMODE:
 		m_modeText->ChangePicture(image, 1);
 		m_execute->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0);
+		
 		break;
 	case SAVEDELETE:
 		m_execute->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 1);
 		m_modeText->ChangePicture(image, 0);
 		break;
-	case MASTERVOL:
-		m_allSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
-		break;
-	case BGMVOL:
-		m_bgmSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
-		break;
-	case SEVOL:
-		m_seSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
-		break;
+	
 	default:
+		
 		m_execute->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::EXECUTE], 0);
 		m_modeText->ChangePicture(image, 0);
 		break;
 	}
 
+
+	switch (m_nowcursor)
+	{
+	case MASTERVOL:
+		m_allSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
+		m_seSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		m_bgmSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		break;
+	case BGMVOL:
+		m_allSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		m_seSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		m_bgmSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
+		break;
+	case SEVOL:
+		m_allSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		m_seSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 1);
+		m_bgmSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		break;
+	default:
+		m_allSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		m_seSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		m_bgmSound->m_pinch->ChangePicture(&UI::OPTION_LIST[UI::OPTION_TYPE::PINCH], 0);
+		break;
+	}
 
 	if (Game::gameInstance->GetInputMNG()->Click(L"CANCEL")) {
 		m_isSoundPlay[1] = true;

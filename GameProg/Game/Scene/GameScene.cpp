@@ -44,8 +44,18 @@ GameScene::GameScene()
 		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
 		L"Data/stage7.txt",
 	},
-
-
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage8.txt",
+	},
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage9.txt",
+	},
+	{
+		MAP_SIZE_HEIGHT,MAP_SIZE_WIDTH,
+		L"Data/stage10.txt",
+	},
 	})
 {
 
