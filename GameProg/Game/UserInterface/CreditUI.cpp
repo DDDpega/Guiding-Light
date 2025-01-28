@@ -46,11 +46,11 @@ void CreditUI::Initialize()
 	UserInterface::AddPictureInUI(m_jobText[1]);
 
 	//è„ë∫
-	m_nameText[1] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 -160,scrY / 2 + 120 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::UEMURA], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_nameText[1] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 -260,scrY / 2 + 120 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::UEMURA], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_nameText[1]);
 
 	//ëÂä`
-	m_nameText[2] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2+160 ,scrY / 2 + 120 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::OOGAKI], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_nameText[2] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2+260 ,scrY / 2 + 120 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::OOGAKI], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_nameText[2]);
 
 	//ÉvÉçÉOÉâÉ}
@@ -58,11 +58,11 @@ void CreditUI::Initialize()
 	UserInterface::AddPictureInUI(m_jobText[2]);
 
 	//ãeír
-	m_nameText[3] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2-125 ,scrY / 2 + 305 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::KIKUCHI], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_nameText[3] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2-225 ,scrY / 2 + 305 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::KIKUCHI], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_nameText[3]);
 
 	//ìcíÜ
-	m_nameText[4] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 +125,scrY / 2 + 305 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::TANAKA], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
+	m_nameText[4] = std::shared_ptr<Picture>(new Picture(Point{ scrX / 2 +225,scrY / 2 + 305 }, 0.3, &UI::CREDIT_LIST[UI::CREDIT_TYPE::TANAKA], 0, E_PIVOT::CENTER, E_SORT::SORT_UI));
 	UserInterface::AddPictureInUI(m_nameText[4]);
 
 

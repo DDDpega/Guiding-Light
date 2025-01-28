@@ -30,7 +30,10 @@ bool MapCollision::CheckMapChip(int col, int row,bool isFly)
 	bool isTrigger2 = false;
 	
 	for (auto s : solarpanel) {
-		isTrigger = s->GetIsTrigger();
+		if (s->GetParam() == E_SOLARPANEL_KIND::BLOCK) {
+			isTrigger = s->GetIsTrigger();
+		}
+		
 		if (isTrigger) {
 			break;
 		}
