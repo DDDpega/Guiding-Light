@@ -401,6 +401,7 @@ void GameScene::GameClear()
 	if (isOnceGameClearUI) return;
 	
 	m_result[1]->SoundPlay();
+	m_gameUI->SetisVisible(false);
 
 	if (GetNumStage() == 0) {
 		m_isPause = false;
@@ -422,6 +423,8 @@ void GameScene::GameOver()
 		return;
 
 	m_result[0]->SoundPlay();
+	m_gameUI->SetisVisible(false);
+
 
 	//各種フラグを変更
 	m_isPause = true;

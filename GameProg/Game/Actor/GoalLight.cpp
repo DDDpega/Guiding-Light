@@ -106,9 +106,6 @@ void GoalLight::Update()
 			SceneManeger::gameScene->m_goalLightList.push_back(this);
 
 
-			//ゲームシーンに通知を送る
-			SceneManeger::gameScene->LightNumChange(-1);
-
 			//次のステートを移動し、タイムを戻す
 			m_time = 0;
 			m_moveType = E_GOAL_LIGHT_MOVE::LIGHTNING;
@@ -120,6 +117,12 @@ void GoalLight::Update()
 			m_pastimeGhostTought = false;
 
 			m_batteryCmp->SetParam(300, 3);
+
+			m_pictureNumber = m_pictureNumber == 1 ? 2 : 1;
+			m_pictureCmp->m_picture->ChangePicture(&ILLUST::GIMMICK_LIST[ILLUST::GIMMICK_TYPE::GOALLIGHT], m_pictureNumber);
+
+			//ゲームシーンに通知を送る
+			SceneManeger::gameScene->LightNumChange(-1);
 		}
 		break;
 	case E_GOAL_LIGHT_MOVE::LIGHTNING:
