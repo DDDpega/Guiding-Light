@@ -36,6 +36,8 @@ public:
 	/// </summary>
 	shared_ptr<Picture> m_picture;
 
+	bool m_isPosCahnge;
+
 private:
 	
 	/// <summary>
@@ -51,4 +53,5 @@ private:
 	E_PIVOT m_pivot;
 	E_SORT m_sort;
 	int m_number;
+	Point m_offset;
 };

@@ -61,11 +61,15 @@ public:
 protected:
 	int m_fontHandle;	//ƒtƒHƒ“ƒg‚Ìî•ñ
 	shared_ptr<Picture> m_picture;
+	shared_ptr<PictureCmp> m_trianglePicture;
 	shared_ptr<InteractKeyCmp> m_interactKey;
 	bool m_isPlayerHit;
 	vector<function<bool()>> m_functionArray;
 	int m_frameCnt;
 	int m_numText;
 	bool m_isTextStop;
+	bool m_next;
+	bool m_function3Up;
+	int m_function3Frame;
 };
 

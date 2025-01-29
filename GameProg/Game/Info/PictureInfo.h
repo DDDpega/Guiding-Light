@@ -360,6 +360,7 @@ namespace UI {
 		INTERACT_KEY_MOVE,
 		INTERACT_KEY_JUMP,
 		INTERACT_KEY_INTERACT,
+		TRIANGLE
 	};
 	_declspec(selectany) vector<PICTURE_TYPE> TUTORIAL_LIST = {
 		{ SENTENCE,  {
@@ -407,6 +408,7 @@ namespace UI {
 			{"Picture/UI/Game/GL_UI_LS_N.png"},
 			{"Picture/UI/Game/GL_UI_LS_Top.png"},
 		}},
+		{TRIANGLE , {"Picture/UI/Tutorial/Triangle.png"}},
 	};
 }
 

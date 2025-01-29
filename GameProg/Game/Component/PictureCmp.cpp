@@ -8,6 +8,8 @@ PictureCmp::PictureCmp(Actor* actor, float size, PICTURE_TYPE picture,int number
 	,m_pivot(pivot)
 	,m_sort(sort)
 	,m_number(number)
+	, m_offset(Point{0,0})
+	, m_isPosCahnge(true)
 {
 
 }
@@ -28,11 +30,14 @@ void PictureCmp::Update()
 {
 	Component::Update();
 
-	//マップのポジションをプラスする
-	auto pos = m_actor->GetPos();
-	pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
-	//画像の位置を変更する
-	m_picture->SetPos(pos);
+	if (m_isPosCahnge) {
+		//マップのポジションをプラスする
+		auto pos = m_actor->GetPos();
+		pos.x += Game::gameInstance->GetSceneMNG()->gameScene->m_map->getPos().x;
+
+		//画像の位置を変更する
+		m_picture->SetPos(pos);
+	}
 
 	//画像コンポーネントの消去
 	if (!m_actor->m_isActive) {
