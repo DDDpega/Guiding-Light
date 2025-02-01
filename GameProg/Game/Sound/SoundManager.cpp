@@ -1,9 +1,9 @@
 #include "Framework.h"
 
 SoundManager::SoundManager()
-	:m_masterVolume(128)
-	, m_bgmVolume(128)
-	, m_seVolume(128)
+	:m_masterVolume(256)
+	, m_bgmVolume(256)
+	, m_seVolume(256)
 {
 }
 
