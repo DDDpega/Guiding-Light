@@ -240,7 +240,7 @@ void TitleUI::Draw()
 		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "í èÌî≈");
 	}
 	else {
-		DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "ìWé¶î≈");
+		//DrawFormatStringFToHandle(pos.x, pos.y, GetColor(255, 255, 255), m_fontHandle, "ìWé¶î≈");
 	}
 	Point pos2 = Point{ WINDOW_INFO::GAME_WIDTH - 150,WINDOW_INFO::GAME_HEIGHT - 70 };
 	DrawFormatStringFToHandle(pos2.x, pos2.y, GetColor(255, 255, 255), m_fontHandle, "ver3.2.5");
